@@ -1,0 +1,33 @@
+object Form4: TForm4
+  Left = 0
+  Top = 0
+  Caption = 'Saved Wallets'
+  ClientHeight = 367
+  ClientWidth = 218
+  Position = MainFormCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnActivate = FormActivate
+  DesignerMasterStyle = 0
+  object ListBox1: TListBox
+    Position.X = 8.000000000000000000
+    Position.Y = 48.000000000000000000
+    Size.Width = 201.000000000000000000
+    Size.Height = 305.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    OnDblClick = ListBox1DblClick
+    DisableFocusEffect = True
+    DefaultItemStyles.ItemStyle = ''
+    DefaultItemStyles.GroupHeaderStyle = ''
+    DefaultItemStyles.GroupFooterStyle = ''
+    Viewport.Width = 197.000000000000000000
+    Viewport.Height = 301.000000000000000000
+  end
+  object Label1: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 24.000000000000000000
+    Text = 'Load Wallet: '
+  end
+end
