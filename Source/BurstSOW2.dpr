@@ -13,7 +13,7 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := False;
-  TStyleManager.TrySetStyle('Metropolis UI Dark');
+  TStyleManager.TrySetStyle('Tablet Light');
   Application.CreateForm(TForm1, Form1);
   Application.CreateForm(TForm5, Form5);
   Application.CreateForm(TForm6, Form6);

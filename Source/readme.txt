@@ -1,1 +1,0 @@
-in my packed releases I use upx391w exe packer to shrink the filesize of Burst_wallet.exe

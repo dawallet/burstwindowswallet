@@ -1,13 +1,13 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Burst Windows Wallet v0.1.5'
-  ClientHeight = 601
-  ClientWidth = 1142
+  Caption = 'Burst Windows Wallet v0.1.6'
+  ClientHeight = 593
+  ClientWidth = 1126
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -6
+  Font.Height = -9
   Font.Name = 'Tahoma'
   Font.Style = []
   Menu = MainMenu1
@@ -16,27 +16,101 @@ object Form1: TForm1
   OnCreate = FormCreate
   OnHide = FormHide
   PixelsPerInch = 96
-  TextHeight = 7
+  TextHeight = 11
   object WebBrowser1: TWebBrowser
     Left = 0
     Top = 0
-    Width = 1142
-    Height = 601
-    Margins.Left = 2
-    Margins.Top = 2
-    Margins.Right = 2
-    Margins.Bottom = 2
+    Width = 1126
+    Height = 576
     Align = alClient
     TabOrder = 0
-    ExplicitTop = 1
-    ExplicitWidth = 1126
-    ExplicitHeight = 577
+    ExplicitWidth = 887
+    ExplicitHeight = 473
     ControlData = {
-      4C000000077600001D3E00000000000000000000000000000000000000000000
+      4C00000060740000883B00000000000000000000000000000000000000000000
       000000004C000000000000000000000001000000E0D057007335CF11AE690800
       2B2E126208000000000000004C0000000114020000000000C000000000000046
       8000000000000000000000000000000000000000000000000000000000000000
       00000000000000000100000000000000000000000000000000000000}
+  end
+  object ToolBar1: TToolBar
+    Left = 0
+    Top = 576
+    Width = 1126
+    Height = 17
+    Align = alBottom
+    ButtonHeight = 19
+    ButtonWidth = 61
+    Caption = 'ToolBar1'
+    Color = clBtnFace
+    Ctl3D = False
+    DoubleBuffered = False
+    DragMode = dmAutomatic
+    DrawingStyle = dsGradient
+    EdgeInner = esLowered
+    EdgeOuter = esRaised
+    GradientEndColor = clWhite
+    HideClippedButtons = True
+    HotTrackColor = clWhite
+    ParentColor = False
+    ParentDoubleBuffered = False
+    ShowCaptions = True
+    TabOrder = 1
+    TabStop = True
+    Transparent = True
+    ExplicitTop = 582
+    object ToolButton1: TToolButton
+      Left = 0
+      Top = 0
+      Caption = 'Price:'
+      ImageIndex = 0
+    end
+    object ToolButton2: TToolButton
+      Left = 61
+      Top = 0
+      Caption = '-'
+      ImageIndex = 1
+    end
+    object ToolButton7: TToolButton
+      Left = 122
+      Top = 0
+      Width = 8
+      Caption = 'ToolButton7'
+      ImageIndex = 6
+      Style = tbsSeparator
+    end
+    object ToolButton3: TToolButton
+      Left = 130
+      Top = 0
+      Caption = '1000 Burst ='
+      ImageIndex = 2
+    end
+    object ToolButton4: TToolButton
+      Left = 191
+      Top = 0
+      Caption = '-'
+      ImageIndex = 3
+    end
+    object ToolButton8: TToolButton
+      Left = 252
+      Top = 0
+      Width = 8
+      Caption = 'ToolButton8'
+      ImageIndex = 6
+      Style = tbsSeparator
+    end
+    object ToolButton5: TToolButton
+      Left = 260
+      Top = 0
+      Caption = 'Market Cap:'
+      ImageIndex = 4
+    end
+    object ToolButton6: TToolButton
+      Left = 321
+      Top = 0
+      Caption = '-'
+      ImageIndex = 5
+    end
   end
   object MainMenu1: TMainMenu
     Left = 560
@@ -51,14 +125,36 @@ object Form1: TForm1
         Caption = 'Load Wallet'
         OnClick = LoadWallet1Click
       end
+      object DeleteWallet1: TMenuItem
+        Caption = 'Minimize'
+        OnClick = DeleteWallet1Click
+      end
+      object Exit1: TMenuItem
+        Caption = 'Close'
+        OnClick = Exit1Click
+      end
     end
     object Crowdfunding1: TMenuItem
       Caption = 'Crowdfunding'
-      OnClick = Crowdfunding1Click
+      object local1: TMenuItem
+        Caption = 'Local '
+        OnClick = local1Click
+      end
+      object Online1: TMenuItem
+        Caption = 'Online'
+        OnClick = Online1Click
+      end
     end
     object Lotteries1: TMenuItem
       Caption = 'Lotteries'
-      OnClick = Lotteries1Click
+      object Local2: TMenuItem
+        Caption = 'Local'
+        OnClick = Local2Click
+      end
+      object Online2: TMenuItem
+        Caption = 'Online'
+        OnClick = Online2Click
+      end
     end
     object About1: TMenuItem
       Caption = 'About'
@@ -11662,5 +11758,11 @@ object Form1: TForm1
       Caption = 'Close'
       OnClick = Close1Click
     end
+  end
+  object Timer1: TTimer
+    Interval = 220000
+    OnTimer = Timer1Timer
+    Left = 664
+    Top = 376
   end
 end
