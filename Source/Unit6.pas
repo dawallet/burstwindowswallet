@@ -12,6 +12,7 @@ type
     Label1: TLabel;
     procedure ListBox1DblClick(Sender: TObject);
     procedure ListBox1Enter(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
   private
     { Private-Deklarationen }
   public
@@ -80,6 +81,12 @@ end;
 
 
 
+
+procedure TForm6.FormActivate(Sender: TObject);
+begin
+                  Listbox1.Items.Clear;
+ GetFilesInDirectory('','*.txt',Listbox1.Items,False);
+end;
 
 procedure TForm6.ListBox1DblClick(Sender: TObject);
 begin
