@@ -100,6 +100,7 @@ object Form3: TForm3
     Top = 176
     Width = 145
     Height = 21
+    NumbersOnly = True
     TabOrder = 3
     Text = '12345678901234567890'
   end

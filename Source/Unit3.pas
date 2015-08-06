@@ -133,11 +133,13 @@ dirSize:= (dirSize div 1024 div 256)+1;
 
 parameters :='wplotgenerator.exe '+((Textfield.Text) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(((1024*1024) div 256) *(TrackBar1.Position)) + ' ' + IntToStr((Memory.dwTotalPhys div 1024 div 512 div 8)*8) + ' ' + IntToStr(TrackBar2.Position));
 ShellExecute(0, 'open', PChar('cmd.exe'),PChar('/K '+parameters), PChar(path), SW_SHOW);
-
+//Showmessage(parameters);
 close;
 end;
 
 procedure TForm3.FormActivate(Sender: TObject);
+var
+address: String;
 
 begin
 
@@ -145,8 +147,9 @@ Label1.Caption:= 'You have ' + IntToStr(Form2.FreeD) + ' GB free on the chosen D
 Label2.Caption:= IntToStr(Form2.FreeD) + ' GB';
 TrackBar1.Max:= Form2.FreeD;
 
-
-    Textfield.Text:=(TFile.ReadAllText('plotter/miningaddress.txt'));
+    address:=TFile.ReadAllText('plotter/miningaddress.txt');
+    address:= StringReplace(address, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
+    Textfield.Text:=(address);
 
 end;
 
