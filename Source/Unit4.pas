@@ -65,7 +65,7 @@ procedure TForm4.Button1Click(Sender: TObject);
    t : TextFile;
    directories: String;
 begin
-if not ListBox1.Items.Count = 0 then
+if not ListBox1.Items.Count < 1 then
  begin
 directories:= ListBox1.Items.GetText;
 directories:= StringReplace(directories, '\', '\\', [rfReplaceAll, rfIgnoreCase]);
@@ -114,7 +114,7 @@ ShellExecute(0, 'open', PChar('miner.exe'),PChar('/K'), PChar('miner-burst-1.150
 close;
  end
 else
-Showmessage('No plots found. You have to generate plots before mining!');
+Showmessage('No plots found. You have to generate plots before mining! Or you have to put your Plots to: X:\Burst\plots or X:\plots\');
 
 end;
 procedure TForm4.Button2Click(Sender: TObject);

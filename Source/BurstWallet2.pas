@@ -41,6 +41,14 @@ type
     ToolButton6: TToolButton;
     ToolButton7: TToolButton;
     ToolButton8: TToolButton;
+    ToolButton9: TToolButton;
+    ToolButton10: TToolButton;
+    ToolButton11: TToolButton;
+    Faucets1: TMenuItem;
+    burstfaucetcom1: TMenuItem;
+    httpfburstcoininfo1: TMenuItem;
+    burstcoinbizfaucet1: TMenuItem;
+    Market1: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure About1Click(Sender: TObject);
     procedure AddWallet1Click(Sender: TObject);
@@ -66,6 +74,12 @@ type
     procedure Timer1Timer(Sender: TObject);
     procedure Exit1Click(Sender: TObject);
     procedure DeleteWallet1Click(Sender: TObject);
+    procedure ToolButton11Click(Sender: TObject);
+    procedure ToolButton10Click(Sender: TObject);
+    procedure burstfaucetcom1Click(Sender: TObject);
+    procedure httpfburstcoininfo1Click(Sender: TObject);
+    procedure burstcoinbizfaucet1Click(Sender: TObject);
+    procedure Market1Click(Sender: TObject);
 
   private
     { Private-Deklarationen }
@@ -80,8 +94,25 @@ var
 
 
 implementation
-uses Unit5, Unit6;
+uses Unit5, Unit6, Unit2, Unit4, Unit3, Unit9;
 {$R *.dfm}
+
+//todo  Click on footer - change currency, caption and so on
+// expert mode
+
+function IsWin64: Boolean;
+var
+  IsWow64Process : function(hProcess : THandle; var Wow64Process : BOOL): BOOL; stdcall;
+  Wow64Process : BOOL;
+begin
+  Result := False;
+  IsWow64Process := GetProcAddress(GetModuleHandle(Kernel32), 'IsWow64Process');
+  if Assigned(IsWow64Process) then begin
+    if IsWow64Process(GetCurrentProcess, Wow64Process) then begin
+      Result := Wow64Process;
+    end;
+  end;
+end;
 
 procedure TForm1.WmSysCommand(var Msg: TWMSysCommand);
 begin
@@ -131,9 +162,19 @@ begin
   TrayIcon1.ShowBalloonHint;
 end;
 
+procedure TForm1.burstcoinbizfaucet1Click(Sender: TObject);
+begin
+ Webbrowser1.Navigate('http://burstcoin.biz/faucet/');
+end;
+
+procedure TForm1.burstfaucetcom1Click(Sender: TObject);
+begin
+Webbrowser1.Navigate('http://burstfaucet.com/');
+end;
+
 procedure TForm1.About1Click(Sender: TObject);
 begin
-ShowMessage('Burst Windows Wallet version 0.1.6 by daWallet' +#13#10+ 'You want to buy me a beer?  BURST-YZJ6-LYBY-WAC6-BQYGC' +#13#10+ #13#10+ 'Using Official Online Wallet: https://wallet.burst.city by Crowetic and Catbref'  +#13#10+ 'Special thanks to Irontiga');
+ShowMessage('Burst Windows Client version 0.1.7 (for Burst Wallet 1.2.3) by daWallet' +#13#10+ 'You want to buy me a beer?  BURST-YZJ6-LYBY-WAC6-BQYGC' +#13#10+ #13#10+ 'Using Official Online Wallet: https://wallet.burst.city by Crowetic and Catbref'  +#13#10+ 'Special thanks to Janror and Blago for the plotter and miner!');
 end;
 
 procedure TForm1.AddWallet1Click(Sender: TObject);
@@ -142,30 +183,6 @@ begin
 end;
 
 
-function IsWebSiteUP( AURL: String): Boolean;
-var
-  HTTP: TidHTTP;
-  Restlt: Boolean;
-begin
-  Result := True;
-  HTTP := TidHTTP.Create(nil);
-  try
-    HTTP.Get( AURL);
-    // See the table below for standard HTTP response
-    // codes.
-    // Modify this case statement to handle the others
-    // that you want to catch.
-    case HTTP.ResponseCode of
-    400..505:
-      begin
-        Restlt := False;
-      end;
-    end; {case}
-  finally
-    HTTP.Free;
-
-end;
-end;
 
 
 
@@ -237,6 +254,11 @@ begin
 end;
 
 
+procedure TForm1.httpfburstcoininfo1Click(Sender: TObject);
+begin
+    WebBrowser1.Navigate('http://f.burstcoin.info');
+end;
+
 procedure TForm1.LoadWallet1Click(Sender: TObject);
 begin
                     Form6.Show;
@@ -254,6 +276,11 @@ begin
              WebBrowser1.Navigate('http://127.0.0.1:8125/atlotteries.html');
          N7.Enabled := True;
           N6.Enabled := True;
+end;
+
+procedure TForm1.Market1Click(Sender: TObject);
+begin
+    WebBrowser1.Navigate('http://burstcoin.info/market/');
 end;
 
 procedure TForm1.N6Click(Sender: TObject);
@@ -294,16 +321,18 @@ begin
 end;
 
 procedure TForm1.Timer1Timer(Sender: TObject);
-var          IdHTTP: TIdHTTP;
-               marketcap: Single;
+var
+  IdHTTP: TIdHTTP;
+  marketcap: Single;
   marketcapString: String;
   amount: Single;
   result: Single;
 begin
 
    IdHTTP := TIdHTTP.Create;
-
-   ToolButton6.Caption := ('$ ' + StringReplace(idHTTP.Get('http://www.burstcoin.fr/api/?r=market_cap&e=average'), ' ', '.',[rfReplaceAll]));
+try
+  try
+      ToolButton6.Caption := ('$ ' + StringReplace(idHTTP.Get('http://www.burstcoin.fr/api/?r=market_cap&e=average'), ' ', '.',[rfReplaceAll]));
    ToolButton2.Caption := (idHTTP.Get('http://www.burstcoin.fr/api/?r=last_price&e=average')+' ฿' );
    marketcapString:= (idHTTP.Get('http://www.burstcoin.fr/api/?r=market_cap&e=average'));
    marketcapString:= StringReplace(marketcapString, ' ', '',[rfReplaceAll]);
@@ -312,8 +341,33 @@ begin
    amount:= StrToFloat(idHTTP.Get('http://www.burstcoin.fr/api/?r=total_coins&e=average'));
    result:= ((marketcap / amount) * 1000);
    ToolButton4.Caption := (FloatToStrF(result, ffFixed, 15, 2)) +' $';
+   except
+
+  end;
+finally
+  IdHTTP.Free;
 end;
 
+end;
+
+
+procedure TForm1.ToolButton10Click(Sender: TObject);
+begin
+if isWin64 = true then
+begin
+Form4.Show
+end
+else
+Form9.Show;
+
+end;
+
+
+
+procedure TForm1.ToolButton11Click(Sender: TObject);
+begin
+Form2.Show;
+end;
 
 procedure TForm1.TrayIcon1Click(Sender: TObject);
 

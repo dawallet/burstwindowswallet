@@ -115,7 +115,7 @@ object Form4: TForm4
   end
   object Button2: TButton
     Left = 26
-    Top = 161
+    Top = 153
     Width = 132
     Height = 25
     Caption = 'Change'

@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, ovceditf, ovcedpop,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, ovceditf, ovcedpop, System.UITypes,
   ovcedsld, ovcdbsed, ovcbase, ovcslide, ovcdbsld, Vcl.ComCtrls, Types, IOUtils, ShellApi;
 
 type
@@ -31,6 +31,7 @@ type
   public
     { Public-Deklarationen }
         ma: Textfile;
+        gen: Textfile;
   end;
  // wplotgenerator 1 0 9600 1920 %NUMBER_OF_PROCESSORS%
 var
@@ -75,6 +76,21 @@ end;
 end;
 
 
+function IsWin64: Boolean;
+var
+  IsWow64Process : function(hProcess : THandle; var Wow64Process : BOOL): BOOL; stdcall;
+  Wow64Process : BOOL;
+begin
+  Result := False;
+  IsWow64Process := GetProcAddress(GetModuleHandle(Kernel32), 'IsWow64Process');
+  if Assigned(IsWow64Process) then begin
+    if IsWow64Process(GetCurrentProcess, Wow64Process) then begin
+      Result := Wow64Process;
+    end;
+  end;
+end;
+
+
 
 procedure CopyFilesToPath(aFiles: array of string; DestPath: string);
 var
@@ -107,9 +123,11 @@ procedure TForm3.Button2Click(Sender: TObject);
 var
 path: String;
 parameters: String;
+pocParameters: String;
 Memory: TMemoryStatus;
 dirSize: Int64;
 multiplier: Int64;
+BatContent: TStringList;
 
 begin
 //wplotgenerator [account id] [start nonce] [number of nonces] [stagger size] [threads]
@@ -131,8 +149,34 @@ _GetFolderSize(ExcludeTrailingPathDelimiter(path + 'plots\'), dirSize, false);
 dirSize:= (dirSize div 1024 div 256)+1;
 //Showmessage(IntToStr(dirSize));
 
+
+
+//java -Xmx4000m -cp pocminer.jar;lib/*;lib/akka/*;lib/jetty/* pocminer.POCMiner generate %*
+
+
+pocParameters :='run_generate.bat '+((Textfield.Text) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(((1024*1024) div 256) *(TrackBar1.Position)) + ' ' + IntToStr((Memory.dwTotalPhys div 1024 div 1024 div 8)*8) + ' ' + IntToStr(TrackBar2.Position));
 parameters :='wplotgenerator.exe '+((Textfield.Text) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(((1024*1024) div 256) *(TrackBar1.Position)) + ' ' + IntToStr((Memory.dwTotalPhys div 1024 div 512 div 8)*8) + ' ' + IntToStr(TrackBar2.Position));
+
+
+if isWin64 = true then
+begin
+
 ShellExecute(0, 'open', PChar('cmd.exe'),PChar('/K '+parameters), PChar(path), SW_SHOW);
+
+end
+else
+begin
+Showmessage('You use a 32 bit system! For you theres only the original java plotter which is slower. Never mind.');
+
+BatContent:=TStringList.Create;
+BatContent.Add('java -Xmx'+IntToStr(Memory.dwTotalPhys div 1024 div 1024)+'m -cp pocminer.jar;lib/*;lib/akka/*;lib/jetty/* pocminer.POCMiner generate %*');
+BatContent.SaveToFile(path+'/run_generate.bat');
+BatContent.Free;
+
+ShellExecute(0, 'open', PChar('cmd.exe'),PChar('/K '+pocParameters), PChar(path), SW_SHOW);
+
+end;
+
 //Showmessage(parameters);
 close;
 end;
