@@ -20,15 +20,19 @@ _____
 Changelog:
 
 
+10.08.15 - Implementation of pocminer (java) for 32bit systems
 31.07.15 - Implementation of Cerr Janror's plotter and Blago's miner.
  
 Binary Blobs and sources: 
 
 /plotter/ ->  https://github.com/BurstTools/BurstSoftware
+	      https://github.com/BurstProject/pocminer
 
 
 /miner-burst-1.1xxxxx/ -> https://github.com/Blagodarenko/miner-burst
- 
+
+
+/pocminer_pool_v1/ -> https://github.com/BurstProject/pocminer
 _____
 
 
