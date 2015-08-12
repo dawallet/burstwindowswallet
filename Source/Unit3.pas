@@ -42,7 +42,7 @@ implementation
 {$R *.dfm}
 uses Unit2;
 
-  function CharToNum(Ch: Char): Integer;
+function CharToNum(Ch: Char): Integer;
   asm
           SUB     AL,65
   end;
@@ -75,7 +75,6 @@ FindClose(SR);
 end;
 end;
 
-
 function IsWin64: Boolean;
 var
   IsWow64Process : function(hProcess : THandle; var Wow64Process : BOOL): BOOL; stdcall;
@@ -91,7 +90,6 @@ begin
 end;
 
 
-
 procedure CopyFilesToPath(aFiles: array of string; DestPath: string);
 var
   InFile, OutFile: string;
@@ -102,8 +100,6 @@ begin
     TFile.Copy( InFile, OutFile, True);
   end;
 end;
-
-
 
 function GetSystemMem: string;  { Returns installed RAM (as viewed by your OS) in GB, with 2 decimals }
 VAR MS_Ex : MemoryStatusEx;
@@ -132,12 +128,12 @@ BatContent: TStringList;
 begin
 //wplotgenerator [account id] [start nonce] [number of nonces] [stagger size] [threads]
    AssignFile(ma,'plotter/miningaddress.txt');
-    Rewrite(MA);
-    Writeln(MA,Textfield.Text);
-    CloseFile(MA);
+   Rewrite(MA);
+   Writeln(MA,Textfield.Text);
+   CloseFile(MA);
 
-Memory.dwLength := SizeOf(Memory);
-GlobalMemoryStatus(Memory);
+    Memory.dwLength := SizeOf(Memory);
+    GlobalMemoryStatus(Memory);
 
 //Showmessage(IntToStr(CharToNum(Form2.DriveComboBox1.Drive)-31));
 multiplier:= (CharToNum(Form2.DriveComboBox1.Drive)-31)*100000000;
@@ -149,33 +145,25 @@ _GetFolderSize(ExcludeTrailingPathDelimiter(path + 'plots\'), dirSize, false);
 dirSize:= (dirSize div 1024 div 256)+1;
 //Showmessage(IntToStr(dirSize));
 
-
-
-//java -Xmx4000m -cp pocminer.jar;lib/*;lib/akka/*;lib/jetty/* pocminer.POCMiner generate %*
-
-
-pocParameters :='run_generate.bat '+((Textfield.Text) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(((1024*1024) div 256) *(TrackBar1.Position)) + ' ' + IntToStr((Memory.dwTotalPhys div 1024 div 1024 div 8)*8) + ' ' + IntToStr(TrackBar2.Position));
+pocParameters :='run_generate.bat '+((Textfield.Text) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(((1024*1024) div 256) *(TrackBar1.Position)) + ' ' + IntToStr((Memory.dwTotalPhys div 1024 div 1024 div 10)*8) + ' ' + IntToStr(TrackBar2.Position));
 parameters :='wplotgenerator.exe '+((Textfield.Text) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(((1024*1024) div 256) *(TrackBar1.Position)) + ' ' + IntToStr((Memory.dwTotalPhys div 1024 div 512 div 8)*8) + ' ' + IntToStr(TrackBar2.Position));
 
 
 if isWin64 = true then
-begin
-
-ShellExecute(0, 'open', PChar('cmd.exe'),PChar('/K '+parameters), PChar(path), SW_SHOW);
-
-end
+  begin
+    ShellExecute(0, 'open', PChar('cmd.exe'),PChar('/K '+parameters), PChar(path), SW_SHOW);
+  end
 else
-begin
-Showmessage('You use a 32 bit system! For you theres only the original java plotter which is slower. Never mind.');
+  begin
+    Showmessage('You use a 32 bit system! For you theres only the original java plotter available which is slower. Never mind.');
 
-BatContent:=TStringList.Create;
-BatContent.Add('java -Xmx'+IntToStr(Memory.dwTotalPhys div 1024 div 1024)+'m -cp pocminer.jar;lib/*;lib/akka/*;lib/jetty/* pocminer.POCMiner generate %*');
-BatContent.SaveToFile(path+'/run_generate.bat');
-BatContent.Free;
+    BatContent:=TStringList.Create;
+    BatContent.Add('java -Xmx'+IntToStr(Memory.dwTotalPhys div 800 div 4096)+'m -cp pocminer.jar;lib/*;lib/akka/*;lib/jetty/* pocminer.POCMiner generate %*');
+    BatContent.SaveToFile(path+'/run_generate.bat');
+    BatContent.Free;
 
-ShellExecute(0, 'open', PChar('cmd.exe'),PChar('/K '+pocParameters), PChar(path), SW_SHOW);
-
-end;
+    ShellExecute(0, 'open', PChar('cmd.exe'),PChar('/K '+pocParameters), PChar(path), SW_SHOW);
+  end;
 
 //Showmessage(parameters);
 close;
@@ -199,13 +187,13 @@ end;
 
 procedure TForm3.FormCreate(Sender: TObject);
 var
-Memory: TMemoryStatus;
+  Memory: TMemoryStatus;
 begin
-Label4.Caption := 'Number of available CPU Cores: ' + IntToStr(System.CPUCount);
-Label5.Caption := IntToStr(System.CPUCount) + ' Cores';
-TrackBar2.Max := (System.CPUCount);
+  Label4.Caption := 'Number of CPUs you want to use:';
+  Label5.Caption := IntToStr(System.CPUCount) + ' Cores';
+  TrackBar2.Max := (System.CPUCount);
 
-Memory.dwLength := SizeOf(Memory);
+  Memory.dwLength := SizeOf(Memory);
   GlobalMemoryStatus(Memory);
 
 end;

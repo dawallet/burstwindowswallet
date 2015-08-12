@@ -1,8 +1,8 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Burst Windows Wallet v0.1.6'
-  ClientHeight = 593
+  Caption = 'Burst Windows Client v0.1.7.5'
+  ClientHeight = 588
   ClientWidth = 1126
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -21,13 +21,13 @@ object Form1: TForm1
     Left = 0
     Top = 0
     Width = 1126
-    Height = 576
+    Height = 568
     Align = alClient
     TabOrder = 0
     ExplicitWidth = 887
     ExplicitHeight = 473
     ControlData = {
-      4C00000060740000883B00000000000000000000000000000000000000000000
+      4C00000060740000B43A00000000000000000000000000000000000000000000
       000000004C000000000000000000000001000000E0D057007335CF11AE690800
       2B2E126208000000000000004C0000000114020000000000C000000000000046
       8000000000000000000000000000000000000000000000000000000000000000
@@ -35,9 +35,9 @@ object Form1: TForm1
   end
   object ToolBar1: TToolBar
     Left = 0
-    Top = 576
+    Top = 568
     Width = 1126
-    Height = 17
+    Height = 20
     Align = alBottom
     ButtonHeight = 19
     ButtonWidth = 61
@@ -58,7 +58,6 @@ object Form1: TForm1
     TabOrder = 1
     TabStop = True
     Transparent = True
-    ExplicitTop = 582
     object ToolButton1: TToolButton
       Left = 0
       Top = 0
@@ -111,6 +110,36 @@ object Form1: TForm1
       Caption = '-'
       ImageIndex = 5
     end
+    object ToolButton12: TToolButton
+      Left = 382
+      Top = 0
+      Width = 8
+      Caption = 'ToolButton12'
+      ImageIndex = 7
+      Style = tbsSeparator
+    end
+    object ToolButton11: TToolButton
+      Left = 390
+      Top = 0
+      Caption = 'Write Plots'
+      ImageIndex = 7
+      OnClick = ToolButton11Click
+    end
+    object ToolButton9: TToolButton
+      Left = 451
+      Top = 0
+      Width = 8
+      Caption = 'ToolButton9'
+      ImageIndex = 6
+      Style = tbsSeparator
+    end
+    object ToolButton10: TToolButton
+      Left = 459
+      Top = 0
+      Caption = 'Start Mining'
+      ImageIndex = 6
+      OnClick = ToolButton10Click
+    end
   end
   object MainMenu1: TMainMenu
     Left = 560
@@ -154,6 +183,21 @@ object Form1: TForm1
       object Online2: TMenuItem
         Caption = 'Online'
         OnClick = Online2Click
+      end
+    end
+    object Faucets1: TMenuItem
+      Caption = 'Faucets'
+      object burstfaucetcom1: TMenuItem
+        Caption = 'burstfaucet.com'
+        OnClick = burstfaucetcom1Click
+      end
+      object httpfburstcoininfo1: TMenuItem
+        Caption = 'f.burstcoin.info'
+        OnClick = httpfburstcoininfo1Click
+      end
+      object burstcoinbizfaucet1: TMenuItem
+        Caption = 'burstcoin.biz/faucet'
+        OnClick = burstcoinbizfaucet1Click
       end
     end
     object About1: TMenuItem
@@ -11760,7 +11804,7 @@ object Form1: TForm1
     end
   end
   object Timer1: TTimer
-    Interval = 220000
+    Interval = 600000
     OnTimer = Timer1Timer
     Left = 664
     Top = 376

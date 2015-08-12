@@ -48,7 +48,7 @@ type
     burstfaucetcom1: TMenuItem;
     httpfburstcoininfo1: TMenuItem;
     burstcoinbizfaucet1: TMenuItem;
-    Market1: TMenuItem;
+    ToolButton12: TToolButton;
     procedure FormCreate(Sender: TObject);
     procedure About1Click(Sender: TObject);
     procedure AddWallet1Click(Sender: TObject);
@@ -94,7 +94,7 @@ var
 
 
 implementation
-uses Unit5, Unit6, Unit2, Unit4, Unit3, Unit9;
+uses Unit5, Unit6, Unit2, Unit4, Unit3, Unit9, Unit10;
 {$R *.dfm}
 
 //todo  Click on footer - change currency, caption and so on
@@ -174,7 +174,7 @@ end;
 
 procedure TForm1.About1Click(Sender: TObject);
 begin
-ShowMessage('Burst Windows Client version 0.1.7 (for Burst Wallet 1.2.3) by daWallet' +#13#10+ 'You want to buy me a beer?  BURST-YZJ6-LYBY-WAC6-BQYGC' +#13#10+ #13#10+ 'Using Official Online Wallet: https://wallet.burst.city by Crowetic and Catbref'  +#13#10+ 'Special thanks to Janror and Blago for the plotter and miner!');
+Form10.Show;
 end;
 
 procedure TForm1.AddWallet1Click(Sender: TObject);

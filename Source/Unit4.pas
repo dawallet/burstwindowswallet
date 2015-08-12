@@ -67,10 +67,10 @@ procedure TForm4.Button1Click(Sender: TObject);
 begin
 if not ListBox1.Items.Count < 1 then
  begin
-directories:= ListBox1.Items.GetText;
-directories:= StringReplace(directories, '\', '\\', [rfReplaceAll, rfIgnoreCase]);
-directories:= StringReplace(directories, #13#10, '+', [rfReplaceAll, rfIgnoreCase]);
-delete(directories, length(directories), 1);
+    directories:= ListBox1.Items.GetText;
+    directories:= StringReplace(directories, '\', '\\', [rfReplaceAll, rfIgnoreCase]);
+    directories:= StringReplace(directories, #13#10, '+', [rfReplaceAll, rfIgnoreCase]);
+    delete(directories, length(directories), 1);
 
   begin
     AssignFile(t,'miner-burst-1.150509/miner.conf');
@@ -144,7 +144,7 @@ var
  character: Char;
 begin
 ListBox1.Items.Clear;
-   For character:= 'Z' downto 'A' do
+   For character:= 'Z' downto 'B' do
   if TDirectory.Exists(character+':\Burst\plots') then
   if not IsDirectoryEmpty(character+':\Burst\plots')
   then ListBox1.Items.Add(character+':\Burst\plots');
