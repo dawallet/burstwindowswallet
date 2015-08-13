@@ -1,6 +1,7 @@
 object Form3: TForm3
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu]
   Caption = 'Plotter'
   ClientHeight = 258
   ClientWidth = 447
@@ -64,9 +65,9 @@ object Form3: TForm3
   object Label7: TLabel
     Left = 160
     Top = 157
-    Width = 151
+    Width = 103
     Height = 13
-    Caption = 'Your Burst Numeric Account ID:'
+    Caption = 'Your BURST Account:'
   end
   object Button1: TButton
     Left = 27
@@ -96,13 +97,12 @@ object Form3: TForm3
     TabOrder = 2
   end
   object Textfield: TEdit
-    Left = 160
+    Left = 133
     Top = 176
-    Width = 145
+    Width = 172
     Height = 21
-    NumbersOnly = True
     TabOrder = 3
-    Text = '12345678901234567890'
+    Text = 'BURST-XXXX-XXXX-XXXX-XXXX'
   end
   object Button2: TButton
     Left = 364

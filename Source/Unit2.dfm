@@ -1,6 +1,7 @@
 object Form2: TForm2
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu]
   Caption = 'Plotter'
   ClientHeight = 248
   ClientWidth = 269

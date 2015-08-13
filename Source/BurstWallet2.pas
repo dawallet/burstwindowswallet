@@ -227,9 +227,11 @@ WinExec('run_java_autodetect.bat', SW_HIDE);
 //CreateProcess(nil, 'java -jar "c:\program files\my java app\test.jar"', nil, nil, False, 0, nil, nil, StartupInfo,
 //ProcessInfo);
 
-IdHTTP := TIdHTTP.Create;
 
-   ToolButton6.Caption := ('$ ' + StringReplace(idHTTP.Get('http://www.burstcoin.fr/api/?r=market_cap&e=average'), ' ', '.',[rfReplaceAll]));
+   IdHTTP := TIdHTTP.Create;
+try
+  try
+      ToolButton6.Caption := ('$ ' + StringReplace(idHTTP.Get('http://www.burstcoin.fr/api/?r=market_cap&e=average'), ' ', '.',[rfReplaceAll]));
    ToolButton2.Caption := (idHTTP.Get('http://www.burstcoin.fr/api/?r=last_price&e=average')+' ฿' );
    marketcapString:= (idHTTP.Get('http://www.burstcoin.fr/api/?r=market_cap&e=average'));
    marketcapString:= StringReplace(marketcapString, ' ', '',[rfReplaceAll]);
@@ -238,6 +240,12 @@ IdHTTP := TIdHTTP.Create;
    amount:= StrToFloat(idHTTP.Get('http://www.burstcoin.fr/api/?r=total_coins&e=average'));
    result:= ((marketcap / amount) * 1000);
    ToolButton4.Caption := (FloatToStrF(result, ffFixed, 15, 2)) +' $';
+   except
+
+  end;
+finally
+  IdHTTP.Free;
+end;
 end;
 
 procedure TForm1.FormHide(Sender: TObject);

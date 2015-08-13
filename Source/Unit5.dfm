@@ -1,6 +1,7 @@
 object Form5: TForm5
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu]
   Caption = 'Save Wallet'
   ClientHeight = 92
   ClientWidth = 346

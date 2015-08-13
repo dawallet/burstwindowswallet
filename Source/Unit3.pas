@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, ovceditf, ovcedpop, System.UITypes,
-  ovcedsld, ovcdbsed, ovcbase, ovcslide, ovcdbsld, Vcl.ComCtrls, Types, IOUtils, ShellApi;
+  ovcedsld, ovcdbsed, ovcbase, ovcslide, ovcdbsld, Vcl.ComCtrls, Types, IOUtils, ShellApi,idHTTP;
 
 type
   TForm3 = class(TForm)
@@ -117,6 +117,8 @@ end;
 
 procedure TForm3.Button2Click(Sender: TObject);
 var
+idHTTP: TIdHTTP;
+addressstring: String;
 path: String;
 parameters: String;
 pocParameters: String;
@@ -127,6 +129,24 @@ BatContent: TStringList;
 
 begin
 //wplotgenerator [account id] [start nonce] [number of nonces] [stagger size] [threads]
+
+IdHTTP := TIdHTTP.Create;
+try
+  try
+      addressstring:= (idHTTP.Get('https://wallet.burst.city/burst?requestType=rsConvert&account='+Textfield.Text));
+      Delete(addressstring, 1, 79);
+    addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
+    addressstring:= StringReplace((addressstring),' ','',[rfReplaceAll]);
+    addressstring:= StringReplace((addressstring),#13#10,'',[rfReplaceAll]);
+    //Showmessage(addressstring);
+   except
+
+  end;
+finally
+  IdHTTP.Free;
+end;
+
+
    AssignFile(ma,'plotter/miningaddress.txt');
    Rewrite(MA);
    Writeln(MA,Textfield.Text);
@@ -145,8 +165,8 @@ _GetFolderSize(ExcludeTrailingPathDelimiter(path + 'plots\'), dirSize, false);
 dirSize:= (dirSize div 1024 div 256)+1;
 //Showmessage(IntToStr(dirSize));
 
-pocParameters :='run_generate.bat '+((Textfield.Text) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(((1024*1024) div 256) *(TrackBar1.Position)) + ' ' + IntToStr((Memory.dwTotalPhys div 1024 div 1024 div 10)*8) + ' ' + IntToStr(TrackBar2.Position));
-parameters :='wplotgenerator.exe '+((Textfield.Text) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(((1024*1024) div 256) *(TrackBar1.Position)) + ' ' + IntToStr((Memory.dwTotalPhys div 1024 div 512 div 8)*8) + ' ' + IntToStr(TrackBar2.Position));
+pocParameters :='run_generate.bat '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(((1024*1024) div 256) *(TrackBar1.Position)) + ' ' + IntToStr((Memory.dwTotalPhys div 1024 div 1024 div 10)*8) + ' ' + IntToStr(TrackBar2.Position));
+parameters :='wplotgenerator.exe '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(((1024*1024) div 256) *(TrackBar1.Position)) + ' ' + IntToStr((Memory.dwTotalPhys div 1024 div 512 div 8)*8) + ' ' + IntToStr(TrackBar2.Position));
 
 
 if isWin64 = true then
@@ -178,6 +198,7 @@ begin
 Label1.Caption:= 'You have ' + IntToStr(Form2.FreeD) + ' GB free on the chosen Drive. How much you want to fill with Plots?';
 Label2.Caption:= IntToStr(Form2.FreeD) + ' GB';
 TrackBar1.Max:= Form2.FreeD;
+TrackBar2.Position:= System.CPUCount;
 
     address:=TFile.ReadAllText('plotter/miningaddress.txt');
     address:= StringReplace(address, #13#10, '', [rfReplaceAll, rfIgnoreCase]);

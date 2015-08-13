@@ -1,6 +1,7 @@
 object Form4: TForm4
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu]
   Caption = 'Miner '
   ClientHeight = 266
   ClientWidth = 493
