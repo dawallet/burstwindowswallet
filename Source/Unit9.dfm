@@ -1,6 +1,7 @@
 object Form9: TForm9
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu]
   Caption = 'Miner x86'
   ClientHeight = 243
   ClientWidth = 459
@@ -34,7 +35,7 @@ object Form9: TForm9
     Left = 23
     Top = 51
     Width = 76
-    Height = 18
+    Height = 13
     Caption = '1. Choose pool:'
   end
   object Label4: TLabel

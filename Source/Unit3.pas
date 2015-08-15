@@ -131,20 +131,23 @@ begin
 //wplotgenerator [account id] [start nonce] [number of nonces] [stagger size] [threads]
 
 IdHTTP := TIdHTTP.Create;
-try
   try
+   begin
       addressstring:= (idHTTP.Get('https://wallet.burst.city/burst?requestType=rsConvert&account='+Textfield.Text));
+
       Delete(addressstring, 1, 79);
     addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
     addressstring:= StringReplace((addressstring),' ','',[rfReplaceAll]);
     addressstring:= StringReplace((addressstring),#13#10,'',[rfReplaceAll]);
-    //Showmessage(addressstring);
+    //Showmessage(addressstring)
+    end;
    except
 
-  end;
-finally
+    end;
+
+  begin
   IdHTTP.Free;
-end;
+
 
 
    AssignFile(ma,'plotter/miningaddress.txt');
@@ -187,6 +190,7 @@ else
 
 //Showmessage(parameters);
 close;
+end;
 end;
 
 procedure TForm3.FormActivate(Sender: TObject);

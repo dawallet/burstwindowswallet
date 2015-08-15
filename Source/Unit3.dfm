@@ -63,7 +63,7 @@ object Form3: TForm3
     Caption = '1 Core'
   end
   object Label7: TLabel
-    Left = 160
+    Left = 168
     Top = 157
     Width = 103
     Height = 13
@@ -97,9 +97,9 @@ object Form3: TForm3
     TabOrder = 2
   end
   object Textfield: TEdit
-    Left = 133
+    Left = 149
     Top = 176
-    Width = 172
+    Width = 164
     Height = 21
     TabOrder = 3
     Text = 'BURST-XXXX-XXXX-XXXX-XXXX'

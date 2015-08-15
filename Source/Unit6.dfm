@@ -1,6 +1,7 @@
 object Form6: TForm6
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu]
   Caption = 'Wallet Manager'
   ClientHeight = 390
   ClientWidth = 240
