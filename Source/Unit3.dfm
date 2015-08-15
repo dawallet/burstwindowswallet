@@ -97,9 +97,9 @@ object Form3: TForm3
     TabOrder = 2
   end
   object Textfield: TEdit
-    Left = 149
+    Left = 133
     Top = 176
-    Width = 164
+    Width = 177
     Height = 21
     TabOrder = 3
     Text = 'BURST-XXXX-XXXX-XXXX-XXXX'

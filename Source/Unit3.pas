@@ -133,16 +133,16 @@ begin
 IdHTTP := TIdHTTP.Create;
   try
    begin
-      addressstring:= (idHTTP.Get('https://wallet.burst.city/burst?requestType=rsConvert&account='+Textfield.Text));
+      addressstring:= (idHTTP.Get('http://wallet.burst.city/burst?requestType=rsConvert&account='+Textfield.Text));
 
-      Delete(addressstring, 1, 79);
+    Delete(addressstring, 1, 79);
     addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
     addressstring:= StringReplace((addressstring),' ','',[rfReplaceAll]);
     addressstring:= StringReplace((addressstring),#13#10,'',[rfReplaceAll]);
     //Showmessage(addressstring)
     end;
    except
-
+   Showmessage('No internet connection!');
     end;
 
   begin
