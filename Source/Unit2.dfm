@@ -2,9 +2,10 @@ object Form2: TForm2
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu]
+  BorderStyle = bsToolWindow
   Caption = 'Plotter'
-  ClientHeight = 248
-  ClientWidth = 269
+  ClientHeight = 250
+  ClientWidth = 265
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

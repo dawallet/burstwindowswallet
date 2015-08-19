@@ -2,9 +2,10 @@ object Form5: TForm5
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu]
+  BorderStyle = bsToolWindow
   Caption = 'Save Wallet'
   ClientHeight = 92
-  ClientWidth = 346
+  ClientWidth = 330
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

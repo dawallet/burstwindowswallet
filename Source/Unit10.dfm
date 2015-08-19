@@ -2,9 +2,10 @@ object Form10: TForm10
   Left = 0
   Top = 0
   BorderIcons = []
+  BorderStyle = bsToolWindow
   Caption = 'About'
   ClientHeight = 320
-  ClientWidth = 408
+  ClientWidth = 400
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

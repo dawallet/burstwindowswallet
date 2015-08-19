@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Burst Windows Client v0.1.7.6'
+  Caption = 'Burst Windows Client v0.1.7.8'
   ClientHeight = 588
   ClientWidth = 1126
   Color = clBtnFace
@@ -189,6 +189,7 @@ object Form1: TForm1
       Caption = 'Faucets'
       object burstfaucetcom1: TMenuItem
         Caption = 'burstfaucet.com'
+        Enabled = False
         OnClick = burstfaucetcom1Click
       end
       object httpfburstcoininfo1: TMenuItem

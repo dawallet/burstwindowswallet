@@ -2,9 +2,10 @@ object Form9: TForm9
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu]
+  BorderStyle = bsToolWindow
   Caption = 'Miner x86'
-  ClientHeight = 243
-  ClientWidth = 459
+  ClientHeight = 242
+  ClientWidth = 452
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,6 +13,7 @@ object Form9: TForm9
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  PopupMode = pmExplicit
   Position = poMainFormCenter
   OnActivate = FormActivate
   OnHide = FormHide

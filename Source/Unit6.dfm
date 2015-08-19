@@ -2,9 +2,10 @@ object Form6: TForm6
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu]
+  BorderStyle = bsToolWindow
   Caption = 'Wallet Manager'
-  ClientHeight = 390
-  ClientWidth = 240
+  ClientHeight = 388
+  ClientWidth = 238
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -32,5 +33,12 @@ object Form6: TForm6
     TabOrder = 0
     OnDblClick = ListBox1DblClick
     OnEnter = ListBox1Enter
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 45000
+    OnTimer = Timer1Timer
+    Left = 112
+    Top = 200
   end
 end

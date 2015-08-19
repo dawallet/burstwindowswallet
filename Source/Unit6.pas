@@ -4,31 +4,35 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Clipbrd, Vcl.StdCtrls, IoUtils, System.Types, System.UITypes;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Clipbrd, Vcl.StdCtrls, IoUtils, System.Types, System.UITypes,
+  Vcl.ExtCtrls;
 
 type
   TForm6 = class(TForm)
     ListBox1: TListBox;
     Label1: TLabel;
+    Timer1: TTimer;
     procedure ListBox1DblClick(Sender: TObject);
     procedure ListBox1Enter(Sender: TObject);
     procedure FormActivate(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
   private
     { Private-Deklarationen }
   public
     { Public-Deklarationen }
+
   end;
 
 var
   Form6: TForm6;
-  clipboard: TClipboard;
+   clipboard: TClipboard;
   fileName: String;
    text2: tstringlist;
    pwString: String;
 implementation
 
 {$R *.dfm}
-uses Unit5;
+uses Unit5, BurstWallet2;
 
 {$R *.Windows.fmx MSWINDOWS}
 
@@ -96,13 +100,21 @@ fileName := ListBox1.Items[ListBox1.ItemIndex];
 clipboard.AsText := HexToString(EnDeCrypt(TFile.ReadAllText(fileName)));
 
 Showmessage('Passphrase of ' + ListBox1.Items[ListBox1.ItemIndex] + ' is now in your clipboard! Use Right-Click -> Paste');
-close;
+Timer1.Enabled:=true;
+hide;
 end;
 
 procedure TForm6.ListBox1Enter(Sender: TObject);
 begin
                   Listbox1.Items.Clear;
  GetFilesInDirectory('','*.txt',Listbox1.Items,False);
+end;
+
+procedure TForm6.Timer1Timer(Sender: TObject);
+begin
+
+clipboard.Clear;
+Timer1.Enabled:=false;
 end;
 
 end.
