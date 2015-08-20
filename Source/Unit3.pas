@@ -25,6 +25,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure TrackBar1Change(Sender: TObject);
   private
     { Private-Deklarationen }
 
@@ -171,13 +172,17 @@ dirSize:= (dirSize div 1024 div 256)+1;
 pocParameters :='run_generate.bat '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(((1024*1024) div 256) *(TrackBar1.Position)) + ' ' + IntToStr((Memory.dwTotalPhys div 1024 div 1024 div 10)*8) + ' ' + IntToStr(TrackBar2.Position));
 parameters :='wplotgenerator.exe '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(((1024*1024) div 256) *(TrackBar1.Position)) + ' ' + IntToStr((Memory.dwTotalPhys div 1024 div 512 div 8)*8) + ' ' + IntToStr(TrackBar2.Position));
 
-
-if isWin64 = true then
-  begin
-    ShellExecute(0, 'open', PChar('cmd.exe'),PChar('/K '+parameters), PChar(path), SW_SHOW);
-  end
+if addressstring = '' then
+   Showmessage('Your Burst Account is not activated, mistyped or does not exist.')
 else
-  begin
+    begin
+
+    if isWin64 = true then
+    begin
+    ShellExecute(0, 'open', PChar('cmd.exe'),PChar('/K '+parameters), PChar(path), SW_SHOW);
+     end
+      else
+     begin
     Showmessage('You use a 32 bit system! For you theres only the original java plotter available which is slower. Never mind.');
 
     BatContent:=TStringList.Create;
@@ -186,11 +191,16 @@ else
     BatContent.Free;
 
     ShellExecute(0, 'open', PChar('cmd.exe'),PChar('/K '+pocParameters), PChar(path), SW_SHOW);
+     end;
+
+    //Showmessage(parameters);
+    close;
+    end
+
+
+
   end;
 
-//Showmessage(parameters);
-close;
-end;
 end;
 
 procedure TForm3.FormActivate(Sender: TObject);
@@ -199,7 +209,7 @@ address: String;
 
 begin
 
-Label1.Caption:= 'You have ' + IntToStr(Form2.FreeD) + ' GB free on the chosen Drive. How much you want to fill with Plots?';
+Label1.Caption:= 'You have ' + IntToStr(Form2.FreeD) + ' GB free on the chosen Drive. You want to fill 1GB with Plots?';
 Label2.Caption:= IntToStr(Form2.FreeD) + ' GB';
 TrackBar1.Max:= Form2.FreeD;
 TrackBar2.Position:= System.CPUCount;
@@ -221,6 +231,11 @@ begin
   Memory.dwLength := SizeOf(Memory);
   GlobalMemoryStatus(Memory);
 
+end;
+
+procedure TForm3.TrackBar1Change(Sender: TObject);
+begin
+Label1.Caption:= 'You have ' + IntToStr(Form2.FreeD) + ' GB free on the chosen Drive. You want to fill ' + IntToStr(TrackBar1.Position) + ' GB with Plots?';
 end;
 
 end.

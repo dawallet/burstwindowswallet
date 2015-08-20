@@ -15,6 +15,7 @@ type
     Button1: TButton;
     Button2: TButton;
     Button3: TButton;
+    Edit1: TEdit;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -47,7 +48,7 @@ procedure TForm10.Button3Click(Sender: TObject);
 begin
 Button2.Visible:= true;
 Button3.Visible:=false;
-Button1.Caption:='Just kidding';
+Button1.Caption:='Close';
 end;
 
 end.

@@ -24,13 +24,13 @@ type
     { Private-Deklarationen }
   public
     { Public-Deklarationen }
-   Total, FreeD: LongInt;
+   Total, FreeD: Int64;
    plotdir: String;
   end;
 
 var
   Form2: TForm2;
-  disk: Integer;
+  Disk: Byte;
 
 implementation
 

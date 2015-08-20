@@ -4,8 +4,8 @@ object Form10: TForm10
   BorderIcons = []
   BorderStyle = bsToolWindow
   Caption = 'About'
-  ClientHeight = 320
-  ClientWidth = 400
+  ClientHeight = 312
+  ClientWidth = 396
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -3389,11 +3389,11 @@ object Form10: TForm10
   object Label2: TLabel
     Left = 17
     Top = 196
-    Width = 357
+    Width = 347
     Height = 13
     Caption = 
-      'Burst Windows Client version 0.1.7.6 (for Burst Wallet 1.2.3) by' +
-      ' daWallet.'
+      'Burst Windows Client version 0.1.8 (for Burst Wallet 1.2.3) by d' +
+      'aWallet.'
   end
   object Button1: TButton
     Left = 281
@@ -3422,5 +3422,13 @@ object Form10: TForm10
     TabOrder = 2
     Visible = False
     OnClick = Button3Click
+  end
+  object Edit1: TEdit
+    Left = 155
+    Top = 215
+    Width = 166
+    Height = 15
+    TabOrder = 3
+    Text = 'BURST-YZJ6-LYBY-WAC6-BQYGC'
   end
 end
