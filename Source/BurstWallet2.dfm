@@ -1,9 +1,9 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Burst Windows Client v0.1.8'
-  ClientHeight = 588
-  ClientWidth = 1126
+  Caption = 'Burst Windows Client v0.1.9'
+  ClientHeight = 571
+  ClientWidth = 1120
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,13 +20,15 @@ object Form1: TForm1
   object WebBrowser1: TWebBrowser
     Left = 0
     Top = 0
-    Width = 1126
-    Height = 568
+    Width = 1120
+    Height = 552
     Align = alClient
     TabOrder = 0
     ExplicitTop = -6
+    ExplicitWidth = 1126
+    ExplicitHeight = 542
     ControlData = {
-      4C00000060740000B43A00000000000000000000000000000000000000000000
+      4C000000C17300000D3900000000000000000000000000000000000000000000
       000000004C000000000000000000000001000000E0D057007335CF11AE690800
       2B2E126208000000000000004C0000000114020000000000C000000000000046
       8000000000000000000000000000000000000000000000000000000000000000
@@ -34,12 +36,12 @@ object Form1: TForm1
   end
   object ToolBar1: TToolBar
     Left = 0
-    Top = 568
-    Width = 1126
-    Height = 20
+    Top = 552
+    Width = 1120
+    Height = 19
     Align = alBottom
     ButtonHeight = 19
-    ButtonWidth = 61
+    ButtonWidth = 65
     Caption = 'ToolBar1'
     Color = clBtnFace
     Ctl3D = False
@@ -60,17 +62,19 @@ object Form1: TForm1
     object ToolButton1: TToolButton
       Left = 0
       Top = 0
+      AutoSize = True
       Caption = 'Price:'
       ImageIndex = 0
     end
     object ToolButton2: TToolButton
-      Left = 61
+      Left = 34
       Top = 0
+      AutoSize = True
       Caption = '-'
       ImageIndex = 1
     end
     object ToolButton7: TToolButton
-      Left = 122
+      Left = 48
       Top = 0
       Width = 8
       Caption = 'ToolButton7'
@@ -78,19 +82,21 @@ object Form1: TForm1
       Style = tbsSeparator
     end
     object ToolButton3: TToolButton
-      Left = 130
+      Left = 56
       Top = 0
+      AutoSize = True
       Caption = '1000 Burst ='
       ImageIndex = 2
     end
     object ToolButton4: TToolButton
-      Left = 191
+      Left = 121
       Top = 0
+      AutoSize = True
       Caption = '-'
       ImageIndex = 3
     end
     object ToolButton8: TToolButton
-      Left = 252
+      Left = 135
       Top = 0
       Width = 8
       Caption = 'ToolButton8'
@@ -98,19 +104,43 @@ object Form1: TForm1
       Style = tbsSeparator
     end
     object ToolButton5: TToolButton
-      Left = 260
+      Left = 143
       Top = 0
+      AutoSize = True
       Caption = 'Market Cap:'
       ImageIndex = 4
     end
     object ToolButton6: TToolButton
-      Left = 321
+      Left = 206
       Top = 0
+      AutoSize = True
       Caption = '-'
       ImageIndex = 5
     end
+    object ToolButton13: TToolButton
+      Left = 220
+      Top = 0
+      Width = 8
+      Caption = 'ToolButton13 '
+      ImageIndex = 7
+      Style = tbsSeparator
+    end
+    object ToolButton14: TToolButton
+      Left = 228
+      Top = 0
+      AutoSize = True
+      Caption = 'Mining Wallet:'
+      ImageIndex = 7
+    end
+    object ToolButton15: TToolButton
+      Left = 297
+      Top = 0
+      AutoSize = True
+      Caption = '-'
+      ImageIndex = 7
+    end
     object ToolButton12: TToolButton
-      Left = 382
+      Left = 311
       Top = 0
       Width = 8
       Caption = 'ToolButton12'
@@ -118,14 +148,15 @@ object Form1: TForm1
       Style = tbsSeparator
     end
     object ToolButton11: TToolButton
-      Left = 390
+      Left = 319
       Top = 0
+      AutoSize = True
       Caption = 'Write Plots'
       ImageIndex = 7
       OnClick = ToolButton11Click
     end
     object ToolButton9: TToolButton
-      Left = 451
+      Left = 374
       Top = 0
       Width = 8
       Caption = 'ToolButton9'
@@ -133,10 +164,12 @@ object Form1: TForm1
       Style = tbsSeparator
     end
     object ToolButton10: TToolButton
-      Left = 459
+      Left = 382
       Top = 0
+      AutoSize = True
       Caption = 'Start Mining'
       ImageIndex = 6
+      Marked = True
       OnClick = ToolButton10Click
     end
   end
@@ -11803,7 +11836,7 @@ object Form1: TForm1
     end
   end
   object Timer1: TTimer
-    Interval = 600000
+    Interval = 300000
     OnTimer = Timer1Timer
     Left = 664
     Top = 376

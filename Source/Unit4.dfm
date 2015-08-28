@@ -36,7 +36,7 @@ object Form4: TForm4
   end
   object Label3: TLabel
     Left = 19
-    Top = 84
+    Top = 88
     Width = 76
     Height = 13
     Caption = '1. Choose pool:'
@@ -48,23 +48,9 @@ object Form4: TForm4
     Height = 13
     Caption = '2. Change Reward Assignment:'
   end
-  object Label5: TLabel
-    Left = 170
-    Top = 157
-    Width = 119
-    Height = 13
-    Caption = 'This works only with fully'
-  end
-  object Label6: TLabel
-    Left = 170
-    Top = 176
-    Width = 110
-    Height = 13
-    Caption = 'downloaded Blockchain'
-  end
   object Label7: TLabel
     Left = 19
-    Top = 65
+    Top = 69
     Width = 272
     Height = 13
     Caption = 'You have to do this ONCE or if you want to change pool:'
@@ -83,6 +69,20 @@ object Form4: TForm4
     Height = 13
     Caption = '3. Save configuration'
   end
+  object Label5: TLabel
+    Left = 365
+    Top = 201
+    Width = 27
+    Height = 13
+    Caption = 'Pool: '
+  end
+  object Label6: TLabel
+    Left = 395
+    Top = 201
+    Width = 72
+    Height = 13
+    Caption = 'none - choose!'
+  end
   object Button1: TButton
     Left = 365
     Top = 220
@@ -96,26 +96,21 @@ object Form4: TForm4
     Left = 365
     Top = 35
     Width = 102
-    Height = 179
+    Height = 164
     ItemHeight = 13
     TabOrder = 1
   end
   object ComboBox1: TComboBox
     Left = 26
-    Top = 103
+    Top = 107
     Width = 132
     Height = 21
     AutoComplete = False
     TabOrder = 2
-    Text = 'Burst.Ninja'
-    OnClick = ComboBox1Click
     Items.Strings = (
-      'Burst.Ninja'
-      'DevPool2'
-      'Cryptomining.Farm'
-      'burst.mininghere.com'
-      'burst.poolto.be'
-      'pool.burstcoin.de')
+      'burst.ninja'
+      'pool.burstcoin.it'
+      'burst.poolto.be')
   end
   object Button2: TButton
     Left = 26
@@ -127,30 +122,40 @@ object Form4: TForm4
     OnClick = Button2Click
   end
   object Panel1: TPanel
-    Left = 164
+    Left = 177
     Top = 153
-    Width = 132
+    Width = 143
     Height = 80
     BorderWidth = 2
     TabOrder = 4
     object Label10: TLabel
-      Left = 8
-      Top = 42
-      Width = 106
-      Height = 13
-      Caption = 'and you need 1 Burst '
+      Left = 1
+      Top = 0
+      Width = 132
+      Height = 52
+      Caption = 
+        'This works only with a fully downloaded blockchain and you need ' +
+        'at least 1 Burst in your mining wallet'
+      Layout = tlCenter
+      WordWrap = True
     end
     object Label11: TLabel
-      Left = 8
+      Left = 48
       Top = 61
       Width = 88
       Height = 13
       Caption = 'e.g. from a faucet'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsUnderline]
+      ParentFont = False
       OnClick = Label11Click
     end
   end
   object Button3: TButton
-    Left = 326
+    Left = 334
     Top = 8
     Width = 5
     Height = 248

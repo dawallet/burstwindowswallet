@@ -3383,7 +3383,8 @@ object Form10: TForm10
       'You want to buy me a beer?  BURST-YZJ6-LYBY-WAC6-BQYGC. Using Of' +
       'ficial Online Wallet: https://wallet.burst.city by Crowetic and ' +
       'Catbref. Thanks to Janror and Blago for the plotter and miner! S' +
-      'pecial thanks to Irontiga for design and faucet.'
+      'pecial thanks to Irontiga for design and faucet and merci to kur' +
+      'airaito for his API magic. '
     WordWrap = True
   end
   object Label2: TLabel
@@ -3427,7 +3428,7 @@ object Form10: TForm10
     Left = 155
     Top = 215
     Width = 166
-    Height = 15
+    Height = 21
     TabOrder = 3
     Text = 'BURST-YZJ6-LYBY-WAC6-BQYGC'
   end

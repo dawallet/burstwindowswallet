@@ -19,6 +19,12 @@ _____
 
 Changelog:
 
+0.1.9: 
+
++ Added Mining Balance to footer
++ Added two other pools
++ many bugfixes (plotting & mining)
+
 
 10.08.15 - Implementation of pocminer (java) for 32bit systems
 31.07.15 - Implementation of Cerr Janror's plotter and Blago's miner.

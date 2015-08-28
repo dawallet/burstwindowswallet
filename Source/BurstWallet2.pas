@@ -5,8 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, TLHelp32, Vcl.Clipbrd, ShellAPI, Vcl.Menus,
-  Vcl.OleCtrls, SHDocVw, Vcl.ComCtrls, Vcl.ToolWin, Vcl.StdCtrls, idHTTP, IdBaseComponent,IdComponent,
-  IdTCPConnection, IdTCPClient;
+  Vcl.OleCtrls, SHDocVw, Vcl.ComCtrls, Vcl.ToolWin, Vcl.StdCtrls, idHTTP, IdBaseComponent,IdComponent,IOUtils,
+  IdTCPConnection, IdTCPClient, registry;
 
 type
   TForm1 = class(TForm)
@@ -49,6 +49,9 @@ type
     httpfburstcoininfo1: TMenuItem;
     burstcoinbizfaucet1: TMenuItem;
     ToolButton12: TToolButton;
+    ToolButton13: TToolButton;
+    ToolButton14: TToolButton;
+    ToolButton15: TToolButton;
     procedure FormCreate(Sender: TObject);
     procedure About1Click(Sender: TObject);
     procedure AddWallet1Click(Sender: TObject);
@@ -81,10 +84,14 @@ type
     procedure burstcoinbizfaucet1Click(Sender: TObject);
     procedure Market1Click(Sender: TObject);
 
+
+
   private
     { Private-Deklarationen }
+
   public
     { Public-Deklarationen }
+     mining: String;
   end;
 
 var
@@ -164,12 +171,13 @@ end;
 
 procedure TForm1.burstcoinbizfaucet1Click(Sender: TObject);
 begin
- Webbrowser1.Navigate('http://burstcoin.biz/faucet/');
+ShellExecute(0, 'open', 'http://burstcoin.biz/faucet', nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TForm1.burstfaucetcom1Click(Sender: TObject);
 begin
-Webbrowser1.Navigate('http://burstfaucet.com/');
+ShellExecute(0, 'open', 'http://www.burstfaucet.com', nil, nil, SW_SHOWNORMAL);
+
 end;
 
 procedure TForm1.About1Click(Sender: TObject);
@@ -221,6 +229,7 @@ var
   marketcapString: String;
   amount: Single;
   result: Single;
+
 begin
 Webbrowser1.Navigate('https://wallet.burst.city');
 WinExec('run_java_autodetect.bat', SW_HIDE);
@@ -240,6 +249,13 @@ try
    amount:= StrToFloat(idHTTP.Get('http://www.burstcoin.fr/api/?r=total_coins&e=average'));
    result:= ((marketcap / amount) * 1000);
    ToolButton4.Caption := (FloatToStrF(result, ffFixed, 15, 2)) +' $';
+
+ mining:=TFile.ReadAllText('plotter/miningaddress.txt');
+   mining:= StringReplace(mining, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
+   mining:=idHTTP.Get('http://burstcoin.fr/api/?r=get_balance&a='+mining)+' BURST';
+   mining:= StringReplace(mining, 'wrong address format', '0', [rfReplaceAll, rfIgnoreCase]);
+
+   ToolButton15.Caption:=(mining);
    except
 
   end;
@@ -264,7 +280,7 @@ end;
 
 procedure TForm1.httpfburstcoininfo1Click(Sender: TObject);
 begin
-    WebBrowser1.Navigate('http://f.burstcoin.info');
+ShellExecute(0, 'open', 'http://f.burstcoin.info', nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TForm1.LoadWallet1Click(Sender: TObject);
@@ -349,6 +365,12 @@ try
    amount:= StrToFloat(idHTTP.Get('http://www.burstcoin.fr/api/?r=total_coins&e=average'));
    result:= ((marketcap / amount) * 1000);
    ToolButton4.Caption := (FloatToStrF(result, ffFixed, 15, 2)) +' $';
+
+ mining:=TFile.ReadAllText('plotter/miningaddress.txt');
+   mining:= StringReplace(mining, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
+   mining:=idHTTP.Get('http://burstcoin.fr/api/?r=get_balance&a='+mining)+' BURST';
+   mining:= StringReplace(mining, 'wrong address format', '0', [rfReplaceAll, rfIgnoreCase]);
+   ToolButton15.Caption:=(mining);
    except
 
   end;
@@ -375,6 +397,7 @@ end;
 procedure TForm1.ToolButton11Click(Sender: TObject);
 begin
 Form2.Show;
+//Form2.DriveComboBox1.Update;
 end;
 
 procedure TForm1.TrayIcon1Click(Sender: TObject);
@@ -389,7 +412,7 @@ end;
 procedure TForm1.TrayIcon1MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
-      PopupMenu1.Popup(Mouse.CursorPos.X, Mouse.CursorPos.Y);
+     // PopupMenu1.Popup(Mouse.CursorPos.X, Mouse.CursorPos.Y);
 end;
 
 end.

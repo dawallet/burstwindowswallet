@@ -26,6 +26,7 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure TrackBar1Change(Sender: TObject);
+    procedure TrackBar2Change(Sender: TObject);
   private
     { Private-Deklarationen }
 
@@ -169,8 +170,8 @@ _GetFolderSize(ExcludeTrailingPathDelimiter(path + 'plots\'), dirSize, false);
 dirSize:= (dirSize div 1024 div 256)+1;
 //Showmessage(IntToStr(dirSize));
 
-pocParameters :='run_generate.bat '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(((1024*1024) div 256) *(TrackBar1.Position)) + ' ' + IntToStr((Memory.dwTotalPhys div 1024 div 1024 div 10)*8) + ' ' + IntToStr(TrackBar2.Position));
-parameters :='wplotgenerator.exe '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(((1024*1024) div 256) *(TrackBar1.Position)) + ' ' + IntToStr((Memory.dwTotalPhys div 1024 div 512 div 8)*8) + ' ' + IntToStr(TrackBar2.Position));
+pocParameters :='run_generate.bat '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(((1024*1024) div 256) *(TrackBar1.Position)) + ' ' + IntToStr((((Memory.dwTotalPhys div 1024 div 1024 div 10)*8)div 64)*64) + ' ' + IntToStr(TrackBar2.Position));
+parameters :='wplotgenerator.exe '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(((1024*1024) div 256) *(TrackBar1.Position)) + ' ' + IntToStr((Memory.dwTotalPhys div 1024 div 512 div 64)*64) + ' ' + IntToStr(TrackBar2.Position));
 
 if addressstring = '' then
    Showmessage('Your Burst Account is not activated, mistyped or does not exist.')
@@ -236,6 +237,11 @@ end;
 procedure TForm3.TrackBar1Change(Sender: TObject);
 begin
 Label1.Caption:= 'You have ' + IntToStr(Form2.FreeD) + ' GB free on the chosen Drive. You want to fill ' + IntToStr(TrackBar1.Position) + ' GB with Plots?';
+end;
+
+procedure TForm3.TrackBar2Change(Sender: TObject);
+begin
+Label4.Caption:= 'How many CPU cores you want to use?  You chose: '+IntToStr(TrackBar2.Position);
 end;
 
 end.

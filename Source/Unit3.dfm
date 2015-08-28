@@ -2,9 +2,10 @@ object Form3: TForm3
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu]
+  BorderStyle = bsSizeToolWin
   Caption = 'Plotter'
-  ClientHeight = 258
-  ClientWidth = 447
+  ClientHeight = 241
+  ClientWidth = 444
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,66 +13,67 @@ object Form3: TForm3
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  PopupMode = pmExplicit
   Position = poMainFormCenter
   OnActivate = FormActivate
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 53
+    Left = 48
     Top = 21
-    Width = 357
+    Width = 336
     Height = 13
     Caption = 
-      'You have xx GB free on drive X:/. How much you want to fill up w' +
-      'ith Plots?'
+      'You have xx GB free on drive X:/. You want to fill up XX GB with' +
+      ' Plots?'
   end
   object Label2: TLabel
-    Left = 405
+    Left = 397
     Top = 40
     Width = 28
     Height = 13
     Caption = 'XX GB'
   end
   object Label3: TLabel
-    Left = 21
+    Left = 17
     Top = 40
     Width = 22
     Height = 13
     Caption = '1 GB'
   end
   object Label4: TLabel
-    Left = 133
+    Left = 103
     Top = 92
-    Width = 193
+    Width = 259
     Height = 13
     Alignment = taCenter
-    Caption = 'How many CPU Cores you want to use? '
+    Caption = 'How many CPU cores you want to use?  You chose: X '
   end
   object Label5: TLabel
-    Left = 396
+    Left = 398
     Top = 111
     Width = 37
     Height = 13
     Caption = 'X Cores'
   end
   object Label6: TLabel
-    Left = 23
+    Left = 8
     Top = 111
-    Width = 32
+    Width = 38
     Height = 13
-    Caption = '1 Core'
+    Caption = '  1 Core'
   end
   object Label7: TLabel
-    Left = 168
+    Left = 170
     Top = 157
     Width = 103
     Height = 13
     Caption = 'Your BURST Account:'
   end
   object Button1: TButton
-    Left = 27
-    Top = 215
+    Left = 13
+    Top = 199
     Width = 75
     Height = 25
     Caption = 'Back'
@@ -79,25 +81,27 @@ object Form3: TForm3
     OnClick = Button1Click
   end
   object TrackBar1: TTrackBar
-    Left = 61
+    Left = 62
     Top = 40
     Width = 329
     Height = 34
     Min = 1
     Position = 1
     TabOrder = 1
+    OnChange = TrackBar1Change
   end
   object TrackBar2: TTrackBar
-    Left = 61
+    Left = 62
     Top = 111
-    Width = 329
+    Width = 330
     Height = 26
     Min = 1
     Position = 2
     TabOrder = 2
+    OnChange = TrackBar2Change
   end
   object Textfield: TEdit
-    Left = 133
+    Left = 135
     Top = 176
     Width = 177
     Height = 21
@@ -105,8 +109,8 @@ object Form3: TForm3
     Text = 'BURST-XXXX-XXXX-XXXX-XXXX'
   end
   object Button2: TButton
-    Left = 364
-    Top = 215
+    Left = 350
+    Top = 199
     Width = 75
     Height = 25
     Caption = 'Start Plotting'
