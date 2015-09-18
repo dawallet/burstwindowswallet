@@ -3397,39 +3397,20 @@ object Form10: TForm10
       'aWallet.'
   end
   object Button1: TButton
-    Left = 281
+    Left = 304
     Top = 277
-    Width = 107
+    Width = 84
     Height = 25
-    Caption = 'Donate'
+    Caption = 'Ok'
     TabOrder = 0
     OnClick = Button1Click
-  end
-  object Button2: TButton
-    Left = 200
-    Top = 277
-    Width = 75
-    Height = 25
-    Caption = 'Cancel'
-    TabOrder = 1
-    OnClick = Button2Click
-  end
-  object Button3: TButton
-    Left = 119
-    Top = 277
-    Width = 75
-    Height = 25
-    Caption = 'Cancel'
-    TabOrder = 2
-    Visible = False
-    OnClick = Button3Click
   end
   object Edit1: TEdit
     Left = 155
     Top = 215
     Width = 166
     Height = 21
-    TabOrder = 3
+    TabOrder = 1
     Text = 'BURST-YZJ6-LYBY-WAC6-BQYGC'
   end
 end

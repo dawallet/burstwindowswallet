@@ -45,7 +45,6 @@ type
     ToolButton10: TToolButton;
     ToolButton11: TToolButton;
     Faucets1: TMenuItem;
-    burstfaucetcom1: TMenuItem;
     httpfburstcoininfo1: TMenuItem;
     burstcoinbizfaucet1: TMenuItem;
     ToolButton12: TToolButton;

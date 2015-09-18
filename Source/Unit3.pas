@@ -4,8 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, ovceditf, ovcedpop, System.UITypes,
-  ovcedsld, ovcdbsed, ovcbase, ovcslide, ovcdbsld, Vcl.ComCtrls, Types, IOUtils, ShellApi,idHTTP;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, System.UITypes, Vcl.ComCtrls, Types, IOUtils, ShellApi,idHTTP;
 
 type
   TForm3 = class(TForm)
@@ -124,7 +123,7 @@ addressstring: String;
 path: String;
 parameters: String;
 pocParameters: String;
-Memory: TMemoryStatus;
+Memory: TMemoryStatusex;
 dirSize: Int64;
 multiplier: Int64;
 BatContent: TStringList;
@@ -158,7 +157,7 @@ IdHTTP := TIdHTTP.Create;
    CloseFile(MA);
 
     Memory.dwLength := SizeOf(Memory);
-    GlobalMemoryStatus(Memory);
+    GlobalMemoryStatusEx(Memory);
 
 //Showmessage(IntToStr(CharToNum(Form2.DriveComboBox1.Drive)-31));
 multiplier:= (CharToNum(Form2.DriveComboBox1.Drive)-31)*100000000;
@@ -170,8 +169,8 @@ _GetFolderSize(ExcludeTrailingPathDelimiter(path + 'plots\'), dirSize, false);
 dirSize:= (dirSize div 1024 div 256)+1;
 //Showmessage(IntToStr(dirSize));
 
-pocParameters :='run_generate.bat '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(((1024*1024) div 256) *(TrackBar1.Position)) + ' ' + IntToStr((((Memory.dwTotalPhys div 1024 div 1024 div 10)*8)div 64)*64) + ' ' + IntToStr(TrackBar2.Position));
-parameters :='wplotgenerator.exe '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(((1024*1024) div 256) *(TrackBar1.Position)) + ' ' + IntToStr((Memory.dwTotalPhys div 1024 div 512 div 64)*64) + ' ' + IntToStr(TrackBar2.Position));
+pocParameters :='run_generate.bat '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(((1024*1024) div 256) *(TrackBar1.Position)) + ' ' + IntToStr((((Memory.ullTotalPhys div 1024 div 1024 div 10)*8)div 64)*64) + ' ' + IntToStr(TrackBar2.Position));
+parameters :='wplotgenerator.exe '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(((1024*1024) div 256) *(TrackBar1.Position)) + ' ' + IntToStr((Memory.ullTotalPhys div 1024 div 512 div 64)*64) + ' ' + IntToStr(TrackBar2.Position));
 
 if addressstring = '' then
    Showmessage('Your Burst Account is not activated, mistyped or does not exist.')
@@ -187,7 +186,7 @@ else
     Showmessage('You use a 32 bit system! For you theres only the original java plotter available which is slower. Never mind.');
 
     BatContent:=TStringList.Create;
-    BatContent.Add('java -Xmx'+IntToStr(Memory.dwTotalPhys div 800 div 4096)+'m -cp pocminer.jar;lib/*;lib/akka/*;lib/jetty/* pocminer.POCMiner generate %*');
+    BatContent.Add('java -Xmx'+IntToStr(Memory.ullTotalPhys div 800 div 4096)+'m -cp pocminer.jar;lib/*;lib/akka/*;lib/jetty/* pocminer.POCMiner generate %*');
     BatContent.SaveToFile(path+'/run_generate.bat');
     BatContent.Free;
 

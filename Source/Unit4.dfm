@@ -110,7 +110,8 @@ object Form4: TForm4
     Items.Strings = (
       'burst.ninja'
       'pool.burstcoin.it'
-      'burst.poolto.be')
+      'burst.poolto.be'
+      'mininghere.com')
   end
   object Button2: TButton
     Left = 26
