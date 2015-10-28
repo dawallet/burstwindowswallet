@@ -78,7 +78,7 @@ if not ListBox1.Items.Count < 1 then
     delete(directories, length(directories), 1);
 
   begin
-    AssignFile(t,'miner-burst-1.150509/miner.conf');
+    AssignFile(t,'miner-burst-1.151009/miner.conf');
     Rewrite(T);
     Writeln(T,'{');
     Writeln(T,'"Mode" : "pool",');
@@ -115,7 +115,7 @@ if not ListBox1.Items.Count < 1 then
       Writeln(T,'}');
     CloseFile(T);
   end;
-ShellExecute(0, 'open', PChar('miner.exe'),PChar('/K'), PChar('miner-burst-1.150509'), SW_SHOW);
+ShellExecute(0, 'open', PChar('miner.exe'),PChar('/K'), PChar('miner-burst-1.151009'), SW_SHOW);
 close;
  end
 else
@@ -140,13 +140,13 @@ end;
 
 procedure TForm4.Button4Click(Sender: TObject);
 begin
- AssignFile(p,'miner-burst-1.150509/chosen_pool.txt');
+ AssignFile(p,'miner-burst-1.151009/chosen_pool.txt');
    Rewrite(P);
    Writeln(P,Combobox1.Text);
    CloseFile(P);
 Showmessage('Changes saved');
 
-    pool:=TFile.ReadAllText('miner-burst-1.150509/chosen_pool.txt');
+    pool:=TFile.ReadAllText('miner-burst-1.151009/chosen_pool.txt');
     pool:= StringReplace(pool, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
     Label6.Caption:=(pool);
 
@@ -169,7 +169,7 @@ ListBox1.Items.Clear;
 
 
 
-    pool:=TFile.ReadAllText('miner-burst-1.150509/chosen_pool.txt');
+    pool:=TFile.ReadAllText('miner-burst-1.151009/chosen_pool.txt');
     pool:= StringReplace(pool, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
   if pool = '' then
     else
