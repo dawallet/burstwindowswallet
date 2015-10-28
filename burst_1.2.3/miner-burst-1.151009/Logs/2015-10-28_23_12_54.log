@@ -1,0 +1,103 @@
+
+23:12:54 Mode: 1
+23:12:54 Server: burst.ninja
+23:12:54 Port: 8124
+23:12:54 Path: E:\Burst\plots
+23:12:54 CacheSize: 4000
+23:12:54 UseSorting: 1
+23:12:54 ShowMsg: 0
+23:12:54 ShowUpdates: 0
+23:12:54 SendInterval: 200
+23:12:54 UpdateInterval: 2000
+23:12:54 UseFastRcv: 0
+23:12:54 Debug: 1
+23:12:54 Updater address: burst.ninja
+23:12:54 Updater port: 8124
+23:12:54 Info address: burst.ninja
+23:12:54 Info port: 8124
+23:12:54 EnableProxy: 0
+23:12:54 ProxyPort: 8126
+23:12:54 ShowWinner: 1
+23:12:54 SendBestOnly: 1
+23:12:54 TargetDeadline: 3000000
+23:12:54 UseBoost: 0
+23:12:54 Config loaded
+23:12:54 Miner path: C:\Users\Martin\Documents\BurstSOW\Win32\Release\miner-burst-1.151009\
+23:12:54 Searching servers...
+23:12:54 Address: burst.ninja defined as: 192.198.95.54
+23:12:54 Address: burst.ninja defined as: 192.198.95.54
+23:12:54 Updater thread started
+23:12:54 Update mining info
+23:12:54 *Connecting to server: burst.ninja:8124
+23:12:54 *Sent to server: POST /burst?requestType=getMiningInfo HTTP/1.0\r\nConnection: close\r\n\r\n
+23:12:54 *Received from server: HTTP/1.0 200 OK\r\nContent-Length: 182\r\nContent-Type: text/html; charset=UTF-8\r\nDate: Wed, 28 Oct 2015 22:12:53 GMT\r\n\r\n{"generationSignature":"83402ceefb91ce3c2e6fc260bedfe3f6bb0106df2393c234684ae35e69819957","baseTarget":"2337407","requestProcessingTime":0,"height":"158548","targetDeadline":3888000}
+23:12:54 targetDeadlineInfo: 3888000
+23:12:54 Sender thread started
+23:12:54 ------------------------    New block: 158548
+23:12:54 Start thread: [0]  E:\Burst\plots
+23:12:54 Read file : 10753424481787543044_0_7960_7960
+23:12:55 Close file: 10753424481787543044_0_7960_7960 [@ 415 ms]
+23:12:55 Read file : 10753424481787543044_15920_3980_3980
+23:12:55 Close file: 10753424481787543044_15920_3980_3980 [@ 78 ms]
+23:12:55 Read file : 10753424481787543044_19900_3980_3980
+23:12:55 Close file: 10753424481787543044_19900_3980_3980 [@ 106 ms]
+23:12:55 Read file : 10753424481787543044_23880_3980_3980
+23:12:55 Close file: 10753424481787543044_23880_3980_3980 [@ 97 ms]
+23:12:55 Read file : 10753424481787543044_7960_7960_7960
+23:12:55 Close file: 10753424481787543044_7960_7960_7960 [@ 160 ms]
+23:12:56 *Connecting to server: burst.ninja:8124
+23:12:56 *Sent to server: POST /burst?requestType=getMiningInfo HTTP/1.0\r\nConnection: close\r\n\r\n
+23:12:57 *Received from server: HTTP/1.0 200 OK\r\nContent-Length: 182\r\nContent-Type: text/html; charset=UTF-8\r\nDate: Wed, 28 Oct 2015 22:12:56 GMT\r\n\r\n{"generationSignature":"83402ceefb91ce3c2e6fc260bedfe3f6bb0106df2393c234684ae35e69819957","baseTarget":"2337407","requestProcessingTime":0,"height":"158548","targetDeadline":3888000}
+23:12:57 targetDeadlineInfo: 3888000
+23:12:59 *Connecting to server: burst.ninja:8124
+23:12:59 *Sent to server: POST /burst?requestType=getMiningInfo HTTP/1.0\r\nConnection: close\r\n\r\n
+23:12:59 *Received from server: HTTP/1.0 200 OK\r\nContent-Length: 182\r\nContent-Type: text/html; charset=UTF-8\r\nDate: Wed, 28 Oct 2015 22:12:58 GMT\r\n\r\n{"generationSignature":"83402ceefb91ce3c2e6fc260bedfe3f6bb0106df2393c234684ae35e69819957","baseTarget":"2337407","requestProcessingTime":0,"height":"158548","targetDeadline":3888000}
+23:12:59 targetDeadlineInfo: 3888000
+23:13:01 *Connecting to server: burst.ninja:8124
+23:13:01 *Sent to server: POST /burst?requestType=getMiningInfo HTTP/1.0\r\nConnection: close\r\n\r\n
+23:13:01 *Received from server: HTTP/1.0 200 OK\r\nContent-Length: 182\r\nContent-Type: text/html; charset=UTF-8\r\nDate: Wed, 28 Oct 2015 22:13:01 GMT\r\n\r\n{"generationSignature":"83402ceefb91ce3c2e6fc260bedfe3f6bb0106df2393c234684ae35e69819957","baseTarget":"2337407","requestProcessingTime":0,"height":"158548","targetDeadline":3888000}
+23:13:01 targetDeadlineInfo: 3888000
+23:13:03 *Connecting to server: burst.ninja:8124
+23:13:04 *Sent to server: POST /burst?requestType=getMiningInfo HTTP/1.0\r\nConnection: close\r\n\r\n
+23:13:04 *Received from server: HTTP/1.0 200 OK\r\nContent-Length: 182\r\nContent-Type: text/html; charset=UTF-8\r\nDate: Wed, 28 Oct 2015 22:13:03 GMT\r\n\r\n{"generationSignature":"83402ceefb91ce3c2e6fc260bedfe3f6bb0106df2393c234684ae35e69819957","baseTarget":"2337407","requestProcessingTime":0,"height":"158548","targetDeadline":3888000}
+23:13:04 targetDeadlineInfo: 3888000
+23:13:06 *Connecting to server: burst.ninja:8124
+23:13:06 *Sent to server: POST /burst?requestType=getMiningInfo HTTP/1.0\r\nConnection: close\r\n\r\n
+23:13:06 *Received from server: HTTP/1.0 200 OK\r\nContent-Length: 182\r\nContent-Type: text/html; charset=UTF-8\r\nDate: Wed, 28 Oct 2015 22:13:05 GMT\r\n\r\n{"generationSignature":"83402ceefb91ce3c2e6fc260bedfe3f6bb0106df2393c234684ae35e69819957","baseTarget":"2337407","requestProcessingTime":0,"height":"158548","targetDeadline":3888000}
+23:13:06 targetDeadlineInfo: 3888000
+23:13:08 *Connecting to server: burst.ninja:8124
+23:13:08 *Sent to server: POST /burst?requestType=getMiningInfo HTTP/1.0\r\nConnection: close\r\n\r\n
+23:13:08 *Received from server: HTTP/1.0 200 OK\r\nContent-Length: 182\r\nContent-Type: text/html; charset=UTF-8\r\nDate: Wed, 28 Oct 2015 22:13:08 GMT\r\n\r\n{"generationSignature":"83402ceefb91ce3c2e6fc260bedfe3f6bb0106df2393c234684ae35e69819957","baseTarget":"2337407","requestProcessingTime":0,"height":"158548","targetDeadline":3888000}
+23:13:08 targetDeadlineInfo: 3888000
+23:13:10 *Connecting to server: burst.ninja:8124
+23:13:11 *Sent to server: POST /burst?requestType=getMiningInfo HTTP/1.0\r\nConnection: close\r\n\r\n
+23:13:11 *Received from server: HTTP/1.0 200 OK\r\nContent-Length: 182\r\nContent-Type: text/html; charset=UTF-8\r\nDate: Wed, 28 Oct 2015 22:13:10 GMT\r\n\r\n{"generationSignature":"83402ceefb91ce3c2e6fc260bedfe3f6bb0106df2393c234684ae35e69819957","baseTarget":"2337407","requestProcessingTime":0,"height":"158548","targetDeadline":3888000}
+23:13:11 targetDeadlineInfo: 3888000
+23:13:13 *Connecting to server: burst.ninja:8124
+23:13:13 *Sent to server: POST /burst?requestType=getMiningInfo HTTP/1.0\r\nConnection: close\r\n\r\n
+23:13:13 *Received from server: HTTP/1.0 200 OK\r\nContent-Length: 182\r\nContent-Type: text/html; charset=UTF-8\r\nDate: Wed, 28 Oct 2015 22:13:12 GMT\r\n\r\n{"generationSignature":"83402ceefb91ce3c2e6fc260bedfe3f6bb0106df2393c234684ae35e69819957","baseTarget":"2337407","requestProcessingTime":0,"height":"158548","targetDeadline":3888000}
+23:13:13 targetDeadlineInfo: 3888000
+23:13:15 *Connecting to server: burst.ninja:8124
+23:13:15 *Sent to server: POST /burst?requestType=getMiningInfo HTTP/1.0\r\nConnection: close\r\n\r\n
+23:13:15 *Received from server: HTTP/1.0 200 OK\r\nContent-Length: 182\r\nContent-Type: text/html; charset=UTF-8\r\nDate: Wed, 28 Oct 2015 22:13:14 GMT\r\n\r\n{"generationSignature":"83402ceefb91ce3c2e6fc260bedfe3f6bb0106df2393c234684ae35e69819957","baseTarget":"2337407","requestProcessingTime":0,"height":"158548","targetDeadline":3888000}
+23:13:15 targetDeadlineInfo: 3888000
+23:13:17 *Connecting to server: burst.ninja:8124
+23:13:17 *Sent to server: POST /burst?requestType=getMiningInfo HTTP/1.0\r\nConnection: close\r\n\r\n
+23:13:18 *Received from server: HTTP/1.0 200 OK\r\nContent-Length: 182\r\nContent-Type: text/html; charset=UTF-8\r\nDate: Wed, 28 Oct 2015 22:13:17 GMT\r\n\r\n{"generationSignature":"83402ceefb91ce3c2e6fc260bedfe3f6bb0106df2393c234684ae35e69819957","baseTarget":"2337407","requestProcessingTime":0,"height":"158548","targetDeadline":3888000}
+23:13:18 targetDeadlineInfo: 3888000
+23:13:20 *Connecting to server: burst.ninja:8124
+23:13:20 *Sent to server: POST /burst?requestType=getMiningInfo HTTP/1.0\r\nConnection: close\r\n\r\n
+23:13:20 *Received from server: HTTP/1.0 200 OK\r\nContent-Length: 182\r\nContent-Type: text/html; charset=UTF-8\r\nDate: Wed, 28 Oct 2015 22:13:19 GMT\r\n\r\n{"generationSignature":"83402ceefb91ce3c2e6fc260bedfe3f6bb0106df2393c234684ae35e69819957","baseTarget":"2337407","requestProcessingTime":0,"height":"158548","targetDeadline":3888000}
+23:13:20 targetDeadlineInfo: 3888000
+23:13:22 *Connecting to server: burst.ninja:8124
+23:13:22 *Sent to server: POST /burst?requestType=getMiningInfo HTTP/1.0\r\nConnection: close\r\n\r\n
+23:13:22 *Received from server: HTTP/1.0 200 OK\r\nContent-Length: 182\r\nContent-Type: text/html; charset=UTF-8\r\nDate: Wed, 28 Oct 2015 22:13:21 GMT\r\n\r\n{"generationSignature":"83402ceefb91ce3c2e6fc260bedfe3f6bb0106df2393c234684ae35e69819957","baseTarget":"2337407","requestProcessingTime":0,"height":"158548","targetDeadline":3888000}
+23:13:22 targetDeadlineInfo: 3888000
+23:13:24 *Connecting to server: burst.ninja:8124
+23:13:24 *Sent to server: POST /burst?requestType=getMiningInfo HTTP/1.0\r\nConnection: close\r\n\r\n
+23:13:25 *Received from server: HTTP/1.0 200 OK\r\nContent-Length: 182\r\nContent-Type: text/html; charset=UTF-8\r\nDate: Wed, 28 Oct 2015 22:13:24 GMT\r\n\r\n{"generationSignature":"83402ceefb91ce3c2e6fc260bedfe3f6bb0106df2393c234684ae35e69819957","baseTarget":"2337407","requestProcessingTime":0,"height":"158548","targetDeadline":3888000}
+23:13:25 targetDeadlineInfo: 3888000
+23:13:27 *Connecting to server: burst.ninja:8124
+23:13:27 *Sent to server: POST /burst?requestType=getMiningInfo HTTP/1.0\r\nConnection: close\r\n\r\n
+23:13:27 *Received from server: HTTP/1.0 200 OK\r\nContent-Length: 182\r\nContent-Type: text/html; charset=UTF-8\r\nDate: Wed, 28 Oct 2015 22:13:26 GMT\r\n\r\n{"generationSignature":"83402ceefb91ce3c2e6fc260bedfe3f6bb0106df2393c234684ae35e69819957","baseTarget":"2337407","requestProcessingTime":0,"height":"158548","targetDeadline":3888000}
+23:13:27 targetDeadlineInfo: 3888000
