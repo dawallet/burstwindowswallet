@@ -18,6 +18,13 @@ All-in-one: With this wallet you can generate plots and mine them directly!
 _____
 
 Changelog:
+0.1.9.2
+
++ fix too large plots at slider max
++ changed blago's miner to newest version
++ changed staggersize to 80% of available RAM
++ minor bugfixes
+
 
 0.1.9: 
 
