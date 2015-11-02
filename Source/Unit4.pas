@@ -74,8 +74,11 @@ if not ListBox1.Items.Count < 1 then
  begin
     directories:= ListBox1.Items.GetText;
     directories:= StringReplace(directories, '\', '\\', [rfReplaceAll, rfIgnoreCase]);
-    directories:= StringReplace(directories, #13#10, '+', [rfReplaceAll, rfIgnoreCase]);
-    delete(directories, length(directories), 1);
+
+    directories:= StringReplace(directories, #13#10, '","', [rfReplaceAll, rfIgnoreCase]);
+      delete(directories, length(directories), 1);
+      delete(directories, length(directories), 1);
+      delete(directories, length(directories), 1);
 
   begin
     AssignFile(t,'miner-burst-1.151009/miner.conf');
