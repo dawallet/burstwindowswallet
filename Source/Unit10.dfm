@@ -3393,7 +3393,7 @@ object Form10: TForm10
     Width = 347
     Height = 13
     Caption = 
-      'Burst Windows Client version 0.1.8 (for Burst Wallet 1.2.3) by d' +
+      'Burst Windows Client version 0.1.9 (for Burst Wallet 1.2.3) by d' +
       'aWallet.'
   end
   object Button1: TButton

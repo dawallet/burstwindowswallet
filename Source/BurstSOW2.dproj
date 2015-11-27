@@ -156,6 +156,8 @@
                     <Source Name="MainSource">BurstSOW2.dpr</Source>
                 </Source>
                 <Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcboffice2k220.bpl">Embarcadero C++Builder-Package für Office 2000-Server</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcbofficexp220.bpl">Embarcadero C++Builder-Package für Office XP-Server</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k220.bpl">Microsoft Office 2000 Beispiele für gekapselte Komponenten für Automatisierungsserver</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dclofficexp220.bpl">Microsoft Office XP Beispiele für gekapselte Komponenten für Automation Server</Excluded_Packages>
                 </Excluded_Packages>
@@ -553,9 +555,9 @@
                 <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
-                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
             </Deployment>
             <Platforms>
                 <Platform value="Win32">True</Platform>

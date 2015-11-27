@@ -1,9 +1,9 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Burst Windows Client v0.1.9.3'
-  ClientHeight = 571
-  ClientWidth = 1120
+  Caption = 'Burst Windows Client v0.1.9.4'
+  ClientHeight = 559
+  ClientWidth = 996
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,15 +20,15 @@ object Form1: TForm1
   object WebBrowser1: TWebBrowser
     Left = 0
     Top = 0
-    Width = 1120
-    Height = 552
+    Width = 996
+    Height = 540
     Align = alClient
     TabOrder = 0
     ExplicitTop = -6
     ExplicitWidth = 1126
     ExplicitHeight = 542
     ControlData = {
-      4C000000C17300000D3900000000000000000000000000000000000000000000
+      4C000000F1660000D03700000000000000000000000000000000000000000000
       000000004C000000000000000000000001000000E0D057007335CF11AE690800
       2B2E126208000000000000004C0000000114020000000000C000000000000046
       8000000000000000000000000000000000000000000000000000000000000000
@@ -36,8 +36,8 @@ object Form1: TForm1
   end
   object ToolBar1: TToolBar
     Left = 0
-    Top = 552
-    Width = 1120
+    Top = 540
+    Width = 996
     Height = 19
     Align = alBottom
     ButtonHeight = 19
@@ -59,6 +59,8 @@ object Form1: TForm1
     TabOrder = 1
     TabStop = True
     Transparent = True
+    ExplicitTop = 552
+    ExplicitWidth = 1120
     object ToolButton1: TToolButton
       Left = 0
       Top = 0
