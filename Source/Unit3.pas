@@ -170,7 +170,7 @@ dirSize:= (dirSize div 1024 div 256)+1;
 //Showmessage(IntToStr(dirSize));
 
 pocParameters :='run_generate.bat '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(((1024*1024) div 256) *(TrackBar1.Position)) + ' ' + IntToStr((((Memory.ullTotalPhys div 1024 div 1024 div 10)*8)div 64)*64) + ' ' + IntToStr(TrackBar2.Position));
-parameters :='wplotgenerator.exe '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(((1024*1024) div 256) *(TrackBar1.Position)) + ' ' + IntToStr((Memory.ullAvailPhys div 1024 div 356 div 64)*64) + ' ' + IntToStr(TrackBar2.Position));
+parameters :='wplotgenerator.exe '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(((1024*1024) div 256) *(TrackBar1.Position)) + ' ' + IntToStr((Memory.ullAvailPhys div 1024 div 512 div 64)*64) + ' ' + IntToStr(TrackBar2.Position));
 
 if addressstring = '' then
    Showmessage('Your Burst Account is not activated, mistyped or does not exist.')
