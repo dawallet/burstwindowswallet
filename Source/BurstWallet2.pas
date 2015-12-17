@@ -46,7 +46,6 @@ type
     ToolButton11: TToolButton;
     Faucets1: TMenuItem;
     httpfburstcoininfo1: TMenuItem;
-    burstcoinbizfaucet1: TMenuItem;
     ToolButton12: TToolButton;
     ToolButton13: TToolButton;
     ToolButton14: TToolButton;
@@ -230,7 +229,7 @@ var
   result: Single;
 
 begin
-Webbrowser1.Navigate('https://wallet.burst.city');
+Webbrowser1.Navigate('https://wallet.burst-team.us:8125');
 WinExec('run_java_autodetect.bat', SW_HIDE);
 //CreateProcess(nil, 'java -jar "c:\program files\my java app\test.jar"', nil, nil, False, 0, nil, nil, StartupInfo,
 //ProcessInfo);
@@ -273,7 +272,7 @@ procedure TForm1.HeaderControl1MouseActivate(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y, HitTest: Integer;
   var MouseActivate: TMouseActivate);
 begin
-   WebBrowser1.Navigate('https://wallet.burst.city');
+   WebBrowser1.Navigate('https://wallet.burst-team.us:8125');
 end;
 
 
@@ -308,7 +307,7 @@ end;
 
 procedure TForm1.N6Click(Sender: TObject);
 begin
-  WebBrowser1.Navigate('https://wallet.burst.city');
+  WebBrowser1.Navigate('https://wallet.burst-team.us:8125');
   N6.Enabled:=False;
   N7.Enabled:=True;
 end;

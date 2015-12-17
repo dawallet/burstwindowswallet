@@ -134,16 +134,20 @@ begin
 IdHTTP := TIdHTTP.Create;
   try
    begin
-      addressstring:= (idHTTP.Get('http://localhost:8125/burst?requestType=rsConvert&account='+Textfield.Text));
+      addressstring:= (idHTTP.Get('https://localhost:8125/burst?requestType=rsConvert&account='+Textfield.Text));
 
     Delete(addressstring, 1, 79);
     addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
     addressstring:= StringReplace((addressstring),' ','',[rfReplaceAll]);
     addressstring:= StringReplace((addressstring),#13#10,'',[rfReplaceAll]);
-    //Showmessage(addressstring)
+
     end;
    except
-   Showmessage('Wallet not fully started yet! Try again in a minute.');
+    addressstring:= (idHTTP.Get('https://wallet.burst-team.us:8125/burst?requestType=rsConvert&account='+Textfield.Text));
+    Delete(addressstring, 1, 79);
+    addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
+    addressstring:= StringReplace((addressstring),' ','',[rfReplaceAll]);
+    addressstring:= StringReplace((addressstring),#13#10,'',[rfReplaceAll]);
     end;
 
   begin

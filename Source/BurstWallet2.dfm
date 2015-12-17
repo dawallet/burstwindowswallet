@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Burst Windows Client v0.1.9.4'
+  Caption = 'Burst Windows Client v0.1.9.5'
   ClientHeight = 559
   ClientWidth = 996
   Color = clBtnFace
@@ -59,8 +59,6 @@ object Form1: TForm1
     TabOrder = 1
     TabStop = True
     Transparent = True
-    ExplicitTop = 552
-    ExplicitWidth = 1120
     object ToolButton1: TToolButton
       Left = 0
       Top = 0
@@ -224,10 +222,6 @@ object Form1: TForm1
       object httpfburstcoininfo1: TMenuItem
         Caption = 'f.burstcoin.info'
         OnClick = httpfburstcoininfo1Click
-      end
-      object burstcoinbizfaucet1: TMenuItem
-        Caption = 'burstcoin.biz/faucet'
-        OnClick = burstcoinbizfaucet1Click
       end
     end
     object About1: TMenuItem
