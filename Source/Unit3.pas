@@ -130,7 +130,6 @@ BatContent: TStringList;
 
 begin
 //wplotgenerator [account id] [start nonce] [number of nonces] [stagger size] [threads]
-
 IdHTTP := TIdHTTP.Create;
   try
    begin

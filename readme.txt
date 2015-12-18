@@ -1,7 +1,7 @@
 
-Burst is a digital currency like Bitcoin but efficient mineable with free gigabytes instead of CPU / GPU or ASIC!
+Burst is a digital currency like Bitcoin but efficient mineable with free gigabytes instead of computation power (CPU, GPU or ASIC)!
 
-Everyone with free disk space can mine it and earn money. It's a truly decentralized and environment friendly alternative to Bitcoin.
+Everyone with free disk can join mining. It's a truly decentralized and environment friendly alternative to Bitcoin.
 
 You don't need special hardware.
 _____
@@ -18,6 +18,12 @@ All-in-one: With this wallet you can generate plots and mine them directly!
 _____
 
 Changelog:
+
+0.1.9.5
+
++ fix SSL issue
++ Java not obligatory for plotting anymore
+
 0.1.9.2
 
 + fix too large plots at slider max
