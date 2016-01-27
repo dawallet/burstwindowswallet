@@ -19,6 +19,12 @@ _____
 
 Changelog:
 
+0.2
++ Added Luxe's GPU miner
++ bugfixes
++ removed market informations (API down)
+
+
 0.1.9.5
 
 + fix SSL issue

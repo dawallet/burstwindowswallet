@@ -1,0 +1,1 @@
+java -jar -XX:+UseG1GC burstcoin-jminer-0.3.6-RELEASE.jar
