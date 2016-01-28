@@ -50,6 +50,7 @@ type
     ToolButton13: TToolButton;
     ToolButton14: TToolButton;
     ToolButton15: TToolButton;
+    httpburstcoinbizfaucet1: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure About1Click(Sender: TObject);
     procedure AddWallet1Click(Sender: TObject);
@@ -81,6 +82,7 @@ type
     procedure httpfburstcoininfo1Click(Sender: TObject);
     procedure burstcoinbizfaucet1Click(Sender: TObject);
     procedure Market1Click(Sender: TObject);
+    procedure httpburstcoinbizfaucet1Click(Sender: TObject);
 
 
 
@@ -234,7 +236,7 @@ WinExec('run_java_autodetect.bat', SW_HIDE);
 //CreateProcess(nil, 'java -jar "c:\program files\my java app\test.jar"', nil, nil, False, 0, nil, nil, StartupInfo,
 //ProcessInfo);
 
-
+ {
    IdHTTP := TIdHTTP.Create;
 try
   try
@@ -259,7 +261,7 @@ try
   end;
 finally
   IdHTTP.Free;
-end;
+end;  }
 end;
 
 procedure TForm1.FormHide(Sender: TObject);
@@ -275,6 +277,11 @@ begin
    WebBrowser1.Navigate('https://wallet.burst-team.us:8125');
 end;
 
+
+procedure TForm1.httpburstcoinbizfaucet1Click(Sender: TObject);
+begin
+   ShellExecute(0, 'open', 'http://burstcoin.biz/faucet', nil, nil, SW_SHOWNORMAL);
+end;
 
 procedure TForm1.httpfburstcoininfo1Click(Sender: TObject);
 begin
@@ -350,7 +357,7 @@ var
   amount: Single;
   result: Single;
 begin
-
+{
    IdHTTP := TIdHTTP.Create;
 try
   try
@@ -375,7 +382,7 @@ try
 finally
   IdHTTP.Free;
 end;
-
+     }
 end;
 
 

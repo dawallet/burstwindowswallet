@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, IOUtils, Vcl.Clipbrd, StrUtils, ShellApi, idHTTP,  IdBaseComponent,IdComponent;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, System.UITypes, Vcl.ComCtrls, Types, IOUtils, ShellApi,idHTTP, Vcl.ExtCtrls, Vcl.Clipbrd, StrUtils,  IdBaseComponent,IdComponent;
 
 type
   TForm4 = class(TForm)
@@ -26,12 +26,15 @@ type
     Label11: TLabel;
     Label5: TLabel;
     Label6: TLabel;
+    Button5: TButton;
+    Label12: TLabel;
     procedure Button2Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormHide(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Label11Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
   private
     { Private-Deklarationen }
     p: Textfile;
@@ -60,6 +63,17 @@ function IsDirectoryEmpty(const directory : string) : boolean;
      FindClose(searchRec) ;
    end;
  end;
+
+procedure GetFilenames(Path: string; Dest: TStrings);
+var
+  SR: TSearchRec;
+begin
+  if FindFirst(Path+'*.*', faAnyFile, SR) = 0 then
+  repeat
+    Dest.Add(SR.Name);
+  until FindNext(SR) <> 0;
+  FindClose(SR);
+end;
 
 procedure TForm4.Button1Click(Sender: TObject);
  var
@@ -155,6 +169,67 @@ Showmessage('Changes saved');
 
 end;
 
+procedure TForm4.Button5Click(Sender: TObject);
+ var
+   t2 : TextFile;
+   directoriesGPU: String;
+   address: String;
+   addressstring: String;
+   idHTTP: TIdHTTP;
+   filename : TSearchRec;
+   plotDirectory: String;
+begin
+  if not ListBox1.Items.Count < 1 then
+      if Label6.Caption = 'none - choose!' then
+      Showmessage('You have to choose a pool first. Left side!')
+  else
+
+ begin
+    directoriesGPU:= ListBox1.Items.GetText;
+    directoriesGPU:= StringReplace(directoriesGPU, '\', '/', [rfReplaceAll, rfIgnoreCase]);
+    directoriesGPU:= StringReplace(directoriesGPU, #13#10, ',', [rfReplaceAll, rfIgnoreCase]);
+
+    plotDirectory:=(ListBox1.Items[0]);
+    //plotDirectory:=StringReplace(plotDirectory, '\', '/', [rfReplaceAll, rfIgnoreCase]);
+    plotDirectory:= plotDirectory+'\';
+    FindFirst(plotDirectory+'*', faAnyFile-faDirectory, filename);
+    FindClose(filename);
+    addressstring := Copy(filename.Name, 1, Pos('_', filename.Name) - 1);
+
+    begin
+    AssignFile(t2,'burstcoin-jminer-0.3.6-RELEASE/jminer.properties');
+    Rewrite(T2);
+       Writeln(T2,'plotPaths='+directoriesGPU);
+       Writeln(T2,'poolMining=true') ;
+       Writeln(T2,'numericAccountId='+addressstring);
+       Writeln(T2,'poolServer=http://'+Label6.Caption);
+       Writeln(T2,'walletServer=');
+       Writeln(T2,'winnerRetriesOnAsync=');
+       Writeln(T2,'winnerRetryIntervalInMs=');
+       Writeln(T2,'devPool=')                 ;
+       Writeln(T2,'devPoolCommitsPerRound=')    ;
+       Writeln(T2,'soloServer=http://localhost:8125');
+       Writeln(T2,'passPhrase=xxxxxxxxxxxxxx')        ;
+       Writeln(T2,'targetDeadline=')                   ;
+       Writeln(T2,'platformId=0')                       ;
+       Writeln(T2,'deviceId=0')        ;
+       Writeln(T2,'restartInterval=240')                  ;
+       Writeln(T2,'chunkPartNonces=320000')                ;
+       Writeln(T2,'refreshInterval=2000')                   ;
+       Writeln(T2,'connectionTimeout=6000')                  ;
+
+    CloseFile(T2);
+    end;
+
+  ShellExecute(0, 'open', PChar('run 0.3.6-RELEASE.bat'),PChar('/K'), PChar('burstcoin-jminer-0.3.6-RELEASE'), SW_SHOW);
+  close;
+  end
+  else
+
+  Showmessage('No plots found. You have to generate plots before mining! Or you have to put your Plots to: X:\Burst\plots or X:\plots\');
+
+  end;
+
 procedure TForm4.FormActivate(Sender: TObject);
 var
 
@@ -170,10 +245,9 @@ ListBox1.Items.Clear;
 
   then ListBox1.Items.Add(character+':\plots');
 
+   pool:=TFile.ReadAllText('miner-burst-1.151009/chosen_pool.txt');
+   pool:= StringReplace(pool, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
 
-
-    pool:=TFile.ReadAllText('miner-burst-1.151009/chosen_pool.txt');
-    pool:= StringReplace(pool, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
   if pool = '' then
     else
     Label6.Caption:=(pool);

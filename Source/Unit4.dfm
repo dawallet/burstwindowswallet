@@ -4,8 +4,8 @@ object Form4: TForm4
   BorderIcons = [biSystemMenu]
   BorderStyle = bsToolWindow
   Caption = 'Miner '
-  ClientHeight = 264
-  ClientWidth = 492
+  ClientHeight = 266
+  ClientWidth = 491
   Color = clBtnFace
   DefaultMonitor = dmMainForm
   Font.Charset = DEFAULT_CHARSET
@@ -43,7 +43,7 @@ object Form4: TForm4
   end
   object Label4: TLabel
     Left = 19
-    Top = 134
+    Top = 138
     Width = 152
     Height = 13
     Caption = '2. Change Reward Assignment:'
@@ -71,23 +71,32 @@ object Form4: TForm4
   end
   object Label5: TLabel
     Left = 365
-    Top = 201
+    Top = 162
     Width = 27
     Height = 13
     Caption = 'Pool: '
   end
   object Label6: TLabel
     Left = 395
-    Top = 201
+    Top = 162
     Width = 72
     Height = 13
     Caption = 'none - choose!'
   end
+  object Label12: TLabel
+    Left = 345
+    Top = 243
+    Width = 124
+    Height = 13
+    Alignment = taCenter
+    Caption = 'beta: GPU assisted mining'
+  end
   object Button1: TButton
     Left = 365
-    Top = 220
+    Top = 181
     Width = 102
     Height = 25
+    Hint = 'CPU assisted mining. Works always.'
     Caption = 'Start Mining'
     TabOrder = 0
     OnClick = Button1Click
@@ -96,7 +105,7 @@ object Form4: TForm4
     Left = 365
     Top = 35
     Width = 102
-    Height = 164
+    Height = 126
     ItemHeight = 13
     TabOrder = 1
   end
@@ -115,7 +124,7 @@ object Form4: TForm4
   end
   object Button2: TButton
     Left = 26
-    Top = 153
+    Top = 157
     Width = 132
     Height = 25
     Caption = 'Change'
@@ -159,7 +168,7 @@ object Form4: TForm4
     Left = 334
     Top = 8
     Width = 5
-    Height = 248
+    Height = 251
     Default = True
     TabOrder = 5
   end
@@ -171,5 +180,16 @@ object Form4: TForm4
     Caption = 'Save changes'
     TabOrder = 6
     OnClick = Button4Click
+  end
+  object Button5: TButton
+    Left = 365
+    Top = 212
+    Width = 102
+    Height = 25
+    Hint = 'GPU assisted mining with OpenCL'
+    Caption = 'Start Mining (beta)'
+    CommandLinkHint = 'GPU assisted mining with OpenCL'
+    TabOrder = 7
+    OnClick = Button5Click
   end
 end

@@ -133,7 +133,7 @@ begin
 IdHTTP := TIdHTTP.Create;
   try
    begin
-      addressstring:= (idHTTP.Get('https://localhost:8125/burst?requestType=rsConvert&account='+Textfield.Text));
+      addressstring:= (idHTTP.Get('http://localhost:8125/burst?requestType=rsConvert&account='+Textfield.Text));
 
     Delete(addressstring, 1, 79);
     addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
@@ -210,18 +210,18 @@ procedure TForm3.FormActivate(Sender: TObject);
 var
 address: String;
 
-begin
+  begin
 
-Label1.Caption:= 'You have ' + IntToStr(Form2.FreeD) + ' GB free on the chosen Drive. You want to fill 1GB with Plots?';
-Label2.Caption:= IntToStr(Form2.FreeD-1) + ' GB';
-TrackBar1.Max:= Form2.FreeD-1;
-TrackBar2.Position:= System.CPUCount;
+  Label1.Caption:= 'You have ' + IntToStr(Form2.FreeD) + ' GB free on the chosen Drive. You want to fill 1GB with Plots?';
+  Label2.Caption:= IntToStr(Form2.FreeD-1) + ' GB';
+  TrackBar1.Max:= Form2.FreeD-1;
+  TrackBar2.Position:= System.CPUCount;
 
-    address:=TFile.ReadAllText('plotter/miningaddress.txt');
-    address:= StringReplace(address, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
-    Textfield.Text:=(address);
+  address:=TFile.ReadAllText('plotter/miningaddress.txt');
+  address:= StringReplace(address, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
+  Textfield.Text:=(address);
 
-end;
+  end;
 
 procedure TForm3.FormCreate(Sender: TObject);
 var

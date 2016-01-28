@@ -3390,11 +3390,11 @@ object Form10: TForm10
   object Label2: TLabel
     Left = 17
     Top = 196
-    Width = 347
+    Width = 337
     Height = 13
     Caption = 
-      'Burst Windows Client version 0.1.9 (for Burst Wallet 1.2.3) by d' +
-      'aWallet.'
+      'Burst Windows Client version 0.2 (for Burst Wallet 1.2.3) by daW' +
+      'allet.'
   end
   object Button1: TButton
     Left = 304
