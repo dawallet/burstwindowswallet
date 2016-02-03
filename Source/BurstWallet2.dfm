@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Burst Windows Client v0.2'
+  Caption = 'Burst Windows Client v0.2.0.1'
   ClientHeight = 558
   ClientWidth = 996
   Color = clBtnFace

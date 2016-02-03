@@ -9,32 +9,26 @@ uses
 type
   TForm4 = class(TForm)
     Button1: TButton;
-    Label1: TLabel;
     ListBox1: TListBox;
     Label2: TLabel;
     ComboBox1: TComboBox;
     Label3: TLabel;
     Label4: TLabel;
     Button2: TButton;
-    Panel1: TPanel;
     Label7: TLabel;
-    Label8: TLabel;
     Button3: TButton;
-    Label9: TLabel;
-    Button4: TButton;
-    Label10: TLabel;
-    Label11: TLabel;
     Label5: TLabel;
     Label6: TLabel;
     Button5: TButton;
     Label12: TLabel;
+    Label11: TLabel;
     procedure Button2Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormHide(Sender: TObject);
-    procedure Button4Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Label11Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
+    procedure ComboBox1Change(Sender: TObject);
   private
     { Private-Deklarationen }
     p: Textfile;
@@ -142,31 +136,39 @@ end;
 procedure TForm4.Button2Click(Sender: TObject);
 var
 clipboard2: Tclipboard;
+idHTTP: TIdHTTP;
+dummy: String;
+
 begin
-Form1.Webbrowser1.Navigate('http://127.0.0.1:8125/rewardassignmentshort.html');
+IdHTTP := TIdHTTP.Create;
+if Label6.Caption='none - choose!' then
+Showmessage('Please choose Pool')
+
+else
+    begin
+     try
+     dummy:= (idHTTP.Get('http://localhost:8125/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
+     IdHTTP.free;
+     Form1.Webbrowser1.Navigate('http://127.0.0.1:8125/rewardassignmentshort.html');
+     except
+     Form1.Webbrowser1.Navigate('http://wallet.burst-team.us/rewardassignmentshort.html')
+     end;
+
+
 Form1.N7.Enabled := True;
+
+
 clipboard2 := TClipBoard.create;
-if Combobox1.Text = 'burst.ninja' then
+if Label6.Caption = 'burst.ninja' then
     clipboard2.AsText:='BURST-7CPJ-BW8N-U4XF-CWW3U';
-if  Combobox1.Text = 'pool.burstcoin.it' then
+if  Label6.Caption = 'pool.burstcoin.it' then
      clipboard2.AsText:='BURST-LGKU-3UUM-M6Q5-86SLK';
-if  Combobox1.Text = 'burst.poolto.be' then
+if  Label6.Caption = 'burst.poolto.be' then
      clipboard2.AsText:='BURST-5AXK-EABZ-7FTB-4NBT9';
+if  Label6.Caption = 'mininghere.com' then
+     clipboard2.AsText:='BURST-7S5L-6UHX-SVS5-BU6HA';
 ShowMessage('The pool address '+clipboard.AsText+' of '+Combobox1.Text+' got copied into your clipboard.'+#13#10+ 'Paste it into the second textbox: "Recipient - Burst address of pool" and paste your wallet passphrase in the first textbox.');
 end;
-
-procedure TForm4.Button4Click(Sender: TObject);
-begin
- AssignFile(p,'miner-burst-1.151009/chosen_pool.txt');
-   Rewrite(P);
-   Writeln(P,Combobox1.Text);
-   CloseFile(P);
-Showmessage('Changes saved');
-
-    pool:=TFile.ReadAllText('miner-burst-1.151009/chosen_pool.txt');
-    pool:= StringReplace(pool, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
-    Label6.Caption:=(pool);
-
 end;
 
 procedure TForm4.Button5Click(Sender: TObject);
@@ -181,7 +183,7 @@ procedure TForm4.Button5Click(Sender: TObject);
 begin
   if not ListBox1.Items.Count < 1 then
       if Label6.Caption = 'none - choose!' then
-      Showmessage('You have to choose a pool first. Left side!')
+      Showmessage('You have to choose a pool first')
   else
 
  begin
@@ -229,6 +231,20 @@ begin
   Showmessage('No plots found. You have to generate plots before mining! Or you have to put your Plots to: X:\Burst\plots or X:\plots\');
 
   end;
+
+procedure TForm4.ComboBox1Change(Sender: TObject);
+begin
+ AssignFile(p,'miner-burst-1.151009/chosen_pool.txt');
+   Rewrite(P);
+   Writeln(P,Combobox1.Text);
+   CloseFile(P);
+//Showmessage('Changes saved');
+
+    pool:=TFile.ReadAllText('miner-burst-1.151009/chosen_pool.txt');
+    pool:= StringReplace(pool, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
+    Label6.Caption:=(pool);
+
+end;
 
 procedure TForm4.FormActivate(Sender: TObject);
 var
