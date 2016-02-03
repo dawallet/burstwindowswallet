@@ -76,7 +76,7 @@ procedure TForm4.Button1Click(Sender: TObject);
 begin
 if not ListBox1.Items.Count < 1 then
   if Label6.Caption = 'none - choose!' then
-  Showmessage('You have to choose a pool first. Left side!')
+  Showmessage('You have to choose a pool first')
   else
 
  begin
