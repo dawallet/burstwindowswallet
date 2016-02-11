@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Burst Windows Client v0.2.0.1'
+  Caption = 'Burst Windows Client v0.2.0.2'
   ClientHeight = 558
   ClientWidth = 996
   Color = clBtnFace
@@ -24,9 +24,8 @@ object Form1: TForm1
     Height = 539
     Align = alClient
     TabOrder = 0
+    ExplicitLeft = 8
     ExplicitTop = -6
-    ExplicitWidth = 1126
-    ExplicitHeight = 542
     ControlData = {
       4C000000F1660000B53700000000000000000000000000000000000000000000
       000000004C000000000000000000000001000000E0D057007335CF11AE690800
@@ -11831,6 +11830,7 @@ object Form1: TForm1
     Top = 352
   end
   object PopupMenu1: TPopupMenu
+    Alignment = paCenter
     Left = 400
     Top = 256
     object Open1: TMenuItem

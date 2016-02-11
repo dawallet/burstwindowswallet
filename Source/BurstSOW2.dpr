@@ -18,7 +18,7 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := False;
-  TStyleManager.TrySetStyle('Carbon');
+  TStyleManager.TrySetStyle('Light');
   Application.CreateForm(TForm1, Form1);
   Application.CreateForm(TForm5, Form5);
   Application.CreateForm(TForm6, Form6);

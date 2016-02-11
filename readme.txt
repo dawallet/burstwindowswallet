@@ -8,7 +8,7 @@ _____
 
 How to use it:
 
-Unzip and start Burst_Wallet.exe
+Install or unzip and start Burst_Wallet.exe
 
 It will take some hours until you can use the local wallet, because the Blockchain has to download in the background. 
 You can use the 'Online' Wallet during this time.
@@ -18,6 +18,11 @@ All-in-one: With this wallet you can generate plots and mine them directly!
 _____
 
 Changelog:
+
+0.2.0.2
+
++ No admin priviliges needed anymore (!)
++ more robustness against java errors (thanks haitch)
 
 0.2
 + Added Luxe's GPU miner

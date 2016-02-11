@@ -283,7 +283,7 @@
     "transactions_per_hour": "Transactions Per Hour",
     "unsigned_transaction_bytes": "Unsigned Transaction Bytes",
     "welcome_to_nxt": "Welcome to Burst",
-    "status_blockchain_downloading": "The blockchain is currently downloading. Please wait until it is up to date or use the Online Wallet!",
+    "status_blockchain_downloading": "The blockchain is currently downloading. Please wait until it is up to date.",
     "find_asset_id_help": "Find the ID on the issuer's website or announcement page.",
     "select_color_scheme": "Select Color Scheme",
     "error_message_encryption": "The message could not be encrypted.",
