@@ -1,0 +1,55 @@
+2016-02-29 21:14:37.260  INFO 3664 --- [Timer-0] b.jminer.core.checker.util.OCLChecker    : success ... started openCL 1.2 context!
+2016-02-29 21:14:37.300  INFO 3664 --- [Timer-0] burstcoin.jminer.core.CoreProperties     : Winner feature disabled, property 'walletServer' undefined!
+2016-02-29 21:14:39.140  INFO 3664 --- [Timer-0] burstcoin.jminer.CommandLineRunner       : 
+2016-02-29 21:14:39.146  INFO 3664 --- [Timer-0] burstcoin.jminer.CommandLineRunner       :                             Burstcoin (BURST)
+2016-02-29 21:14:39.155  INFO 3664 --- [Timer-0] burstcoin.jminer.CommandLineRunner       :             __         __   GPU assisted PoC-Miner
+2016-02-29 21:14:39.163  INFO 3664 --- [Timer-0] burstcoin.jminer.CommandLineRunner       :            |__| _____ |__| ____   ___________ 
+2016-02-29 21:14:39.171  INFO 3664 --- [Timer-0] burstcoin.jminer.CommandLineRunner       :    version |  |/     \|  |/    \_/ __ \_  __ \
+2016-02-29 21:14:39.180  INFO 3664 --- [Timer-0] burstcoin.jminer.CommandLineRunner       :      0.4.2 |  |  Y Y  \  |   |  \  ___/|  | \/
+2016-02-29 21:14:39.189  INFO 3664 --- [Timer-0] burstcoin.jminer.CommandLineRunner       :        /\__|  |__|_|  /__|___|  /\___  >__| 
+2016-02-29 21:14:39.197  INFO 3664 --- [Timer-0] burstcoin.jminer.CommandLineRunner       :        \______|     \/        \/     \/
+2016-02-29 21:14:39.204  INFO 3664 --- [Timer-0] burstcoin.jminer.CommandLineRunner       :       mining engine: BURST-LUXE-RED2-G6JW-H4HG5
+2016-02-29 21:14:39.213  INFO 3664 --- [Timer-0] burstcoin.jminer.CommandLineRunner       :      openCL checker: BURST-QHCJ-9HB5-PTGC-5Q8J9
+2016-02-29 21:14:41.399  WARN 3664 --- [networkPool-1] b.j.c.n.t.NetworkRequestMiningInfoTask   : Unable to get mining info from wallet: Unexpected character ('<' (code 60)): expected a valid value (number, String, array, object, 'true', 'false' or 'null')
+ at [Source: java.io.StringReader@5319b4e9; line: 1, column: 2]
+2016-02-29 21:14:59.258  INFO 5108 --- [Timer-0] b.jminer.core.checker.util.OCLChecker    : success ... started openCL 1.2 context!
+2016-02-29 21:14:59.304  INFO 5108 --- [Timer-0] burstcoin.jminer.core.CoreProperties     : Winner feature disabled, property 'walletServer' undefined!
+2016-02-29 21:15:01.153  INFO 5108 --- [Timer-0] burstcoin.jminer.CommandLineRunner       : 
+2016-02-29 21:15:01.159  INFO 5108 --- [Timer-0] burstcoin.jminer.CommandLineRunner       :                             Burstcoin (BURST)
+2016-02-29 21:15:01.165  INFO 5108 --- [Timer-0] burstcoin.jminer.CommandLineRunner       :             __         __   GPU assisted PoC-Miner
+2016-02-29 21:15:01.173  INFO 5108 --- [Timer-0] burstcoin.jminer.CommandLineRunner       :            |__| _____ |__| ____   ___________ 
+2016-02-29 21:15:01.178  INFO 5108 --- [Timer-0] burstcoin.jminer.CommandLineRunner       :    version |  |/     \|  |/    \_/ __ \_  __ \
+2016-02-29 21:15:01.186  INFO 5108 --- [Timer-0] burstcoin.jminer.CommandLineRunner       :      0.4.2 |  |  Y Y  \  |   |  \  ___/|  | \/
+2016-02-29 21:15:01.193  INFO 5108 --- [Timer-0] burstcoin.jminer.CommandLineRunner       :        /\__|  |__|_|  /__|___|  /\___  >__| 
+2016-02-29 21:15:01.201  INFO 5108 --- [Timer-0] burstcoin.jminer.CommandLineRunner       :        \______|     \/        \/     \/
+2016-02-29 21:15:01.208  INFO 5108 --- [Timer-0] burstcoin.jminer.CommandLineRunner       :       mining engine: BURST-LUXE-RED2-G6JW-H4HG5
+2016-02-29 21:15:01.216  INFO 5108 --- [Timer-0] burstcoin.jminer.CommandLineRunner       :      openCL checker: BURST-QHCJ-9HB5-PTGC-5Q8J9
+2016-02-29 21:15:03.208  WARN 5108 --- [networkPool-1] b.j.c.n.t.NetworkRequestMiningInfoTask   : Unable to get mining info from wallet: Unexpected character ('<' (code 60)): expected a valid value (number, String, array, object, 'true', 'false' or 'null')
+ at [Source: java.io.StringReader@67ab12c5; line: 1, column: 2]
+2016-02-29 21:15:04.374  WARN 5108 --- [networkPool-1] b.j.c.n.t.NetworkRequestMiningInfoTask   : Unable to get mining info from wallet: Unexpected character ('<' (code 60)): expected a valid value (number, String, array, object, 'true', 'false' or 'null')
+ at [Source: java.io.StringReader@6e22f35f; line: 1, column: 2]
+2016-02-29 21:15:06.469  WARN 5108 --- [networkPool-1] b.j.c.n.t.NetworkRequestMiningInfoTask   : Unable to get mining info from wallet: Unexpected character ('<' (code 60)): expected a valid value (number, String, array, object, 'true', 'false' or 'null')
+ at [Source: java.io.StringReader@588f439d; line: 1, column: 2]
+2016-02-29 21:15:08.371  WARN 5108 --- [networkPool-1] b.j.c.n.t.NetworkRequestMiningInfoTask   : Unable to get mining info from wallet: Unexpected character ('<' (code 60)): expected a valid value (number, String, array, object, 'true', 'false' or 'null')
+ at [Source: java.io.StringReader@61d512b0; line: 1, column: 2]
+2016-02-29 21:15:21.429  INFO 9160 --- [Timer-0] b.jminer.core.checker.util.OCLChecker    : success ... started openCL 1.2 context!
+2016-02-29 21:15:21.503  INFO 9160 --- [Timer-0] burstcoin.jminer.core.CoreProperties     : Winner feature disabled, property 'walletServer' undefined!
+2016-02-29 21:15:24.310  INFO 9160 --- [Timer-0] burstcoin.jminer.CommandLineRunner       : 
+2016-02-29 21:15:24.314  INFO 9160 --- [Timer-0] burstcoin.jminer.CommandLineRunner       :                             Burstcoin (BURST)
+2016-02-29 21:15:24.321  INFO 9160 --- [Timer-0] burstcoin.jminer.CommandLineRunner       :             __         __   GPU assisted PoC-Miner
+2016-02-29 21:15:24.327  INFO 9160 --- [Timer-0] burstcoin.jminer.CommandLineRunner       :            |__| _____ |__| ____   ___________ 
+2016-02-29 21:15:24.334  INFO 9160 --- [Timer-0] burstcoin.jminer.CommandLineRunner       :    version |  |/     \|  |/    \_/ __ \_  __ \
+2016-02-29 21:15:24.339  INFO 9160 --- [Timer-0] burstcoin.jminer.CommandLineRunner       :      0.4.2 |  |  Y Y  \  |   |  \  ___/|  | \/
+2016-02-29 21:15:24.346  INFO 9160 --- [Timer-0] burstcoin.jminer.CommandLineRunner       :        /\__|  |__|_|  /__|___|  /\___  >__| 
+2016-02-29 21:15:24.353  INFO 9160 --- [Timer-0] burstcoin.jminer.CommandLineRunner       :        \______|     \/        \/     \/
+2016-02-29 21:15:24.359  INFO 9160 --- [Timer-0] burstcoin.jminer.CommandLineRunner       :       mining engine: BURST-LUXE-RED2-G6JW-H4HG5
+2016-02-29 21:15:24.367  INFO 9160 --- [Timer-0] burstcoin.jminer.CommandLineRunner       :      openCL checker: BURST-QHCJ-9HB5-PTGC-5Q8J9
+2016-02-29 21:15:25.497  INFO 9160 --- [roundPool-1] burstcoin.jminer.CommandLineRunner       : -------------------------------------------------------
+2016-02-29 21:15:25.518  INFO 9160 --- [roundPool-1] burstcoin.jminer.CommandLineRunner       : START block '202842', scoopNumber '1279', capacity '2 GB'
+2016-02-29 21:15:25.616  INFO 9160 --- [roundPool-1] burstcoin.jminer.CommandLineRunner       :       targetDeadline '3888000', baseTarget '3957280'
+2016-02-29 21:15:25.623  INFO 9160 --- [readerPool-1] burstcoin.jminer.CommandLineRunner       : 25% done (0TB 0GB), avg.'3 MB/s'
+2016-02-29 21:15:25.631  INFO 9160 --- [roundPool-1] burstcoin.jminer.CommandLineRunner       : dl '1841426268096' > '3888000' skipped
+2016-02-29 21:15:25.705  INFO 9160 --- [readerPool-1] burstcoin.jminer.CommandLineRunner       : 50% done (0TB 1GB), avg.'1 MB/s', eff.'1 MB/s'
+2016-02-29 21:15:25.774  INFO 9160 --- [readerPool-1] burstcoin.jminer.CommandLineRunner       : 75% done (0TB 1GB), avg.'1 MB/s', eff.'1 MB/s'
+2016-02-29 21:15:25.858  INFO 9160 --- [readerPool-1] burstcoin.jminer.CommandLineRunner       : 100% done (0TB 2GB), avg.'1 MB/s', eff.'2 MB/s'
+2016-02-29 21:15:26.040  INFO 9160 --- [roundPool-1] burstcoin.jminer.CommandLineRunner       : FINISH block '202842', best deadline 'N/A', round time '0s 313ms'

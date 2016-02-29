@@ -25,10 +25,6 @@ type
     N6: TMenuItem;
     N7: TMenuItem;
     N1: TMenuItem;
-    local1: TMenuItem;
-    Online1: TMenuItem;
-    Local2: TMenuItem;
-    Online2: TMenuItem;
     Timer1: TTimer;
     DeleteWallet1: TMenuItem;
     Exit1: TMenuItem;
@@ -69,9 +65,7 @@ type
       var MouseActivate: TMouseActivate);
     procedure N7Click(Sender: TObject);
     procedure N6Click(Sender: TObject);
-    procedure local1Click(Sender: TObject);
     procedure Online1Click(Sender: TObject);
-    procedure Local2Click(Sender: TObject);
     procedure Online2Click(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure Exit1Click(Sender: TObject);
@@ -83,6 +77,8 @@ type
     procedure burstcoinbizfaucet1Click(Sender: TObject);
     procedure Market1Click(Sender: TObject);
     procedure httpburstcoinbizfaucet1Click(Sender: TObject);
+    procedure Lotteries1Click(Sender: TObject);
+    procedure Crowdfunding1Click(Sender: TObject);
 
 
 
@@ -203,6 +199,13 @@ clipboard.AsText :='';
 close;
 end;
 
+procedure TForm1.Crowdfunding1Click(Sender: TObject);
+begin
+      WebBrowser1.Navigate('http://127.0.0.1:8125/atcrowdfund.html');
+    N7.Enabled := true;
+    N6.Enabled := True;
+end;
+
 procedure TForm1.DeleteWallet1Click(Sender: TObject);
 begin
      hide;
@@ -293,14 +296,7 @@ begin
                     Form6.Show;
 end;
 
-procedure TForm1.local1Click(Sender: TObject);
-begin
-      WebBrowser1.Navigate('http://127.0.0.1:8125/atcrowdfund.html');
-    N7.Enabled := true;
-    N6.Enabled := True;
-end;
-
-procedure TForm1.Local2Click(Sender: TObject);
+procedure TForm1.Lotteries1Click(Sender: TObject);
 begin
              WebBrowser1.Navigate('http://127.0.0.1:8125/atlotteries.html');
          N7.Enabled := True;
@@ -330,14 +326,14 @@ end;
 
 procedure TForm1.Online1Click(Sender: TObject);
 begin
-           WebBrowser1.Navigate('https://wallet.burst.city/atcrowdfund.html');
+           WebBrowser1.Navigate('https://wallet.burst-team.us:8125/atcrowdfund.html');
     N7.Enabled := True;
  N6.Enabled := True;
 end;
 
 procedure TForm1.Online2Click(Sender: TObject);
 begin
-      WebBrowser1.Navigate('https://wallet.burst.city/atlotteries.html');
+      WebBrowser1.Navigate('https://wallet.burst-team.us:8125/atlotteries.html');
          N7.Enabled := True;
           N6.Enabled := True;
 end;

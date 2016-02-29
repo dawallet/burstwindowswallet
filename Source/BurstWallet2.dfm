@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Burst Windows Client v0.2.0.2'
+  Caption = 'Burst Windows Client v0.2.1'
   ClientHeight = 558
   ClientWidth = 996
   Color = clBtnFace
@@ -207,25 +207,11 @@ object Form1: TForm1
     end
     object Crowdfunding1: TMenuItem
       Caption = 'Crowdfunding'
-      object local1: TMenuItem
-        Caption = 'Local '
-        OnClick = local1Click
-      end
-      object Online1: TMenuItem
-        Caption = 'Online'
-        OnClick = Online1Click
-      end
+      OnClick = Crowdfunding1Click
     end
     object Lotteries1: TMenuItem
       Caption = 'Lotteries'
-      object Local2: TMenuItem
-        Caption = 'Local'
-        OnClick = Local2Click
-      end
-      object Online2: TMenuItem
-        Caption = 'Online'
-        OnClick = Online2Click
-      end
+      OnClick = Lotteries1Click
     end
     object Faucets1: TMenuItem
       Caption = 'Faucets'

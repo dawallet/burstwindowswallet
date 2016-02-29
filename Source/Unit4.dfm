@@ -44,7 +44,7 @@ object Form4: TForm4
   object Label7: TLabel
     Left = 18
     Top = 20
-    Width = 205
+    Width = 204
     Height = 26
     Caption = 'You have to do this one-time or when you want to change pool:'
     WordWrap = True
@@ -66,21 +66,21 @@ object Form4: TForm4
   object Label12: TLabel
     Left = 276
     Top = 144
-    Width = 214
-    Height = 24
+    Width = 212
+    Height = 13
     Alignment = taCenter
     Caption = 'beta: GPU assisted mining (OpenCL needed)'
     Layout = tlCenter
     WordWrap = True
   end
   object Label11: TLabel
-    Left = 18
-    Top = 123
-    Width = 205
-    Height = 27
+    Left = 19
+    Top = 107
+    Width = 204
+    Height = 39
     Caption = 
       'For changing reward assignment you need at least 1 Burst e.g. fr' +
-      'om a faucet'
+      'om a faucet and a fully synchronized blockchain.'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
