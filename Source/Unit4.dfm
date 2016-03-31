@@ -117,9 +117,9 @@ object Form4: TForm4
     TabOrder = 2
     OnChange = ComboBox1Change
     Items.Strings = (
+      'burst.poolto.be'
       'burst.ninja'
       'pool.burstcoin.it'
-      'burst.poolto.be'
       'mininghere.com')
   end
   object Button2: TButton

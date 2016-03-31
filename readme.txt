@@ -19,6 +19,11 @@ _____
 
 Changelog:
 
+0.2.2
+
++ updated Luxe's miner to version 0.4.4
++ fixed logo for local wallet. 
+
 0.2.1
 
 + added version 0.4.2 of Luxe's GPU assisted miner

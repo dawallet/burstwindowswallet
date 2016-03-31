@@ -199,7 +199,7 @@ begin
     addressstring := Copy(filename.Name, 1, Pos('_', filename.Name) - 1);
 
     begin
-    AssignFile(t2,'burstcoin-jminer-0.4.2-RELEASE/jminer.properties');
+    AssignFile(t2,'burstcoin-jminer-0.4.4-SNAPSHOT/jminer.properties');
     Rewrite(T2);
        Writeln(T2,'plotPaths='+directoriesGPU);
        Writeln(T2,'poolMining=true') ;
@@ -208,22 +208,22 @@ begin
        Writeln(T2,'walletServer=');
        Writeln(T2,'winnerRetriesOnAsync=');
        Writeln(T2,'winnerRetryIntervalInMs=');
-       Writeln(T2,'devPool=')                 ;
-       Writeln(T2,'devPoolCommitsPerRound=')    ;
+       Writeln(T2,'devPool=');
+       Writeln(T2,'devPoolCommitsPerRound=');
        Writeln(T2,'soloServer=http://localhost:8125');
-       Writeln(T2,'passPhrase=xxxxxxxxxxxxxx')        ;
-       Writeln(T2,'targetDeadline=')                   ;
-       Writeln(T2,'platformId=0')                       ;
-       Writeln(T2,'deviceId=0')        ;
-       Writeln(T2,'restartInterval=240')                  ;
-       Writeln(T2,'chunkPartNonces=320000')                ;
-       Writeln(T2,'refreshInterval=2000')                   ;
-       Writeln(T2,'connectionTimeout=6000')                  ;
+       Writeln(T2,'passPhrase=xxxxxxxxxxxxxx');
+       Writeln(T2,'targetDeadline=');
+       Writeln(T2,'platformId=0');
+       Writeln(T2,'deviceId=0');
+       Writeln(T2,'restartInterval=240');
+       Writeln(T2,'chunkPartNonces=320000');
+       Writeln(T2,'refreshInterval=2000');
+       Writeln(T2,'connectionTimeout=6000');
 
     CloseFile(T2);
     end;
 
-  ShellExecute(0, 'open', PChar('run.bat'),PChar('/K'), PChar('burstcoin-jminer-0.4.2-RELEASE'), SW_SHOW);
+  ShellExecute(0, 'open', PChar('run.bat'),PChar('/K'), PChar('burstcoin-jminer-0.4.4-SNAPSHOT'), SW_SHOW);
   close;
   end
   else
