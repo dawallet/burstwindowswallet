@@ -4,7 +4,7 @@ object Form10: TForm10
   BorderIcons = []
   BorderStyle = bsToolWindow
   Caption = 'About'
-  ClientHeight = 312
+  ClientHeight = 304
   ClientWidth = 396
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -3381,10 +3381,9 @@ object Form10: TForm10
     Height = 52
     Caption = 
       'You want to buy me a beer?  BURST-YZJ6-LYBY-WAC6-BQYGC. Using Of' +
-      'ficial Online Wallet: https://wallet.burst.city by Crowetic and ' +
-      'Catbref. Thanks to Janror and Blago for the plotter and miner! S' +
-      'pecial thanks to Irontiga for design and faucet and merci to kur' +
-      'airaito for his API magic. '
+      'ficial Online Wallet: https://wallet.burst-team.us by haitch. Th' +
+      'anks to Janror, Blago and Luxe for the plotter and miner! Specia' +
+      'l thanks to Irontiga for design help.'
     WordWrap = True
   end
   object Label2: TLabel
@@ -3398,7 +3397,7 @@ object Form10: TForm10
   end
   object Button1: TButton
     Left = 304
-    Top = 277
+    Top = 269
     Width = 84
     Height = 25
     Caption = 'Ok'

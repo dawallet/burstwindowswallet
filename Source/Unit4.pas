@@ -20,7 +20,6 @@ type
     Label5: TLabel;
     Label6: TLabel;
     Button5: TButton;
-    Label12: TLabel;
     Label11: TLabel;
     procedure Button2Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
@@ -89,22 +88,16 @@ if not ListBox1.Items.Count < 1 then
       delete(directories, length(directories), 1);
 
   begin
-    AssignFile(t,'miner-burst-1.151009/miner.conf');
+    AssignFile(t,'miner-burst-1.160407/miner.conf');
     Rewrite(T);
     Writeln(T,'{');
     Writeln(T,'"Mode" : "pool",');
     Writeln(T,'"Server" : "'+Label6.Caption+'",');
     Writeln(T,'"Port" : 8124,');
-    Writeln(T,'"SendBestOnly" : true,');
-    Writeln(T,'"SendInterval" : 200,');
-    Writeln(T,'"TargetDeadline": 3000000,');
-    Writeln(T,'"UseFastRcv" : false,');
     Writeln(T,'');
     Writeln(T,'"UpdaterAddr" : "'+Label6.Caption+'",');
     Writeln(T,'"UpdaterPort" : 8124,');
-    Writeln(T,'"UpdateInterval" : 2000,');
     Writeln(T,'');
-    Writeln(T,'"ShowWinner" : true,');
     Writeln(T,'"InfoAddr" : "'+Label6.Caption+'",');
     Writeln(T,'"InfoPort" : 8124,');
     Writeln(T,'');
@@ -115,18 +108,29 @@ if not ListBox1.Items.Count < 1 then
     Writeln(T,'[');
     Writeln(T,'        "'+directories+'"');
     Writeln(T,'],');
-    Writeln(T,'"CacheSize" : 4000,');
-    Writeln(T,'"UseSorting" : true,');
-    Writeln(T,'"UseBoost" : false,');
+    Writeln(T,'"CacheSize" : 100000,');
+    Writeln(T,'"ShowMsg" : false,');
+    Writeln(T,'"ShowUpdates" : false,');
     Writeln(T,'');
     Writeln(T,'"Debug" : true,');
+    Writeln(T,'');
+    Writeln(T,'"SendBestOnly" : true,');
+    Writeln(T,'"TargetDeadline": 3000000,');
+    Writeln(T,'');
+    Writeln(T,'"UseFastRcv" : false,');
+    Writeln(T,'"SendInterval" : 100,');
+    Writeln(T,'"UpdateInterval" : 950,');
+    Writeln(T,'');
     Writeln(T,'"UseLog" : true,');
-    Writeln(T,'"ShowMsg" : false,');
-   Writeln(T,'"ShowUpdates" : false');
+    Writeln(T,'"ShowWinner" : true,');
+    Writeln(T,'"UseBoost" : false,');
+    Writeln(T,'');
+    Writeln(T,'"WinSizeX" : 80,');
+    Writeln(T,'"WinSizeY" : 60');
       Writeln(T,'}');
     CloseFile(T);
   end;
-ShellExecute(0, 'open', PChar('miner.exe'),PChar('/K'), PChar('miner-burst-1.151009'), SW_SHOW);
+ShellExecute(0, 'open', PChar('miner.exe'),PChar('/K'), PChar('miner-burst-1.160407'), SW_SHOW);
 close;
  end
 else

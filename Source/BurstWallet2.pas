@@ -42,11 +42,12 @@ type
     ToolButton11: TToolButton;
     Faucets1: TMenuItem;
     httpfburstcoininfo1: TMenuItem;
-    ToolButton12: TToolButton;
     ToolButton13: TToolButton;
     ToolButton14: TToolButton;
     ToolButton15: TToolButton;
     httpburstcoinbizfaucet1: TMenuItem;
+    HowToCrowdfund1: TMenuItem;
+    Crowdfunding2: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure About1Click(Sender: TObject);
     procedure AddWallet1Click(Sender: TObject);
@@ -78,7 +79,8 @@ type
     procedure Market1Click(Sender: TObject);
     procedure httpburstcoinbizfaucet1Click(Sender: TObject);
     procedure Lotteries1Click(Sender: TObject);
-    procedure Crowdfunding1Click(Sender: TObject);
+    procedure Crowdfunding2Click(Sender: TObject);
+    procedure HowToCrowdfund1Click(Sender: TObject);
 
 
 
@@ -199,7 +201,7 @@ clipboard.AsText :='';
 close;
 end;
 
-procedure TForm1.Crowdfunding1Click(Sender: TObject);
+procedure TForm1.Crowdfunding2Click(Sender: TObject);
 begin
       WebBrowser1.Navigate('http://127.0.0.1:8125/atcrowdfund.html');
     N7.Enabled := true;
@@ -280,6 +282,12 @@ begin
    WebBrowser1.Navigate('https://wallet.burst-team.us:8125');
 end;
 
+
+procedure TForm1.HowToCrowdfund1Click(Sender: TObject);
+begin
+ShellExecute(0, 'open', 'http://forum.burstcoin.info:4567/topic/69/how-to-start-a-crowdfund-on-burst-quickstart-manual', nil, nil, SW_SHOWNORMAL);
+
+end;
 
 procedure TForm1.httpburstcoinbizfaucet1Click(Sender: TObject);
 begin

@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Burst Windows Client v0.2.1'
+  Caption = 'Burst Client for Win v0.2.3'
   ClientHeight = 558
   ClientWidth = 996
   Color = clBtnFace
@@ -21,13 +21,14 @@ object Form1: TForm1
     Left = 0
     Top = 0
     Width = 996
-    Height = 539
+    Height = 541
     Align = alClient
     TabOrder = 0
     ExplicitLeft = 8
     ExplicitTop = -6
+    ExplicitHeight = 539
     ControlData = {
-      4C000000F1660000B53700000000000000000000000000000000000000000000
+      4C000000F1660000EA3700000000000000000000000000000000000000000000
       000000004C000000000000000000000001000000E0D057007335CF11AE690800
       2B2E126208000000000000004C0000000114020000000000C000000000000046
       8000000000000000000000000000000000000000000000000000000000000000
@@ -35,12 +36,14 @@ object Form1: TForm1
   end
   object ToolBar1: TToolBar
     Left = 0
-    Top = 539
+    Top = 541
     Width = 996
-    Height = 19
+    Height = 17
     Align = alBottom
-    ButtonHeight = 19
-    ButtonWidth = 65
+    Anchors = [akRight, akBottom]
+    AutoSize = True
+    ButtonHeight = 17
+    ButtonWidth = 70
     Caption = 'ToolBar1'
     Color = clBtnFace
     Ctl3D = False
@@ -52,6 +55,7 @@ object Form1: TForm1
     GradientEndColor = clWhite
     HideClippedButtons = True
     HotTrackColor = clWhite
+    List = True
     ParentColor = False
     ParentDoubleBuffered = False
     ShowCaptions = True
@@ -67,7 +71,7 @@ object Form1: TForm1
       Visible = False
     end
     object ToolButton2: TToolButton
-      Left = 34
+      Left = 39
       Top = 0
       AutoSize = True
       Caption = '-'
@@ -75,7 +79,7 @@ object Form1: TForm1
       Visible = False
     end
     object ToolButton7: TToolButton
-      Left = 48
+      Left = 58
       Top = 0
       Width = 8
       Caption = 'ToolButton7'
@@ -84,7 +88,7 @@ object Form1: TForm1
       Visible = False
     end
     object ToolButton3: TToolButton
-      Left = 56
+      Left = 66
       Top = 0
       AutoSize = True
       Caption = '1000 Burst ='
@@ -92,7 +96,7 @@ object Form1: TForm1
       Visible = False
     end
     object ToolButton4: TToolButton
-      Left = 121
+      Left = 136
       Top = 0
       AutoSize = True
       Caption = '-'
@@ -100,7 +104,7 @@ object Form1: TForm1
       Visible = False
     end
     object ToolButton8: TToolButton
-      Left = 135
+      Left = 155
       Top = 0
       Width = 8
       Caption = 'ToolButton8'
@@ -109,7 +113,7 @@ object Form1: TForm1
       Visible = False
     end
     object ToolButton5: TToolButton
-      Left = 143
+      Left = 163
       Top = 0
       AutoSize = True
       Caption = 'Market Cap:'
@@ -117,7 +121,7 @@ object Form1: TForm1
       Visible = False
     end
     object ToolButton6: TToolButton
-      Left = 206
+      Left = 231
       Top = 0
       AutoSize = True
       Caption = '-'
@@ -125,7 +129,7 @@ object Form1: TForm1
       Visible = False
     end
     object ToolButton13: TToolButton
-      Left = 220
+      Left = 250
       Top = 0
       Width = 8
       Caption = 'ToolButton13 '
@@ -134,7 +138,7 @@ object Form1: TForm1
       Visible = False
     end
     object ToolButton14: TToolButton
-      Left = 228
+      Left = 258
       Top = 0
       AutoSize = True
       Caption = 'Mining Wallet:'
@@ -142,23 +146,16 @@ object Form1: TForm1
       Visible = False
     end
     object ToolButton15: TToolButton
-      Left = 297
+      Left = 332
       Top = 0
       AutoSize = True
       Caption = '-'
       ImageIndex = 7
       Visible = False
     end
-    object ToolButton12: TToolButton
-      Left = 311
-      Top = 0
-      Width = 8
-      Caption = 'ToolButton12'
-      ImageIndex = 7
-      Style = tbsSeparator
-    end
     object ToolButton11: TToolButton
-      Left = 319
+      AlignWithMargins = True
+      Left = 351
       Top = 0
       AutoSize = True
       Caption = 'Write Plots'
@@ -166,7 +163,8 @@ object Form1: TForm1
       OnClick = ToolButton11Click
     end
     object ToolButton9: TToolButton
-      Left = 374
+      AlignWithMargins = True
+      Left = 411
       Top = 0
       Width = 8
       Caption = 'ToolButton9'
@@ -174,8 +172,10 @@ object Form1: TForm1
       Style = tbsSeparator
     end
     object ToolButton10: TToolButton
-      Left = 382
+      AlignWithMargins = True
+      Left = 419
       Top = 0
+      Margins.Bottom = 0
       AutoSize = True
       Caption = 'Start Mining'
       ImageIndex = 6
@@ -184,7 +184,7 @@ object Form1: TForm1
     end
   end
   object MainMenu1: TMainMenu
-    Left = 560
+    Left = 407
     Top = 312
     object WalletManager1: TMenuItem
       Caption = 'Account Manager'
@@ -207,7 +207,14 @@ object Form1: TForm1
     end
     object Crowdfunding1: TMenuItem
       Caption = 'Crowdfunding'
-      OnClick = Crowdfunding1Click
+      object HowToCrowdfund1: TMenuItem
+        Caption = 'HowTo Crowdfund'
+        OnClick = HowToCrowdfund1Click
+      end
+      object Crowdfunding2: TMenuItem
+        Caption = 'Open Crowdfunding'
+        OnClick = Crowdfunding2Click
+      end
     end
     object Lotteries1: TMenuItem
       Caption = 'Lotteries'
@@ -217,6 +224,7 @@ object Form1: TForm1
       Caption = 'Faucets'
       object httpfburstcoininfo1: TMenuItem
         Caption = 'f.burstcoin.info'
+        Enabled = False
         OnClick = httpfburstcoininfo1Click
       end
       object httpburstcoinbizfaucet1: TMenuItem
@@ -11812,12 +11820,12 @@ object Form1: TForm1
     Visible = True
     OnClick = TrayIcon1Click
     OnMouseDown = TrayIcon1MouseDown
-    Left = 456
+    Left = 511
     Top = 352
   end
   object PopupMenu1: TPopupMenu
     Alignment = paCenter
-    Left = 400
+    Left = 567
     Top = 256
     object Open1: TMenuItem
       Caption = 'Open'
@@ -11831,7 +11839,7 @@ object Form1: TForm1
   object Timer1: TTimer
     Interval = 300000
     OnTimer = Timer1Timer
-    Left = 664
+    Left = 303
     Top = 376
   end
 end

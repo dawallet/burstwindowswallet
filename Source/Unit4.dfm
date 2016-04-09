@@ -5,7 +5,7 @@ object Form4: TForm4
   BorderStyle = bsToolWindow
   Caption = 'Miner '
   ClientHeight = 166
-  ClientWidth = 512
+  ClientWidth = 520
   Color = clBtnFace
   DefaultMonitor = dmMainForm
   Font.Charset = DEFAULT_CHARSET
@@ -63,16 +63,6 @@ object Form4: TForm4
     Height = 13
     Caption = 'none - choose!'
   end
-  object Label12: TLabel
-    Left = 276
-    Top = 144
-    Width = 212
-    Height = 13
-    Alignment = taCenter
-    Caption = 'beta: GPU assisted mining (OpenCL needed)'
-    Layout = tlCenter
-    WordWrap = True
-  end
   object Label11: TLabel
     Left = 19
     Top = 107
@@ -92,11 +82,11 @@ object Form4: TForm4
   end
   object Button1: TButton
     Left = 388
-    Top = 71
-    Width = 102
+    Top = 90
+    Width = 116
     Height = 25
     Hint = 'CPU assisted mining. Works always.'
-    Caption = 'Start Mining'
+    Caption = 'Start Mining (default)'
     TabOrder = 0
     OnClick = Button1Click
   end
@@ -104,14 +94,14 @@ object Form4: TForm4
     Left = 276
     Top = 28
     Width = 85
-    Height = 99
+    Height = 118
     ItemHeight = 13
     TabOrder = 1
   end
   object ComboBox1: TComboBox
     Left = 388
     Top = 25
-    Width = 102
+    Width = 116
     Height = 21
     AutoComplete = False
     TabOrder = 2
@@ -141,11 +131,11 @@ object Form4: TForm4
   end
   object Button5: TButton
     Left = 388
-    Top = 102
-    Width = 102
+    Top = 121
+    Width = 116
     Height = 25
     Hint = 'GPU assisted mining with OpenCL'
-    Caption = 'Start Mining (beta)'
+    Caption = 'Start Mining (OpenCL)'
     CommandLinkHint = 'GPU assisted mining with OpenCL'
     TabOrder = 5
     OnClick = Button5Click

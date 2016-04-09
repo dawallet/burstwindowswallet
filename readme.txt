@@ -19,6 +19,12 @@ _____
 
 Changelog:
 
+0.2.3
+
++ Updated Blagos miner to version 1.160407 (100% performance improvement!)
++ Added HowTo Crowdfund with Burst
++ Design improvements for Crowdfund & Lottery
+
 0.2.2
 
 + updated Luxe's miner to version 0.4.4
