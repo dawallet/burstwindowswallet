@@ -429,7 +429,7 @@ body > .header .logo {
   height: 50px;
   display: block;
   font-weight:bold;
-  padding-top: 20px;
+  padding-top: 0px;
 }
 body > .header .logo .icon {
   margin-right: 10px;
@@ -578,7 +578,7 @@ body > .header .logo .icon {
 }
 .user-panel {
   padding: 10px;
-  padding-top:25%;
+  padding-top:10%;
 }
 .user-panel:before,
 .user-panel:after {
