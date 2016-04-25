@@ -21,6 +21,9 @@ type
     Label6: TLabel;
     Button5: TButton;
     Label11: TLabel;
+    Button4: TButton;
+    Label1: TLabel;
+    Label8: TLabel;
     procedure Button2Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormHide(Sender: TObject);
@@ -28,10 +31,13 @@ type
     procedure Label11Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private-Deklarationen }
     p: Textfile;
     pool : String;
+    port : String;
   public
     { Public-Deklarationen }
   end;
@@ -73,7 +79,10 @@ procedure TForm4.Button1Click(Sender: TObject);
    t : TextFile;
    directories: String;
 begin
-if not ListBox1.Items.Count < 1 then
+if ListBox1.Items.Count < 1 then
+ Showmessage('No plots found. You have to generate plots before mining! Or you have to put your Plots to: X:\Burst\plots or X:\plots\')
+else
+ begin
   if Label6.Caption = 'none - choose!' then
   Showmessage('You have to choose a pool first')
   else
@@ -88,12 +97,12 @@ if not ListBox1.Items.Count < 1 then
       delete(directories, length(directories), 1);
 
   begin
-    AssignFile(t,'miner-burst-1.160407/miner.conf');
+    AssignFile(t,'miner-burst-1.160420/miner.conf');
     Rewrite(T);
     Writeln(T,'{');
     Writeln(T,'"Mode" : "pool",');
     Writeln(T,'"Server" : "'+Label6.Caption+'",');
-    Writeln(T,'"Port" : 8124,');
+    Writeln(T,'"Port" : "'+port+'",');
     Writeln(T,'');
     Writeln(T,'"UpdaterAddr" : "'+Label6.Caption+'",');
     Writeln(T,'"UpdaterPort" : 8124,');
@@ -113,9 +122,10 @@ if not ListBox1.Items.Count < 1 then
     Writeln(T,'"ShowUpdates" : false,');
     Writeln(T,'');
     Writeln(T,'"Debug" : true,');
+    //Writeln(T,'"UseHDDWakeUp" : true,');
     Writeln(T,'');
     Writeln(T,'"SendBestOnly" : true,');
-    Writeln(T,'"TargetDeadline": 3000000,');
+    Writeln(T,'"TargetDeadline": 4000000,');
     Writeln(T,'');
     Writeln(T,'"UseFastRcv" : false,');
     Writeln(T,'"SendInterval" : 100,');
@@ -130,11 +140,11 @@ if not ListBox1.Items.Count < 1 then
       Writeln(T,'}');
     CloseFile(T);
   end;
-ShellExecute(0, 'open', PChar('miner.exe'),PChar('/K'), PChar('miner-burst-1.160407'), SW_SHOW);
+ShellExecute(0, 'open', PChar('miner-v1.160420.exe'),PChar('/K'), PChar('miner-burst-1.160420'), SW_SHOW);
 close;
- end
-else
-Showmessage('No plots found. You have to generate plots before mining! Or you have to put your Plots to: X:\Burst\plots or X:\plots\');
+ end;
+ end;
+
 
 end;
 procedure TForm4.Button2Click(Sender: TObject);
@@ -171,8 +181,88 @@ if  Label6.Caption = 'burst.poolto.be' then
      clipboard2.AsText:='BURST-5AXK-EABZ-7FTB-4NBT9';
 if  Label6.Caption = 'mininghere.com' then
      clipboard2.AsText:='BURST-7S5L-6UHX-SVS5-BU6HA';
+if  Label6.Caption = 'us-burstpool.broke-it.net' then
+     clipboard2.AsText:='BURST-NM25-LV2Y-KXVC-HUZ67';
+if  Label6.Caption = 'pool.burst-team.us' then
+     clipboard2.AsText:='BURST-32TT-TSAC-HTKW-CC26C';
+if  Label6.Caption = 'pool.burstcoin.de' then
+     begin
+     clipboard2.AsText:='BURST-GHTV-7ZP3-DY4B-FPBFA';
+     port := '8080';
+     end;
 ShowMessage('The pool address '+clipboard.AsText+' of '+Combobox1.Text+' got copied into your clipboard.'+#13#10+ 'Paste it into the second textbox: "Recipient - Burst address of pool" and paste your wallet passphrase in the first textbox.');
 end;
+end;
+
+procedure TForm4.Button4Click(Sender: TObject);
+var
+   t : TextFile;
+   directories: String;
+begin
+if ListBox1.Items.Count < 1 then
+ Showmessage('No plots found. You have to generate plots before mining! Or you have to put your Plots to: X:\Burst\plots or X:\plots\')
+else
+  if Label6.Caption = 'none - choose!' then
+  Showmessage('You have to choose a pool first')
+  else
+
+ begin
+    directories:= ListBox1.Items.GetText;
+    directories:= StringReplace(directories, '\', '\\', [rfReplaceAll, rfIgnoreCase]);
+
+    directories:= StringReplace(directories, #13#10, '","', [rfReplaceAll, rfIgnoreCase]);
+      delete(directories, length(directories), 1);
+      delete(directories, length(directories), 1);
+      delete(directories, length(directories), 1);
+
+  begin
+    AssignFile(t,'miner-burst-1.160420/miner.conf');
+    Rewrite(T);
+    Writeln(T,'{');
+    Writeln(T,'"Mode" : "pool",');
+    Writeln(T,'"Server" : "'+Label6.Caption+'",');
+    Writeln(T,'"Port" : "'+port+'",');
+    Writeln(T,'');
+    Writeln(T,'"UpdaterAddr" : "'+Label6.Caption+'",');
+    Writeln(T,'"UpdaterPort" : 8124,');
+    Writeln(T,'');
+    Writeln(T,'"InfoAddr" : "'+Label6.Caption+'",');
+    Writeln(T,'"InfoPort" : 8124,');
+    Writeln(T,'');
+    Writeln(T,'"EnableProxy" : false,');
+    Writeln(T,'"ProxyPort" : 8126,');
+    Writeln(T,'');
+    Writeln(T,'"Paths":');
+    Writeln(T,'[');
+    Writeln(T,'        "'+directories+'"');
+    Writeln(T,'],');
+    Writeln(T,'"CacheSize" : 40000,');
+    Writeln(T,'"ShowMsg" : false,');
+    Writeln(T,'"ShowUpdates" : false,');
+    Writeln(T,'');
+    Writeln(T,'"Debug" : true,');
+   // Writeln(T,'"UseHDDWakeUp" : true,');
+    Writeln(T,'');
+    Writeln(T,'"SendBestOnly" : true,');
+    Writeln(T,'"TargetDeadline": 4000000,');
+    Writeln(T,'');
+    Writeln(T,'"UseFastRcv" : false,');
+    Writeln(T,'"SendInterval" : 100,');
+    Writeln(T,'"UpdateInterval" : 950,');
+    Writeln(T,'');
+    Writeln(T,'"UseLog" : true,');
+    Writeln(T,'"ShowWinner" : true,');
+    Writeln(T,'"UseBoost" : false,');
+    Writeln(T,'');
+    Writeln(T,'"WinSizeX" : 80,');
+    Writeln(T,'"WinSizeY" : 60');
+      Writeln(T,'}');
+    CloseFile(T);
+  end;
+ShellExecute(0, 'open', PChar('miner-v1.160420_AVX.exe'),PChar('/K'), PChar('miner-burst-1.160420'), SW_SHOW);
+close;
+ end
+
 end;
 
 procedure TForm4.Button5Click(Sender: TObject);
@@ -185,12 +275,15 @@ procedure TForm4.Button5Click(Sender: TObject);
    filename : TSearchRec;
    plotDirectory: String;
 begin
-  if not ListBox1.Items.Count < 1 then
+  if ListBox1.Items.Count < 1 then
+ Showmessage('No plots found. You have to generate plots before mining! Or you have to put your Plots to: X:\Burst\plots or X:\plots\')
+else
+    begin
       if Label6.Caption = 'none - choose!' then
       Showmessage('You have to choose a pool first')
-  else
+       else
 
- begin
+  begin
     directoriesGPU:= ListBox1.Items.GetText;
     directoriesGPU:= StringReplace(directoriesGPU, '\', '/', [rfReplaceAll, rfIgnoreCase]);
     directoriesGPU:= StringReplace(directoriesGPU, #13#10, ',', [rfReplaceAll, rfIgnoreCase]);
@@ -229,22 +322,22 @@ begin
 
   ShellExecute(0, 'open', PChar('run.bat'),PChar('/K'), PChar('burstcoin-jminer-0.4.4-SNAPSHOT'), SW_SHOW);
   close;
-  end
-  else
+    end
 
-  Showmessage('No plots found. You have to generate plots before mining! Or you have to put your Plots to: X:\Burst\plots or X:\plots\');
+
+  end
 
   end;
 
 procedure TForm4.ComboBox1Change(Sender: TObject);
 begin
- AssignFile(p,'miner-burst-1.151009/chosen_pool.txt');
+ AssignFile(p,'miner-burst-1.160420/chosen_pool.txt');
    Rewrite(P);
    Writeln(P,Combobox1.Text);
    CloseFile(P);
 //Showmessage('Changes saved');
 
-    pool:=TFile.ReadAllText('miner-burst-1.151009/chosen_pool.txt');
+    pool:=TFile.ReadAllText('miner-burst-1.160420/chosen_pool.txt');
     pool:= StringReplace(pool, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
     Label6.Caption:=(pool);
 
@@ -265,13 +358,21 @@ ListBox1.Items.Clear;
 
   then ListBox1.Items.Add(character+':\plots');
 
-   pool:=TFile.ReadAllText('miner-burst-1.151009/chosen_pool.txt');
+   pool:=TFile.ReadAllText('miner-burst-1.160420/chosen_pool.txt');
    pool:= StringReplace(pool, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
 
   if pool = '' then
     else
     Label6.Caption:=(pool);
 
+end;
+
+procedure TForm4.FormCreate(Sender: TObject);
+begin
+if label6.Caption = 'pool.burstcoin.de' then
+port := '8080'
+else
+port := '8124';
 end;
 
 procedure TForm4.FormHide(Sender: TObject);
@@ -281,7 +382,7 @@ end;
 
 procedure TForm4.Label11Click(Sender: TObject);
 begin
-ShellExecute(0, 'open', 'http://f.burstcoin.info', nil, nil, SW_SHOWNORMAL);
+ShellExecute(0, 'open', 'http://faucet.burst-team.us', nil, nil, SW_SHOWNORMAL);
 end;
 
 end.

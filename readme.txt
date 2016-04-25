@@ -19,6 +19,12 @@ _____
 
 Changelog:
 
+0.2.4
+
++ 3 new pools available
++ changed faucet 
++ updated Blago miner to 1.160420
+
 0.2.3
 
 + Updated Blagos miner to version 1.160407 (100% performance improvement!)

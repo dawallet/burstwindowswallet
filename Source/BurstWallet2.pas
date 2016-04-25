@@ -41,11 +41,9 @@ type
     ToolButton10: TToolButton;
     ToolButton11: TToolButton;
     Faucets1: TMenuItem;
-    httpfburstcoininfo1: TMenuItem;
     ToolButton13: TToolButton;
     ToolButton14: TToolButton;
     ToolButton15: TToolButton;
-    httpburstcoinbizfaucet1: TMenuItem;
     HowToCrowdfund1: TMenuItem;
     Crowdfunding2: TMenuItem;
     procedure FormCreate(Sender: TObject);
@@ -81,6 +79,7 @@ type
     procedure Lotteries1Click(Sender: TObject);
     procedure Crowdfunding2Click(Sender: TObject);
     procedure HowToCrowdfund1Click(Sender: TObject);
+    procedure Faucets1Click(Sender: TObject);
 
 
 
@@ -220,6 +219,11 @@ Killtask('javaw.exe');
 clipboard := TClipBoard.create;
 clipboard.AsText :='';
 close;
+end;
+
+procedure TForm1.Faucets1Click(Sender: TObject);
+begin
+ShellExecute(0, 'open', 'http://faucet.burst-team.us', nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TForm1.FormActivate(Sender: TObject);

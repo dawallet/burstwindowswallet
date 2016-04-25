@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Burst Client for Win v0.2.3'
+  Caption = 'Burst Client for Win v0.2.4'
   ClientHeight = 558
   ClientWidth = 996
   Color = clBtnFace
@@ -208,7 +208,7 @@ object Form1: TForm1
     object Crowdfunding1: TMenuItem
       Caption = 'Crowdfunding'
       object HowToCrowdfund1: TMenuItem
-        Caption = 'HowTo Crowdfund'
+        Caption = 'Crowdfund Manual'
         OnClick = HowToCrowdfund1Click
       end
       object Crowdfunding2: TMenuItem
@@ -221,16 +221,8 @@ object Form1: TForm1
       OnClick = Lotteries1Click
     end
     object Faucets1: TMenuItem
-      Caption = 'Faucets'
-      object httpfburstcoininfo1: TMenuItem
-        Caption = 'f.burstcoin.info'
-        Enabled = False
-        OnClick = httpfburstcoininfo1Click
-      end
-      object httpburstcoinbizfaucet1: TMenuItem
-        Caption = 'burstcoin.biz/faucet'
-        OnClick = httpburstcoinbizfaucet1Click
-      end
+      Caption = 'Faucet'
+      OnClick = Faucets1Click
     end
     object About1: TMenuItem
       Caption = 'About'

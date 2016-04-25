@@ -4,8 +4,8 @@ object Form4: TForm4
   BorderIcons = [biSystemMenu]
   BorderStyle = bsToolWindow
   Caption = 'Miner '
-  ClientHeight = 166
-  ClientWidth = 520
+  ClientHeight = 181
+  ClientWidth = 535
   Color = clBtnFace
   DefaultMonitor = dmMainForm
   Font.Charset = DEFAULT_CHARSET
@@ -17,6 +17,7 @@ object Form4: TForm4
   PopupMode = pmExplicit
   Position = poMainFormCenter
   OnActivate = FormActivate
+  OnCreate = FormCreate
   OnHide = FormHide
   PixelsPerInch = 96
   TextHeight = 13
@@ -28,8 +29,8 @@ object Form4: TForm4
     Caption = 'Found Plots:'
   end
   object Label3: TLabel
-    Left = 388
-    Top = 9
+    Left = 395
+    Top = 8
     Width = 63
     Height = 13
     Caption = 'Choose pool:'
@@ -50,15 +51,15 @@ object Form4: TForm4
     WordWrap = True
   end
   object Label5: TLabel
-    Left = 388
-    Top = 52
+    Left = 395
+    Top = 51
     Width = 27
     Height = 13
     Caption = 'Pool: '
   end
   object Label6: TLabel
-    Left = 418
-    Top = 52
+    Left = 425
+    Top = 51
     Width = 72
     Height = 13
     Caption = 'none - choose!'
@@ -80,9 +81,23 @@ object Form4: TForm4
     WordWrap = True
     OnClick = Label11Click
   end
+  object Label1: TLabel
+    Left = 517
+    Top = 79
+    Width = 10
+    Height = 13
+    Caption = 'or'
+  end
+  object Label8: TLabel
+    Left = 517
+    Top = 110
+    Width = 10
+    Height = 13
+    Caption = 'or'
+  end
   object Button1: TButton
-    Left = 388
-    Top = 90
+    Left = 395
+    Top = 74
     Width = 116
     Height = 25
     Hint = 'CPU assisted mining. Works always.'
@@ -94,23 +109,26 @@ object Form4: TForm4
     Left = 276
     Top = 28
     Width = 85
-    Height = 118
+    Height = 133
     ItemHeight = 13
     TabOrder = 1
   end
   object ComboBox1: TComboBox
-    Left = 388
-    Top = 25
+    Left = 395
+    Top = 24
     Width = 116
     Height = 21
     AutoComplete = False
     TabOrder = 2
     OnChange = ComboBox1Change
     Items.Strings = (
+      'pool.burst-team.us'
       'burst.poolto.be'
-      'burst.ninja'
+      'us-burstpool.broke-it.net'
+      'pool.burstcoin.de'
       'pool.burstcoin.it'
-      'mininghere.com')
+      'mininghere.com'
+      'burst.ninja')
   end
   object Button2: TButton
     Left = 163
@@ -130,8 +148,8 @@ object Form4: TForm4
     TabOrder = 4
   end
   object Button5: TButton
-    Left = 388
-    Top = 121
+    Left = 395
+    Top = 136
     Width = 116
     Height = 25
     Hint = 'GPU assisted mining with OpenCL'
@@ -139,5 +157,14 @@ object Form4: TForm4
     CommandLinkHint = 'GPU assisted mining with OpenCL'
     TabOrder = 5
     OnClick = Button5Click
+  end
+  object Button4: TButton
+    Left = 395
+    Top = 105
+    Width = 116
+    Height = 25
+    Caption = 'Start Mining (AVX)'
+    TabOrder = 6
+    OnClick = Button4Click
   end
 end
