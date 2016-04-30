@@ -24,6 +24,7 @@ type
     Button4: TButton;
     Label1: TLabel;
     Label8: TLabel;
+    Label9: TLabel;
     procedure Button2Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormHide(Sender: TObject);
@@ -32,7 +33,7 @@ type
     procedure Button5Click(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
     procedure Button4Click(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
+    procedure Label9Click(Sender: TObject);
   private
     { Private-Deklarationen }
     p: Textfile;
@@ -48,7 +49,7 @@ var
 implementation
 
 {$R *.dfm}
-uses BurstWallet2;
+uses BurstWallet2, Unit7;
 
 function IsDirectoryEmpty(const directory : string) : boolean;
  var
@@ -88,6 +89,12 @@ else
   else
 
  begin
+   begin
+      if label6.Caption = 'pool.burstcoin.de' then
+      port := '8080'
+      else
+      port := '8124';
+   end;
     directories:= ListBox1.Items.GetText;
     directories:= StringReplace(directories, '\', '\\', [rfReplaceAll, rfIgnoreCase]);
 
@@ -102,13 +109,13 @@ else
     Writeln(T,'{');
     Writeln(T,'"Mode" : "pool",');
     Writeln(T,'"Server" : "'+Label6.Caption+'",');
-    Writeln(T,'"Port" : "'+port+'",');
+    Writeln(T,'"Port" : '+port+',');
     Writeln(T,'');
     Writeln(T,'"UpdaterAddr" : "'+Label6.Caption+'",');
-    Writeln(T,'"UpdaterPort" : 8124,');
+    Writeln(T,'"UpdaterPort" : '+port+',');
     Writeln(T,'');
     Writeln(T,'"InfoAddr" : "'+Label6.Caption+'",');
-    Writeln(T,'"InfoPort" : 8124,');
+    Writeln(T,'"InfoPort" : '+port+',');
     Writeln(T,'');
     Writeln(T,'"EnableProxy" : false,');
     Writeln(T,'"ProxyPort" : 8126,');
@@ -173,6 +180,7 @@ Form1.N7.Enabled := True;
 
 
 clipboard2 := TClipBoard.create;
+
 if Label6.Caption = 'burst.ninja' then
     clipboard2.AsText:='BURST-7CPJ-BW8N-U4XF-CWW3U';
 if  Label6.Caption = 'pool.burstcoin.it' then
@@ -207,6 +215,14 @@ else
   else
 
  begin
+
+     begin
+      if label6.Caption = 'pool.burstcoin.de' then
+      port := '8080'
+      else
+      port := '8124';
+      end;
+
     directories:= ListBox1.Items.GetText;
     directories:= StringReplace(directories, '\', '\\', [rfReplaceAll, rfIgnoreCase]);
 
@@ -216,18 +232,18 @@ else
       delete(directories, length(directories), 1);
 
   begin
-    AssignFile(t,'miner-burst-1.160420/miner.conf');
+      AssignFile(t,'miner-burst-1.160420/miner.conf');
     Rewrite(T);
     Writeln(T,'{');
     Writeln(T,'"Mode" : "pool",');
     Writeln(T,'"Server" : "'+Label6.Caption+'",');
-    Writeln(T,'"Port" : "'+port+'",');
+    Writeln(T,'"Port" : '+port+',');
     Writeln(T,'');
     Writeln(T,'"UpdaterAddr" : "'+Label6.Caption+'",');
-    Writeln(T,'"UpdaterPort" : 8124,');
+    Writeln(T,'"UpdaterPort" : '+port+',');
     Writeln(T,'');
     Writeln(T,'"InfoAddr" : "'+Label6.Caption+'",');
-    Writeln(T,'"InfoPort" : 8124,');
+    Writeln(T,'"InfoPort" : '+port+',');
     Writeln(T,'');
     Writeln(T,'"EnableProxy" : false,');
     Writeln(T,'"ProxyPort" : 8126,');
@@ -236,12 +252,12 @@ else
     Writeln(T,'[');
     Writeln(T,'        "'+directories+'"');
     Writeln(T,'],');
-    Writeln(T,'"CacheSize" : 40000,');
+    Writeln(T,'"CacheSize" : 100000,');
     Writeln(T,'"ShowMsg" : false,');
     Writeln(T,'"ShowUpdates" : false,');
     Writeln(T,'');
     Writeln(T,'"Debug" : true,');
-   // Writeln(T,'"UseHDDWakeUp" : true,');
+    //Writeln(T,'"UseHDDWakeUp" : true,');
     Writeln(T,'');
     Writeln(T,'"SendBestOnly" : true,');
     Writeln(T,'"TargetDeadline": 4000000,');
@@ -367,14 +383,6 @@ ListBox1.Items.Clear;
 
 end;
 
-procedure TForm4.FormCreate(Sender: TObject);
-begin
-if label6.Caption = 'pool.burstcoin.de' then
-port := '8080'
-else
-port := '8124';
-end;
-
 procedure TForm4.FormHide(Sender: TObject);
 begin
 ListBox1.Items.Clear;
@@ -383,6 +391,11 @@ end;
 procedure TForm4.Label11Click(Sender: TObject);
 begin
 ShellExecute(0, 'open', 'http://faucet.burst-team.us', nil, nil, SW_SHOWNORMAL);
+end;
+
+procedure TForm4.Label9Click(Sender: TObject);
+begin
+Form7.Show;
 end;
 
 end.

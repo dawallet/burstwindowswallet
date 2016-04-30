@@ -99,7 +99,7 @@ clipboard := TClipBoard.create;
 fileName := ListBox1.Items[ListBox1.ItemIndex];
 clipboard.AsText := HexToString(EnDeCrypt(TFile.ReadAllText(fileName)));
 
-Showmessage('Passphrase of ' + ListBox1.Items[ListBox1.ItemIndex] + ' is now in your clipboard! Use Right-Click -> Paste');
+Showmessage('Passphrase of ' + ListBox1.Items[ListBox1.ItemIndex] + ' is now for 30 seconds in your clipboard! Use Right-Click -> Paste');
 Timer1.Enabled:=true;
 hide;
 end;

@@ -19,6 +19,11 @@ _____
 
 Changelog:
 
+0.2.5
+
++ port bugfix for miners
++ minor improvements
+
 0.2.4
 
 + 3 new pools available

@@ -17,7 +17,6 @@ object Form4: TForm4
   PopupMode = pmExplicit
   Position = poMainFormCenter
   OnActivate = FormActivate
-  OnCreate = FormCreate
   OnHide = FormHide
   PixelsPerInch = 96
   TextHeight = 13
@@ -94,6 +93,14 @@ object Form4: TForm4
     Width = 10
     Height = 13
     Caption = 'or'
+  end
+  object Label9: TLabel
+    Left = 34
+    Top = 152
+    Width = 155
+    Height = 13
+    Caption = '>Click here to show a shortcut<'
+    OnClick = Label9Click
   end
   object Button1: TButton
     Left = 395
