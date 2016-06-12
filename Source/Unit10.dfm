@@ -4,8 +4,8 @@ object Form10: TForm10
   BorderIcons = []
   BorderStyle = bsToolWindow
   Caption = 'About'
-  ClientHeight = 304
-  ClientWidth = 396
+  ClientHeight = 306
+  ClientWidth = 356
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,10 +17,10 @@ object Form10: TForm10
   PixelsPerInch = 96
   TextHeight = 13
   object Image1: TImage
-    Left = 2
-    Top = 0
-    Width = 423
-    Height = 209
+    Left = 20
+    Top = 9
+    Width = 332
+    Height = 169
     Picture.Data = {
       0954506E67496D61676589504E470D0A1A0A0000000D49484452000004000000
       021D0806000000A3850FFC00000006624B474400FF00FF00FFA0BDA793000000
@@ -3376,28 +3376,46 @@ object Form10: TForm10
   end
   object Label1: TLabel
     Left = 17
-    Top = 219
-    Width = 371
-    Height = 52
+    Top = 236
+    Width = 326
+    Height = 26
     Caption = 
-      'You want to buy me a beer?  BURST-YZJ6-LYBY-WAC6-BQYGC. Using Of' +
-      'ficial Online Wallet: https://wallet.burst-team.us by haitch. Th' +
-      'anks to Janror, Blago and Luxe for the plotter and miner! Specia' +
-      'l thanks to Irontiga for design help.'
+      'Using Official Online Wallet: https://wallet.burst-team.us by ha' +
+      'itch. Thanks to dcct, Janror, Blago and Luxe for the plotter and' +
+      ' miners! '
     WordWrap = True
   end
   object Label2: TLabel
     Left = 17
     Top = 196
-    Width = 337
+    Width = 301
     Height = 13
-    Caption = 
-      'Burst Windows Client version 0.2 (for Burst Wallet 1.2.3) by daW' +
-      'allet.'
+    Caption = 'Burst Client version 0.2.6 (for Burst Wallet 1.2.3) by daWallet.'
+  end
+  object Label3: TLabel
+    Left = 17
+    Top = 217
+    Width = 135
+    Height = 13
+    Caption = 'You want to buy me a beer?'
+  end
+  object Label4: TLabel
+    Left = 92
+    Top = 279
+    Width = 96
+    Height = 13
+    Caption = 'www.burst-team.us'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsUnderline]
+    ParentFont = False
+    OnClick = Label4Click
   end
   object Button1: TButton
-    Left = 304
-    Top = 269
+    Left = 256
+    Top = 273
     Width = 84
     Height = 25
     Caption = 'Ok'
@@ -3405,10 +3423,10 @@ object Form10: TForm10
     OnClick = Button1Click
   end
   object Edit1: TEdit
-    Left = 155
+    Left = 158
     Top = 215
     Width = 166
-    Height = 21
+    Height = 15
     TabOrder = 1
     Text = 'BURST-YZJ6-LYBY-WAC6-BQYGC'
   end

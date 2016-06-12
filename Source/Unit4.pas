@@ -25,6 +25,7 @@ type
     Label1: TLabel;
     Label8: TLabel;
     Label9: TLabel;
+    Button6: TButton;
     procedure Button2Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormHide(Sender: TObject);
@@ -34,6 +35,7 @@ type
     procedure ComboBox1Change(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Label9Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
   private
     { Private-Deklarationen }
     p: Textfile;
@@ -104,7 +106,7 @@ else
       delete(directories, length(directories), 1);
 
   begin
-    AssignFile(t,'miner-burst-1.160420/miner.conf');
+    AssignFile(t,'miner-burst-1.160610/miner.conf');
     Rewrite(T);
     Writeln(T,'{');
     Writeln(T,'"Mode" : "pool",');
@@ -147,7 +149,7 @@ else
       Writeln(T,'}');
     CloseFile(T);
   end;
-ShellExecute(0, 'open', PChar('miner-v1.160420.exe'),PChar('/K'), PChar('miner-burst-1.160420'), SW_SHOW);
+ShellExecute(0, 'open', PChar('miner-v1.160610.exe'),PChar('/K'), PChar('miner-burst-1.160610'), SW_SHOW);
 close;
  end;
  end;
@@ -232,7 +234,7 @@ else
       delete(directories, length(directories), 1);
 
   begin
-      AssignFile(t,'miner-burst-1.160420/miner.conf');
+      AssignFile(t,'miner-burst-1.160610/miner.conf');
     Rewrite(T);
     Writeln(T,'{');
     Writeln(T,'"Mode" : "pool",');
@@ -275,7 +277,7 @@ else
       Writeln(T,'}');
     CloseFile(T);
   end;
-ShellExecute(0, 'open', PChar('miner-v1.160420_AVX.exe'),PChar('/K'), PChar('miner-burst-1.160420'), SW_SHOW);
+ShellExecute(0, 'open', PChar('miner-v1.160610_AVX.exe'),PChar('/K'), PChar('miner-burst-1.160610'), SW_SHOW);
 close;
  end
 
@@ -345,15 +347,59 @@ else
 
   end;
 
+procedure TForm4.Button6Click(Sender: TObject);
+var
+clipboard2: Tclipboard;
+idHTTP: TIdHTTP;
+dummy: String;
+
+begin
+IdHTTP := TIdHTTP.Create;
+if Label6.Caption='none - choose!' then
+Showmessage('Please choose Pool')
+
+else
+    begin
+     Form1.Webbrowser1.Navigate('http://wallet.burst-team.us/rewardassignmentshort.html') ;
+
+
+
+Form1.N7.Enabled := True;
+
+
+clipboard2 := TClipBoard.create;
+
+if Label6.Caption = 'burst.ninja' then
+    clipboard2.AsText:='BURST-7CPJ-BW8N-U4XF-CWW3U';
+if  Label6.Caption = 'pool.burstcoin.it' then
+     clipboard2.AsText:='BURST-LGKU-3UUM-M6Q5-86SLK';
+if  Label6.Caption = 'burst.poolto.be' then
+     clipboard2.AsText:='BURST-5AXK-EABZ-7FTB-4NBT9';
+if  Label6.Caption = 'mininghere.com' then
+     clipboard2.AsText:='BURST-7S5L-6UHX-SVS5-BU6HA';
+if  Label6.Caption = 'us-burstpool.broke-it.net' then
+     clipboard2.AsText:='BURST-NM25-LV2Y-KXVC-HUZ67';
+if  Label6.Caption = 'pool.burst-team.us' then
+     clipboard2.AsText:='BURST-32TT-TSAC-HTKW-CC26C';
+if  Label6.Caption = 'pool.burstcoin.de' then
+     begin
+     clipboard2.AsText:='BURST-GHTV-7ZP3-DY4B-FPBFA';
+     port := '8080';
+     end;
+ShowMessage('The pool address '+clipboard.AsText+' of '+Combobox1.Text+' got copied into your clipboard.'+#13#10+ 'Paste it into the second textbox: "Recipient - Burst address of pool" and paste your wallet passphrase in the first textbox.');
+end;
+end;
+
+
 procedure TForm4.ComboBox1Change(Sender: TObject);
 begin
- AssignFile(p,'miner-burst-1.160420/chosen_pool.txt');
+ AssignFile(p,'miner-burst-1.160610/chosen_pool.txt');
    Rewrite(P);
    Writeln(P,Combobox1.Text);
    CloseFile(P);
 //Showmessage('Changes saved');
 
-    pool:=TFile.ReadAllText('miner-burst-1.160420/chosen_pool.txt');
+    pool:=TFile.ReadAllText('miner-burst-1.160610/chosen_pool.txt');
     pool:= StringReplace(pool, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
     Label6.Caption:=(pool);
 
@@ -374,7 +420,7 @@ ListBox1.Items.Clear;
 
   then ListBox1.Items.Add(character+':\plots');
 
-   pool:=TFile.ReadAllText('miner-burst-1.160420/chosen_pool.txt');
+   pool:=TFile.ReadAllText('miner-burst-1.160610/chosen_pool.txt');
    pool:= StringReplace(pool, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
 
   if pool = '' then

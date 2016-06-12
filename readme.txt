@@ -19,6 +19,13 @@ _____
 
 Changelog:
 
+0.2.6
+
++ Blago's new miner! It checks for overlapped plots.
++ Added Market Information
++ Check if another instance is opened
++ some bugfixes and improvements
+
 0.2.5
 
 + port bugfix for miners

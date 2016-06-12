@@ -55,7 +55,7 @@ a:focus {
   clear: both;
 }
 /* Header */
-body .large-header > .header {
+body > .header {
   position: absolute;
   top: 0;
   left: 0;
@@ -353,18 +353,18 @@ table.text-center th {
     Components: navbar, logo and content header
 -------------------------------------------------
 */
-body .large-header > .header {
+body > .header {
   position: relative;
   max-height: 100px;
   z-index: 1030;
 }
-body .large-header > .header .navbar {
+body > .header .navbar {
   height: 50px;
   margin-bottom: 0;
   padding-bottom:0;
   margin-left: 220px;
 }
-body .large-header > .header .navbar .sidebar-toggle {
+body > .header .navbar .sidebar-toggle {
   float: left;
   padding: 9px 5px;
   margin-top: 8px;
@@ -381,7 +381,7 @@ body .large-header > .header .navbar .sidebar-toggle {
 .header .navbar .sidebar-toggle:hover .icon-bar {
   background: #f6f6f6;
 }
-body .large-header > .header .navbar .sidebar-toggle .icon-bar {
+body > .header .navbar .sidebar-toggle .icon-bar {
   display: block;
   width: 22px;
   height: 2px;
@@ -389,18 +389,18 @@ body .large-header > .header .navbar .sidebar-toggle .icon-bar {
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
-body .large-header > .header .navbar .sidebar-toggle .icon-bar + .icon-bar {
+body > .header .navbar .sidebar-toggle .icon-bar + .icon-bar {
   margin-top: 4px;
 }
-body .large-header > .header .navbar .nav > li.user > a {
+body > .header .navbar .nav > li.user > a {
   font-weight: bold;
 }
-body .large-header > .header .navbar .nav > li.user > a > .fa,
-body .large-header > .header .navbar .nav > li.user > a > .glyphicon,
-body .large-header > .header .navbar .nav > li.user > a > .ion {
+body > .header .navbar .nav > li.user > a > .fa,
+body > .header .navbar .nav > li.user > a > .glyphicon,
+body > .header .navbar .nav > li.user > a > .ion {
   margin-right: 5px;
 }
-body .large-header > .header .navbar .nav > li > a > .label {
+body > .header .navbar .nav > li > a > .label {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
@@ -415,23 +415,23 @@ body .large-header > .header .navbar .nav > li > a > .label {
   text-align: center;
   padding: 2px;
 }
-body .large-header > .header .navbar .nav > li > a:hover > .label {
+body > .header .navbar .nav > li > a:hover > .label {
   top: 3px;
 }
-body .large-header > .header .logo {
+body > .header .logo {
   float: left;
   font-size: 20px;
-  line-height: 60px;
+  line-height: 50px;
   text-align: center;
   padding: 0 10px;
   width: 220px;
   font-family: sans-serif;
-  height: 60px;
+  height: 50px;
   display: block;
   font-weight:bold;
   padding-top: 0px;
 }
-body .large-header > .header .logo .icon {
+body > .header .logo .icon {
   margin-right: 10px;
 }
 .right-side > .page > .content-header {
@@ -504,16 +504,16 @@ body .large-header > .header .logo .icon {
   }
 }
 @media screen and (max-width: 560px) {
-  body .large-header > .header {
+  body > .header {
     position: relative;
   }
-  body .large-header > .header .logo,
-  body .large-header > .header .navbar {
+  body > .header .logo,
+  body > .header .navbar {
     width: 100%;
     float: none;
     position: relative!important;
   }
-  body .large-header > .header .navbar {
+  body > .header .navbar {
     margin: 0;
   }
   body.fixed > .header {
@@ -876,7 +876,7 @@ body .large-header > .header .logo .icon {
   font-size: 14px;
   padding: 0;
   margin: 0 0 10px 0;
-  color: #666666;
+  color: #ffffff;
 }
 .navbar-nav > .tasks-menu > .dropdown-menu > li .menu > li > a > .progress {
   padding: 0;
@@ -2556,14 +2556,11 @@ background:#33363f
 @media screen and (min-width: 800px) {
   body .modal-dialog-wide {
     width: 800px;
-    margin: 70px auto;
-	
-	
+    margin: 30px auto;
   }
 
   body.reed_solomon .modal-dialog-wide, .modal-dialog-wider {
     width: 800px;
-	margin: 70px auto;
   }
 }
 
@@ -3322,14 +3319,7 @@ hr {
 
 #lockscreen {
   height:100%;
-   bottom: 0;
-    height: 100%;
-    left: 0;
-    margin: auto;
-    position: absolute;
-    right: 0;
-    top: 0;
-  
+  overflow:auto;
 }
 
 #center .panel {
@@ -3527,24 +3517,9 @@ input.masked {
 }
 
 .modal-body {
- 
   padding-bottom:8px;
 } 
 
 #dgs_view_delivery_output, #dgs_view_purchase_modal_note, #dgs_delivery_modal_note, #dgs_view_refund_output, #transaction_info_output_top, #transaction_info_output_bottom {
   word-wrap:break-word;
-}
-.fixed #demo-canvas{
-	
-	display:none;
-	
-}
-
-.fixed.lockscreen #demo-canvas{
-	
-	display:inline-block;
-	
-}
-.fixed.modal-open .large-header {
-	position: static;
 }

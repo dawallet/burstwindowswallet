@@ -35,8 +35,8 @@ object Form4: TForm4
     Caption = 'Choose pool:'
   end
   object Label4: TLabel
-    Left = 18
-    Top = 71
+    Left = 17
+    Top = 58
     Width = 139
     Height = 13
     Caption = 'Change Reward Assignment:'
@@ -64,13 +64,13 @@ object Form4: TForm4
     Caption = 'none - choose!'
   end
   object Label11: TLabel
-    Left = 19
-    Top = 107
+    Left = 18
+    Top = 90
     Width = 204
-    Height = 39
+    Height = 26
     Caption = 
       'For changing reward assignment you need at least 1 Burst e.g. fr' +
-      'om a faucet and a fully synchronized blockchain.'
+      'om a faucet.'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -95,12 +95,12 @@ object Form4: TForm4
     Caption = 'or'
   end
   object Label9: TLabel
-    Left = 34
-    Top = 152
-    Width = 155
-    Height = 13
-    Caption = '>Click here to show a shortcut<'
-    OnClick = Label9Click
+    Left = 18
+    Top = 131
+    Width = 121
+    Height = 26
+    Caption = 'Unkown Account - "errorCode":5 ? Try this: '
+    WordWrap = True
   end
   object Button1: TButton
     Left = 395
@@ -138,8 +138,8 @@ object Form4: TForm4
       'burst.ninja')
   end
   object Button2: TButton
-    Left = 163
-    Top = 65
+    Left = 162
+    Top = 52
     Width = 60
     Height = 25
     Caption = 'Change'
@@ -150,7 +150,7 @@ object Form4: TForm4
     Left = 248
     Top = 0
     Width = 4
-    Height = 169
+    Height = 177
     Default = True
     TabOrder = 4
   end
@@ -173,5 +173,14 @@ object Form4: TForm4
     Caption = 'Start Mining (AVX)'
     TabOrder = 6
     OnClick = Button4Click
+  end
+  object Button6: TButton
+    Left = 162
+    Top = 134
+    Width = 60
+    Height = 25
+    Caption = 'Change'
+    TabOrder = 7
+    OnClick = Button6Click
   end
 end

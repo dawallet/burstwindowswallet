@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Imaging.pngimage, Vcl.ExtCtrls, ShellApi,
   Vcl.StdCtrls;
 
 type
@@ -14,7 +14,10 @@ type
     Label2: TLabel;
     Button1: TButton;
     Edit1: TEdit;
+    Label3: TLabel;
+    Label4: TLabel;
     procedure Button1Click(Sender: TObject);
+    procedure Label4Click(Sender: TObject);
 
   private
     { Private-Deklarationen }
@@ -35,5 +38,10 @@ close;
 end;
 
 
+
+procedure TForm10.Label4Click(Sender: TObject);
+begin
+ShellExecute(0, 'open', 'https://www.burst-team.us', nil, nil, SW_SHOWNORMAL);
+end;
 
 end.

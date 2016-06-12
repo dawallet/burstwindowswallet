@@ -2,14 +2,13 @@
  Some portion .. Copyrights (c) 2015 CIYAM Developers
 
  Distributed under the MIT/X11 software license, please refer to the file license.txt
- in the root project directory or https://www.opensource.org/licenses/mit-license.php.
+ in the root project directory or http://www.opensource.org/licenses/mit-license.php.
 
 -->
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-
     <meta content=
     "HTML Tidy for Linux/x86 (vers 25 March 2009), see www.w3.org" name=
     "generator">
@@ -18,41 +17,34 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="" name="description">
     <meta content="" name="author">
-    <title>Burst Crowdfund</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-	 <script src=
-    "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" type=
+    <title>AT Crowdfund</title>
+    <script src=
+    "http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" type=
     "text/javascript"></script>
-    <link href="/css/bootstrap.min2.css" rel=
+    <link href=
+    "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel=
     "stylesheet" type="text/css">
     <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js" type=
     "text/javascript"></script>
     <script src=
-    "https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.js" type=
+    "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.js" type=
     "text/javascript"></script>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-    <!-- Custom CSS -->
-    <style>
-      
-    body {
-        padding-top: 80px;
-        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-    }
-	.navbar-fixed-top{
-	padding-top: 35px;
-	}
-	    .animate-change {
+    <style type="text/css">
+/*<![CDATA[*/
+        .animate-change {
             background-color: green;
         }
         #at td {
-            background-color: #E5E6EB;
+            background-color: E5E6EB;
         }
-		.navbar-inverse .navbarcollapse
-		{border-color: #262B2E;
-		background-color:#262B2E;}
-		
         .footer {
             position: absolute;
             bottom: 0;
@@ -62,7 +54,117 @@
             height: 60px;
             background-color: #f5f5f5;
         }
-		 #page-content-wrapper .crowd
+        /*!
+    * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
+    * Code licensed under the Apache License v2.0.
+    * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+    */
+        /* Toggle Styles */
+        
+        #wrapper {
+            padding-left: 0;
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+        }
+        #wrapper.toggled {
+            padding-left: 100px;
+        }
+        #sidebar-wrapper {
+            z-index: 1000;
+            position: fixed;
+            left: 100px;
+            width: 0;
+            height: 100%;
+            margin-left: -100px;
+            overflow-y: auto;
+            background: #282C2F;
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+        }
+        #wrapper.toggled #sidebar-wrapper {
+            width: 100px;
+        }
+        #page-content-wrapper {
+            width: 100%;
+            position: absolute;
+            padding: 15px;
+        }
+        #wrapper.toggled #page-content-wrapper {
+            position: absolute;
+            margin-right: -100px;
+        }
+        /* Sidebar Styles */
+        
+        .sidebar-nav {
+            position: absolute;
+            top: 0;
+            width: 100px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .sidebar-nav li {
+            text-indent: 5px;
+            line-height: 40px;
+        }
+        .sidebar-nav li a {
+            display: block;
+            text-decoration: none;
+            color: #999999;
+        }
+        .sidebar-nav li a:hover {
+            text-decoration: none;
+            color: #fff;
+            background: #69C784;
+        }
+        .sidebar-nav li a:active,
+        .sidebar-nav li a:focus {
+            text-decoration: none;
+        }
+        .sidebar-nav > .sidebar-brand {
+            height: 65px;
+            font-size: 18px;
+            line-height: 60px;
+        }
+        .sidebar-nav > .sidebar-brand a {
+            color: #999999;
+        }
+        .sidebar-nav > .sidebar-brand a:hover {
+            color: #fff;
+            background: none;
+        }
+        #powered-by {
+            bottom: 0;
+        }
+        @media(min-width:150px) {
+            #wrapper {
+                padding-left: 100px;
+            }
+            #wrapper.toggled {
+                padding-left: 0;
+            }
+            #sidebar-wrapper {
+                width: 100px;
+            }
+            #wrapper.toggled #sidebar-wrapper {
+                width: 0;
+            }
+            #page-content-wrapper {
+                padding: 20px;
+                position: relative;
+            }
+            #wrapper.toggled #page-content-wrapper {
+                position: relative;
+                margin-right: 0;
+            }
+            
+        }
+        
+        #page-content-wrapper .crowd
         {
             margin-top:20px;
         }
@@ -88,13 +190,13 @@
         {
                 padding:10px 5%;
                 border:1px solid lightgray;
-                max-height:550px;
-                min-height:230px;
+                max-height:530px;
+                min-height:530px;
         }
         .crowdtext
         {
-                font-size:1.0em;
-                max-height:140px;
+                font-size:1.2em;
+                max-height:240px;
                 min-height:240px;
                 overflow:auto;
         }
@@ -102,7 +204,7 @@
         {
         }
         
-        .crowdbox h3,hr
+        .crowdbox h2,hr
         {
                 margin-top:10px;
                 margin-bottom:10px;
@@ -117,67 +219,55 @@
         
         .crowdbox .btn
         {
-                height:30px;
+                height:40px;
         }
         
         .open-buyTicket
         {
-            font-size:1.0em;
+            font-size:1.2em;
         }
+        
+    /*]]>*/
     </style>
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 </head>
 
 <body>
+    <div id="wrapper">
+        <!-- Sidebar -->
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#"></a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                          <a href="javascript:filter('ongoing')"><i class=
-                    'glyphicon glyphicon-flash'></i> Active</a>
-                    </li>
-                    <li>
-                          <a href="javascript:filter('true')"><i class=
-                    'glyphicon glyphicon-ok-circle'></i> Funded</a>
-                    </li>
-                    <li>
-                       <a href="javascript:filter('false')"><i class=
-                    'glyphicon glyphicon-remove-circle'></i> Not funded</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">Crowdfund</a>
+                </li>
 
-    <!-- Page Content -->
-     <div id="page-content-wrapper">
+                <li>
+                    <a href="javascript:filter('all')">All</a>
+                </li>
+
+                <li>
+                    <a href="javascript:filter('ongoing')"><i class=
+                    'glyphicon glyphicon-flash'></i>Active</a>
+                </li>
+
+                <li>
+                    <a href="javascript:filter('true')"><i class=
+                    'glyphicon glyphicon-ok-circle'></i>Funded</a>
+                </li>
+
+                <li>
+                    <a href="javascript:filter('false')"><i class=
+                    'glyphicon glyphicon-remove-circle'></i>Not funded</a>
+                </li>
+            </ul>
+        </div><!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+
+        <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-4">
-                        <h3>Crowdfund Projects</h3>
+                        <h1>Crowdfund Projects</h1>
                     </div>
 
                     <div class="col-lg-4">
@@ -187,7 +277,7 @@
                         New Project</a>
                     </div>
 
-                   <!-- <div class="col-lg-4">
+                    <div class="col-lg-4">
                         <div class="select-outer-container">
                             <div class="search-container">
                                 <form class=
@@ -205,7 +295,7 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
                 <hr>
 
                 <div class="row" id="at-block"></div>
@@ -232,9 +322,9 @@
                                     <li><input class="input-xlarge" id=
                                     "total-amount" name="total-amount" type=
                                     "text" value=""><span style=
-                                    "color:lightgray;">BURST</span></li>
+                                    "color:lightgray;"> BURST</span></li>
 
-                                    <li class="nav-header">Passphrase</li>
+                                    <li class="nav-header">Password</li>
 
                                     <li><input class="input-xlarge" id=
                                     "password" name="password" type="password"
@@ -275,7 +365,7 @@
                             <div class="modal-body">
                                 <div class="form-group">
                                     <ul class="nav nav-list">
-                                        <li><label>Name (no spaces, no underscores!)</label> <input class=
+                                        <li><label>Name</label> <input class=
                                         "input-xlarge form-control" id=
                                         "funding-name" name="funding-name"
                                         type="text" value=""><span style=
@@ -292,7 +382,7 @@
                                         <li style="list-style: none"><br></li>
 
                                         <li><label for="sel1">Duration (select one):</label> <select class="form-control" id="sel1">
-                                            <option value='d809000000000000'>1 week</option>
+                                            <!--<option value='d809000000000000'>1 week</option>-->
 
                                             <option value='b013000000000000'>
                                                 2 weeks
@@ -335,7 +425,7 @@
                                         <li style="list-style: none"><br></li>
 
                                         <li><label for=
-                                        "funding-password">Passphrase</label>
+                                        "funding-password">Wallet Passphrase</label>
                                         <input class=
                                         "input-xlarge form-control" id=
                                         "funding-password" name=
@@ -353,7 +443,7 @@
                         <button class="btn btn-default" data-dismiss="modal"
                         type="button">Close</button> <button class=
                         "btn btn-default" data-dismiss="modal" id=
-                        "deploy-at-btn" type="button">Deploy CF</button>
+                        "deploy-at-btn" type="button">Deploy AT</button>
                     </div>
                 </div>
             </div>
@@ -362,7 +452,7 @@
 
     <div class="container">
         <p class="muted credit">powered by <a href=
-        "https://www.ciyam.org/at">Automated Transactions</a> and Burst.</p>
+        "http://www.ciyam.org/at">Automated Transactions</a> and Burst.</p>
     </div>
     <script type="text/javascript">
 //<![CDATA[
@@ -398,7 +488,7 @@
                     deadline: 100
                 }
                 $.ajax({
-                    url: 'https://' + window.location.hostname.toLowerCase() + ':' + window.location.port + '/burst',
+                    url: 'http://' + window.location.hostname.toLowerCase() + ':' + window.location.port + '/burst',
                     type: 'POST',
                     dataType: "json",
                     data: jsonRequest,
@@ -468,7 +558,7 @@
                     minActivationAmountNQT: minA
                 }
                 $.ajax({
-                    url: 'https://' + window.location.hostname.toLowerCase() + ':' + window.location.port + '/burst',
+                    url: 'http://' + window.location.hostname.toLowerCase() + ':' + window.location.port + '/burst',
                     type: 'POST',
                     dataType: "json",
                     data: jsonRequest,
@@ -555,7 +645,7 @@
 
 
                 $.ajax({
-                    url: 'https://' + window.location.hostname.toLowerCase() + ':' + window.location.port + '/burst',
+                    url: 'http://' + window.location.hostname.toLowerCase() + ':' + window.location.port + '/burst',
                     type: 'POST',
                     dataType: "json",
                     data: "requestType=getATIds",
@@ -579,7 +669,7 @@
                         at: atId
                     }
                     $.ajax({
-                        url: 'https://' + window.location.hostname.toLowerCase() + ':' + window.location.port + '/burst',
+                        url: 'http://' + window.location.hostname.toLowerCase() + ':' + window.location.port + '/burst',
                         type: 'POST',
                         dataType: "json",
                         data: jsonRequest,
@@ -599,7 +689,7 @@
                         
                     }
                     $.ajax({
-                        url: 'https://' + window.location.hostname.toLowerCase() + ':' + window.location.port + '/burst',
+                        url: 'http://' + window.location.hostname.toLowerCase() + ':' + window.location.port + '/burst',
                         type: 'POST',
                         dataType: "json",
                         data: jsonRequest,
@@ -620,7 +710,7 @@
                         
                     }
                     $.ajax({
-                        url: 'https://' + window.location.hostname.toLowerCase() + ':' + window.location.port + '/burst',
+                        url: 'http://' + window.location.hostname.toLowerCase() + ':' + window.location.port + '/burst',
                         type: 'POST',
                         dataType: "json",
                         data: jsonRequest,
@@ -640,7 +730,7 @@
                         
                     }
                     $.ajax({
-                        url: 'https://' + window.location.hostname.toLowerCase() + ':' + window.location.port + '/burst',
+                        url: 'http://' + window.location.hostname.toLowerCase() + ':' + window.location.port + '/burst',
                         type: 'POST',
                         dataType: "json",
                         data: jsonRequest,
@@ -659,7 +749,7 @@
                         
                     }
                     $.ajax({
-                        url: 'https://' + window.location.hostname.toLowerCase() + ':' + window.location.port + '/burst',
+                        url: 'http://' + window.location.hostname.toLowerCase() + ':' + window.location.port + '/burst',
                         type: 'POST',
                         dataType: "json",
                         data: jsonRequest,
@@ -678,7 +768,7 @@
                         
                     }
                     $.ajax({
-                        url: 'https://' + window.location.hostname.toLowerCase() + ':' + window.location.port + '/burst',
+                        url: 'http://' + window.location.hostname.toLowerCase() + ':' + window.location.port + '/burst',
                         type: 'POST',
                         dataType: "json",
                         data: jsonRequest,
@@ -697,7 +787,7 @@
                         
                     }
                     $.ajax({
-                        url: 'https://' + window.location.hostname.toLowerCase() + ':' + window.location.port + '/burst',
+                        url: 'http://' + window.location.hostname.toLowerCase() + ':' + window.location.port + '/burst',
                         type: 'POST',
                         dataType: "json",
                         data: jsonRequest,
@@ -777,8 +867,8 @@
                     
                     if (funded == 0 && ends < 0 )
                     {
-                        ends = 'Not started yet'
-                        tarAmount = '! Pledge some BURST to start CF'
+                        ends = 'NaN'
+                        tarAmount = 'NaN'
                     }
                     else
                     {
@@ -846,7 +936,6 @@
                 }
                
     </script>
-
 </body>
-
 </html>
+

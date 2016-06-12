@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Burst Client for Win v0.2.5'
+  Caption = 'Burst Client for Win v0.2.6'
   ClientHeight = 558
   ClientWidth = 996
   Color = clBtnFace
@@ -43,7 +43,7 @@ object Form1: TForm1
     Anchors = [akRight, akBottom]
     AutoSize = True
     ButtonHeight = 17
-    ButtonWidth = 70
+    ButtonWidth = 74
     Caption = 'ToolBar1'
     Color = clBtnFace
     Ctl3D = False
@@ -68,7 +68,6 @@ object Form1: TForm1
       AutoSize = True
       Caption = 'Price:'
       ImageIndex = 0
-      Visible = False
     end
     object ToolButton2: TToolButton
       Left = 39
@@ -76,7 +75,6 @@ object Form1: TForm1
       AutoSize = True
       Caption = '-'
       ImageIndex = 1
-      Visible = False
     end
     object ToolButton7: TToolButton
       Left = 58
@@ -85,77 +83,76 @@ object Form1: TForm1
       Caption = 'ToolButton7'
       ImageIndex = 6
       Style = tbsSeparator
-      Visible = False
     end
     object ToolButton3: TToolButton
       Left = 66
       Top = 0
       AutoSize = True
-      Caption = '1000 Burst ='
+      Caption = '10.000 Burst ='
       ImageIndex = 2
-      Visible = False
     end
     object ToolButton4: TToolButton
-      Left = 136
+      Left = 144
       Top = 0
       AutoSize = True
       Caption = '-'
       ImageIndex = 3
-      Visible = False
     end
     object ToolButton8: TToolButton
-      Left = 155
+      Left = 163
       Top = 0
       Width = 8
       Caption = 'ToolButton8'
       ImageIndex = 6
       Style = tbsSeparator
-      Visible = False
     end
     object ToolButton5: TToolButton
-      Left = 163
+      Left = 171
       Top = 0
       AutoSize = True
       Caption = 'Market Cap:'
       ImageIndex = 4
-      Visible = False
     end
     object ToolButton6: TToolButton
-      Left = 231
+      Left = 239
       Top = 0
       AutoSize = True
       Caption = '-'
       ImageIndex = 5
-      Visible = False
     end
     object ToolButton13: TToolButton
-      Left = 250
+      Left = 258
       Top = 0
       Width = 8
       Caption = 'ToolButton13 '
       ImageIndex = 7
       Style = tbsSeparator
-      Visible = False
     end
     object ToolButton14: TToolButton
-      Left = 258
+      Left = 266
       Top = 0
       AutoSize = True
       Caption = 'Mining Wallet:'
       ImageIndex = 7
-      Visible = False
     end
     object ToolButton15: TToolButton
-      Left = 332
+      Left = 340
       Top = 0
       AutoSize = True
       Caption = '-'
       ImageIndex = 7
-      Visible = False
+    end
+    object ToolButton12: TToolButton
+      Left = 359
+      Top = 0
+      Width = 8
+      Caption = 'ToolButton12'
+      ImageIndex = 7
+      Style = tbsSeparator
     end
     object ToolButton11: TToolButton
       AlignWithMargins = True
-      Left = 351
+      Left = 367
       Top = 0
       AutoSize = True
       Caption = 'Write Plots'
@@ -164,7 +161,7 @@ object Form1: TForm1
     end
     object ToolButton9: TToolButton
       AlignWithMargins = True
-      Left = 411
+      Left = 427
       Top = 0
       Width = 8
       Caption = 'ToolButton9'
@@ -173,13 +170,12 @@ object Form1: TForm1
     end
     object ToolButton10: TToolButton
       AlignWithMargins = True
-      Left = 419
+      Left = 435
       Top = 0
       Margins.Bottom = 0
       AutoSize = True
       Caption = 'Start Mining'
       ImageIndex = 6
-      Marked = True
       OnClick = ToolButton10Click
     end
   end
@@ -207,13 +203,13 @@ object Form1: TForm1
     end
     object Crowdfunding1: TMenuItem
       Caption = 'Crowdfunding'
-      object HowToCrowdfund1: TMenuItem
-        Caption = 'Crowdfund Manual'
-        OnClick = HowToCrowdfund1Click
-      end
       object Crowdfunding2: TMenuItem
-        Caption = 'Open Crowdfunding'
+        Caption = 'Open'
         OnClick = Crowdfunding2Click
+      end
+      object HowToCrowdfund1: TMenuItem
+        Caption = 'Start a CF'
+        OnClick = HowToCrowdfund1Click
       end
     end
     object Lotteries1: TMenuItem
@@ -223,6 +219,10 @@ object Form1: TForm1
     object Faucets1: TMenuItem
       Caption = 'Faucet'
       OnClick = Faucets1Click
+    end
+    object Forums1: TMenuItem
+      Caption = 'Help'
+      OnClick = Forums1Click
     end
     object About1: TMenuItem
       Caption = 'About'

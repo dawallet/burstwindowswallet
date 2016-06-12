@@ -183,6 +183,8 @@ else
 
     if isWin64 = true then
     begin
+     parameters:= StringReplace((parameters),':"',' ',[rfReplaceAll]);
+
     ShellExecute(0, 'open', PChar('cmd.exe'),PChar('/K '+parameters), PChar(path), SW_SHOW);
      end
       else

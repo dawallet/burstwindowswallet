@@ -2,6 +2,8 @@ program BurstSOW2;
 
 uses
   Vcl.Forms,
+  Windows,
+  Dialogs,
   BurstWallet2 in 'BurstWallet2.pas' {Form1},
   Unit5 in 'Unit5.pas' {Form5},
   Unit6 in 'Unit6.pas' {Form6},
@@ -11,11 +13,21 @@ uses
   Unit3 in 'Unit3.pas' {Form3},
   Unit4 in 'Unit4.pas' {Form4},
   Unit9 in 'Unit9.pas' {Form9},
-  Unit10 in 'Unit10.pas' {Form10};
+  Unit10 in 'Unit10.pas' {Form10},
+  Unit7 in 'Unit7.pas' {Form7};
+ // CheckPrevious in 'CheckPrevious.pas';
 
 {$R *.res}
-
+var
+  Mutex : THandle;
 begin
+  Mutex := CreateMutex(nil, True, 'My_Unique_Application_Mutex_Name');
+  if (Mutex = 0) OR (GetLastError = ERROR_ALREADY_EXISTS) then
+  begin
+  ShowMessage('Burst Client already running. Check for the icon in the tray!');
+   end
+  else
+  begin
   Application.Initialize;
   Application.MainFormOnTaskbar := False;
   TStyleManager.TrySetStyle('Light');
@@ -27,5 +39,10 @@ begin
   Application.CreateForm(TForm4, Form4);
   Application.CreateForm(TForm9, Form9);
   Application.CreateForm(TForm10, Form10);
+  Application.CreateForm(TForm7, Form7);
   Application.Run;
+      if Mutex = 0 then
+      CloseHandle(Mutex);
+    end;
+
 end.

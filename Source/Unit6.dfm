@@ -3,7 +3,7 @@ object Form6: TForm6
   Top = 0
   BorderIcons = [biSystemMenu]
   BorderStyle = bsToolWindow
-  Caption = 'Wallet Manager'
+  Caption = 'Account Manager'
   ClientHeight = 388
   ClientWidth = 238
   Color = clBtnFace

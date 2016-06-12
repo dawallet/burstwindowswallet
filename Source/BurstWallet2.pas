@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, TLHelp32, Vcl.Clipbrd, ShellAPI, Vcl.Menus,
   Vcl.OleCtrls, SHDocVw, Vcl.ComCtrls, Vcl.ToolWin, Vcl.StdCtrls, idHTTP, IdBaseComponent,IdComponent,IOUtils,
-  IdTCPConnection, IdTCPClient, registry;
+  IdTCPConnection, IdTCPClient, registry, JSON;
 
 type
   TForm1 = class(TForm)
@@ -46,6 +46,8 @@ type
     ToolButton15: TToolButton;
     HowToCrowdfund1: TMenuItem;
     Crowdfunding2: TMenuItem;
+    Forums1: TMenuItem;
+    ToolButton12: TToolButton;
     procedure FormCreate(Sender: TObject);
     procedure About1Click(Sender: TObject);
     procedure AddWallet1Click(Sender: TObject);
@@ -72,14 +74,12 @@ type
     procedure ToolButton11Click(Sender: TObject);
     procedure ToolButton10Click(Sender: TObject);
     procedure burstfaucetcom1Click(Sender: TObject);
-    procedure httpfburstcoininfo1Click(Sender: TObject);
-    procedure burstcoinbizfaucet1Click(Sender: TObject);
     procedure Market1Click(Sender: TObject);
-    procedure httpburstcoinbizfaucet1Click(Sender: TObject);
     procedure Lotteries1Click(Sender: TObject);
     procedure Crowdfunding2Click(Sender: TObject);
     procedure HowToCrowdfund1Click(Sender: TObject);
     procedure Faucets1Click(Sender: TObject);
+    procedure Forums1Click(Sender: TObject);
 
 
 
@@ -115,6 +115,33 @@ begin
     if IsWow64Process(GetCurrentProcess, Wow64Process) then begin
       Result := Wow64Process;
     end;
+  end;
+end;
+
+function ExtractNumberInString( sChaine: String ): String ;
+var
+i: Integer ;
+begin
+Result := '' ;
+for i := 1 to length( sChaine ) do
+begin
+if sChaine[ i ] in ['0'..'9'] then
+Result := Result + sChaine[ i ] ;
+end ;
+end ;
+
+function ParseJsonStr(jStr, jPar1, jPar2: String): String;
+var
+  jObj: TJSONObject;
+  jVal: TJSONValue;
+begin
+  Result:= '';
+  jObj := TJSONObject.ParseJSONValue(jStr) as TJSONObject;
+  try
+    jVal:= jObj.Get(jPar1).JsonValue;
+    Result:= TJSONObject(jVal).Get(jPar2).JsonValue.Value;
+  finally
+    jObj.Free;
   end;
 end;
 
@@ -166,10 +193,6 @@ begin
   TrayIcon1.ShowBalloonHint;
 end;
 
-procedure TForm1.burstcoinbizfaucet1Click(Sender: TObject);
-begin
-ShellExecute(0, 'open', 'http://burstcoin.biz/faucet', nil, nil, SW_SHOWNORMAL);
-end;
 
 procedure TForm1.burstfaucetcom1Click(Sender: TObject);
 begin
@@ -234,43 +257,80 @@ end;
 procedure TForm1.FormCreate(Sender: TObject);
 var
   IdHTTP: TIdHTTP;
-  marketcap: Single;
-  marketcapString: String;
-  amount: Single;
-  result: Single;
+  totalcoins: String;
+  totalcoinsInt: Integer;
+  coinprice: String;
+  coinpriceEx: real;
+  amount: real;
+  result: real;
+  marketcap: String;
+
 
 begin
-Webbrowser1.Navigate('https://wallet.burst-team.us:8125');
+Webbrowser1.Navigate('https://wallet.burst-team.us');
 WinExec('run_java_autodetect.bat', SW_HIDE);
-//CreateProcess(nil, 'java -jar "c:\program files\my java app\test.jar"', nil, nil, False, 0, nil, nil, StartupInfo,
-//ProcessInfo);
 
- {
+
    IdHTTP := TIdHTTP.Create;
 try
   try
-      ToolButton6.Caption := ('$ ' + StringReplace(idHTTP.Get('http://www.burstcoin.fr/api/?r=market_cap&e=average'), ' ', '.',[rfReplaceAll]));
-   ToolButton2.Caption := (idHTTP.Get('http://www.burstcoin.fr/api/?r=last_price&e=average')+' ฿' );
-   marketcapString:= (idHTTP.Get('http://www.burstcoin.fr/api/?r=market_cap&e=average'));
-   marketcapString:= StringReplace(marketcapString, ' ', '',[rfReplaceAll]);
-   marketcap := StrToFloat(marketcapString);
+  begin
+    coinprice:= (idHTTP.Get('https://api.coinmarketcap.com/v1/ticker/burst/'));
+    Delete(coinprice, 1, 127);
+    coinprice := Copy(coinprice, 1, Pos(',', coinprice) - 1);
 
-   amount:= StrToFloat(idHTTP.Get('http://www.burstcoin.fr/api/?r=total_coins&e=average'));
-   result:= ((marketcap / amount) * 1000);
-   ToolButton4.Caption := (FloatToStrF(result, ffFixed, 15, 2)) +' $';
+    //Showmessage(coinprice);
 
- mining:=TFile.ReadAllText('plotter/miningaddress.txt');
-   mining:= StringReplace(mining, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
-   mining:=idHTTP.Get('http://burstcoin.fr/api/?r=get_balance&a='+mining)+' BURST';
-   mining:= StringReplace(mining, 'wrong address format', '0', [rfReplaceAll, rfIgnoreCase]);
+    totalcoins:= (idHTTP.Get('https://www.cryptocompare.com/api/data/coinsnapshot/?fsym=BURST&tsym=USD'));
+    Delete(totalcoins, 1, 183);
+    totalcoins := Copy(totalcoins, 1, Pos('.', totalcoins) - 1);
 
+  //  Showmessage(totalcoins);
+    totalcoinsInt := StrToInt(totalcoins);
+
+    coinprice:= StringReplace(coinprice, '.', ',',[rfReplaceAll]);
+    coinpriceEx:= StrToFloat(coinprice);
+
+   // market cap
+    marketcap:= FloatToStrF((coinpriceEx * totalcoinsInt), ffFixed, 15, 0);
+    Insert(' ', marketcap, 4);
+    ToolButton6.Caption := ('$ '+marketcap);
+   // coinprice
+    ToolButton2.Caption := '$ '+(coinprice);
+    //฿
+
+   // 10.000 Burst info
+   result:= ((StrToFloat(coinprice)) * 10000);
+   //Showmessage(FloatToStr(result));
+   ToolButton4.Caption := '$ '+(FloatToStrF((result), ffFixed, 15, 2)) ;
+
+   // Mining Wallet info
+
+    mining:=TFile.ReadAllText('plotter/miningaddress.txt');
+
+    mining:= StringReplace(mining, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
+    mining:= (idHTTP.Get('https://mwallet.burst-team.us:8125/burst?requestType=rsConvert&account='+mining));
+    Delete(mining, 1, 79);
+    mining:= StringReplace((mining),'"}','',[rfReplaceAll]);
+    mining:= StringReplace((mining),' ','',[rfReplaceAll]);
+    mining:= StringReplace((mining),#13#10,'',[rfReplaceAll]);
+    mining:= (idHTTP.Get('https://mwallet.burst-team.us:8125/burst?requestType=getBalance&account='+mining));
+    Delete(mining, 1, 26);
+       begin
+         mining := Copy(mining, 1, Pos(',', mining) - 10);
+       end;
+
+ //  Showmessage(mining);
+   mining:=(mining+' BURST');
+   mining:= StringReplace(mining, 'ount\" not s BURST', '0', [rfReplaceAll, rfIgnoreCase]);
    ToolButton15.Caption:=(mining);
+  end;
    except
 
   end;
 finally
   IdHTTP.Free;
-end;  }
+end;
 end;
 
 procedure TForm1.FormHide(Sender: TObject);
@@ -279,29 +339,25 @@ begin
   ShowWindow(Application.Handle, SW_HIDE);
 end;
 
+procedure TForm1.Forums1Click(Sender: TObject);
+begin
+ShellExecute(0, 'open', 'https://forums.burst-team.us/category/5/help-support', nil, nil, SW_SHOWNORMAL);
+end;
+
 procedure TForm1.HeaderControl1MouseActivate(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y, HitTest: Integer;
   var MouseActivate: TMouseActivate);
 begin
-   WebBrowser1.Navigate('https://wallet.burst-team.us:8125');
+   WebBrowser1.Navigate('https://wallet.burst-team.us');
 end;
 
 
 procedure TForm1.HowToCrowdfund1Click(Sender: TObject);
 begin
-ShellExecute(0, 'open', 'http://forum.burstcoin.info:4567/topic/69/how-to-start-a-crowdfund-on-burst-quickstart-manual', nil, nil, SW_SHOWNORMAL);
+ShellExecute(0, 'open', 'https://forums.burst-team.us/topic/69/how-to-start-a-crowdfund-on-burst-quickstart-manual', nil, nil, SW_SHOWNORMAL);
 
 end;
 
-procedure TForm1.httpburstcoinbizfaucet1Click(Sender: TObject);
-begin
-   ShellExecute(0, 'open', 'http://burstcoin.biz/faucet', nil, nil, SW_SHOWNORMAL);
-end;
-
-procedure TForm1.httpfburstcoininfo1Click(Sender: TObject);
-begin
-ShellExecute(0, 'open', 'http://f.burstcoin.info', nil, nil, SW_SHOWNORMAL);
-end;
 
 procedure TForm1.LoadWallet1Click(Sender: TObject);
 begin
@@ -322,7 +378,7 @@ end;
 
 procedure TForm1.N6Click(Sender: TObject);
 begin
-  WebBrowser1.Navigate('https://wallet.burst-team.us:8125');
+  WebBrowser1.Navigate('https://wallet.burst-team.us');
   N6.Enabled:=False;
   N7.Enabled:=True;
 end;
@@ -338,14 +394,14 @@ end;
 
 procedure TForm1.Online1Click(Sender: TObject);
 begin
-           WebBrowser1.Navigate('https://wallet.burst-team.us:8125/atcrowdfund.html');
+           WebBrowser1.Navigate('https://wallet.burst-team.us/atcrowdfund.html');
     N7.Enabled := True;
  N6.Enabled := True;
 end;
 
 procedure TForm1.Online2Click(Sender: TObject);
 begin
-      WebBrowser1.Navigate('https://wallet.burst-team.us:8125/atlotteries.html');
+      WebBrowser1.Navigate('https://wallet.burst-team.us/atlotteries.html');
          N7.Enabled := True;
           N6.Enabled := True;
 end;
@@ -359,39 +415,82 @@ end;
 
 procedure TForm1.Timer1Timer(Sender: TObject);
 var
-  IdHTTP: TIdHTTP;
-  marketcap: Single;
-  marketcapString: String;
-  amount: Single;
-  result: Single;
+    IdHTTP: TIdHTTP;
+  totalcoins: String;
+  totalcoinsInt: Integer;
+  coinprice: String;
+  coinpriceEx: real;
+  amount: real;
+  result: real;
+  marketcap: String;
+
 begin
-{
-   IdHTTP := TIdHTTP.Create;
+
+    IdHTTP := TIdHTTP.Create;
 try
   try
-      ToolButton6.Caption := ('$ ' + StringReplace(idHTTP.Get('http://www.burstcoin.fr/api/?r=market_cap&e=average'), ' ', '.',[rfReplaceAll]));
-   ToolButton2.Caption := (idHTTP.Get('http://www.burstcoin.fr/api/?r=last_price&e=average')+' ฿' );
-   marketcapString:= (idHTTP.Get('http://www.burstcoin.fr/api/?r=market_cap&e=average'));
-   marketcapString:= StringReplace(marketcapString, ' ', '',[rfReplaceAll]);
-   marketcap := StrToFloat(marketcapString);
+  begin
+    coinprice:= (idHTTP.Get('https://api.coinmarketcap.com/v1/ticker/burst/'));
+    Delete(coinprice, 1, 127);
+    coinprice := Copy(coinprice, 1, Pos(',', coinprice) - 1);
 
-   amount:= StrToFloat(idHTTP.Get('http://www.burstcoin.fr/api/?r=total_coins&e=average'));
-   result:= ((marketcap / amount) * 1000);
-   ToolButton4.Caption := (FloatToStrF(result, ffFixed, 15, 2)) +' $';
+   // Showmessage(coinprice);
 
- mining:=TFile.ReadAllText('plotter/miningaddress.txt');
-   mining:= StringReplace(mining, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
-   mining:=idHTTP.Get('http://burstcoin.fr/api/?r=get_balance&a='+mining)+' BURST';
-   mining:= StringReplace(mining, 'wrong address format', '0', [rfReplaceAll, rfIgnoreCase]);
+    totalcoins:= (idHTTP.Get('https://www.cryptocompare.com/api/data/coinsnapshot/?fsym=BURST&tsym=USD'));
+    Delete(totalcoins, 1, 183);
+    totalcoins := Copy(totalcoins, 1, Pos('.', totalcoins) - 1);
+
+   // Showmessage(totalcoins);
+    totalcoinsInt := StrToInt(totalcoins);
+
+    coinprice:= StringReplace(coinprice, '.', ',',[rfReplaceAll]);
+    coinpriceEx:= StrToFloat(coinprice);
+
+   // market cap
+    marketcap:= FloatToStrF((coinpriceEx * totalcoinsInt), ffFixed, 15, 0);
+    Insert(' ', marketcap, 4);
+    ToolButton6.Caption := ('$ '+marketcap);
+   // coinprice
+    ToolButton2.Caption := '$ '+(coinprice);
+    //฿
+
+   // 10.000 Burst info
+   result:= ((StrToFloat(coinprice)) * 10000);
+   //Showmessage(FloatToStr(result));
+   ToolButton4.Caption := '$ '+(FloatToStrF((result), ffFixed, 15, 2)) ;
+
+   // Mining Wallet info
+
+    mining:=TFile.ReadAllText('plotter/miningaddress.txt');
+
+    mining:= StringReplace(mining, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
+    mining:= (idHTTP.Get('https://mwallet.burst-team.us:8125/burst?requestType=rsConvert&account='+mining));
+    Delete(mining, 1, 79);
+    mining:= StringReplace((mining),'"}','',[rfReplaceAll]);
+    mining:= StringReplace((mining),' ','',[rfReplaceAll]);
+    mining:= StringReplace((mining),#13#10,'',[rfReplaceAll]);
+    mining:= (idHTTP.Get('https://mwallet.burst-team.us:8125/burst?requestType=getBalance&account='+mining));
+    Delete(mining, 1, 26);
+       begin
+         mining := Copy(mining, 1, Pos(',', mining) - 10);
+       end;
+
+   //Showmessage(mining);
+   mining:=(mining+' BURST');
+    mining:= StringReplace(mining, 'ount\" not s BURST', '0', [rfReplaceAll, rfIgnoreCase]);
    ToolButton15.Caption:=(mining);
+  end;
    except
 
   end;
 finally
   IdHTTP.Free;
 end;
-     }
 end;
+
+
+
+
 
 
 procedure TForm1.ToolButton10Click(Sender: TObject);

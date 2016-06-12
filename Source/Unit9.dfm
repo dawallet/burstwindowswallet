@@ -60,7 +60,7 @@ object Form9: TForm9
     Width = 141
     Height = 39
     Caption = 
-      'You need a fully downloaded Blockchain and at least 2 Burst for ' +
+      'You need a fully downloaded Blockchain and at least 1 Burst for ' +
       'a change!'
     Color = clGradientInactiveCaption
     ParentColor = False

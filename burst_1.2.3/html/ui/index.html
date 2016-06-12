@@ -12,13 +12,8 @@
         <style id="user_header_style" type="text/css"></style>
         <style id="user_sidebar_style" type="text/css"></style>
         <style id="user_boxes_style" type="text/css"></style>
-        	<link rel="stylesheet" type="text/css" href="css/component.css" />
     </head>
     <body class="lockscreen fixed">
-    
-    <div class="demo-1">
-				<div id="large-header" class="large-header">
-					<canvas id="demo-canvas"></canvas>
         <div id="lockscreen">
             <div id="old_browser_warning" style="display:none;margin-left:auto;margin-right:auto;margin-top:200px;background:white;color:black;padding:20px;width:300px;" data-i18n="old_browser_warning">You are using an old browser which this application does not support.</div>
             
@@ -192,9 +187,11 @@
                                 <i class="fa fa-question-circle"></i>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                            	      	<li><a role="menuitem" tabindex="-1" href="http://www.burstcoin.info/" target="_blank">Burstcoin.info</a></li>
+                            	<li><a role="menuitem" tabindex="-1" href="http://www.burstcoin.info/" target="_blank">Burstcoin.info</a></li>
 								<li><a role="menuitem" tabindex="-1" href="http://forum.burstcoin.info/" target="_blank" data-i18n="link.nxt_forum">Burst Forum</a></li>
-								<li><a role="menuitem" tabindex="-1" href="http://faucet.burst-team.us/" target="_blank" data-i18n="link.nxt_wiki">Burst Faucet</a></li>
+								<li><a role="menuitem" tabindex="-1" href="http://chat.burst-team.us:3000/" target="_blank" data-i18n="link.nxt_wiki">Burst Chat</a></li>
+								<li><a role="menuitem" tabindex="-1" href="https://wiki.nxtcrypto.org/wiki/Nxt_client_interface" target="_blank" data-i18n="link.interface_tutorial">Interface Tutorial</a></li>
+								<li><a role="menuitem" tabindex="-1" href="https://wiki.nxtcrypto.org/wiki/Asset_Exchange" target="_blank" data-i18n="link.asset_exchange_tutorial">Asset Exchange Tutorial</a></li>
 							</ul>
 						</li>
                         <li class="dropdown" id="logout_button_container">
@@ -248,9 +245,6 @@
 								<li><a href="#" data-page="at"><i class="fa fa-angle-double-right"></i> <span data-i18n="ats">ATs (Smart Contracts)</span></a></li>
                         	</ul>
                         </li>
-				
-						<li><a href="#" data-page="crowdfunding"><i class="fa fa-angle-double-right"></i> <span data-i18n="crowdfunding">Crowdfunding</span></a></li>
-				
                         <li class="treeview" id="sidebar_asset_exchange">
                         	<a href="#" data-page="asset_exchange"><i class="fa fa-signal"></i><span data-i18n="asset_exchange">Asset Exchange</span><i class="fa pull-right fa-angle-right" style="padding-top:3px"></i></a>
                             <ul class="treeview-menu" style="display: none;">
@@ -456,37 +450,6 @@
 						</div>
 	                </section>
                 </div>
-				
-								<div id="crowdfunding_page" class="page">
-	                          <section class="content-header">
-                    <!--      <h1 data-i18n="crowdfunding">Crowdfunding</h1>
-					-->
-                    	<div style="position:absolute;top:9px;right:9px;">
-						</div>
-                    </section>
-                	
-                    <section class="content">
-                    	
-    <iframe src="atcrowdfund.html" width="100%" height="1000" scrolling="yes" ; margin-top:-4px; margin-left:-4px; border:none;></iframe>;
-                		
-                    </section>
-                </div>
-         
-		 <div id="lotteries_page" class="page">
-	                          <section class="content-header">
-                 <!--   	<h1 data-i18n="lotteries">Lotteries</h1>
-				 -->
-                    	<div style="position:absolute;top:9px;right:9px;">
-						</div>
-                    </section>
-                	
-                    <section class="content">
-                    	
-    <iframe src="atlotteries.html" width="100%" height="1000" scrolling="yes" ; margin-top:-4px; margin-left:-4px; border:none;></iframe>;
-                		
-                    </section>
-                </div>
-               				
 				
 				<div id="escrow_page" class="page">
 	                <section class="content-header">
@@ -1216,7 +1179,7 @@
                 			<div class="data-loading-container"><img src="img/loading_indicator.gif" alt="Loading..." width="32" height="32" /></div>
                 			<div class="data-empty-container"><p data-i18n="[html]no_products_listed_yet">You haven't listed any products for sale yet, <a href="#" data-toggle="modal" data-target="#dgs_listing_modal">add one.</a></p></div>
                 		</div>
-                		<div class="data-pagination"> </div>
+                		<div class="data-pagination">
                     </section>
                 </div>
 
@@ -3602,7 +3565,6 @@
 							<div class="form-group advanced" style="margin-bottom:5px;">
 								<input type="checkbox" name="doNotBroadcast" id="transfer_alias_do_not_broadcast" value="1" /> <label for="transfer_alias_do_not_broadcast" style="font-weight:normal;" tabindex="8" data-i18n="do_not_broadcast">Do Not Broadcast</label>
 							</div>
-
                             <div class="form-group advanced">
                                 <input type="checkbox" name="add_note_to_self" id="transfer_alias_add_note_to_self" class="add_note_to_self" tabindex="9" /> <label for="transfer_alias_add_note_to_self" style="font-weight:normal;margin-bottom:0;"> <span data-i18n="add_note_to_self">Add Note to Self?</span></label>
                             </div>
@@ -4553,7 +4515,7 @@
 						</div>
 					</div>
 					<div class="modal-footer" style="margin-top:0;">
-			        	<button type="button" class="btn btn-primary" data-dismiss="modal" data-i18n="close">Close</button>
+			        	<button type="button" class="btn btn-primary" data-dismiss="modal"<span data-i18n="close">Close</button>
 			      	</div>
 				</div>
 			</div>
@@ -4908,8 +4870,6 @@
                 $("[data-i18n]").i18n();
             });
         </script>
-        
-        
 		<script src="js/3rdparty/ajaxretry.js"></script>
 		<script src="js/3rdparty/ajaxmultiqueue.js"></script>
 		<script src="js/3rdparty/jquery.rss.js" type="text/javascript"></script>
@@ -4970,15 +4930,5 @@
 		<script src="js/nrs.subscription.js" type="text/javascript"></script>
 		<script src="js/nrs.modals.subscription.js" type="text/javascript"></script>
 		<script src="js/nrs.at.js" type="text/javascript"></script>
-        
-        
-        
-        <script src="js/TweenLite.min.js"></script>
-		<script src="js/EasePack.min.js"></script>
-	
-		<script src="js/demo-1.js"></script>
-        
-        </div>
-            </div>
     </body>
 </html>
