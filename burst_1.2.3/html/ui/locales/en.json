@@ -130,7 +130,7 @@
     "info_merchant_message_required": "The recipient account requires you to supply a specially formatted message.",
     "error_quantity_no_change": "No change in quantity.",
     "aliases": "Aliases",
-    "memorize_passphrase_help": "Please save this passphrase with a left swipe over the screen (copy -> open menu -> save) and write down these 12 words (their order and capitalization matters - always lowercase). This passphrase is needed in order to access your Burst account.",
+    "memorize_passphrase_help": "Please write down these 12 words ON PAPER! (their order and capitalization matters - always lowercase). This passphrase is needed in order to access your Burst account.",
     "asset_exchange_tutorial": "Asset Exchange Tutorial",
     "no_asset_selected": "Please select an asset in the left sidebar.",
     "success_delete_contact": "The contact has been deleted successfully!",

@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Burst Client for Win v0.2.6'
+  Caption = 'Burst Client for Win v0.2.7'
   ClientHeight = 558
   ClientWidth = 996
   Color = clBtnFace
@@ -24,9 +24,7 @@ object Form1: TForm1
     Height = 541
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = 8
     ExplicitTop = -6
-    ExplicitHeight = 539
     ControlData = {
       4C000000F1660000EA3700000000000000000000000000000000000000000000
       000000004C000000000000000000000001000000E0D057007335CF11AE690800

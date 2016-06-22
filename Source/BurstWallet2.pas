@@ -145,6 +145,7 @@ begin
   end;
 end;
 
+
 procedure TForm1.WmSysCommand(var Msg: TWMSysCommand);
 begin
   if msg.CmdType = SC_CLOSE then
@@ -264,10 +265,45 @@ var
   amount: real;
   result: real;
   marketcap: String;
-
+  check: String;
+  dummy2: String;
+  IdHTTP2: TIdHTTP;
 
 begin
-Webbrowser1.Navigate('https://wallet.burst-team.us');
+IdHTTP2 := TIdHTTP.Create;
+ N7.Enabled := True;
+ N6.Enabled := False;
+try
+ dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8125/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
+ WebBrowser1.Navigate('https://wallet.burst-team.us:8125');
+ except
+  try
+    dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8126/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
+    WebBrowser1.Navigate('https://wallet.burst-team.us:8126');
+  except
+    try
+     dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8127/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
+     WebBrowser1.Navigate('https://wallet.burst-team.us:8127');
+    except
+      try
+      dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8128/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
+      WebBrowser1.Navigate('https://wallet.burst-team.us:8128');
+      except
+        try
+        dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8128/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
+        WebBrowser1.Navigate('https://wallet.burst-team.us:8128');
+        except
+        Showmessage('All online wallets are down at the moment :(');
+
+        end;
+      end;
+      end;
+  end;
+
+ end;
+IdHTTP2.Free;
+
+//WebBrowser1.Navigate('file:///'+GetCurrentDir+'/offline_1.html');
 WinExec('run_java_autodetect.bat', SW_HIDE);
 
 
@@ -377,17 +413,63 @@ begin
 end;
 
 procedure TForm1.N6Click(Sender: TObject);
+var
+dummy2: String;
+IdHTTP2: TIdHTTP;
 begin
-  WebBrowser1.Navigate('https://wallet.burst-team.us');
-  N6.Enabled:=False;
-  N7.Enabled:=True;
+IdHTTP2 := TIdHTTP.Create;
+ N7.Enabled := True;
+ N6.Enabled := False;
+ try
+ dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8125/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
+ WebBrowser1.Navigate('https://wallet.burst-team.us:8125');
+ except
+  try
+    dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8126/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
+    WebBrowser1.Navigate('https://wallet.burst-team.us:8126');
+  except
+    try
+     dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8127/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
+     WebBrowser1.Navigate('https://wallet.burst-team.us:8127');
+    except
+      try
+      dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8128/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
+      WebBrowser1.Navigate('https://wallet.burst-team.us:8128');
+      except
+        try
+        dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8128/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
+        WebBrowser1.Navigate('https://wallet.burst-team.us:8128');
+        except
+        Showmessage('All online wallets are down at the moment :(');
+
+        end;
+      end;
+      end;
+  end;
+
+ end;
+IdHTTP2.Free;
 end;
 
+
 procedure TForm1.N7Click(Sender: TObject);
+var
+dummy: String;
+IdHTTP2: TIdHTTP;
 begin
- WebBrowser1.Navigate('http://127.0.0.1:8125');
+IdHTTP2 := TIdHTTP.Create;
  N7.Enabled := False;
  N6.Enabled := True;
+ try
+dummy:= (idHTTP2.Get('http://127.0.0.1:8125/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
+WebBrowser1.Navigate('http://127.0.0.1:8125');
+ except
+
+  WebBrowser1.Navigate('file:///'+GetCurrentDir+'/offline_2.html');
+  N7.Enabled := True;
+ end;
+IdHTTP2.Free;
+
 end;
 
 

@@ -19,6 +19,13 @@ _____
 
 Changelog:
 
+0.2.7
+
++ fixed stuck at 100% bug while plotting
++ online wallet mirrors added (thx to haitch)
++ information page if local wallet not available
++ minor bugfixes and improvements
+
 0.2.6
 
 + Blago's new miner! It checks for overlapped plots.

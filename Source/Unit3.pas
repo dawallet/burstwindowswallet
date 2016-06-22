@@ -127,6 +127,8 @@ Memory: TMemoryStatusex;
 dirSize: Int64;
 multiplier: Int64;
 BatContent: TStringList;
+nonces: Integer;
+ram: integer;
 
 begin
 //wplotgenerator [account id] [start nonce] [number of nonces] [stagger size] [threads]
@@ -173,12 +175,21 @@ _GetFolderSize(ExcludeTrailingPathDelimiter(path + 'plots\'), dirSize, false);
 dirSize:= (dirSize div 1024 div 256)+1;
 //Showmessage(IntToStr(dirSize));
 
-pocParameters :='run_generate.bat '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(((1024*1024) div 256) *(TrackBar1.Position)) + ' ' + IntToStr((((Memory.ullTotalPhys div 1024 div 1024 div 10)*8)div 64)*64) + ' ' + IntToStr(TrackBar2.Position));
-parameters :='wplotgenerator.exe '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(((1024*1024) div 256) *(TrackBar1.Position)) + ' ' + IntToStr((Memory.ullAvailPhys div 1024 div 400 div 64)*64) + ' ' + IntToStr(TrackBar2.Position));
+nonces :=((1024*1024) div 256) *(TrackBar1.Position);
+ram :=  (Memory.ullAvailPhys div 1024 div 400 div 64)*64;
+nonces := (nonces DIV ram) * ram;
 
-if addressstring = '' then
+pocParameters :='run_generate.bat '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(nonces) + ' ' + IntToStr((((Memory.ullTotalPhys div 1024 div 1024 div 10)*8)div 64)*64) + ' ' + IntToStr(TrackBar2.Position));
+parameters :='wplotgenerator.exe '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(nonces) + ' ' + IntToStr(ram) + ' ' + IntToStr(TrackBar2.Position));
+if Trackbar1.Position = 1 then
+    begin
+     Showmessage('You forgot to configure the size of your plot! 1 GB is not enough! The bigger the plot, the more coins you can mine!');
+    end
+   else
+ begin
+  if addressstring = '' then
    Showmessage('Your Burst Account is not activated, mistyped or does not exist.')
-else
+  else
     begin
 
     if isWin64 = true then
@@ -204,7 +215,7 @@ else
     end
 
 
-
+   end;
   end;
 
 end;
