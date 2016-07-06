@@ -97,9 +97,15 @@ object Form4: TForm4
   object Label9: TLabel
     Left = 18
     Top = 131
-    Width = 121
+    Width = 125
     Height = 26
-    Caption = 'Unkown Account - "errorCode":5 ? Try this: '
+    Caption = 'Do you get errorCode 5 ? Then try this button -> '
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsItalic]
+    ParentFont = False
     WordWrap = True
   end
   object Button1: TButton
@@ -134,8 +140,7 @@ object Form4: TForm4
       'us-burstpool.broke-it.net'
       'pool.burstcoin.de'
       'pool.burstcoin.it'
-      'mininghere.com'
-      'burst.ninja')
+      'mininghere.com')
   end
   object Button2: TButton
     Left = 162

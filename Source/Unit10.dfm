@@ -3388,9 +3388,9 @@ object Form10: TForm10
   object Label2: TLabel
     Left = 17
     Top = 196
-    Width = 301
+    Width = 291
     Height = 13
-    Caption = 'Burst Client version 0.2.6 (for Burst Wallet 1.2.3) by daWallet.'
+    Caption = 'Burst Client version 0.3 (for Burst Wallet 1.2.4) by daWallet.'
   end
   object Label3: TLabel
     Left = 17
@@ -3426,7 +3426,7 @@ object Form10: TForm10
     Left = 158
     Top = 215
     Width = 166
-    Height = 15
+    Height = 21
     TabOrder = 1
     Text = 'BURST-YZJ6-LYBY-WAC6-BQYGC'
   end

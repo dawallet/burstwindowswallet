@@ -106,7 +106,7 @@ else
       delete(directories, length(directories), 1);
 
   begin
-    AssignFile(t,'miner-burst-1.160610/miner.conf');
+    AssignFile(t,'miner-burst-1.160705/miner.conf');
     Rewrite(T);
     Writeln(T,'{');
     Writeln(T,'"Mode" : "pool",');
@@ -141,7 +141,7 @@ else
     Writeln(T,'"UpdateInterval" : 950,');
     Writeln(T,'');
     Writeln(T,'"UseLog" : true,');
-    Writeln(T,'"ShowWinner" : true,');
+    Writeln(T,'"ShowWinner" : false,');
     Writeln(T,'"UseBoost" : false,');
     Writeln(T,'');
     Writeln(T,'"WinSizeX" : 80,');
@@ -149,7 +149,7 @@ else
       Writeln(T,'}');
     CloseFile(T);
   end;
-ShellExecute(0, 'open', PChar('miner-v1.160610.exe'),PChar('/K'), PChar('miner-burst-1.160610'), SW_SHOW);
+ShellExecute(0, 'open', PChar('miner-v1.160705.exe'),PChar('/K'), PChar('miner-burst-1.160705'), SW_SHOW);
 close;
  end;
  end;
@@ -234,7 +234,7 @@ else
       delete(directories, length(directories), 1);
 
   begin
-      AssignFile(t,'miner-burst-1.160610/miner.conf');
+      AssignFile(t,'miner-burst-1.160705/miner.conf');
     Rewrite(T);
     Writeln(T,'{');
     Writeln(T,'"Mode" : "pool",');
@@ -269,7 +269,7 @@ else
     Writeln(T,'"UpdateInterval" : 950,');
     Writeln(T,'');
     Writeln(T,'"UseLog" : true,');
-    Writeln(T,'"ShowWinner" : true,');
+    Writeln(T,'"ShowWinner" : false,');
     Writeln(T,'"UseBoost" : false,');
     Writeln(T,'');
     Writeln(T,'"WinSizeX" : 80,');
@@ -277,7 +277,7 @@ else
       Writeln(T,'}');
     CloseFile(T);
   end;
-ShellExecute(0, 'open', PChar('miner-v1.160610_AVX.exe'),PChar('/K'), PChar('miner-burst-1.160610'), SW_SHOW);
+ShellExecute(0, 'open', PChar('miner-v1.160705_AVX.exe'),PChar('/K'), PChar('miner-burst-1.160705'), SW_SHOW);
 close;
  end
 
@@ -393,13 +393,13 @@ end;
 
 procedure TForm4.ComboBox1Change(Sender: TObject);
 begin
- AssignFile(p,'miner-burst-1.160610/chosen_pool.txt');
+ AssignFile(p,'miner-burst-1.160705/chosen_pool.txt');
    Rewrite(P);
    Writeln(P,Combobox1.Text);
    CloseFile(P);
 //Showmessage('Changes saved');
 
-    pool:=TFile.ReadAllText('miner-burst-1.160610/chosen_pool.txt');
+    pool:=TFile.ReadAllText('miner-burst-1.160705/chosen_pool.txt');
     pool:= StringReplace(pool, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
     Label6.Caption:=(pool);
 
@@ -420,7 +420,7 @@ ListBox1.Items.Clear;
 
   then ListBox1.Items.Add(character+':\plots');
 
-   pool:=TFile.ReadAllText('miner-burst-1.160610/chosen_pool.txt');
+   pool:=TFile.ReadAllText('miner-burst-1.160705/chosen_pool.txt');
    pool:= StringReplace(pool, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
 
   if pool = '' then

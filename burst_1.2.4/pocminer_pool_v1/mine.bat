@@ -1,0 +1,1 @@
+java -cp pocminer_pool.jar;lib/*;lib/akka/*;lib/jetty/* pocminer_pool.POCMiner mine http://127.0.0.1:8125 http://178.62.39.204:8121

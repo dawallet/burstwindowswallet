@@ -14,7 +14,6 @@ type
     MainMenu1: TMainMenu;
     WalletManager1: TMenuItem;
     Crowdfunding1: TMenuItem;
-    Lotteries1: TMenuItem;
     About1: TMenuItem;
     AddWallet1: TMenuItem;
     LoadWallet1: TMenuItem;
@@ -80,6 +79,7 @@ type
     procedure HowToCrowdfund1Click(Sender: TObject);
     procedure Faucets1Click(Sender: TObject);
     procedure Forums1Click(Sender: TObject);
+    procedure ToolButton5Click(Sender: TObject);
 
 
 
@@ -293,7 +293,7 @@ try
         dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8128/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
         WebBrowser1.Navigate('https://wallet.burst-team.us:8128');
         except
-        Showmessage('All online wallets are down at the moment :(');
+        Showmessage('All online wallets are down at the moment :( or you have no internet connection.');
 
         end;
       end;
@@ -306,9 +306,8 @@ IdHTTP2.Free;
 //WebBrowser1.Navigate('file:///'+GetCurrentDir+'/offline_1.html');
 WinExec('run_java_autodetect.bat', SW_HIDE);
 
+IdHTTP := TIdHTTP.Create;
 
-   IdHTTP := TIdHTTP.Create;
-try
   try
   begin
     coinprice:= (idHTTP.Get('https://api.coinmarketcap.com/v1/ticker/burst/'));
@@ -362,11 +361,18 @@ try
    ToolButton15.Caption:=(mining);
   end;
    except
-
+      ToolButton1.Visible:=false;
+      ToolButton2.Visible:=false;
+      ToolButton3.Visible:=false;
+      ToolButton4.Visible:=false;
+      ToolButton5.Caption:='Market Information';
+      ToolButton6.Visible:=false;
+      ToolButton14.Visible:=false;
+      ToolButton15.Visible:=false;
   end;
-finally
+
   IdHTTP.Free;
-end;
+
 end;
 
 procedure TForm1.FormHide(Sender: TObject);
@@ -563,7 +569,14 @@ try
    ToolButton15.Caption:=(mining);
   end;
    except
-
+      ToolButton1.Visible:=false;
+      ToolButton2.Visible:=false;
+      ToolButton3.Visible:=false;
+      ToolButton4.Visible:=false;
+      ToolButton5.Caption:='Market Information';
+      ToolButton6.Visible:=false;
+      ToolButton14.Visible:=false;
+      ToolButton15.Visible:=false;
   end;
 finally
   IdHTTP.Free;
@@ -592,6 +605,11 @@ procedure TForm1.ToolButton11Click(Sender: TObject);
 begin
 Form2.Show;
 //Form2.DriveComboBox1.Update;
+end;
+
+procedure TForm1.ToolButton5Click(Sender: TObject);
+begin
+ShellExecute(0, 'open', 'https://coinmarketcap.com/currencies/burst/', nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TForm1.TrayIcon1Click(Sender: TObject);

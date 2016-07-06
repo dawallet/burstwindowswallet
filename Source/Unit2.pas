@@ -80,8 +80,8 @@ end;
 procedure TForm2.DriveComboBox1Change(Sender: TObject);
 
 begin
-
- Total:=DiskSize(ord(DriveComboBox1.Drive)-64) div 1024;
+  try
+    Total:=DiskSize(ord(DriveComboBox1.Drive)-64) div 1024;
   Total:= Total div 1024;
   Total:= Total div 1024;
   FreeD:=DiskFree(ord(DriveComboBox1.Drive)-64) div 1024;
@@ -91,13 +91,17 @@ begin
   Gauge1.Progress:=Total - FreeD;
   Label1.Caption:='Total size: '+IntToStr(Total) + ' GB';
   Label2.Caption:='Free: '+IntToStr(FreeD) + ' GB';
+  except
+
+  end;
+
 
 end;
 
 procedure TForm2.FormCreate(Sender: TObject);
 
 begin
-
+try
   Total:=DiskSize(Disk) div 1024;
   Total:= Total div 1024;
   Total:= Total div 1024;
@@ -108,6 +112,10 @@ begin
   Gauge1.Progress:=Total - FreeD;
   Label1.Caption:='Total size: '+IntToStr(Total) + ' GB';
   Label2.Caption:='Free: '+IntToStr(FreeD) + ' GB';
+ except
+
+ end;
+
 end;
 
 end.

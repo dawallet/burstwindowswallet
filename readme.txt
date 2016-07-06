@@ -19,6 +19,16 @@ _____
 
 Changelog:
 
+
+
+
+0.3
+
++ Wallet Core Version 1.2.4 (!)
++ newest version of Blago's miner! 1.160705
++ removing (broken) Lotteries
++ minor improvements & bugfixes
+
 0.2.7
 
 + fixed stuck at 100% bug while plotting
