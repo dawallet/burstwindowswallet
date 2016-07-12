@@ -19,7 +19,9 @@ _____
 
 Changelog:
 
+0.3.1 
 
++Hotfix for stucked local wallet. 
 
 
 0.3

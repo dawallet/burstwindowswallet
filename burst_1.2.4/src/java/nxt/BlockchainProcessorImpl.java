@@ -317,6 +317,10 @@ final class BlockchainProcessorImpl implements BlockchainProcessor {
 					}
 
 					long currentBlockId = (lastDownloaded == 0 ? commonBlockId : lastDownloaded);
+					if(commonBlock.getHeight() < blockchain.getLastBlock().getHeight()) { // fork point
+						currentBlockId = commonBlockId;
+					}
+
 					List<BlockImpl> forkBlocks = new ArrayList<>();
 
 					boolean processedAll = true;
@@ -986,7 +990,35 @@ final class BlockchainProcessorImpl implements BlockchainProcessor {
 		for (TransactionImpl transaction : block.getTransactions()) {
 			transaction.unsetBlock();
 		}
+		Logger.logErrorMessage("popping a block: " + block.getId());
+		long headTx = 0;
+		if(block.getTransactions().size() > 0) {
+			headTx = block.getTransactions().get(0).getId();
+			Logger.logErrorMessage("head tx:" + headTx);
+		}
+		if(headTx != 0 && TransactionDb.hasTransaction(headTx)) {
+			Logger.logErrorMessage("before pop has tx");
+		}
 		BlockDb.deleteBlocksFrom(block.getId());
+		if(headTx != 0 && TransactionDb.hasTransaction(headTx)) {
+			Logger.logErrorMessage("after pop has tx");
+			try(Connection con = Db.getConnection();
+					PreparedStatement pstmt = con.prepareStatement("DELETE FROM TRANSACTION WHERE block_id = ?")) {
+				pstmt.setLong(1, block.getId());
+				pstmt.executeUpdate();
+			} catch (SQLException e) {
+				Logger.logErrorMessage("failed delete", e);
+			}
+			if(TransactionDb.hasTransaction(headTx)) {
+				Logger.logErrorMessage("still has tx after delete attempt");
+			}
+			else {
+				Logger.logErrorMessage("tx was successfully deleted");
+			}
+		}
+		else {
+			Logger.logErrorMessage("after pop not have tx");
+		}
 		blockListeners.notify(block, Event.BLOCK_POPPED);
 		return previousBlock;
 	}
