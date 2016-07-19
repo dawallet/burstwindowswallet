@@ -19,14 +19,15 @@ _____
 
 Changelog:
 
-0.3.1 
+0.3.3
 
-+Hotfix for stucked local wallet. 
++ Burstcoin Core Version 1.2.5
++ Bugfix release
 
+0.2.8
 
-0.3
-
-+ Wallet Core Version 1.2.4 (!)
++ more robust local wallet start
++ new pools
 + newest version of Blago's miner! 1.160705
 + removing (broken) Lotteries
 + minor improvements & bugfixes
