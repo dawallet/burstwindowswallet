@@ -19,7 +19,11 @@ _____
 
 Changelog:
 
-0.3.3
+0.3.2
+
++ Burstcoin Core Version 1.2.6
+
+0.3.2
 
 + Burstcoin Core Version 1.2.5
 + Bugfix release
