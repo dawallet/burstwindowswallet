@@ -141,6 +141,7 @@ IdHTTP := TIdHTTP.Create;
     Delete(addressstring, 1, 79);
     addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
     addressstring:= StringReplace((addressstring),' ','',[rfReplaceAll]);
+    addressstring:= StringReplace((addressstring),'"','',[rfReplaceAll]);
     addressstring:= StringReplace((addressstring),#13#10,'',[rfReplaceAll]);
 
     end;
@@ -149,6 +150,7 @@ IdHTTP := TIdHTTP.Create;
     Delete(addressstring, 1, 79);
     addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
     addressstring:= StringReplace((addressstring),' ','',[rfReplaceAll]);
+     addressstring:= StringReplace((addressstring),'"','',[rfReplaceAll]);
     addressstring:= StringReplace((addressstring),#13#10,'',[rfReplaceAll]);
     end;
 

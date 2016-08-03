@@ -19,7 +19,11 @@ _____
 
 Changelog:
 
-0.3.2
+0.3.3.1
+
+fixed bug for 32 Bit plotting fallback
+
+0.3.3
 
 + Burstcoin Core Version 1.2.6
 
