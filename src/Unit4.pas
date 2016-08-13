@@ -48,6 +48,7 @@ type
 var
   Form4: TForm4;
 
+
 implementation
 
 {$R *.dfm}
@@ -92,11 +93,12 @@ else
 
  begin
    begin
-      if label6.Caption = 'pool.burstcoin.de' then
+     if label6.Caption = 'pool.burstcoin.de' then
       port := '8080'
       else
       port := '8124';
    end;
+
     directories:= ListBox1.Items.GetText;
     directories:= StringReplace(directories, '\', '\\', [rfReplaceAll, rfIgnoreCase]);
 
@@ -134,7 +136,7 @@ else
     //Writeln(T,'"UseHDDWakeUp" : true,');
     Writeln(T,'');
     Writeln(T,'"SendBestOnly" : true,');
-    Writeln(T,'"TargetDeadline": 4000000,');
+    Writeln(T,'"TargetDeadline": 6048000,');
     Writeln(T,'');
     Writeln(T,'"UseFastRcv" : false,');
     Writeln(T,'"SendInterval" : 100,');
@@ -164,6 +166,8 @@ dummy: String;
 
 begin
 IdHTTP := TIdHTTP.Create;
+ BurstWallet2.Form1.N7.Enabled := True;
+ BurstWallet2.Form1.N6.Enabled := True;
 if Label6.Caption='none - choose!' then
 Showmessage('Please choose Pool')
 
@@ -183,6 +187,10 @@ Form1.N7.Enabled := True;
 
 clipboard2 := TClipBoard.create;
 
+if Label6.Caption = 'pool.burstcoin.biz' then
+    clipboard2.AsText:='BURST-6WVW-2WVD-YXE5-EZBHU';
+if Label6.Caption = 'pool.burstcoin.eu' then
+    clipboard2.AsText:='BURST-7Z2V-J9CF-NCW9-HWFRY';
 if Label6.Caption = 'burst.ninja' then
     clipboard2.AsText:='BURST-7CPJ-BW8N-U4XF-CWW3U';
 if  Label6.Caption = 'pool.burstcoin.it' then
@@ -200,6 +208,15 @@ if  Label6.Caption = 'pool.burstcoin.de' then
      clipboard2.AsText:='BURST-GHTV-7ZP3-DY4B-FPBFA';
      port := '8080';
      end;
+if  Label6.Caption = 'burstpool.ddns.net' then
+     clipboard2.AsText:='BURST-JGBV-U7YK-SWHM-4P4QS';
+if  Label6.Caption = '69.43.42.57' then
+     begin
+     clipboard2.AsText:='BURST-YEFS-QJ32-K9Z5-HPW7K';
+     port := '8080';
+     end;
+ if  Label6.Caption = 'pool.burstmining.club' then
+     clipboard2.AsText:='BURST-RNMB-9FJW-3BJW-F3Z3M';
 ShowMessage('The pool address '+clipboard.AsText+' of '+Combobox1.Text+' got copied into your clipboard.'+#13#10+ 'Paste it into the second textbox: "Recipient - Burst address of pool" and paste your wallet passphrase in the first textbox.');
 end;
 end;
@@ -262,7 +279,7 @@ else
     //Writeln(T,'"UseHDDWakeUp" : true,');
     Writeln(T,'');
     Writeln(T,'"SendBestOnly" : true,');
-    Writeln(T,'"TargetDeadline": 4000000,');
+    Writeln(T,'"TargetDeadline": 6048000,');
     Writeln(T,'');
     Writeln(T,'"UseFastRcv" : false,');
     Writeln(T,'"SendInterval" : 100,');
@@ -355,6 +372,9 @@ dummy: String;
 
 begin
 IdHTTP := TIdHTTP.Create;
+ BurstWallet2.Form1.N7.Enabled := True;
+ BurstWallet2.Form1.N6.Enabled := True;
+
 if Label6.Caption='none - choose!' then
 Showmessage('Please choose Pool')
 
@@ -369,6 +389,10 @@ Form1.N7.Enabled := True;
 
 clipboard2 := TClipBoard.create;
 
+if Label6.Caption = 'pool.burstcoin.biz' then
+    clipboard2.AsText:='BURST-6WVW-2WVD-YXE5-EZBHU';
+if Label6.Caption = 'pool.burstcoin.eu' then
+    clipboard2.AsText:='BURST-7Z2V-J9CF-NCW9-HWFRY';
 if Label6.Caption = 'burst.ninja' then
     clipboard2.AsText:='BURST-7CPJ-BW8N-U4XF-CWW3U';
 if  Label6.Caption = 'pool.burstcoin.it' then
@@ -386,6 +410,15 @@ if  Label6.Caption = 'pool.burstcoin.de' then
      clipboard2.AsText:='BURST-GHTV-7ZP3-DY4B-FPBFA';
      port := '8080';
      end;
+if  Label6.Caption = 'burstpool.ddns.net' then
+     clipboard2.AsText:='BURST-JGBV-U7YK-SWHM-4P4QS';
+if  Label6.Caption = '69.43.42.57' then
+     begin
+     clipboard2.AsText:='BURST-YEFS-QJ32-K9Z5-HPW7K';
+     port := '8080';
+     end;
+ if  Label6.Caption = 'pool.burstmining.club' then
+     clipboard2.AsText:='BURST-RNMB-9FJW-3BJW-F3Z3M';
 ShowMessage('The pool address '+clipboard.AsText+' of '+Combobox1.Text+' got copied into your clipboard.'+#13#10+ 'Paste it into the second textbox: "Recipient - Burst address of pool" and paste your wallet passphrase in the first textbox.');
 end;
 end;

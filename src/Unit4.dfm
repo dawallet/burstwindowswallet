@@ -5,7 +5,7 @@ object Form4: TForm4
   BorderStyle = bsToolWindow
   Caption = 'Miner '
   ClientHeight = 181
-  ClientWidth = 535
+  ClientWidth = 561
   Color = clBtnFace
   DefaultMonitor = dmMainForm
   Font.Charset = DEFAULT_CHARSET
@@ -81,15 +81,15 @@ object Form4: TForm4
     OnClick = Label11Click
   end
   object Label1: TLabel
-    Left = 517
-    Top = 79
+    Left = 533
+    Top = 77
     Width = 10
     Height = 13
     Caption = 'or'
   end
   object Label8: TLabel
-    Left = 517
-    Top = 110
+    Left = 533
+    Top = 108
     Width = 10
     Height = 13
     Caption = 'or'
@@ -110,8 +110,8 @@ object Form4: TForm4
   end
   object Button1: TButton
     Left = 395
-    Top = 74
-    Width = 116
+    Top = 72
+    Width = 132
     Height = 25
     Hint = 'CPU assisted mining. Works always.'
     Caption = 'Start Mining (default)'
@@ -123,24 +123,30 @@ object Form4: TForm4
     Top = 28
     Width = 85
     Height = 133
+    Enabled = False
+    ExtendedSelect = False
     ItemHeight = 13
+    MultiSelect = True
     TabOrder = 1
   end
   object ComboBox1: TComboBox
     Left = 395
-    Top = 24
-    Width = 116
+    Top = 27
+    Width = 132
     Height = 21
     AutoComplete = False
     TabOrder = 2
     OnChange = ComboBox1Change
     Items.Strings = (
+      'burstpool.ddns.net'
+      'pool.burstmining.club'
+      'pool.burstcoin.de'
+      'pool.burstcoin.eu'
+      'pool.burstcoin.biz'
       'pool.burst-team.us'
       'burst.poolto.be'
-      'us-burstpool.broke-it.net'
-      'pool.burstcoin.de'
-      'pool.burstcoin.it'
-      'mininghere.com')
+      '69.43.42.57'
+      'pool.burstcoin.it')
   end
   object Button2: TButton
     Left = 162
@@ -161,8 +167,8 @@ object Form4: TForm4
   end
   object Button5: TButton
     Left = 395
-    Top = 136
-    Width = 116
+    Top = 134
+    Width = 132
     Height = 25
     Hint = 'GPU assisted mining with OpenCL'
     Caption = 'Start Mining (OpenCL)'
@@ -172,8 +178,8 @@ object Form4: TForm4
   end
   object Button4: TButton
     Left = 395
-    Top = 105
-    Width = 116
+    Top = 103
+    Width = 132
     Height = 25
     Caption = 'Start Mining (AVX)'
     TabOrder = 6

@@ -146,7 +146,7 @@ IdHTTP := TIdHTTP.Create;
 
     end;
    except
-    addressstring:= (idHTTP.Get('https://wallet.burst-team.us:8125/burst?requestType=rsConvert&account='+Textfield.Text));
+    addressstring:= (idHTTP.Get('https://wallet.burst-team.us:8128/burst?requestType=rsConvert&account='+Textfield.Text));
     Delete(addressstring, 1, 79);
     addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
     addressstring:= StringReplace((addressstring),' ','',[rfReplaceAll]);
@@ -181,7 +181,7 @@ nonces :=((1024*1024) div 256) *(TrackBar1.Position);
 ram :=  (Memory.ullAvailPhys div 1024 div 400 div 64)*64;
 nonces := (nonces DIV ram) * ram;
 
-pocParameters :='run_generate.bat '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(nonces) + ' ' + IntToStr((((Memory.ullTotalPhys div 1024 div 1024 div 10)*8)div 64)*64) + ' ' + IntToStr(TrackBar2.Position));
+pocParameters :='run_generate.bat '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(nonces) + ' ' + IntToStr((((Memory.ullTotalPhys div 1024 div 1024 div 10)*6)div 64)*64) + ' ' + IntToStr(TrackBar2.Position));
 parameters :='wplotgenerator.exe '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(nonces) + ' ' + IntToStr(ram) + ' ' + IntToStr(TrackBar2.Position));
 if Trackbar1.Position = 1 then
     begin
@@ -205,7 +205,7 @@ if Trackbar1.Position = 1 then
     Showmessage('You use a 32 bit system! For you theres only the original java plotter available which is slower. Never mind.');
 
     BatContent:=TStringList.Create;
-    BatContent.Add('java -Xmx'+IntToStr(Memory.ullTotalPhys div 800 div 4096)+'m -cp pocminer.jar;lib/*;lib/akka/*;lib/jetty/* pocminer.POCMiner generate %*');
+    BatContent.Add('java -Xmx'+IntToStr(Memory.ullTotalPhys div 900 div 4096)+'m -cp pocminer.jar;lib/*;lib/akka/*;lib/jetty/* pocminer.POCMiner generate %*');
     BatContent.SaveToFile(path+'/run_generate.bat');
     BatContent.Free;
 
