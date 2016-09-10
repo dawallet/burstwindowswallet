@@ -331,7 +331,7 @@ else
     addressstring := Copy(filename.Name, 1, Pos('_', filename.Name) - 1);
 
     begin
-    AssignFile(t2,'burstcoin-jminer-0.4.5-RELEASE/jminer.properties');
+    AssignFile(t2,'burstcoin-jminer-0.4.4-SNAPSHOT/jminer.properties');
     Rewrite(T2);
        Writeln(T2,'plotPaths='+directoriesGPU);
        Writeln(T2,'poolMining=true') ;
@@ -355,7 +355,7 @@ else
     CloseFile(T2);
     end;
 
-  ShellExecute(0, 'open', PChar('run.bat'),PChar('/K'), PChar('burstcoin-jminer-0.4.5-RELEASE'), SW_SHOW);
+  ShellExecute(0, 'open', PChar('run.bat'),PChar('/K'), PChar('burstcoin-jminer-0.4.4-SNAPSHOT'), SW_SHOW);
   close;
     end
 

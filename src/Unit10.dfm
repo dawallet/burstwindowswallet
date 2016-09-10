@@ -4,8 +4,8 @@ object Form10: TForm10
   BorderIcons = []
   BorderStyle = bsToolWindow
   Caption = 'About'
-  ClientHeight = 472
-  ClientWidth = 349
+  ClientHeight = 306
+  ClientWidth = 356
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -3375,8 +3375,8 @@ object Form10: TForm10
     Proportional = True
   end
   object Label1: TLabel
-    Left = 16
-    Top = 342
+    Left = 17
+    Top = 236
     Width = 326
     Height = 26
     Caption = 
@@ -3386,22 +3386,22 @@ object Form10: TForm10
     WordWrap = True
   end
   object Label2: TLabel
-    Left = 20
+    Left = 17
     Top = 196
-    Width = 301
+    Width = 291
     Height = 13
-    Caption = 'Burst Client version 0.3.4 (for Burst Wallet 1.2.6) by daWallet.'
+    Caption = 'Burst Client version 0.3 (for Burst Wallet 1.2.4) by daWallet.'
   end
   object Label3: TLabel
-    Left = 20
-    Top = 396
-    Width = 151
+    Left = 17
+    Top = 217
+    Width = 135
     Height = 13
-    Caption = 'Do you want to buy me a beer?'
+    Caption = 'You want to buy me a beer?'
   end
   object Label4: TLabel
-    Left = 63
-    Top = 432
+    Left = 92
+    Top = 279
     Width = 96
     Height = 13
     Caption = 'www.burst-team.us'
@@ -3413,49 +3413,9 @@ object Form10: TForm10
     ParentFont = False
     OnClick = Label4Click
   end
-  object Label5: TLabel
-    Left = 20
-    Top = 215
-    Width = 294
-    Height = 52
-    Caption = 
-      'This Client is mainly a collection of stand alone software. It i' +
-      's meant as a helper to get started with Burst and Burst mining e' +
-      'asily. To benefit of all features available you should check out' +
-      ' each software individually: '
-    WordWrap = True
-  end
-  object Label6: TLabel
-    Left = 47
-    Top = 288
-    Width = 241
-    Height = 13
-    Caption = 'Original Wallet:  github.com/burst-team/burstcoin/'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsUnderline]
-    ParentFont = False
-    OnClick = Label6Click
-  end
-  object Label9: TLabel
-    Left = 47
-    Top = 307
-    Width = 264
-    Height = 13
-    Caption = 'Burst Software: forums.burst-team.us/burst-software/'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsUnderline]
-    ParentFont = False
-    OnClick = Label9Click
-  end
   object Button1: TButton
-    Left = 237
-    Top = 427
+    Left = 256
+    Top = 273
     Width = 84
     Height = 25
     Caption = 'Ok'
@@ -3463,8 +3423,8 @@ object Form10: TForm10
     OnClick = Button1Click
   end
   object Edit1: TEdit
-    Left = 177
-    Top = 390
+    Left = 158
+    Top = 215
     Width = 166
     Height = 21
     TabOrder = 1

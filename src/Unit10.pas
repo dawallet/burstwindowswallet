@@ -16,13 +16,8 @@ type
     Edit1: TEdit;
     Label3: TLabel;
     Label4: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
-    Label9: TLabel;
     procedure Button1Click(Sender: TObject);
     procedure Label4Click(Sender: TObject);
-    procedure Label6Click(Sender: TObject);
-    procedure Label9Click(Sender: TObject);
 
   private
     { Private-Deklarationen }
@@ -48,16 +43,5 @@ procedure TForm10.Label4Click(Sender: TObject);
 begin
 ShellExecute(0, 'open', 'https://www.burst-team.us', nil, nil, SW_SHOWNORMAL);
 end;
-
-procedure TForm10.Label6Click(Sender: TObject);
-begin
-ShellExecute(0, 'open', 'https://github.com/burst-team/burstcoin/releases/', nil, nil, SW_SHOWNORMAL);
-end;
-
-procedure TForm10.Label9Click(Sender: TObject);
-begin
-ShellExecute(0, 'open', 'https://forums.burst-team.us/category/9/burst-software', nil, nil, SW_SHOWNORMAL);
-end;
-
 
 end.

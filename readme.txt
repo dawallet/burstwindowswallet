@@ -19,15 +19,6 @@ _____
 
 Changelog:
 
-0.3.4
-
-+ more robust start up of the local wallet by haitch
-+ newest jminer by luxe 
-+ update notification when new version available
-+ market information fix
-+ includes new links to faucets, iirc ...
-+ bugfixes and minor improvements
-
 0.3.3.2
 
 + 3 new pools added
