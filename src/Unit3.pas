@@ -146,12 +146,52 @@ IdHTTP := TIdHTTP.Create;
 
     end;
    except
-    addressstring:= (idHTTP.Get('https://wallet.burst-team.us:8128/burst?requestType=rsConvert&account='+Textfield.Text));
+    try
+     addressstring:= (idHTTP.Get('https://wallet.burst-team.us:8125/burst?requestType=rsConvert&account='+Textfield.Text));
     Delete(addressstring, 1, 79);
     addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
     addressstring:= StringReplace((addressstring),' ','',[rfReplaceAll]);
      addressstring:= StringReplace((addressstring),'"','',[rfReplaceAll]);
     addressstring:= StringReplace((addressstring),#13#10,'',[rfReplaceAll]);
+    except
+       try
+       addressstring:= (idHTTP.Get('https://wallet.burst-team.us:8126/burst?requestType=rsConvert&account='+Textfield.Text));
+    Delete(addressstring, 1, 79);
+    addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
+    addressstring:= StringReplace((addressstring),' ','',[rfReplaceAll]);
+     addressstring:= StringReplace((addressstring),'"','',[rfReplaceAll]);
+    addressstring:= StringReplace((addressstring),#13#10,'',[rfReplaceAll]);
+       except
+           try
+       addressstring:= (idHTTP.Get('https://wallet.burst-team.us:8127/burst?requestType=rsConvert&account='+Textfield.Text));
+    Delete(addressstring, 1, 79);
+    addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
+    addressstring:= StringReplace((addressstring),' ','',[rfReplaceAll]);
+     addressstring:= StringReplace((addressstring),'"','',[rfReplaceAll]);
+    addressstring:= StringReplace((addressstring),#13#10,'',[rfReplaceAll]);
+       except
+            try
+             addressstring:= (idHTTP.Get('https://wallet.burst-team.us:8128/burst?requestType=rsConvert&account='+Textfield.Text));
+              Delete(addressstring, 1, 79);
+              addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
+              addressstring:= StringReplace((addressstring),' ','',[rfReplaceAll]);
+              addressstring:= StringReplace((addressstring),'"','',[rfReplaceAll]);
+               addressstring:= StringReplace((addressstring),#13#10,'',[rfReplaceAll]);
+       except
+                try
+                addressstring:= (idHTTP.Get('https://mwallet.burst-team.us:8125/burst?requestType=rsConvert&account='+Textfield.Text));
+                  Delete(addressstring, 1, 79);
+                 addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
+                 addressstring:= StringReplace((addressstring),' ','',[rfReplaceAll]);
+                 addressstring:= StringReplace((addressstring),'"','',[rfReplaceAll]);
+                 addressstring:= StringReplace((addressstring),#13#10,'',[rfReplaceAll]);
+                except
+                Showmessage('Not able to translate Burst ID. Are you offline?')
+                end;
+            end;
+           end;
+       end;
+    end;
     end;
 
   begin
