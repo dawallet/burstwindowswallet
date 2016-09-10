@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Burst Client for Win v0.3.3.2'
+  Caption = 'Burst Client for Win v0.3.4'
   ClientHeight = 558
   ClientWidth = 996
   Color = clBtnFace
@@ -24,6 +24,7 @@ object Form1: TForm1
     Height = 541
     Align = alClient
     TabOrder = 0
+    ExplicitLeft = 8
     ExplicitTop = -6
     ControlData = {
       4C000000F1660000EA3700000000000000000000000000000000000000000000
@@ -211,13 +212,47 @@ object Form1: TForm1
         OnClick = HowToCrowdfund1Click
       end
     end
+    object Network1: TMenuItem
+      Caption = 'Network'
+      OnClick = Network1Click
+    end
     object Faucets1: TMenuItem
-      Caption = 'Faucet'
-      OnClick = Faucets1Click
+      Caption = 'Faucets'
+      object N10Burstbyburstcoininfo1: TMenuItem
+        Caption = '10 Burst [burstcoin.info]'
+        OnClick = N10Burstbyburstcoininfo1Click
+      end
+      object N5Burstburstteamus1: TMenuItem
+        Caption = '5 Burst [burst-team.us]'
+        OnClick = N5Burstburstteamus1Click
+      end
+      object N5Burstburstcoinpt1: TMenuItem
+        Caption = '5 Burst [burstcoin.pt]'
+        OnClick = N5Burstburstcoinpt1Click
+      end
+      object N2Burstburstcoinbiz1: TMenuItem
+        Caption = '2 Burst [burstcoin.biz]'
+        OnClick = N2Burstburstcoinbiz1Click
+      end
     end
     object Forums1: TMenuItem
       Caption = 'Help'
-      OnClick = Forums1Click
+      object Forums2: TMenuItem
+        Caption = 'Forums'
+        OnClick = Forums2Click
+      end
+      object IRCChat1: TMenuItem
+        Caption = 'IRC Chat'
+        OnClick = IRCChat1Click
+      end
+      object DDLBlockchain1: TMenuItem
+        Caption = 'DDL Blockchain'
+        OnClick = DDLBlockchain1Click
+      end
+      object OnlineLocal1: TMenuItem
+        Caption = 'Online - Local ?'
+        OnClick = OnlineLocal1Click
+      end
     end
     object About1: TMenuItem
       Caption = 'About'
@@ -234,6 +269,18 @@ object Form1: TForm1
     object N7: TMenuItem
       Caption = 'Local Wallet'
       OnClick = N7Click
+    end
+    object UpdateAvailable1: TMenuItem
+      Caption = 'Update Available!'
+      Visible = False
+      object Sourceforge1: TMenuItem
+        Caption = 'Sourceforge'
+        OnClick = Sourceforge1Click
+      end
+      object Github1: TMenuItem
+        Caption = 'Github'
+        OnClick = Github1Click
+      end
     end
   end
   object TrayIcon1: TTrayIcon

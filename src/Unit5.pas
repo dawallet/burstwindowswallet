@@ -89,7 +89,7 @@ if PassString = '' then
     text.Add(PassString);
     text.SaveToFile(Edit1.Text + '.txt', TEncoding.UTF8);
 
-    Showmessage(Edit1.Text + ' saved encrypted and local!');
+    Showmessage(Edit1.Text + ' saved locally and not in plain text!');
     Edit2.Text :='';
     Edit1.Text :='';
 
