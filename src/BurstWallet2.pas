@@ -60,6 +60,7 @@ type
     DDLBlockchain1: TMenuItem;
     IRCChat1: TMenuItem;
     OnlineLocal1: TMenuItem;
+    Alttechchat1: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure About1Click(Sender: TObject);
     procedure AddWallet1Click(Sender: TObject);
@@ -102,6 +103,7 @@ type
     procedure Forums2Click(Sender: TObject);
     procedure OnlineLocal1Click(Sender: TObject);
     procedure IRCChat1Click(Sender: TObject);
+    procedure Alttechchat1Click(Sender: TObject);
 
 
 
@@ -253,6 +255,11 @@ end;
 
 
 
+procedure TForm1.Alttechchat1Click(Sender: TObject);
+begin
+ShellExecute(0, 'open', 'https://alttech.chat/login', nil, nil, SW_SHOWNORMAL);
+end;
+
 procedure TForm1.Close1Click(Sender: TObject);
 begin
 Killtask('javaw.exe');
@@ -296,6 +303,8 @@ end;
 procedure TForm1.FormCreate(Sender: TObject);
 var
   IdHTTP: TIdHTTP;
+  IdHTTP2: TIdHTTP;
+  IdHTTP3: TIdHTTP;
   totalcoins: String;
   totalcoinsInt: Integer;
   coinprice: String;
@@ -305,7 +314,6 @@ var
   marketcap: String;
   check: String;
   dummy2: String;
-  IdHTTP2: TIdHTTP;
   LJsonArr : TJSONArray;
   LJsonObj: TJSONObject;
   price_usd : TJSONValue;
@@ -319,21 +327,24 @@ var
   formatSettings: TFormatSettings;
 
 begin
-IdHTTP2 := TIdHTTP.Create;
- N7.Enabled := True;
- N6.Enabled := False;
-try
- dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8125/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
- WebBrowser1.Navigate('https://wallet.burst-team.us:8125');
- except
+ WinExec('run_java_autodetect.bat', SW_HIDE);
+ try
   try
-    dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8126/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
-    WebBrowser1.Navigate('https://wallet.burst-team.us:8126');
-  except
+     IdHTTP2 := TIdHTTP.Create;
+     N7.Enabled := True;
+     N6.Enabled := False;
     try
-     dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8127/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
-     WebBrowser1.Navigate('https://wallet.burst-team.us:8127');
-    except
+   dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8125/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
+    WebBrowser1.Navigate('https://wallet.burst-team.us:8125');
+     except
+      try
+         dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8126/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
+         WebBrowser1.Navigate('https://wallet.burst-team.us:8126');
+     except
+     try
+      dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8127/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
+      WebBrowser1.Navigate('https://wallet.burst-team.us:8127');
+       except
       try
       dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8128/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
       WebBrowser1.Navigate('https://wallet.burst-team.us:8128');
@@ -347,29 +358,39 @@ try
         end;
       end;
       end;
+      end;
+        IdHTTP2.Free;
+     end;
+
+   except
+
+
+
+
   end;
 
- end;
-IdHTTP2.Free;
-IdHTTP2 := TIdHTTP.Create;
+
+
      try
+     IdHTTP2 := TIdHTTP.Create;
      //IdHTTP2.ReadTimeout := 30000;
   //  idHTTP2.IOHandler := TIdSSLIOHandlerSocketOpenSSL.Create(idHTTP2);
    // idHTTP2.HandleRedirects := True;
-      checkver:= idHTTP2.Get('https://mwallet.burst-team.us:8125/client/0.3.5.txt');
+      checkver:= idHTTP2.Get('https://mwallet.burst-team.us:8125/client/0.3.6.txt');
       UpdateAvailable1.Visible := true;
+        IdHTTP2.Free;
      except
-
+       //   Showmessage('no new version');
      end;
 
-IdHTTP2.Free;
-IdHTTP2.Create;
- LJsonArr := TJsonArray.Create;
-  try
 
-  //mydata:= idHTTP2.Get('https://api.coinmarketcap.com/v1/ticker/burst/');
+  try
+   IdHTTP2.Create;
+   LJsonArr := TJsonArray.Create;
+
+  // mydata:= idHTTP2.Get('https://api.coinmarketcap.com/v1/ticker/burst/');
   mydata:= GetURLAsString('https://api.coinmarketcap.com/v1/ticker/burst/');
-   //  Showmessage(mydata);
+  //   Showmessage(mydata);
 
    LJsonArr := TJSONObject.ParseJSONValue(TEncoding.UTF8.GetBytes(mydata), 0) as TJSONArray;
 
@@ -381,88 +402,126 @@ IdHTTP2.Create;
   percent_change_24h :=  LJsonObj.GetValue('percent_change_24h') as TJSONValue;
   market_cap_usd := LJsonObj.GetValue('market_cap_usd') as TJSONValue;
 
-
-  finally
-  // LJsonObj.Free;
-   // IdHTTP2.Free;
+   // LJsonArr.Free;
+     IdHTTP2.Free;
+  except
+   // Showmessage('Json error');
   end;
 
 
 
-//WebBrowser1.Navigate('file:///'+GetCurrentDir+'/offline_1.html');
-WinExec('run_java_autodetect.bat', SW_HIDE);
-
-IdHTTP := TIdHTTP.Create;
 
 
-  begin
    try
-    coinprice:= price_btc.ToString.Remove((price_btc.ToString.Length)-1);
-    Delete(coinprice, 1,1);
+    begin
+     IdHTTP3 := TIdHTTP.Create;
+     coinprice:= price_btc.ToString.Remove((price_btc.ToString.Length)-1);
+     Delete(coinprice, 1,1);
    // coinprice := Copy(coinprice, 1, Pos(',', coinprice) - 1);
 
- //   Showmessage(coinprice);
+   //  Showmessage(coinprice);
 
 
+       try
+        begin
+           // market cap
+           marketcap:= market_cap_usd.ToString;
+           marketcap := marketcap.Remove(marketcap.Length-3);
+           Delete(marketcap, 1,1);
+            case marketcap.Length of
+             1, 2, 3, 4, 5: ;
+             6: Insert(',', marketcap, 4) ;
+             7: begin
+                 Insert(',', marketcap, 2) ;
+                  Insert(',', marketcap, 6) ;
+                 end;
+             8: begin
+                Insert(',', marketcap, 3) ;
+                Insert(',', marketcap, 8) ;
+                end;
+             9: begin
+                 Insert(',', marketcap, 4) ;
+                   Insert(',', marketcap, 10) ;
+                 end;
+              end
+          end
+          except
+        //  Showmessage('Market Cap error')
+        end;
 
-   // market cap
-    marketcap:= market_cap_usd.ToString;
-    marketcap := marketcap.Remove(marketcap.Length-3);
-    Delete(marketcap, 1,1);
-    Insert(' ', marketcap, 4);
-    ToolButton6.Caption := ('$ '+marketcap);
-   // coinprice
-    ToolButton2.Caption := '฿ '+ coinprice;
+
+       ToolButton6.Caption := ('$ '+marketcap);
+       // coinprice
+        ToolButton2.Caption := '฿ '+ coinprice;
 
 
-   // 10.000 Burst info
-   formatSettings.DecimalSeparator := '.';
-   price_usd_clean := price_usd.ToString.Remove(price_usd.ToString.Length-2);
-   Delete(price_usd_clean, 1,1);
-  // Showmessage(price_usd_clean);
-   result:= ((StrToFloat(price_usd_clean, formatSettings)) * 10000);
-  // Showmessage(FloatToStr(result));
-   price_usd_clean:= FloatToStrF((result), ffFixed, 15, 2);
-   price_usd_clean  := StringReplace(price_usd_clean, ',', '.',
+         // 10.000 Burst info
+        formatSettings.DecimalSeparator := '.';
+        price_usd_clean := price_usd.ToString.Remove(price_usd.ToString.Length-2);
+        Delete(price_usd_clean, 1,1);
+         // Showmessage(price_usd_clean);
+         result:= ((StrToFloat(price_usd_clean, formatSettings)) * 10000);
+         // Showmessage(FloatToStr(result));
+         price_usd_clean:= FloatToStrF((result), ffFixed, 15, 2);
+         price_usd_clean  := StringReplace(price_usd_clean, ',', '.',
                           [rfReplaceAll, rfIgnoreCase]);
-   //ToolButton4.Caption := '$ '+(FloatToStrF((result), ffFixed, 15, 2)) ;
-   ToolButton4.Caption := '$ '+ price_usd_clean;
-   // Mining Wallet info
+         //ToolButton4.Caption := '$ '+(FloatToStrF((result), ffFixed, 15, 2)) ;
+         ToolButton4.Caption := '$ '+ price_usd_clean;
+         // Mining Wallet info
+      try
+       begin
+       IdHTTP3.create;
+       mining:=TFile.ReadAllText('plotter/miningaddress.txt');
 
-    mining:=TFile.ReadAllText('plotter/miningaddress.txt');
-
-    mining:= StringReplace(mining, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
-    mining:= (idHTTP.Get('https://mwallet.burst-team.us:8125/burst?requestType=rsConvert&account='+mining));
-    Delete(mining, 1, 79);
-    mining:= StringReplace((mining),'"}','',[rfReplaceAll]);
-    mining:= StringReplace((mining),' ','',[rfReplaceAll]);
-    mining:= StringReplace((mining),#13#10,'',[rfReplaceAll]);
-    mining:= (idHTTP.Get('https://mwallet.burst-team.us:8125/burst?requestType=getBalance&account='+mining));
-    Delete(mining, 1, 26);
+        mining:= StringReplace(mining, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
+        mining:= (idHTTP3.Get('https://mwallet.burst-team.us:8125/burst?requestType=rsConvert&account='+mining));
+        Delete(mining, 1, 79);
+        mining:= StringReplace((mining),'"}','',[rfReplaceAll]);
+        mining:= StringReplace((mining),' ','',[rfReplaceAll]);
+        mining:= StringReplace((mining),#13#10,'',[rfReplaceAll]);
+        mining:= (idHTTP3.Get('https://mwallet.burst-team.us:8125/burst?requestType=getBalance&account='+mining));
+        Delete(mining, 1, 26);
        begin
          mining := Copy(mining, 1, Pos(',', mining) - 10);
        end;
 
  //  Showmessage(mining);
-   mining:=(mining+' BURST');
-   mining:= StringReplace(mining, 'ount\" not s BURST', '0', [rfReplaceAll, rfIgnoreCase]);
-   ToolButton15.Caption:=(mining);
+       mining:=(mining+' BURST');
+       mining:= StringReplace(mining, 'ount\" not s BURST', '0', [rfReplaceAll, rfIgnoreCase]);
+       ToolButton15.Caption:=(mining);
+        IdHTTP3.Free;
+
+      end
+        except
+        //  Showmessage('Mining Wallet info exception')
+      end;
+
+    end
 
     except
+      begin
       ToolButton1.Visible:=false;
-     ToolButton2.Visible:=false;
-     ToolButton3.Visible:=false;
-     ToolButton4.Visible:=false;
+      ToolButton2.Visible:=false;
+      ToolButton3.Visible:=false;
+      ToolButton4.Visible:=false;
       ToolButton5.Caption:='Market Information';
-     ToolButton6.Visible:=false;
-     ToolButton14.Visible:=false;
+      ToolButton6.Visible:=false;
+      ToolButton14.Visible:=false;
       ToolButton15.Visible:=false;
+       //IdHTTP.Free;
+       end;
+   end;
+
+
+except
 
   end;
-  end;
-  IdHTTP.Free;
 
 end;
+
+
+
+
 
 procedure TForm1.FormHide(Sender: TObject);
 begin
@@ -639,7 +698,10 @@ end;
 
 procedure TForm1.Timer1Timer(Sender: TObject);
 var
+
     IdHTTP: TIdHTTP;
+    IdHTTP2: TIdHTTP;
+    IdHTTP3: TIdHTTP;
   totalcoins: String;
   totalcoinsInt: Integer;
   coinprice: String;
@@ -659,15 +721,37 @@ var
   price_usd_clean: String;
   formatSettings: TFormatSettings;
 begin
+ try
+  begin
+      ToolButton1.Visible:=true;
+      ToolButton2.Visible:=true;
+      ToolButton3.Visible:=true;
+      ToolButton4.Visible:=true;
+      ToolButton5.Caption:='Market Cap:';
+      ToolButton6.Visible:=true;
+      ToolButton14.Visible:=true;
+      ToolButton15.Visible:=true;
+  end;
+     try
+     IdHTTP2 := TIdHTTP.Create;
+     //IdHTTP2.ReadTimeout := 30000;
+  //  idHTTP2.IOHandler := TIdSSLIOHandlerSocketOpenSSL.Create(idHTTP2);
+   // idHTTP2.HandleRedirects := True;
+      checkver:= idHTTP2.Get('https://mwallet.burst-team.us:8125/client/0.3.6.txt');
+      UpdateAvailable1.Visible := true;
+        IdHTTP2.Free;
+     except
+       //   Showmessage('no new version');
+     end;
 
-    IdHTTP := TIdHTTP.Create;
 
- LJsonArr := TJsonArray.Create;
   try
+   IdHTTP2.Create;
+   LJsonArr := TJsonArray.Create;
 
-  //mydata:= idHTTP2.Get('https://api.coinmarketcap.com/v1/ticker/burst/');
+  // mydata:= idHTTP2.Get('https://api.coinmarketcap.com/v1/ticker/burst/');
   mydata:= GetURLAsString('https://api.coinmarketcap.com/v1/ticker/burst/');
-   //  Showmessage(mydata);
+  //   Showmessage(mydata);
 
    LJsonArr := TJSONObject.ParseJSONValue(TEncoding.UTF8.GetBytes(mydata), 0) as TJSONArray;
 
@@ -679,83 +763,122 @@ begin
   percent_change_24h :=  LJsonObj.GetValue('percent_change_24h') as TJSONValue;
   market_cap_usd := LJsonObj.GetValue('market_cap_usd') as TJSONValue;
 
-
-  finally
-  // LJsonObj.Free;
-   // IdHTTP2.Free;
+   // LJsonArr.Free;
+     IdHTTP2.Free;
+  except
+   // Showmessage('Json error');
   end;
-try
-  try
-    coinprice:= price_btc.ToString.Remove((price_btc.ToString.Length)-1);
-    Delete(coinprice, 1,1);
+
+
+
+
+
+   try
+    begin
+     IdHTTP3 := TIdHTTP.Create;
+     coinprice:= price_btc.ToString.Remove((price_btc.ToString.Length)-1);
+     Delete(coinprice, 1,1);
    // coinprice := Copy(coinprice, 1, Pos(',', coinprice) - 1);
 
- //   Showmessage(coinprice);
+   //  Showmessage(coinprice);
 
 
+       try
+        begin
+           // market cap
+           marketcap:= market_cap_usd.ToString;
+           marketcap := marketcap.Remove(marketcap.Length-3);
+           Delete(marketcap, 1,1);
+            case marketcap.Length of
+             1, 2, 3, 4, 5: ;
+             6: Insert(',', marketcap, 4) ;
+             7: begin
+                 Insert(',', marketcap, 2) ;
+                  Insert(',', marketcap, 6) ;
+                 end;
+             8: begin
+                Insert(',', marketcap, 3) ;
+                Insert(',', marketcap, 8) ;
+                end;
+             9: begin
+                 Insert(',', marketcap, 4) ;
+                   Insert(',', marketcap, 10) ;
+                 end;
+              end
+          end
+          except
+        //  Showmessage('Market Cap error')
+        end;
 
-   // market cap
-    marketcap:= market_cap_usd.ToString;
-    marketcap := marketcap.Remove(marketcap.Length-3);
-    Delete(marketcap, 1,1);
-    Insert(' ', marketcap, 4);
-    ToolButton6.Caption := ('$ '+marketcap);
-   // coinprice
-    ToolButton2.Caption := '฿ '+ coinprice;
+
+       ToolButton6.Caption := ('$ '+marketcap);
+       // coinprice
+        ToolButton2.Caption := '฿ '+ coinprice;
 
 
-   // 10.000 Burst info
-   formatSettings.DecimalSeparator := '.';
-   price_usd_clean := price_usd.ToString.Remove(price_usd.ToString.Length-2);
-   Delete(price_usd_clean, 1,1);
-  // Showmessage(price_usd_clean);
-   result:= ((StrToFloat(price_usd_clean, formatSettings)) * 10000);
-  // Showmessage(FloatToStr(result));
-   price_usd_clean:= FloatToStrF((result), ffFixed, 15, 2);
-   price_usd_clean  := StringReplace(price_usd_clean, ',', '.',
+         // 10.000 Burst info
+        formatSettings.DecimalSeparator := '.';
+        price_usd_clean := price_usd.ToString.Remove(price_usd.ToString.Length-2);
+        Delete(price_usd_clean, 1,1);
+         // Showmessage(price_usd_clean);
+         result:= ((StrToFloat(price_usd_clean, formatSettings)) * 10000);
+         // Showmessage(FloatToStr(result));
+         price_usd_clean:= FloatToStrF((result), ffFixed, 15, 2);
+         price_usd_clean  := StringReplace(price_usd_clean, ',', '.',
                           [rfReplaceAll, rfIgnoreCase]);
-   //ToolButton4.Caption := '$ '+(FloatToStrF((result), ffFixed, 15, 2)) ;
-   ToolButton4.Caption := '$ '+ price_usd_clean;
-   // Mining Wallet info
+         //ToolButton4.Caption := '$ '+(FloatToStrF((result), ffFixed, 15, 2)) ;
+         ToolButton4.Caption := '$ '+ price_usd_clean;
+         // Mining Wallet info
+      try
+       begin
+       idHTTP3.create;
+       mining:=TFile.ReadAllText('plotter/miningaddress.txt');
 
-    mining:=TFile.ReadAllText('plotter/miningaddress.txt');
-
-    mining:= StringReplace(mining, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
-    mining:= (idHTTP.Get('https://mwallet.burst-team.us:8125/burst?requestType=rsConvert&account='+mining));
-    Delete(mining, 1, 79);
-    mining:= StringReplace((mining),'"}','',[rfReplaceAll]);
-    mining:= StringReplace((mining),' ','',[rfReplaceAll]);
-    mining:= StringReplace((mining),#13#10,'',[rfReplaceAll]);
-    mining:= (idHTTP.Get('https://mwallet.burst-team.us:8125/burst?requestType=getBalance&account='+mining));
-    Delete(mining, 1, 26);
+        mining:= StringReplace(mining, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
+        mining:= (idHTTP3.Get('https://mwallet.burst-team.us:8125/burst?requestType=rsConvert&account='+mining));
+        Delete(mining, 1, 79);
+        mining:= StringReplace((mining),'"}','',[rfReplaceAll]);
+        mining:= StringReplace((mining),' ','',[rfReplaceAll]);
+        mining:= StringReplace((mining),#13#10,'',[rfReplaceAll]);
+        mining:= (idHTTP3.Get('https://mwallet.burst-team.us:8125/burst?requestType=getBalance&account='+mining));
+        Delete(mining, 1, 26);
        begin
          mining := Copy(mining, 1, Pos(',', mining) - 10);
        end;
 
  //  Showmessage(mining);
-   mining:=(mining+' BURST');
-   mining:= StringReplace(mining, 'ount\" not s BURST', '0', [rfReplaceAll, rfIgnoreCase]);
-   ToolButton15.Caption:=(mining);
+       mining:=(mining+' BURST');
+       mining:= StringReplace(mining, 'ount\" not s BURST', '0', [rfReplaceAll, rfIgnoreCase]);
+       ToolButton15.Caption:=(mining);
+        IdHTTP3.Free;
+
+      end
+        except
+        // Showmessage('Mining Wallet info exception')
+      end;
+
+    end
 
     except
+      begin
       ToolButton1.Visible:=false;
-     ToolButton2.Visible:=false;
-     ToolButton3.Visible:=false;
-     ToolButton4.Visible:=false;
+      ToolButton2.Visible:=false;
+      ToolButton3.Visible:=false;
+      ToolButton4.Visible:=false;
       ToolButton5.Caption:='Market Information';
-     ToolButton6.Visible:=false;
-     ToolButton14.Visible:=false;
+      ToolButton6.Visible:=false;
+      ToolButton14.Visible:=false;
       ToolButton15.Visible:=false;
+       //IdHTTP.Free;
+       end;
+   end;
+
+
+except
 
   end;
 
-
-finally
-  IdHTTP.Free;
 end;
-end;
-
-
 
 
 

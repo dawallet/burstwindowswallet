@@ -41,6 +41,7 @@ type
     p: Textfile;
     pool : String;
     port : String;
+
   public
     { Public-Deklarationen }
   end;
@@ -57,7 +58,11 @@ uses BurstWallet2, Unit7;
 function IsDirectoryEmpty(const directory : string) : boolean;
  var
    searchRec :TSearchRec;
+   oem: cardinal;
  begin
+
+  oem := SetErrorMode(SEM_FAILCRITICALERRORS);
+   SetErrorMode(Oem) ;
    try
     result := (FindFirst(directory+'\*.*', faAnyFile, searchRec) = 0) AND
               (FindNext(searchRec) = 0) AND
@@ -71,11 +76,16 @@ procedure GetFilenames(Path: string; Dest: TStrings);
 var
   SR: TSearchRec;
 begin
-  if FindFirst(Path+'*.*', faAnyFile, SR) = 0 then
+try
+   if FindFirst(Path+'*.*', faAnyFile, SR) = 0 then
   repeat
     Dest.Add(SR.Name);
   until FindNext(SR) <> 0;
   FindClose(SR);
+finally
+
+end;
+
 end;
 
 procedure TForm4.Button1Click(Sender: TObject);
@@ -412,13 +422,18 @@ if  Label6.Caption = 'pool.burstcoin.de' then
      end;
 if  Label6.Caption = 'burstpool.ddns.net' then
      clipboard2.AsText:='BURST-JGBV-U7YK-SWHM-4P4QS';
-if  Label6.Caption = '69.43.42.57' then
+if  Label6.Caption = 'pool.devip.xyz' then
      begin
      clipboard2.AsText:='BURST-YEFS-QJ32-K9Z5-HPW7K';
      port := '8080';
      end;
  if  Label6.Caption = 'pool.burstmining.club' then
      clipboard2.AsText:='BURST-RNMB-9FJW-3BJW-F3Z3M';
+if  Label6.Caption = 'pool.burstcoin.party' then
+     begin
+     clipboard2.AsText:='BURST-PHJ5-JMZP-3EQQ-EAA2B';
+     port := '8081';
+     end;
 ShowMessage('The pool address '+clipboard.AsText+' of '+Combobox1.Text+' got copied into your clipboard.'+#13#10+ 'Paste it into the second textbox: "Recipient - Burst address of pool" and paste your wallet passphrase in the first textbox.');
 end;
 end;
@@ -443,7 +458,9 @@ var
 
 character: Char;
 begin
-ListBox1.Items.Clear;
+ try
+  try
+ ListBox1.Items.Clear;
    For character:= 'Z' downto 'C' do
   if TDirectory.Exists(character+':\Burst\plots') then
   if not IsDirectoryEmpty(character+':\Burst\plots')
@@ -452,6 +469,11 @@ ListBox1.Items.Clear;
    if not IsDirectoryEmpty(character+':\plots')
 
   then ListBox1.Items.Add(character+':\plots');
+  finally
+  end;
+ except
+
+ end;
 
    pool:=TFile.ReadAllText('miner-burst-1.160705/chosen_pool.txt');
    pool:= StringReplace(pool, #13#10, '', [rfReplaceAll, rfIgnoreCase]);

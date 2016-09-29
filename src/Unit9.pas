@@ -95,7 +95,7 @@ procedure TForm9.Button2Click(Sender: TObject);
 var
 clipboard2: Tclipboard;
 begin
-Form1.Webbrowser1.Navigate('http://127.0.0.1:8125/rewardassignmentshort.html');
+Form1.Webbrowser1.Navigate('https://wallet.burst-team.us:8125/rewardassignmentshort.html');
 clipboard2 := TClipBoard.create;
 clipboard2.AsText:='BURST-8NZ9-X6AX-72BK-2KFM2';
 ShowMessage('The pool address BURST-8NZ9-X6AX-72BK-2KFM2 of DevPool2 got copied into your clipboard.'+#13#10+ 'Paste it into the second textbox: "Recipient - Burst address of pool" and paste your wallet passphrase in the first textbox.');
@@ -104,7 +104,7 @@ end;
 
 procedure TForm9.ComboBox1Click(Sender: TObject);
 begin
-Showmessage('You have a 32bit system. This limits the pools you can choose. We are working on it.')
+Showmessage('You have a 32bit system. This limits the pools you can choose.')
 end;
 
 procedure TForm9.FormActivate(Sender: TObject);

@@ -13,11 +13,18 @@ Install or unzip and start Burst_Wallet.exe
 It will take some hours until you can use the local wallet, because the Blockchain has to download in the background. 
 You can use the 'Online' Wallet during this time.
 
-All-in-one: With this wallet you can generate plots and mine them directly! 
+All-in-one: With this collection of tools you can generate plots and mine them directly! 
 
 _____
 
 Changelog:
+
+0.3.5
+
++ fixed 'socket errors'
++ fixed formatting of market cap
++ added new pools
++ minor improvements and bugfixes
 
 0.3.4
 
