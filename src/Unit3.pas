@@ -20,12 +20,20 @@ type
     Label7: TLabel;
     Textfield: TEdit;
     Button2: TButton;
+    CheckBox1: TCheckBox;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Label8: TLabel;
+    Label9: TLabel;
+    CheckBox2: TCheckBox;
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure TrackBar1Change(Sender: TObject);
     procedure TrackBar2Change(Sender: TObject);
+    procedure CheckBox2Click(Sender: TObject);
+    procedure CheckBox1Click(Sender: TObject);
   private
     { Private-Deklarationen }
 
@@ -221,8 +229,23 @@ nonces :=((1024*1024) div 256) *(TrackBar1.Position);
 ram :=  (Memory.ullAvailPhys div 1024 div 400 div 64)*64;
 nonces := (nonces DIV ram) * ram;
 
-pocParameters :='run_generate.bat '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(nonces) + ' ' + IntToStr((((Memory.ullTotalPhys div 1024 div 1024 div 10)*6)div 64)*64) + ' ' + IntToStr(TrackBar2.Position));
-parameters :='wplotgenerator.exe '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(nonces) + ' ' + IntToStr(ram) + ' ' + IntToStr(TrackBar2.Position));
+if Checkbox2.Checked = false then
+ begin
+   pocParameters :='run_generate.bat '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(nonces) + ' ' + IntToStr((((Memory.ullTotalPhys div 1024 div 1024 div 10)*6)div 64)*64) + ' ' + IntToStr(TrackBar2.Position));
+   parameters :='wplotgenerator.exe '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(nonces) + ' ' + IntToStr(ram) + ' ' + IntToStr(TrackBar2.Position));
+ end
+ else
+ begin
+   pocParameters :='run_generate.bat '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(nonces) + ' ' + IntToStr((((Memory.ullTotalPhys div 1024 div 1024 div 10)*6)div 64)*64) + ' ' + IntToStr(TrackBar2.Position));
+
+   if CheckBox1.Checked = false then
+    parameters :='wplotgenerator.exe '+((addressstring) + ' ' + Edit1.Text +' '+ IntToStr(nonces) + ' ' + (Edit2.Text) + ' ' + IntToStr(TrackBar2.Position))
+    else
+   parameters :='wplotgenerator.exe '+((addressstring) + ' ' + (Edit1.Text) +' '+ IntToStr(nonces) + ' ' + (Edit2.Text) + ' ' + IntToStr(TrackBar2.Position)+ ' ' + '-async');
+   //wplotgenerator [account id] [start nonce] [number of nonces] [stagger size] [threads]
+ end;
+
+
 if Trackbar1.Position = 1 then
     begin
      Showmessage('You forgot to configure the size of your plot! 1 GB is not enough! The bigger the plot, the more coins you can mine!');
@@ -262,6 +285,34 @@ if Trackbar1.Position = 1 then
 
 end;
 
+procedure TForm3.CheckBox1Click(Sender: TObject);
+begin
+if CheckBox1.Checked = true then
+ begin
+   Showmessage('Keep in mind that async mode needs double the RAM. Adapt the stagger value!');
+ end
+else
+
+
+end;
+
+procedure TForm3.CheckBox2Click(Sender: TObject);
+begin
+ if CheckBox2.Checked = true then
+   begin
+   // Showmessage('Expert mode');
+    Form3.ClientWidth:= 592;
+    Button2.Left := 470;
+   end
+  else
+  begin
+   // Showmessage('Standard mode');
+     Form3.ClientWidth:= 448;
+     Button2.Left := 350;
+  end;
+
+end;
+
 procedure TForm3.FormActivate(Sender: TObject);
 var
 address: String;
@@ -283,13 +334,15 @@ procedure TForm3.FormCreate(Sender: TObject);
 var
   Memory: TMemoryStatus;
 begin
-  Label4.Caption := 'Number of CPUs you want to use:';
+  Label4.Caption := 'How many CPU cores you want to use?  You chose: X';
   Label5.Caption := IntToStr(System.CPUCount) + ' Cores';
   TrackBar2.Max := (System.CPUCount);
 
   Memory.dwLength := SizeOf(Memory);
   GlobalMemoryStatus(Memory);
 
+  Form3.ClientWidth:= 448;
+  Button2.Left := 350;
 end;
 
 procedure TForm3.TrackBar1Change(Sender: TObject);

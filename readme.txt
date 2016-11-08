@@ -19,6 +19,12 @@ _____
 
 Changelog:
 
+0.3.6
+
++ added new pools
++ expert mode for plotting
++ Clean up corrupted DB function
+
 0.3.5
 
 + fixed 'socket errors'

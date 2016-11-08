@@ -213,6 +213,28 @@ if  Label6.Caption = 'us-burstpool.broke-it.net' then
      clipboard2.AsText:='BURST-NM25-LV2Y-KXVC-HUZ67';
 if  Label6.Caption = 'pool.burst-team.us' then
      clipboard2.AsText:='BURST-32TT-TSAC-HTKW-CC26C';
+if  Label6.Caption = 'pool.burstcoin.fr' then
+     clipboard2.AsText:='BURST-YNJ6-8XEJ-WKKR-2AHTY';
+  if  Label6.Caption = 'pool.news-asset.com' then
+     begin
+     clipboard2.AsText:='BURST-GQSC-8NHH-NL2J-7BH4C';
+     port := '7080';
+     end;
+ if  Label6.Caption = '216.165.179.42' then
+     begin
+     clipboard2.AsText:='BURST-896D-RERK-UXXN-G97ED';
+     port := '5080';
+     end;
+ if  Label6.Caption = 'burst.lexitoshi.uk' then
+     begin
+     clipboard2.AsText:='BURST-F3XD-Y4M5-SN8C-G9FFJ';
+     port := '8124';
+     end;
+ if  Label6.Caption = 'pool.burstcoinmining.com' then
+     begin
+     clipboard2.AsText:='BURST-8HDN-MKTJ-GGYV-FY664';
+     port := '6080';
+     end;
 if  Label6.Caption = 'pool.burstcoin.de' then
      begin
      clipboard2.AsText:='BURST-GHTV-7ZP3-DY4B-FPBFA';
@@ -415,6 +437,28 @@ if  Label6.Caption = 'us-burstpool.broke-it.net' then
      clipboard2.AsText:='BURST-NM25-LV2Y-KXVC-HUZ67';
 if  Label6.Caption = 'pool.burst-team.us' then
      clipboard2.AsText:='BURST-32TT-TSAC-HTKW-CC26C';
+if  Label6.Caption = 'pool.burstcoin.fr' then
+     clipboard2.AsText:='BURST-YNJ6-8XEJ-WKKR-2AHTY';
+if  Label6.Caption = 'pool.news-asset.com' then
+     begin
+     clipboard2.AsText:='BURST-GQSC-8NHH-NL2J-7BH4C';
+     port := '7080';
+     end;
+ if  Label6.Caption = '216.165.179.42' then
+     begin
+     clipboard2.AsText:='BURST-896D-RERK-UXXN-G97ED';
+     port := '5080';
+     end;
+ if  Label6.Caption = 'burst.lexitoshi.uk' then
+     begin
+     clipboard2.AsText:='BURST-F3XD-Y4M5-SN8C-G9FFJ';
+     port := '8124';
+     end;
+ if  Label6.Caption = 'pool.burstcoinmining.com' then
+     begin
+     clipboard2.AsText:='BURST-8HDN-MKTJ-GGYV-FY664';
+     port := '6080';
+     end;
 if  Label6.Caption = 'pool.burstcoin.de' then
      begin
      clipboard2.AsText:='BURST-GHTV-7ZP3-DY4B-FPBFA';
@@ -434,7 +478,7 @@ if  Label6.Caption = 'pool.burstcoin.party' then
      clipboard2.AsText:='BURST-PHJ5-JMZP-3EQQ-EAA2B';
      port := '8081';
      end;
-ShowMessage('The pool address '+clipboard.AsText+' of '+Combobox1.Text+' got copied into your clipboard.'+#13#10+ 'Paste it into the second textbox: "Recipient - Burst address of pool" and paste your wallet passphrase in the first textbox.');
+ShowMessage('The pool address '+clipboard.AsText+' of '+Label6.Caption+' got copied into your clipboard.'+#13#10+ 'Paste it into the second textbox: "Recipient - Burst address of pool" and paste your wallet passphrase in the first textbox.');
 end;
 end;
 

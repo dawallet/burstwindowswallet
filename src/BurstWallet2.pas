@@ -7,14 +7,13 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, TLHelp32, Vcl.Clipbrd, ShellAPI, Vcl.Menus,
   Vcl.OleCtrls, SHDocVw, Vcl.ComCtrls, Vcl.ToolWin, Vcl.StdCtrls, idHTTP, IdBaseComponent,IdComponent,IOUtils,
   IdTCPConnection, IdTCPClient,IdIOHandler, IdIOHandlerSocket, IdIOHandlerStack, IdSSL,
-IdSSLOpenSSL, registry, JSON, DBXJSON;
+IdSSLOpenSSL, registry, JSON, DBXJSON, URLMon, WinInet, System.Zip;
 
 type
   TForm1 = class(TForm)
     WebBrowser1: TWebBrowser;
     MainMenu1: TMainMenu;
     WalletManager1: TMenuItem;
-    Crowdfunding1: TMenuItem;
     About1: TMenuItem;
     AddWallet1: TMenuItem;
     LoadWallet1: TMenuItem;
@@ -44,8 +43,6 @@ type
     ToolButton13: TToolButton;
     ToolButton14: TToolButton;
     ToolButton15: TToolButton;
-    HowToCrowdfund1: TMenuItem;
-    Crowdfunding2: TMenuItem;
     Forums1: TMenuItem;
     ToolButton12: TToolButton;
     Network1: TMenuItem;
@@ -61,6 +58,8 @@ type
     IRCChat1: TMenuItem;
     OnlineLocal1: TMenuItem;
     Alttechchat1: TMenuItem;
+    ProgressBar1: TProgressBar;
+    C1: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure About1Click(Sender: TObject);
     procedure AddWallet1Click(Sender: TObject);
@@ -104,15 +103,18 @@ type
     procedure OnlineLocal1Click(Sender: TObject);
     procedure IRCChat1Click(Sender: TObject);
     procedure Alttechchat1Click(Sender: TObject);
+    procedure C1Click(Sender: TObject);
+
 
 
 
   private
     { Private-Deklarationen }
-
   public
     { Public-Deklarationen }
      mining: String;
+
+
   end;
 
 var
@@ -122,7 +124,7 @@ var
 
 
 implementation
-uses Unit5, Unit6, Unit2, Unit4, Unit3, Unit9, Unit10;
+uses Unit5, Unit6, Unit2, Unit4, Unit3, Unit9, Unit10, Unit8, Unit11;
 {$R *.dfm}
 
 //todo  Click on footer - change currency, caption and so on
@@ -224,6 +226,69 @@ begin
   CloseHandle(FSnapshotHandle);
 end;
 
+
+Function EnumWindowsCallback(WND: HWND; lParam: LPARAM): Boolean; StdCall;
+Var
+   PID:  Cardinal;
+   Wait: Boolean;
+Begin
+     Result := True;
+     If GetParent(WND) = 0 Then
+        GetWindowThreadProcessID(WND, PID);
+     If (lParam And (-1)) = -1 Then Begin
+        Wait := True;
+        lParam := (lParam And (Not (-1)));
+     End Else
+        Wait := False;
+     If PID = lParam Then
+        If Wait Then
+           SendMessage(WND, WM_CLOSE, 0, 0)
+        Else
+           PostMessage(WND, WM_CLOSE, 0, 0);
+End;
+
+
+
+function DownloadFile2(
+    const url: string;
+    const destinationFileName: string): boolean;
+var
+  hInet: HINTERNET;
+  hFile: HINTERNET;
+  localFile: File;
+  buffer: array[1..1024] of byte;
+  bytesRead: DWORD;
+begin
+  result := False;
+  hInet := InternetOpen(PChar(application.title),
+    INTERNET_OPEN_TYPE_PRECONFIG,nil,nil,0);
+  hFile := InternetOpenURL(hInet,PChar(url),nil,0,0,0);
+  if Assigned(hFile) then
+  begin
+    AssignFile(localFile,destinationFileName);
+    Rewrite(localFile,1);
+    repeat
+      InternetReadFile(hFile,@buffer,SizeOf(buffer),bytesRead);
+      BlockWrite(localFile,buffer,bytesRead);
+    until bytesRead = 0;
+    CloseFile(localFile);
+    result := true;
+    InternetCloseHandle(hFile);
+  end;
+  InternetCloseHandle(hInet);
+end;
+
+procedure IdHTTPWorkBegin(ASender: TObject; AWorkMode: TWorkMode;AWorkCountMax: Int64);
+begin
+ //// ProgressBar1.Max := AWorkCountMax;
+  //ProgressBar1.Position := 0;
+end;
+
+procedure IdHTTPWork(ASender: TObject; AWorkMode: TWorkMode; AWorkCount: Int64);
+begin
+  //ProgressBar1.Position := AWorkCount;
+end;
+
 procedure TForm1.ApplicationEvents1Minimize(Sender: TObject);
 begin
   { Hide the window and set its state variable to wsMinimized. }
@@ -260,8 +325,14 @@ begin
 ShellExecute(0, 'open', 'https://alttech.chat/login', nil, nil, SW_SHOWNORMAL);
 end;
 
+procedure TForm1.C1Click(Sender: TObject);
+begin
+Form11.Show;
+end;
+
 procedure TForm1.Close1Click(Sender: TObject);
 begin
+//WinExec('stop.bat', SW_HIDE);
 Killtask('javaw.exe');
 clipboard := TClipBoard.create;
 clipboard.AsText :='';
@@ -277,10 +348,8 @@ end;
 
 procedure TForm1.DDLBlockchain1Click(Sender: TObject);
 begin
-ShellExecute(0, 'open', 'http://db.burst-team.us', nil, nil, SW_SHOWNORMAL);
-Showmessage('Unzip the Download in C:\Users\Username\Appdata\Roaming\BurstWallet\burst_db folder and restart the client.')
+Form8.Show;
 end;
-
 procedure TForm1.DeleteWallet1Click(Sender: TObject);
 begin
      hide;
@@ -289,6 +358,7 @@ end;
 
 procedure TForm1.Exit1Click(Sender: TObject);
 begin
+//WinExec('stop.bat', SW_HIDE);
 Killtask('javaw.exe');
 clipboard := TClipBoard.create;
 clipboard.AsText :='';
