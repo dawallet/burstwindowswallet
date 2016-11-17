@@ -446,7 +446,7 @@ begin
      //IdHTTP2.ReadTimeout := 30000;
   //  idHTTP2.IOHandler := TIdSSLIOHandlerSocketOpenSSL.Create(idHTTP2);
    // idHTTP2.HandleRedirects := True;
-      checkver:= idHTTP2.Get('https://mwallet.burst-team.us:8125/client/0.3.6.txt');
+      checkver:= idHTTP2.Get('https://mwallet.burst-team.us:8125/client/0.3.8.txt');
       UpdateAvailable1.Visible := true;
         IdHTTP2.Free;
      except

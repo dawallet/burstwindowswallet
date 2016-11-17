@@ -146,6 +146,7 @@ object Form4: TForm4
       'burstpool.ddns.net'
       'pool.burstmining.club'
       'pool.burstcoin.de'
+      'pool.burstcoinmining.com'
       'pool.burstcoin.eu'
       'pool.burstcoin.biz'
       'pool.burst-team.us'

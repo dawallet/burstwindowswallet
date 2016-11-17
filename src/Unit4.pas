@@ -249,6 +249,11 @@ if  Label6.Caption = '69.43.42.57' then
      end;
  if  Label6.Caption = 'pool.burstmining.club' then
      clipboard2.AsText:='BURST-RNMB-9FJW-3BJW-F3Z3M';
+if  Label6.Caption = 'pool.burstcoinmining.com' then
+     begin
+     clipboard2.AsText:='BURST-8HDN-MKTJ-GGYV-FY664';
+     port := '6080';
+     end;
 ShowMessage('The pool address '+clipboard.AsText+' of '+Combobox1.Text+' got copied into your clipboard.'+#13#10+ 'Paste it into the second textbox: "Recipient - Burst address of pool" and paste your wallet passphrase in the first textbox.');
 end;
 end;
@@ -379,7 +384,6 @@ else
        Writeln(T2,'targetDeadline=');
        Writeln(T2,'platformId=0');
        Writeln(T2,'deviceId=0');
-       Writeln(T2,'restartInterval=240');
        Writeln(T2,'chunkPartNonces=320000');
        Writeln(T2,'refreshInterval=2000');
        Writeln(T2,'connectionTimeout=6000');
@@ -477,6 +481,11 @@ if  Label6.Caption = 'pool.burstcoin.party' then
      begin
      clipboard2.AsText:='BURST-PHJ5-JMZP-3EQQ-EAA2B';
      port := '8081';
+     end;
+if  Label6.Caption = 'pool.burstcoinmining.com' then
+     begin
+     clipboard2.AsText:='BURST-8HDN-MKTJ-GGYV-FY664';
+     port := '6080';
      end;
 ShowMessage('The pool address '+clipboard.AsText+' of '+Label6.Caption+' got copied into your clipboard.'+#13#10+ 'Paste it into the second textbox: "Recipient - Burst address of pool" and paste your wallet passphrase in the first textbox.');
 end;

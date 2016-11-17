@@ -26,6 +26,17 @@ type
     Label8: TLabel;
     Label9: TLabel;
     CheckBox2: TCheckBox;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
+    Label15: TLabel;
+    Label17: TLabel;
+    Label16: TLabel;
+    Label19: TLabel;
+    Label20: TLabel;
+    Label21: TLabel;
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -303,6 +314,7 @@ begin
    // Showmessage('Expert mode');
     Form3.ClientWidth:= 592;
     Button2.Left := 470;
+    Label12.Font.Color := clRed;
    end
   else
   begin
