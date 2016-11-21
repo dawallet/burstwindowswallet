@@ -19,8 +19,9 @@ _____
 
 Changelog:
 
-0.3.7
+0.3.7.1
 
++ applied fix for UI bug
 + Burstcoin Core Version 1.2.7
 + added new pool
 + GUI improvements
