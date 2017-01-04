@@ -21,11 +21,11 @@ type
     Label6: TLabel;
     Button5: TButton;
     Label11: TLabel;
-    Button4: TButton;
     Label1: TLabel;
-    Label8: TLabel;
     Label9: TLabel;
     Button6: TButton;
+    Edit1: TEdit;
+    Label8: TLabel;
     procedure Button2Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormHide(Sender: TObject);
@@ -33,8 +33,6 @@ type
     procedure Label11Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
-    procedure Button4Click(Sender: TObject);
-    procedure Label9Click(Sender: TObject);
     procedure Button6Click(Sender: TObject);
   private
     { Private-Deklarationen }
@@ -53,8 +51,41 @@ var
 implementation
 
 {$R *.dfm}
-uses BurstWallet2, Unit7;
-
+uses BurstWallet2;
+function isAvxSupported: Boolean;
+asm
+{$IFDEF CPUX86}
+    push ebx
+{$ENDIF}
+{$IFDEF CPUX64}
+    mov r10, rbx
+{$ENDIF}
+    xor eax, eax
+    cpuid
+    cmp eax, 1
+    jb @not_supported
+    mov eax, 1
+    cpuid
+    and ecx, 018000000h
+    cmp ecx, 018000000h
+    jne @not_supported
+    xor ecx, ecx
+    db 0Fh, 01h, 0D0h //XGETBV
+    and eax, 110b
+    cmp eax, 110b
+    jne @not_supported
+    mov eax, 1
+    jmp @done
+@not_supported:
+    xor eax, eax
+@done:
+{$IFDEF CPUX86}
+    pop ebx
+{$ENDIF}
+{$IFDEF CPUX64}
+    mov rbx, r10
+{$ENDIF}
+end;
 function IsDirectoryEmpty(const directory : string) : boolean;
  var
    searchRec :TSearchRec;
@@ -91,6 +122,7 @@ end;
 procedure TForm4.Button1Click(Sender: TObject);
  var
    t : TextFile;
+   t3 : TextFile;
    directories: String;
 begin
 if ListBox1.Items.Count < 1 then
@@ -100,15 +132,15 @@ else
   if Label6.Caption = 'none - choose!' then
   Showmessage('You have to choose a pool first')
   else
-
  begin
    begin
-     if label6.Caption = 'pool.burstcoin.de' then
-      port := '8080'
-      else
-      port := '8124';
-   end;
+   AssignFile(t3,'miner-burst-1.160705/chosen_port.txt');
+    Rewrite(T3);
+    Writeln(T3,Edit1.Text);
+    CloseFile(t3);
+  end;
 
+   begin
     directories:= ListBox1.Items.GetText;
     directories:= StringReplace(directories, '\', '\\', [rfReplaceAll, rfIgnoreCase]);
 
@@ -123,13 +155,13 @@ else
     Writeln(T,'{');
     Writeln(T,'"Mode" : "pool",');
     Writeln(T,'"Server" : "'+Label6.Caption+'",');
-    Writeln(T,'"Port" : '+port+',');
+    Writeln(T,'"Port" : '+Edit1.Text+',');
     Writeln(T,'');
     Writeln(T,'"UpdaterAddr" : "'+Label6.Caption+'",');
-    Writeln(T,'"UpdaterPort" : '+port+',');
+    Writeln(T,'"UpdaterPort" : '+Edit1.Text+',');
     Writeln(T,'');
     Writeln(T,'"InfoAddr" : "'+Label6.Caption+'",');
-    Writeln(T,'"InfoPort" : '+port+',');
+    Writeln(T,'"InfoPort" : '+Edit1.Text+',');
     Writeln(T,'');
     Writeln(T,'"EnableProxy" : false,');
     Writeln(T,'"ProxyPort" : 8126,');
@@ -160,13 +192,18 @@ else
     Writeln(T,'"WinSizeY" : 60');
       Writeln(T,'}');
     CloseFile(T);
+
+    if isAvxSupported = true then
+    ShellExecute(0, 'open', PChar('miner-v1.160705_AVX.exe'),PChar('/K'), PChar('miner-burst-1.160705'), SW_SHOW)
+     else
+     ShellExecute(0, 'open', PChar('miner-v1.160705.exe'),PChar('/K'), PChar('miner-burst-1.160705'), SW_SHOW);
+
+     close;
+     end;
+     end;
+   end;
+
   end;
-ShellExecute(0, 'open', PChar('miner-v1.160705.exe'),PChar('/K'), PChar('miner-burst-1.160705'), SW_SHOW);
-close;
- end;
- end;
-
-
 end;
 procedure TForm4.Button2Click(Sender: TObject);
 var
@@ -254,92 +291,40 @@ if  Label6.Caption = 'pool.burstcoinmining.com' then
      clipboard2.AsText:='BURST-8HDN-MKTJ-GGYV-FY664';
      port := '6080';
      end;
+if  Label6.Caption = 'pool.burstcoin.party' then
+     begin
+     clipboard2.AsText:='BURST-PHJ5-JMZP-3EQQ-EAA2B';
+     port := '8081';
+     end;
+if  Label6.Caption = 'pool.burstcoinmining.com' then
+     begin
+     clipboard2.AsText:='BURST-8HDN-MKTJ-GGYV-FY664';
+     port := '6080';
+     end;
+if  Label6.Caption = 'pool.burstcoin.ml' then
+     begin
+     clipboard2.AsText:='BURST-67XA-W9AU-MFGE-DAPPG';
+     port := '8020';
+     end;
+if  Label6.Caption = 'burst.btfg.space' then
+     begin
+     clipboard2.AsText:='BURST-6YBP-TDPA-27KD-9MQVX';
+     port := '8124';
+     end;
+if  Label6.Caption = 'pool.rapidcoin.club' then
+     begin
+     clipboard2.AsText:='BURST-X2WJ-RQMQ-SXET-FVAV3';
+     port := '6080';
+     end;
 ShowMessage('The pool address '+clipboard.AsText+' of '+Combobox1.Text+' got copied into your clipboard.'+#13#10+ 'Paste it into the second textbox: "Recipient - Burst address of pool" and paste your wallet passphrase in the first textbox.');
 end;
 end;
 
-procedure TForm4.Button4Click(Sender: TObject);
-var
-   t : TextFile;
-   directories: String;
-begin
-if ListBox1.Items.Count < 1 then
- Showmessage('No plots found. You have to generate plots before mining! Or you have to put your Plots to: X:\Burst\plots or X:\plots\')
-else
-  if Label6.Caption = 'none - choose!' then
-  Showmessage('You have to choose a pool first')
-  else
-
- begin
-
-     begin
-      if label6.Caption = 'pool.burstcoin.de' then
-      port := '8080'
-      else
-      port := '8124';
-      end;
-
-    directories:= ListBox1.Items.GetText;
-    directories:= StringReplace(directories, '\', '\\', [rfReplaceAll, rfIgnoreCase]);
-
-    directories:= StringReplace(directories, #13#10, '","', [rfReplaceAll, rfIgnoreCase]);
-      delete(directories, length(directories), 1);
-      delete(directories, length(directories), 1);
-      delete(directories, length(directories), 1);
-
-  begin
-      AssignFile(t,'miner-burst-1.160705/miner.conf');
-    Rewrite(T);
-    Writeln(T,'{');
-    Writeln(T,'"Mode" : "pool",');
-    Writeln(T,'"Server" : "'+Label6.Caption+'",');
-    Writeln(T,'"Port" : '+port+',');
-    Writeln(T,'');
-    Writeln(T,'"UpdaterAddr" : "'+Label6.Caption+'",');
-    Writeln(T,'"UpdaterPort" : '+port+',');
-    Writeln(T,'');
-    Writeln(T,'"InfoAddr" : "'+Label6.Caption+'",');
-    Writeln(T,'"InfoPort" : '+port+',');
-    Writeln(T,'');
-    Writeln(T,'"EnableProxy" : false,');
-    Writeln(T,'"ProxyPort" : 8126,');
-    Writeln(T,'');
-    Writeln(T,'"Paths":');
-    Writeln(T,'[');
-    Writeln(T,'        "'+directories+'"');
-    Writeln(T,'],');
-    Writeln(T,'"CacheSize" : 100000,');
-    Writeln(T,'"ShowMsg" : false,');
-    Writeln(T,'"ShowUpdates" : false,');
-    Writeln(T,'');
-    Writeln(T,'"Debug" : true,');
-    //Writeln(T,'"UseHDDWakeUp" : true,');
-    Writeln(T,'');
-    Writeln(T,'"SendBestOnly" : true,');
-    Writeln(T,'"TargetDeadline": 6048000,');
-    Writeln(T,'');
-    Writeln(T,'"UseFastRcv" : false,');
-    Writeln(T,'"SendInterval" : 100,');
-    Writeln(T,'"UpdateInterval" : 950,');
-    Writeln(T,'');
-    Writeln(T,'"UseLog" : true,');
-    Writeln(T,'"ShowWinner" : false,');
-    Writeln(T,'"UseBoost" : false,');
-    Writeln(T,'');
-    Writeln(T,'"WinSizeX" : 80,');
-    Writeln(T,'"WinSizeY" : 60');
-      Writeln(T,'}');
-    CloseFile(T);
-  end;
-ShellExecute(0, 'open', PChar('miner-v1.160705_AVX.exe'),PChar('/K'), PChar('miner-burst-1.160705'), SW_SHOW);
-close;
- end
-
-end;
 
 procedure TForm4.Button5Click(Sender: TObject);
  var
    t2 : TextFile;
+   t4 : TextFile;
    directoriesGPU: String;
    address: String;
    addressstring: String;
@@ -350,6 +335,15 @@ begin
   if ListBox1.Items.Count < 1 then
  Showmessage('No plots found. You have to generate plots before mining! Or you have to put your Plots to: X:\Burst\plots or X:\plots\')
 else
+begin
+ begin
+   AssignFile(t4,'miner-burst-1.160705/chosen_port.txt');
+    Rewrite(T4);
+    Writeln(T4,Edit1.Text);
+    CloseFile(t4);
+ end;
+
+
     begin
       if Label6.Caption = 'none - choose!' then
       Showmessage('You have to choose a pool first')
@@ -373,7 +367,7 @@ else
        Writeln(T2,'plotPaths='+directoriesGPU);
        Writeln(T2,'poolMining=true') ;
        Writeln(T2,'numericAccountId='+addressstring);
-       Writeln(T2,'poolServer=http://'+Label6.Caption);
+       Writeln(T2,'poolServer=http://'+Label6.Caption+':'+Edit1.Text);
        Writeln(T2,'walletServer=');
        Writeln(T2,'winnerRetriesOnAsync=');
        Writeln(T2,'winnerRetryIntervalInMs=');
@@ -396,8 +390,8 @@ else
     end
 
 
-  end
-
+  end;
+  end;
   end;
 
 procedure TForm4.Button6Click(Sender: TObject);
@@ -470,11 +464,6 @@ if  Label6.Caption = 'pool.burstcoin.de' then
      end;
 if  Label6.Caption = 'burstpool.ddns.net' then
      clipboard2.AsText:='BURST-JGBV-U7YK-SWHM-4P4QS';
-if  Label6.Caption = 'pool.devip.xyz' then
-     begin
-     clipboard2.AsText:='BURST-YEFS-QJ32-K9Z5-HPW7K';
-     port := '8080';
-     end;
  if  Label6.Caption = 'pool.burstmining.club' then
      clipboard2.AsText:='BURST-RNMB-9FJW-3BJW-F3Z3M';
 if  Label6.Caption = 'pool.burstcoin.party' then
@@ -485,6 +474,21 @@ if  Label6.Caption = 'pool.burstcoin.party' then
 if  Label6.Caption = 'pool.burstcoinmining.com' then
      begin
      clipboard2.AsText:='BURST-8HDN-MKTJ-GGYV-FY664';
+     port := '6080';
+     end;
+if  Label6.Caption = 'pool.burstcoin.ml' then
+     begin
+     clipboard2.AsText:='BURST-67XA-W9AU-MFGE-DAPPG';
+     port := '8020';
+     end;
+if  Label6.Caption = 'burst.btfg.space' then
+     begin
+     clipboard2.AsText:='BURST-6YBP-TDPA-27KD-9MQVX';
+     port := '8124';
+     end;
+if  Label6.Caption = 'pool.rapidcoin.club' then
+     begin
+     clipboard2.AsText:='BURST-X2WJ-RQMQ-SXET-FVAV3';
      port := '6080';
      end;
 ShowMessage('The pool address '+clipboard.AsText+' of '+Label6.Caption+' got copied into your clipboard.'+#13#10+ 'Paste it into the second textbox: "Recipient - Burst address of pool" and paste your wallet passphrase in the first textbox.');
@@ -503,6 +507,54 @@ begin
     pool:=TFile.ReadAllText('miner-burst-1.160705/chosen_pool.txt');
     pool:= StringReplace(pool, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
     Label6.Caption:=(pool);
+    Edit1.Text := '8124';
+
+ if  Label6.Caption = 'pool.news-asset.com' then
+     begin
+     Edit1.Text := '7080';
+     end;
+ if  Label6.Caption = '216.165.179.42' then
+     begin
+      Edit1.Text:= '5080';
+     end;
+ if  Label6.Caption = 'burst.lexitoshi.uk' then
+     begin
+      Edit1.Text := '8124';
+     end;
+ if  Label6.Caption = 'pool.burstcoinmining.com' then
+     begin
+      Edit1.Text := '6080';
+     end;
+if  Label6.Caption = 'pool.burstcoin.de' then
+     begin
+      Edit1.Text := '8080';
+     end;
+if  Label6.Caption = 'pool.devip.xyz' then
+     begin
+      Edit1.Text := '8080';
+     end;
+if  Label6.Caption = 'pool.burstcoin.party' then
+     begin
+      Edit1.Text := '8081';
+     end;
+if  Label6.Caption = 'pool.burstcoinmining.com' then
+     begin
+      Edit1.Text := '6080';
+     end;
+if  Label6.Caption = 'pool.burstcoin.ml' then
+     begin
+      Edit1.Text := '8020';
+     end;
+if  Label6.Caption = 'burst.btfg.space' then
+     begin
+      Edit1.Text := '8124';
+     end;
+if  Label6.Caption = 'pool.rapidcoin.club' then
+     begin
+      Edit1.Text := '6080';
+     end;
+
+
 
 end;
 
@@ -528,6 +580,9 @@ begin
 
  end;
 
+   port:=TFile.ReadAllText('miner-burst-1.160705/chosen_port.txt');
+   Edit1.Text:= StringReplace(port, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
+
    pool:=TFile.ReadAllText('miner-burst-1.160705/chosen_pool.txt');
    pool:= StringReplace(pool, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
 
@@ -547,9 +602,5 @@ begin
 ShellExecute(0, 'open', 'http://faucet.burst-team.us', nil, nil, SW_SHOWNORMAL);
 end;
 
-procedure TForm4.Label9Click(Sender: TObject);
-begin
-Form7.Show;
-end;
 
 end.

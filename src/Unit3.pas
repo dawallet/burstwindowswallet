@@ -20,23 +20,11 @@ type
     Label7: TLabel;
     Textfield: TEdit;
     Button2: TButton;
-    CheckBox1: TCheckBox;
     Edit1: TEdit;
-    Edit2: TEdit;
     Label8: TLabel;
-    Label9: TLabel;
     CheckBox2: TCheckBox;
-    Label10: TLabel;
-    Label11: TLabel;
-    Label12: TLabel;
-    Label13: TLabel;
-    Label14: TLabel;
-    Label15: TLabel;
-    Label17: TLabel;
-    Label16: TLabel;
-    Label19: TLabel;
-    Label20: TLabel;
-    Label21: TLabel;
+    Edit3: TEdit;
+    Label18: TLabel;
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -44,7 +32,6 @@ type
     procedure TrackBar1Change(Sender: TObject);
     procedure TrackBar2Change(Sender: TObject);
     procedure CheckBox2Click(Sender: TObject);
-    procedure CheckBox1Click(Sender: TObject);
   private
     { Private-Deklarationen }
 
@@ -94,7 +81,40 @@ finally
 FindClose(SR);
 end;
 end;
-
+function isAvxSupported: Boolean;
+asm
+{$IFDEF CPUX86}
+    push ebx
+{$ENDIF}
+{$IFDEF CPUX64}
+    mov r10, rbx
+{$ENDIF}
+    xor eax, eax
+    cpuid
+    cmp eax, 1
+    jb @not_supported
+    mov eax, 1
+    cpuid
+    and ecx, 018000000h
+    cmp ecx, 018000000h
+    jne @not_supported
+    xor ecx, ecx
+    db 0Fh, 01h, 0D0h //XGETBV
+    and eax, 110b
+    cmp eax, 110b
+    jne @not_supported
+    mov eax, 1
+    jmp @done
+@not_supported:
+    xor eax, eax
+@done:
+{$IFDEF CPUX86}
+    pop ebx
+{$ENDIF}
+{$IFDEF CPUX64}
+    mov rbx, r10
+{$ENDIF}
+end;
 function IsWin64: Boolean;
 var
   IsWow64Process : function(hProcess : THandle; var Wow64Process : BOOL): BOOL; stdcall;
@@ -151,6 +171,7 @@ ram: integer;
 
 begin
 //wplotgenerator [account id] [start nonce] [number of nonces] [stagger size] [threads]
+
 
 IdHTTP := TIdHTTP.Create;
   try
@@ -218,7 +239,7 @@ IdHTTP := TIdHTTP.Create;
 
 
 
-   AssignFile(ma,'plotter/miningaddress.txt');
+   AssignFile(ma,'XPlotter/miningaddress.txt');
    Rewrite(MA);
    Writeln(MA,Textfield.Text);
    CloseFile(MA);
@@ -227,7 +248,13 @@ IdHTTP := TIdHTTP.Create;
     GlobalMemoryStatusEx(Memory);
 
 //Showmessage(IntToStr(CharToNum(Form2.DriveComboBox1.Drive)-31));
-multiplier:= (CharToNum(Form2.DriveComboBox1.Drive)-31)*100000000;
+multiplier:= (CharToNum(Form2.DriveComboBox1.Drive)-31);
+
+if multiplier > 26 then
+Showmessage('Can not determine start nonce, please use the expert mode')
+else
+multiplier := multiplier*100000000;
+
 
 //ShowMessage('wplotgenerator' + ' ' + (Textfield.Text) + ' ' + '0' +' '+ IntToStr(((1024*1000) div 256) *(TrackBar1.Position)) + ' ' + IntToStr(Memory.dwTotalPhys div 1024 div 2048) + ' ' + IntToStr(TrackBar2.Position));
 path:= (Form2.DriveComboBox1.Drive) + ':\Burst\';
@@ -240,20 +267,25 @@ nonces :=((1024*1024) div 256) *(TrackBar1.Position);
 ram :=  (Memory.ullAvailPhys div 1024 div 400 div 64)*64;
 nonces := (nonces DIV ram) * ram;
 
+if Trackbar1.Position = Form2.FreeD-1 then nonces := 0;
+
 if Checkbox2.Checked = false then
  begin
    pocParameters :='run_generate.bat '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(nonces) + ' ' + IntToStr((((Memory.ullTotalPhys div 1024 div 1024 div 10)*6)div 64)*64) + ' ' + IntToStr(TrackBar2.Position));
-   parameters :='wplotgenerator.exe '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(nonces) + ' ' + IntToStr(ram) + ' ' + IntToStr(TrackBar2.Position));
+    if isAvxSupported = true then
+     parameters :='XPlotter_avx.exe -id '+((addressstring) + ' -sn ' + IntToStr(dirSize + multiplier) +' -n '+ IntToStr(nonces) + ' -t ' + IntToStr(TrackBar2.Position) + ' -path ' + (Form2.DriveComboBox1.Drive) + ':\Burst\plots')
+     else
+     parameters :='XPlotter_sse.exe -id '+((addressstring) + ' -sn ' + IntToStr(dirSize + multiplier) +' -n '+ IntToStr(nonces) + ' -t ' + IntToStr(TrackBar2.Position) + ' -path ' + (Form2.DriveComboBox1.Drive) + ':\Burst\plots' );
  end
  else
  begin
-   pocParameters :='run_generate.bat '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(nonces) + ' ' + IntToStr((((Memory.ullTotalPhys div 1024 div 1024 div 10)*6)div 64)*64) + ' ' + IntToStr(TrackBar2.Position));
-
-   if CheckBox1.Checked = false then
-    parameters :='wplotgenerator.exe '+((addressstring) + ' ' + Edit1.Text +' '+ IntToStr(nonces) + ' ' + (Edit2.Text) + ' ' + IntToStr(TrackBar2.Position))
+    pocParameters :='run_generate.bat '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(nonces) + ' ' + IntToStr((((Memory.ullTotalPhys div 1024 div 1024 div 10)*6)div 64)*64) + ' ' + IntToStr(TrackBar2.Position));
+   if isAvxSupported = true then
+    parameters :='XPlotter_avx.exe -id '+((addressstring) + ' -sn ' + Edit1.Text +' -n '+ IntToStr(nonces) + ' -t ' + (Edit3.Text)+ ' -path ' + (Form2.DriveComboBox1.Drive) + ':\Burst\plots' )
     else
-   parameters :='wplotgenerator.exe '+((addressstring) + ' ' + (Edit1.Text) +' '+ IntToStr(nonces) + ' ' + (Edit2.Text) + ' ' + IntToStr(TrackBar2.Position)+ ' ' + '-async');
-   //wplotgenerator [account id] [start nonce] [number of nonces] [stagger size] [threads]
+   parameters :='XPlotter_sse.exe -id '+((addressstring) + ' -sn ' + Edit1.Text +' -n '+ IntToStr(nonces) + ' -t ' + (Edit3.Text)+ ' -path ' + (Form2.DriveComboBox1.Drive) + ':\Burst\plots' );
+
+
  end;
 
 
@@ -276,14 +308,14 @@ if Trackbar1.Position = 1 then
      end
       else
      begin
-    Showmessage('You use a 32 bit system! For you theres only the original java plotter available which is slower. Never mind.');
+    Showmessage('You use a 32 bit system! For you theres only the original java plotter available which is slower.');
 
     BatContent:=TStringList.Create;
     BatContent.Add('java -Xmx'+IntToStr(Memory.ullTotalPhys div 900 div 4096)+'m -cp pocminer.jar;lib/*;lib/akka/*;lib/jetty/* pocminer.POCMiner generate %*');
     BatContent.SaveToFile(path+'/run_generate.bat');
     BatContent.Free;
 
-    ShellExecute(0, 'open', PChar('cmd.exe'),PChar('/K '+pocParameters), PChar(path), SW_SHOW);
+    ShellExecute(0, 'open', PChar('cmd.exe'),PChar('/K '+pocParameters), PChar(path+'x86\'), SW_SHOW);
      end;
 
     //Showmessage(parameters);
@@ -296,31 +328,42 @@ if Trackbar1.Position = 1 then
 
 end;
 
-procedure TForm3.CheckBox1Click(Sender: TObject);
-begin
-if CheckBox1.Checked = true then
- begin
-   Showmessage('Keep in mind that async mode needs double the RAM. Adapt the stagger value!');
- end
-else
-
-
-end;
 
 procedure TForm3.CheckBox2Click(Sender: TObject);
 begin
  if CheckBox2.Checked = true then
    begin
    // Showmessage('Expert mode');
-    Form3.ClientWidth:= 592;
-    Button2.Left := 470;
-    Label12.Font.Color := clRed;
+  //   Form3.ClientWidth:= 448;
+  //   Button2.Left := 350;
+    TrackBar2.Enabled := false;
+    TrackBar2.Hide;
+    Label4.Hide;
+    Label5.Hide;
+    Label6.Hide;
+
+    Edit1.Show;
+    Label8.Show;
+    Label18.Show;
+    Edit3.Show;
+
    end
   else
   begin
    // Showmessage('Standard mode');
-     Form3.ClientWidth:= 448;
-     Button2.Left := 350;
+  //   Form3.ClientWidth:= 448;
+   //  Button2.Left := 350;
+     TrackBar2.Show;
+     Label4.Show;
+     Label5.Show;
+     Label6.Show;
+     TrackBar2.Enabled := true;
+
+    Edit1.Hide;
+    Label8.Hide;
+    Label18.Hide;
+    Edit3.Hide;
+
   end;
 
 end;
@@ -336,7 +379,7 @@ address: String;
   TrackBar1.Max:= Form2.FreeD-1;
   TrackBar2.Position:= System.CPUCount;
 
-  address:=TFile.ReadAllText('plotter/miningaddress.txt');
+  address:=TFile.ReadAllText('XPlotter/miningaddress.txt');
   address:= StringReplace(address, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
   Textfield.Text:=(address);
 
@@ -353,8 +396,8 @@ begin
   Memory.dwLength := SizeOf(Memory);
   GlobalMemoryStatus(Memory);
 
-  Form3.ClientWidth:= 448;
-  Button2.Left := 350;
+ // Form3.ClientWidth:= 448;
+ // Button2.Left := 350;
 end;
 
 procedure TForm3.TrackBar1Change(Sender: TObject);

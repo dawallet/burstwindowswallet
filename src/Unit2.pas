@@ -55,7 +55,7 @@ begin
 Form3.Show;
 plotdir:= (((DriveComboBox1.Drive))+':\Burst');
 CreateDir(((DriveComboBox1.Drive))+':\Burst');
-currentdir := GetCurrentDir + '\plotter';
+currentdir := GetCurrentDir + '\XPlotter';
 
 try
     { Copy directory from source path to destination path }

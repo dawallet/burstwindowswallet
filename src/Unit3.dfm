@@ -4,8 +4,8 @@ object Form3: TForm3
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSizeToolWin
   Caption = 'Plotter'
-  ClientHeight = 242
-  ClientWidth = 592
+  ClientHeight = 241
+  ClientWidth = 453
   Color = clBtnFace
   TransparentColorValue = clRed
   Font.Charset = DEFAULT_CHARSET
@@ -66,134 +66,30 @@ object Form3: TForm3
     Caption = '  1 Core'
   end
   object Label7: TLabel
-    Left = 170
-    Top = 157
+    Left = 178
+    Top = 155
     Width = 103
     Height = 13
     Caption = 'Your BURST Account:'
   end
   object Label8: TLabel
-    Left = 456
-    Top = 18
+    Left = 64
+    Top = 92
     Width = 61
     Height = 13
     Caption = 'Start Nonce:'
+    Visible = False
   end
-  object Label9: TLabel
-    Left = 456
-    Top = 111
-    Width = 42
+  object Label18: TLabel
+    Left = 303
+    Top = 92
+    Width = 43
     Height = 13
-    Caption = 'Stagger:'
-  end
-  object Label10: TLabel
-    Left = 482
-    Top = 64
-    Width = 12
-    Height = 13
-    Caption = '01'
-    Color = clBtnFace
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clRed
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentColor = False
-    ParentFont = False
-    Transparent = True
-  end
-  object Label11: TLabel
-    Left = 456
-    Top = 64
-    Width = 20
-    Height = 13
-    Caption = 'e.g.'
-  end
-  object Label12: TLabel
-    Left = 469
-    Top = 83
-    Width = 21
-    Height = 13
-    Caption = '#PC'
-    Color = clBtnFace
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clRed
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentColor = False
-    ParentFont = False
-  end
-  object Label13: TLabel
-    Left = 503
-    Top = 64
-    Width = 12
-    Height = 13
-    Caption = '02'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clHighlight
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-  end
-  object Label14: TLabel
-    Left = 500
-    Top = 83
-    Width = 27
-    Height = 13
-    Caption = '#Disk'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clHighlight
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-  end
-  object Label15: TLabel
-    Left = 524
-    Top = 64
-    Width = 60
-    Height = 13
-    Caption = '000 000 001'
-  end
-  object Label17: TLabel
-    Left = 540
-    Top = 83
-    Width = 31
-    Height = 13
-    Caption = 'Range'
-  end
-  object Label16: TLabel
-    Left = 496
-    Top = 64
-    Width = 4
-    Height = 13
-    Caption = '|'
-  end
-  object Label19: TLabel
-    Left = 530
-    Top = 83
-    Width = 4
-    Height = 13
-    Caption = '|'
-  end
-  object Label20: TLabel
-    Left = 496
-    Top = 83
-    Width = 4
-    Height = 13
-    Caption = '|'
-  end
-  object Label21: TLabel
-    Left = 517
-    Top = 64
-    Width = 4
-    Height = 13
-    Caption = '|'
+    Caption = 'Threads:'
+    Visible = False
   end
   object Button1: TButton
-    Left = 13
+    Left = 17
     Top = 199
     Width = 75
     Height = 25
@@ -222,15 +118,15 @@ object Form3: TForm3
     OnChange = TrackBar2Change
   end
   object Textfield: TEdit
-    Left = 135
-    Top = 176
+    Left = 143
+    Top = 174
     Width = 177
     Height = 21
     TabOrder = 3
     Text = 'BURST-XXXX-XXXX-XXXX-XXXX'
   end
   object Button2: TButton
-    Left = 470
+    Left = 360
     Top = 199
     Width = 75
     Height = 25
@@ -238,32 +134,16 @@ object Form3: TForm3
     TabOrder = 4
     OnClick = Button2Click
   end
-  object CheckBox1: TCheckBox
-    Left = 481
-    Top = 166
-    Width = 95
-    Height = 17
-    Caption = 'Async '
-    TabOrder = 5
-    OnClick = CheckBox1Click
-  end
   object Edit1: TEdit
-    Left = 456
-    Top = 37
+    Left = 64
+    Top = 111
     Width = 121
     Height = 21
     NumbersOnly = True
-    TabOrder = 6
+    TabOrder = 5
+    Text = '0'
     TextHint = '0'
-  end
-  object Edit2: TEdit
-    Left = 456
-    Top = 132
-    Width = 121
-    Height = 21
-    NumbersOnly = True
-    TabOrder = 7
-    TextHint = 'e.g. 4096'
+    Visible = False
   end
   object CheckBox2: TCheckBox
     Left = 17
@@ -271,7 +151,17 @@ object Form3: TForm3
     Width = 97
     Height = 17
     Caption = 'Expert mode'
-    TabOrder = 8
+    TabOrder = 6
     OnClick = CheckBox2Click
+  end
+  object Edit3: TEdit
+    Left = 303
+    Top = 111
+    Width = 34
+    Height = 21
+    NumbersOnly = True
+    TabOrder = 7
+    Text = '1'
+    Visible = False
   end
 end

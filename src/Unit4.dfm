@@ -4,8 +4,8 @@ object Form4: TForm4
   BorderIcons = [biSystemMenu]
   BorderStyle = bsToolWindow
   Caption = 'Miner '
-  ClientHeight = 181
-  ClientWidth = 561
+  ClientHeight = 177
+  ClientWidth = 531
   Color = clBtnFace
   DefaultMonitor = dmMainForm
   Font.Charset = DEFAULT_CHARSET
@@ -21,15 +21,15 @@ object Form4: TForm4
   PixelsPerInch = 96
   TextHeight = 13
   object Label2: TLabel
-    Left = 276
+    Left = 268
     Top = 9
     Width = 60
     Height = 13
     Caption = 'Found Plots:'
   end
   object Label3: TLabel
-    Left = 395
-    Top = 8
+    Left = 365
+    Top = 9
     Width = 63
     Height = 13
     Caption = 'Choose pool:'
@@ -50,15 +50,15 @@ object Form4: TForm4
     WordWrap = True
   end
   object Label5: TLabel
-    Left = 395
-    Top = 51
+    Left = 365
+    Top = 58
     Width = 27
     Height = 13
     Caption = 'Pool: '
   end
   object Label6: TLabel
-    Left = 425
-    Top = 51
+    Left = 400
+    Top = 58
     Width = 72
     Height = 13
     Caption = 'none - choose!'
@@ -81,15 +81,8 @@ object Form4: TForm4
     OnClick = Label11Click
   end
   object Label1: TLabel
-    Left = 533
-    Top = 77
-    Width = 10
-    Height = 13
-    Caption = 'or'
-  end
-  object Label8: TLabel
-    Left = 533
-    Top = 108
+    Left = 436
+    Top = 118
     Width = 10
     Height = 13
     Caption = 'or'
@@ -108,18 +101,25 @@ object Form4: TForm4
     ParentFont = False
     WordWrap = True
   end
+  object Label8: TLabel
+    Left = 482
+    Top = 31
+    Width = 4
+    Height = 13
+    Caption = ':'
+  end
   object Button1: TButton
-    Left = 395
-    Top = 72
-    Width = 132
+    Left = 365
+    Top = 88
+    Width = 154
     Height = 25
     Hint = 'CPU assisted mining. Works always.'
-    Caption = 'Start Mining (default)'
+    Caption = 'Start Mining (CPU / AVX)'
     TabOrder = 0
     OnClick = Button1Click
   end
   object ListBox1: TListBox
-    Left = 276
+    Left = 268
     Top = 28
     Width = 85
     Height = 133
@@ -130,9 +130,9 @@ object Form4: TForm4
     TabOrder = 1
   end
   object ComboBox1: TComboBox
-    Left = 395
-    Top = 27
-    Width = 132
+    Left = 365
+    Top = 28
+    Width = 116
     Height = 21
     AutoComplete = False
     TabOrder = 2
@@ -140,18 +140,17 @@ object Form4: TForm4
     Items.Strings = (
       'burst.lexitoshi.uk'
       'pool.news-asset.com'
-      '216.165.179.42'
+      'pool.burstcoin.ml'
+      'burst.btfg.space'
       'pool.burstcoin.party'
       'pool.burstcoin.fr'
       'burstpool.ddns.net'
       'pool.burstmining.club'
-      'pool.burstcoin.de'
       'pool.burstcoinmining.com'
       'pool.burstcoin.eu'
       'pool.burstcoin.biz'
       'pool.burst-team.us'
-      'burst.poolto.be'
-      'pool.burstcoin.it')
+      'burst.poolto.be')
   end
   object Button2: TButton
     Left = 162
@@ -171,9 +170,9 @@ object Form4: TForm4
     TabOrder = 4
   end
   object Button5: TButton
-    Left = 395
-    Top = 134
-    Width = 132
+    Left = 365
+    Top = 136
+    Width = 154
     Height = 25
     Hint = 'GPU assisted mining with OpenCL'
     Caption = 'Start Mining (OpenCL)'
@@ -181,22 +180,21 @@ object Form4: TForm4
     TabOrder = 5
     OnClick = Button5Click
   end
-  object Button4: TButton
-    Left = 395
-    Top = 103
-    Width = 132
-    Height = 25
-    Caption = 'Start Mining (AVX)'
-    TabOrder = 6
-    OnClick = Button4Click
-  end
   object Button6: TButton
     Left = 162
     Top = 134
     Width = 60
     Height = 25
     Caption = 'Change'
-    TabOrder = 7
+    TabOrder = 6
     OnClick = Button6Click
+  end
+  object Edit1: TEdit
+    Left = 487
+    Top = 28
+    Width = 34
+    Height = 21
+    TabOrder = 7
+    Text = '8124'
   end
 end

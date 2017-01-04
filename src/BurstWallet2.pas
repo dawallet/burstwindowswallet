@@ -7,11 +7,10 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, TLHelp32, Vcl.Clipbrd, ShellAPI, Vcl.Menus,
   Vcl.OleCtrls, SHDocVw, Vcl.ComCtrls, Vcl.ToolWin, Vcl.StdCtrls, idHTTP, IdBaseComponent,IdComponent,IOUtils,
   IdTCPConnection, IdTCPClient,IdIOHandler, IdIOHandlerSocket, IdIOHandlerStack, IdSSL,
-IdSSLOpenSSL, registry, JSON, DBXJSON, URLMon, WinInet, System.Zip;
+IdSSLOpenSSL, registry, JSON, URLMon, WinInet, System.Zip, SHDocVw_TLB;
 
 type
   TForm1 = class(TForm)
-    WebBrowser1: TWebBrowser;
     MainMenu1: TMainMenu;
     WalletManager1: TMenuItem;
     About1: TMenuItem;
@@ -41,8 +40,6 @@ type
     ToolButton11: TToolButton;
     Faucets1: TMenuItem;
     ToolButton13: TToolButton;
-    ToolButton14: TToolButton;
-    ToolButton15: TToolButton;
     Forums1: TMenuItem;
     ToolButton12: TToolButton;
     Network1: TMenuItem;
@@ -55,11 +52,10 @@ type
     Github1: TMenuItem;
     Forums2: TMenuItem;
     DDLBlockchain1: TMenuItem;
-    IRCChat1: TMenuItem;
     OnlineLocal1: TMenuItem;
     Alttechchat1: TMenuItem;
-    ProgressBar1: TProgressBar;
     C1: TMenuItem;
+    WebBrowser1: TWebBrowser;
     procedure FormCreate(Sender: TObject);
     procedure About1Click(Sender: TObject);
     procedure AddWallet1Click(Sender: TObject);
@@ -113,7 +109,7 @@ type
   public
     { Public-Deklarationen }
      mining: String;
-
+     ws: Textfile;
 
   end;
 
@@ -336,6 +332,16 @@ begin
 Killtask('javaw.exe');
 clipboard := TClipBoard.create;
 clipboard.AsText :='';
+
+ AssignFile(ws,'var/winstate');
+   Rewrite(WS);
+   begin
+   if Self.WindowState = wsMaximized then
+   Writeln(WS,'wsMaximized')
+   else Writeln(WS,'wsNormal');
+   end;
+   CloseFile(WS);
+
 close;
 end;
 
@@ -362,6 +368,14 @@ begin
 Killtask('javaw.exe');
 clipboard := TClipBoard.create;
 clipboard.AsText :='';
+ AssignFile(ws,'var/winstate');
+   Rewrite(WS);
+   begin
+   if Self.WindowState = wsMaximized then
+   Writeln(WS,'wsMaximized')
+   else Writeln(WS,'wsNormal');
+   end;
+   CloseFile(WS);
 close;
 end;
 
@@ -395,14 +409,25 @@ var
   lStream: TFilestream;
   price_usd_clean: String;
   formatSettings: TFormatSettings;
+  statestring: String;
 
 begin
+statestring := TFile.ReadAllText('var/winstate');
+statestring:= StringReplace(statestring, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
+ begin
+   if statestring = 'wsMaximized' then
+   ShowWindow(Handle, SW_MAXIMIZE)
+   else
+  // ShowWindow(Handle, SW_NORMAL);
+ end;
+
+ Sleep(200);
  WinExec('run_java_autodetect.bat', SW_HIDE);
  try
   try
      IdHTTP2 := TIdHTTP.Create;
-     N7.Enabled := True;
-     N6.Enabled := False;
+     N7.Enabled := true;
+     N6.Enabled := false;
     try
    dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8125/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
     WebBrowser1.Navigate('https://wallet.burst-team.us:8125');
@@ -555,10 +580,7 @@ begin
          mining := Copy(mining, 1, Pos(',', mining) - 10);
        end;
 
- //  Showmessage(mining);
-       mining:=(mining+' BURST');
-       mining:= StringReplace(mining, 'ount\" not s BURST', '0', [rfReplaceAll, rfIgnoreCase]);
-       ToolButton15.Caption:=(mining);
+
         IdHTTP3.Free;
 
       end
@@ -576,8 +598,6 @@ begin
       ToolButton4.Visible:=false;
       ToolButton5.Caption:='Market Information';
       ToolButton6.Visible:=false;
-      ToolButton14.Visible:=false;
-      ToolButton15.Visible:=false;
        //IdHTTP.Free;
        end;
    end;
@@ -799,8 +819,6 @@ begin
       ToolButton4.Visible:=true;
       ToolButton5.Caption:='Market Cap:';
       ToolButton6.Visible:=true;
-      ToolButton14.Visible:=true;
-      ToolButton15.Visible:=true;
   end;
      try
      IdHTTP2 := TIdHTTP.Create;
@@ -917,9 +935,7 @@ begin
        end;
 
  //  Showmessage(mining);
-       mining:=(mining+' BURST');
-       mining:= StringReplace(mining, 'ount\" not s BURST', '0', [rfReplaceAll, rfIgnoreCase]);
-       ToolButton15.Caption:=(mining);
+
         IdHTTP3.Free;
 
       end
@@ -937,8 +953,6 @@ begin
       ToolButton4.Visible:=false;
       ToolButton5.Caption:='Market Information';
       ToolButton6.Visible:=false;
-      ToolButton14.Visible:=false;
-      ToolButton15.Visible:=false;
        //IdHTTP.Free;
        end;
    end;

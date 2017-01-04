@@ -113,9 +113,9 @@ var
 begin
 ListBox1.Items.Clear;
    For character:= 'Z' downto 'C' do
-  if TDirectory.Exists(character+':\Burst\plots') then
-  if not IsDirectoryEmpty(character+':\Burst\plots')
-  then ListBox1.Items.Add(character+':\Burst\plots');
+  if TDirectory.Exists(character+':\Burst\x86\plots') then
+  if not IsDirectoryEmpty(character+':\Burst\x86\plots')
+  then ListBox1.Items.Add(character+':\Burst\x86\plots');
    
 end;
 

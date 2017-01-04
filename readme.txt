@@ -19,6 +19,15 @@ _____
 
 Changelog:
 
+0.3.8
+
++ replaced wplotgenerator with XPlotter v1.0 -> https://github.com/Blagodarenko/Xplotter
++ individual pool input with port
++ new pools
++ implementation of dividends+ addon (Local Wallet)
++ Plotting expert mode: more than 32 threads
++ window state is saved 
+
 0.3.7.1
 
 + applied fix for UI bug

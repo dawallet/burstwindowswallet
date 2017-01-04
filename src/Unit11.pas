@@ -104,12 +104,16 @@ end;
 
 procedure TForm11.Button1Click(Sender: TObject);
 begin
+if MessageDlg('Are you sure that you want to delete and resync the Blockchain?', mtConfirmation, [mbyes, mbcancel], 0) = mrYes then
+begin
 Killtask('javaw.exe');
 Sleep(600);
 DeleteDir('burst_db');
 Sleep(1000);
  WinExec('run_java_autodetect.bat', SW_HIDE);
 Label2.Visible:=true;
+Button2.Caption:='Close';
+end;
 end;
 
 procedure TForm11.Button2Click(Sender: TObject);

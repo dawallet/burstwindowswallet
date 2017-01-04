@@ -3375,14 +3375,14 @@ object Form10: TForm10
     Proportional = True
   end
   object Label1: TLabel
-    Left = 16
+    Left = 22
     Top = 342
     Width = 326
-    Height = 26
+    Height = 39
     Caption = 
       'Using Official Online Wallet: https://wallet.burst-team.us by ha' +
       'itch. Thanks to dcct, Janror, Blago and Luxe for the plotter and' +
-      ' miners! '
+      ' miner software! '
     WordWrap = True
   end
   object Label2: TLabel
@@ -3390,14 +3390,14 @@ object Form10: TForm10
     Top = 196
     Width = 301
     Height = 13
-    Caption = 'Burst Client version 0.3.7 (for Burst Wallet 1.2.7) by daWallet.'
+    Caption = 'Burst Client version 0.3.8 (for Burst Wallet 1.2.7) by daWallet.'
   end
   object Label3: TLabel
-    Left = 15
+    Left = 24
     Top = 393
-    Width = 148
+    Width = 135
     Height = 13
-    Caption = 'You want to buy me to a beer?'
+    Caption = 'You want to buy me a beer?'
   end
   object Label4: TLabel
     Left = 63
