@@ -4,16 +4,16 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, TlHelp32;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, TlHelp32, System.UITypes;
 
 type
   TForm11 = class(TForm)
     Label1: TLabel;
-    Button1: TButton;
     Button2: TButton;
     Label2: TLabel;
+    Button3: TButton;
     procedure Button2Click(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
   private
     { Private-Deklarationen }
   public
@@ -102,23 +102,27 @@ begin
 end;
 
 
-procedure TForm11.Button1Click(Sender: TObject);
-begin
-if MessageDlg('Are you sure that you want to delete and resync the Blockchain?', mtConfirmation, [mbyes, mbcancel], 0) = mrYes then
-begin
-Killtask('javaw.exe');
-Sleep(600);
-DeleteDir('burst_db');
-Sleep(1000);
- WinExec('run_java_autodetect.bat', SW_HIDE);
-Label2.Visible:=true;
-Button2.Caption:='Close';
-end;
-end;
+
 
 procedure TForm11.Button2Click(Sender: TObject);
 begin
 close;
+end;
+
+procedure TForm11.Button3Click(Sender: TObject);
+begin
+if MessageDlg('Are you sure that you want to delete and resync the Blockchain from genesis block?', mtConfirmation, [mbyes, mbcancel], 0) = mrYes then
+ begin
+Killtask('javaw.exe');
+Sleep(600);
+DeleteDir('burst_db');
+Sleep(1000);
+WinExec('run_java_autodetect.bat', SW_HIDE);
+Label2.Visible:=true;
+Button2.Caption:='Close';
+
+end;
+
 end;
 
 end.

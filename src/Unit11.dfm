@@ -35,22 +35,22 @@ object Form11: TForm11
     Caption = 'Done'
     Visible = False
   end
-  object Button1: TButton
-    Left = 169
-    Top = 89
-    Width = 75
-    Height = 25
-    Caption = 'Clean up'
-    TabOrder = 0
-    OnClick = Button1Click
-  end
   object Button2: TButton
     Left = 55
     Top = 89
     Width = 75
     Height = 25
     Caption = 'Cancel'
-    TabOrder = 1
+    TabOrder = 0
     OnClick = Button2Click
+  end
+  object Button3: TButton
+    Left = 171
+    Top = 89
+    Width = 75
+    Height = 25
+    Caption = 'Clean DB'
+    TabOrder = 1
+    OnClick = Button3Click
   end
 end

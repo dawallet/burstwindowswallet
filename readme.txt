@@ -19,6 +19,11 @@ _____
 
 Changelog:
 
+0.3.8.1
+
++ fixed "Clean up DB" function
++ added new pool
+
 0.3.8
 
 + replaced wplotgenerator with XPlotter v1.0 -> https://github.com/Blagodarenko/Xplotter
