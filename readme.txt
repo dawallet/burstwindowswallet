@@ -19,6 +19,15 @@ _____
 
 Changelog:
 
+0.3.9
+
++ soft shutdown of wallet server against db corruption
++ import / export contacts in local wallet
++ indicator of sync status
++ syncs with only 1 core until local wallet is used
++ added new pools
+
+
 0.3.8.1
 
 + fixed "Clean up DB" function

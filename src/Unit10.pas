@@ -9,7 +9,6 @@ uses
 
 type
   TForm10 = class(TForm)
-    Image1: TImage;
     Label1: TLabel;
     Label2: TLabel;
     Button1: TButton;
@@ -19,6 +18,7 @@ type
     Label5: TLabel;
     Label6: TLabel;
     Label9: TLabel;
+    Image1: TImage;
     procedure Button1Click(Sender: TObject);
     procedure Label4Click(Sender: TObject);
     procedure Label6Click(Sender: TObject);

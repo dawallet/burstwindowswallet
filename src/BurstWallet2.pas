@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, TLHelp32, Vcl.Clipbrd, ShellAPI, Vcl.Menus,
   Vcl.OleCtrls, SHDocVw, Vcl.ComCtrls, Vcl.ToolWin, Vcl.StdCtrls, idHTTP, IdBaseComponent,IdComponent,IOUtils,
   IdTCPConnection, IdTCPClient,IdIOHandler, IdIOHandlerSocket, IdIOHandlerStack, IdSSL,
-IdSSLOpenSSL, registry, JSON, URLMon, WinInet, System.Zip, SHDocVw_TLB;
+IdSSLOpenSSL, registry, JSON, URLMon, WinInet, System.Zip, SHDocVw_TLB, WinSvc;
 
 type
   TForm1 = class(TForm)
@@ -56,6 +56,12 @@ type
     Alttechchat1: TMenuItem;
     C1: TMenuItem;
     WebBrowser1: TWebBrowser;
+    Timer2: TTimer;
+    ToolButton14: TToolButton;
+    ToolButton15: TToolButton;
+    ToolButton16: TToolButton;
+    ToolButton17: TToolButton;
+    Timer4: TTimer;
     procedure FormCreate(Sender: TObject);
     procedure About1Click(Sender: TObject);
     procedure AddWallet1Click(Sender: TObject);
@@ -100,6 +106,8 @@ type
     procedure IRCChat1Click(Sender: TObject);
     procedure Alttechchat1Click(Sender: TObject);
     procedure C1Click(Sender: TObject);
+    procedure Timer2Timer(Sender: TObject);
+    procedure Timer4Timer(Sender: TObject);
 
 
 
@@ -110,6 +118,7 @@ type
     { Public-Deklarationen }
      mining: String;
      ws: Textfile;
+     allcore: Boolean;
 
   end;
 
@@ -123,8 +132,39 @@ implementation
 uses Unit5, Unit6, Unit2, Unit4, Unit3, Unit9, Unit10, Unit8, Unit11;
 {$R *.dfm}
 
-//todo  Click on footer - change currency, caption and so on
-// expert mode
+procedure Delay( const msecs:integer);
+var
+FirstTickCount:longint;
+begin
+FirstTickCount:=GetTickCount;
+repeat
+Application.ProcessMessages;
+until
+((GetTickCount-FirstTickCount) >= Longint(msecs));
+end;
+
+function GetProcID(sProcName: String): Integer;
+var
+  hProcSnap: THandle;
+  pe32: TProcessEntry32;
+begin
+  result := -1;
+  hProcSnap := CreateToolHelp32SnapShot(TH32CS_SNAPPROCESS, 0);
+  if hProcSnap = INVALID_HANDLE_VALUE then exit;
+
+  pe32.dwSize := SizeOf(ProcessEntry32);
+
+  { wenn es geklappt hat }
+  if Process32First(hProcSnap, pe32) = true then
+    { und los geht's: Prozess suchen}
+    while Process32Next(hProcSnap, pe32) = true do
+    begin
+      if pos(sProcName, pe32.szExeFile) <> 0then
+        result := pe32.th32ProcessID;
+    end;
+CloseHandle(hProcSnap);
+end;
+
 function GetURLAsString(aURL: string): string;
 var
   lHTTP: TIdHTTP;
@@ -141,6 +181,7 @@ begin
     FreeAndNil(lStream);
   end;
 end;
+
 function IsWin64: Boolean;
 var
   IsWow64Process : function(hProcess : THandle; var Wow64Process : BOOL): BOOL; stdcall;
@@ -327,13 +368,33 @@ Form11.Show;
 end;
 
 procedure TForm1.Close1Click(Sender: TObject);
-begin
-//WinExec('stop.bat', SW_HIDE);
-Killtask('javaw.exe');
-clipboard := TClipBoard.create;
-clipboard.AsText :='';
 
- AssignFile(ws,'var/winstate');
+var
+  PID : String;
+  TS : TextFile;
+ begin
+   try
+
+     PID := GetProcId('javaw.exe').ToString;
+    // Showmessage(PID);
+       AssignFile(ts,'3rd/close_softly.bat');
+       Rewrite(TS);
+      if isWin64 = true then
+       Writeln(TS,'SendSignalCtrlC64 '+PID)
+       else
+       Writeln(TS,'SendSignalCtrlC '+PID);
+       CloseFile(TS);
+        ShellExecute(0, 'open', PChar('close_softly.bat'),PChar('/K'), PChar('3rd'), SW_HIDE);
+
+     except
+     Killtask('javaw.exe');
+
+
+  end;
+   clipboard := TClipBoard.create;
+   clipboard.AsText :='';
+
+  AssignFile(ws,'var/winstate');
    Rewrite(WS);
    begin
    if Self.WindowState = wsMaximized then
@@ -342,8 +403,8 @@ clipboard.AsText :='';
    end;
    CloseFile(WS);
 
-close;
-end;
+   close;
+ end;
 
 procedure TForm1.Crowdfunding2Click(Sender: TObject);
 begin
@@ -363,9 +424,30 @@ begin
 end;
 
 procedure TForm1.Exit1Click(Sender: TObject);
-begin
-//WinExec('stop.bat', SW_HIDE);
-Killtask('javaw.exe');
+var
+  PID : String;
+  TS : TextFile;
+ begin
+ try
+
+     PID := GetProcId('javaw.exe').ToString;
+    // Showmessage(PID);
+       AssignFile(ts,'3rd/close_softly.bat');
+       Rewrite(TS);
+      if isWin64 = true then
+       Writeln(TS,'SendSignalCtrlC64 '+PID)
+       else
+       Writeln(TS,'SendSignalCtrlC '+PID);
+       CloseFile(TS);
+        ShellExecute(0, 'open', PChar('close_softly.bat'),PChar('/K'), PChar('3rd'), SW_HIDE);
+
+     except
+     Killtask('javaw.exe');
+
+
+ end;
+
+
 clipboard := TClipBoard.create;
 clipboard.AsText :='';
  AssignFile(ws,'var/winstate');
@@ -422,7 +504,7 @@ statestring:= StringReplace(statestring, #13#10, '', [rfReplaceAll, rfIgnoreCase
  end;
 
  Sleep(200);
- WinExec('run_java_autodetect.bat', SW_HIDE);
+
  try
   try
      IdHTTP2 := TIdHTTP.Create;
@@ -465,18 +547,18 @@ statestring:= StringReplace(statestring, #13#10, '', [rfReplaceAll, rfIgnoreCase
   end;
 
 
-
+    {
      try
      IdHTTP2 := TIdHTTP.Create;
      //IdHTTP2.ReadTimeout := 30000;
   //  idHTTP2.IOHandler := TIdSSLIOHandlerSocketOpenSSL.Create(idHTTP2);
    // idHTTP2.HandleRedirects := True;
-      checkver:= idHTTP2.Get('https://mwallet.burst-team.us:8125/client/0.3.8.txt');
+      checkver:= idHTTP2.Get('https://mwallet.burst-team.us:8125/client/0.3.8.2.txt');
       UpdateAvailable1.Visible := true;
         IdHTTP2.Free;
      except
        //   Showmessage('no new version');
-     end;
+     end;    }
 
 
   try
@@ -562,33 +644,9 @@ statestring:= StringReplace(statestring, #13#10, '', [rfReplaceAll, rfIgnoreCase
                           [rfReplaceAll, rfIgnoreCase]);
          //ToolButton4.Caption := '$ '+(FloatToStrF((result), ffFixed, 15, 2)) ;
          ToolButton4.Caption := '$ '+ price_usd_clean;
-         // Mining Wallet info
-      try
-       begin
-       IdHTTP3.create;
-       mining:=TFile.ReadAllText('plotter/miningaddress.txt');
-
-        mining:= StringReplace(mining, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
-        mining:= (idHTTP3.Get('https://mwallet.burst-team.us:8125/burst?requestType=rsConvert&account='+mining));
-        Delete(mining, 1, 79);
-        mining:= StringReplace((mining),'"}','',[rfReplaceAll]);
-        mining:= StringReplace((mining),' ','',[rfReplaceAll]);
-        mining:= StringReplace((mining),#13#10,'',[rfReplaceAll]);
-        mining:= (idHTTP3.Get('https://mwallet.burst-team.us:8125/burst?requestType=getBalance&account='+mining));
-        Delete(mining, 1, 26);
-       begin
-         mining := Copy(mining, 1, Pos(',', mining) - 10);
-       end;
-
-
-        IdHTTP3.Free;
-
-      end
-        except
-        //  Showmessage('Mining Wallet info exception')
       end;
 
-    end
+
 
     except
       begin
@@ -607,6 +665,7 @@ except
 
   end;
 
+  WinExec('run_java_autodetect.bat', SW_HIDE);
 end;
 
 
@@ -696,7 +755,7 @@ IdHTTP2 := TIdHTTP.Create;
  N7.Enabled := True;
  N6.Enabled := False;
  try
- dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8125/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
+ dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8125/burst?requestType=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
  WebBrowser1.Navigate('https://wallet.burst-team.us:8125');
  except
   try
@@ -738,6 +797,7 @@ IdHTTP2 := TIdHTTP.Create;
  try
 dummy:= (idHTTP2.Get('http://127.0.0.1:8125/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
 WebBrowser1.Navigate('http://127.0.0.1:8125');
+Timer2.Enabled := true;
  except
 
   WebBrowser1.Navigate('file:///'+GetCurrentDir+'/offline_2.html');
@@ -792,24 +852,20 @@ var
     IdHTTP: TIdHTTP;
     IdHTTP2: TIdHTTP;
     IdHTTP3: TIdHTTP;
-  totalcoins: String;
-  totalcoinsInt: Integer;
-  coinprice: String;
-  coinpriceEx: real;
-  amount: real;
-  result: real;
-  marketcap: String;
+    coinprice: String;
+    result: real;
+    marketcap: String;
     LJsonArr : TJSONArray;
-  LJsonObj: TJSONObject;
-  price_usd : TJSONValue;
-  percent_change_24h : TJSONValue;
-  market_cap_usd : TJSONValue;
-  price_btc : TJSONValue;
-  mydata : String;
-  checkver: String;
-  lStream: TFilestream;
-  price_usd_clean: String;
-  formatSettings: TFormatSettings;
+    LJsonObj: TJSONObject;
+    price_usd : TJSONValue;
+    percent_change_24h : TJSONValue;
+    market_cap_usd : TJSONValue;
+    price_btc : TJSONValue;
+    mydata : String;
+    checkver: String;
+    price_usd_clean: String;
+    formatSettings: TFormatSettings;
+
 begin
  try
   begin
@@ -822,10 +878,7 @@ begin
   end;
      try
      IdHTTP2 := TIdHTTP.Create;
-     //IdHTTP2.ReadTimeout := 30000;
-  //  idHTTP2.IOHandler := TIdSSLIOHandlerSocketOpenSSL.Create(idHTTP2);
-   // idHTTP2.HandleRedirects := True;
-      checkver:= idHTTP2.Get('https://mwallet.burst-team.us:8125/client/0.3.6.txt');
+      checkver:= idHTTP2.Get('https://mwallet.burst-team.us:8125/client/0.3.9.txt');
       UpdateAvailable1.Visible := true;
         IdHTTP2.Free;
      except
@@ -917,33 +970,7 @@ begin
          //ToolButton4.Caption := '$ '+(FloatToStrF((result), ffFixed, 15, 2)) ;
          ToolButton4.Caption := '$ '+ price_usd_clean;
          // Mining Wallet info
-      try
-       begin
-       idHTTP3.create;
-       mining:=TFile.ReadAllText('plotter/miningaddress.txt');
-
-        mining:= StringReplace(mining, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
-        mining:= (idHTTP3.Get('https://mwallet.burst-team.us:8125/burst?requestType=rsConvert&account='+mining));
-        Delete(mining, 1, 79);
-        mining:= StringReplace((mining),'"}','',[rfReplaceAll]);
-        mining:= StringReplace((mining),' ','',[rfReplaceAll]);
-        mining:= StringReplace((mining),#13#10,'',[rfReplaceAll]);
-        mining:= (idHTTP3.Get('https://mwallet.burst-team.us:8125/burst?requestType=getBalance&account='+mining));
-        Delete(mining, 1, 26);
-       begin
-         mining := Copy(mining, 1, Pos(',', mining) - 10);
-       end;
-
- //  Showmessage(mining);
-
-        IdHTTP3.Free;
-
-      end
-        except
-        // Showmessage('Mining Wallet info exception')
-      end;
-
-    end
+         end
 
     except
       begin
@@ -962,11 +989,113 @@ except
 
   end;
 
+  try
+     GetURLAsString('http://localhost:8125/burst?requestType=getBlockchainStatus');
+
+  except
+
+  end;
+
 end;
 
 
 
 
+procedure TForm1.Timer2Timer(Sender: TObject);
+var
+  PID : String;
+  closedPID: String;
+  TS : TextFile;
+ begin
+ if allcore = false then
+
+ try
+
+     PID := GetProcId('javaw.exe').ToString;
+    // Showmessage(PID);
+       AssignFile(ts,'3rd/close_softly.bat');
+       Rewrite(TS);
+      if isWin64 = true then
+       Writeln(TS,'SendSignalCtrlC64 '+PID)
+       else
+       Writeln(TS,'SendSignalCtrlC '+PID);
+
+      CloseFile(TS);
+      ShellExecute(0, 'open', PChar('close_softly.bat'),PChar('/K'), PChar('3rd'), SW_HIDE);
+
+ except
+ Killtask('javaw.exe');
+
+
+ end;
+
+closedPID := PID;
+Timer2.Enabled:= false;
+allcore := true;
+
+while closedPID = PID do
+
+ begin
+ Delay(5000);
+ PID := GetProcId('javaw.exe').ToString;
+ //Showmessage(PID);
+ end;
+
+ WinExec('run_java_autodetect_all_cpus.bat', SW_HIDE);
+
+
+end;
+
+
+
+procedure TForm1.Timer4Timer(Sender: TObject);
+var
+BlockchainStatus : TJSONObject;
+  currBlockHeight : TJSONValue;
+  ownBlockHeight : TJSONValue;
+  bcdata: String;
+  percentage: real;
+  percentageStr: String;
+begin
+  try
+
+   BlockchainStatus := TJsonObject.Create;
+
+  // mydata:= idHTTP2.Get('https://api.coinmarketcap.com/v1/ticker/burst/');
+  bcdata:= GetURLAsString('http://localhost:8125/burst?requestType=getBlockchainStatus');
+   //  Showmessage(bcdata);
+
+  BlockchainStatus := TJSONObject.ParseJSONValue(TEncoding.UTF8.GetBytes(bcdata), 0) as TJSONObject;
+  // Showmessage(BlockchainStatus.ToString);
+
+  currBlockHeight := BlockchainStatus.GetValue('lastBlockchainFeederHeight') as TJSONValue;
+  ownBlockHeight := BlockchainStatus.GetValue('numberOfBlocks') as TJSONValue;
+
+ // Showmessage(currBlockHeight.ToString);
+ // Showmessage(ownBlockHeight.ToString);
+
+   if StrToInt(currBlockHeight.ToString) > 0 then
+   begin
+   try
+   percentage := (StrToFloat(ownBlockHeight.ToString) / StrToFloat(currBlockHeight.ToString))*100;
+   percentageStr := (FloatToStrF((percentage), ffFixed, 15, 2));
+   percentageStr := StringReplace(percentageStr,',', '.',[rfReplaceAll, rfIgnoreCase]);
+   ToolButton15.Caption := percentageStr +' %';
+
+   except
+   ToolButton15.Caption := 'N/A';
+   end;
+   ToolButton14.Visible := true;
+   ToolButton15.Visible := true;
+   ToolButton17.Visible := true;
+
+
+  end
+
+  except
+
+ end;
+end;
 procedure TForm1.ToolButton10Click(Sender: TObject);
 begin
 if isWin64 = true then

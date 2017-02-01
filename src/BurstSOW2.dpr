@@ -41,6 +41,7 @@ begin
   Application.CreateForm(TForm4, Form4);
   Application.CreateForm(TForm9, Form9);
   Application.CreateForm(TForm10, Form10);
+  Application.CreateForm(TForm11, Form11);
   Application.CreateForm(TForm8, Form8);
   Application.Run;
       if Mutex = 0 then

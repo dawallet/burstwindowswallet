@@ -139,6 +139,8 @@ object Form4: TForm4
     OnChange = ComboBox1Change
     Items.Strings = (
       'burst.lexitoshi.uk'
+      'burstneon.ddns.net'
+      'pool.burstcoin.sk'
       'pool.news-asset.com'
       'pool.burstcoin.ml'
       'burst.btfg.space'
