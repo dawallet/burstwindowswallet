@@ -116,9 +116,10 @@ type
     { Private-Deklarationen }
   public
     { Public-Deklarationen }
-     mining: String;
-     ws: Textfile;
-     allcore: Boolean;
+    mining: String;
+    ws: Textfile;
+    allcore: Boolean;
+    percentage: real;
 
   end;
 
@@ -454,7 +455,7 @@ clipboard.AsText :='';
    Rewrite(WS);
    begin
    if Self.WindowState = wsMaximized then
-   Writeln(WS,'wsMaximized')
+       Writeln(WS,'wsMaximized')
    else Writeln(WS,'wsNormal');
    end;
    CloseFile(WS);
@@ -545,20 +546,6 @@ statestring:= StringReplace(statestring, #13#10, '', [rfReplaceAll, rfIgnoreCase
 
 
   end;
-
-
-    {
-     try
-     IdHTTP2 := TIdHTTP.Create;
-     //IdHTTP2.ReadTimeout := 30000;
-  //  idHTTP2.IOHandler := TIdSSLIOHandlerSocketOpenSSL.Create(idHTTP2);
-   // idHTTP2.HandleRedirects := True;
-      checkver:= idHTTP2.Get('https://mwallet.burst-team.us:8125/client/0.3.8.2.txt');
-      UpdateAvailable1.Visible := true;
-        IdHTTP2.Free;
-     except
-       //   Showmessage('no new version');
-     end;    }
 
 
   try
@@ -1008,10 +995,12 @@ var
   TS : TextFile;
  begin
  if allcore = false then
+  begin
+    if  percentage < 95 then
 
- try
+      try
 
-     PID := GetProcId('javaw.exe').ToString;
+       PID := GetProcId('javaw.exe').ToString;
     // Showmessage(PID);
        AssignFile(ts,'3rd/close_softly.bat');
        Rewrite(TS);
@@ -1023,11 +1012,11 @@ var
       CloseFile(TS);
       ShellExecute(0, 'open', PChar('close_softly.bat'),PChar('/K'), PChar('3rd'), SW_HIDE);
 
- except
- Killtask('javaw.exe');
+      except
+      Killtask('javaw.exe');
 
 
- end;
+      end;
 
 closedPID := PID;
 Timer2.Enabled:= false;
@@ -1043,7 +1032,7 @@ while closedPID = PID do
 
  WinExec('run_java_autodetect_all_cpus.bat', SW_HIDE);
 
-
+end;
 end;
 
 
@@ -1054,7 +1043,6 @@ BlockchainStatus : TJSONObject;
   currBlockHeight : TJSONValue;
   ownBlockHeight : TJSONValue;
   bcdata: String;
-  percentage: real;
   percentageStr: String;
 begin
   try
@@ -1077,7 +1065,7 @@ begin
    if StrToInt(currBlockHeight.ToString) > 0 then
    begin
    try
-   percentage := (StrToFloat(ownBlockHeight.ToString) / StrToFloat(currBlockHeight.ToString))*100;
+   percentage := ((StrToFloat(ownBlockHeight.ToString) / StrToFloat(currBlockHeight.ToString))*100)+0.001;
    percentageStr := (FloatToStrF((percentage), ffFixed, 15, 2));
    percentageStr := StringReplace(percentageStr,',', '.',[rfReplaceAll, rfIgnoreCase]);
    ToolButton15.Caption := percentageStr +' %';
