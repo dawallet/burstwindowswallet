@@ -35,8 +35,8 @@ object Form4: TForm4
     Caption = 'Choose pool:'
   end
   object Label4: TLabel
-    Left = 17
-    Top = 58
+    Left = 18
+    Top = 74
     Width = 139
     Height = 13
     Caption = 'Change Reward Assignment:'
@@ -65,7 +65,7 @@ object Form4: TForm4
   end
   object Label11: TLabel
     Left = 18
-    Top = 90
+    Top = 118
     Width = 204
     Height = 26
     Caption = 
@@ -86,20 +86,6 @@ object Form4: TForm4
     Width = 10
     Height = 13
     Caption = 'or'
-  end
-  object Label9: TLabel
-    Left = 18
-    Top = 131
-    Width = 125
-    Height = 26
-    Caption = 'Do you get errorCode 5 ? Then try this button -> '
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsItalic]
-    ParentFont = False
-    WordWrap = True
   end
   object Label8: TLabel
     Left = 482
@@ -155,8 +141,8 @@ object Form4: TForm4
       'burst.poolto.be')
   end
   object Button2: TButton
-    Left = 162
-    Top = 52
+    Left = 163
+    Top = 69
     Width = 60
     Height = 25
     Caption = 'Change'
@@ -182,21 +168,12 @@ object Form4: TForm4
     TabOrder = 5
     OnClick = Button5Click
   end
-  object Button6: TButton
-    Left = 162
-    Top = 134
-    Width = 60
-    Height = 25
-    Caption = 'Change'
-    TabOrder = 6
-    OnClick = Button6Click
-  end
   object Edit1: TEdit
     Left = 487
     Top = 28
     Width = 34
     Height = 21
-    TabOrder = 7
+    TabOrder = 6
     Text = '8124'
   end
 end

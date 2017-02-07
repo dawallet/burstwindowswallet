@@ -19,7 +19,7 @@ _____
 
 Changelog:
 
-0.3.9
+0.3.8.2
 
 + soft shutdown of wallet server against db corruption
 + import / export contacts in local wallet

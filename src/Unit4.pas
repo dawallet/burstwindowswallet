@@ -22,8 +22,6 @@ type
     Button5: TButton;
     Label11: TLabel;
     Label1: TLabel;
-    Label9: TLabel;
-    Button6: TButton;
     Edit1: TEdit;
     Label8: TLabel;
     procedure Button2Click(Sender: TObject);
@@ -33,7 +31,7 @@ type
     procedure Label11Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
-    procedure Button6Click(Sender: TObject);
+
   private
     { Private-Deklarationen }
     p: Textfile;
@@ -52,6 +50,8 @@ implementation
 
 {$R *.dfm}
 uses BurstWallet2;
+
+
 function isAvxSupported: Boolean;
 asm
 {$IFDEF CPUX86}
@@ -212,7 +212,7 @@ idHTTP: TIdHTTP;
 dummy: String;
 
 begin
-IdHTTP := TIdHTTP.Create;
+//IdHTTP := TIdHTTP.Create;
  BurstWallet2.Form1.N7.Enabled := True;
  BurstWallet2.Form1.N6.Enabled := True;
 if Label6.Caption='none - choose!' then
@@ -221,11 +221,13 @@ Showmessage('Please choose Pool')
 else
     begin
      try
-     dummy:= (idHTTP.Get('http://localhost:8125/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
-     IdHTTP.free;
+     if BurstWallet2.Form1.percentage < 99 then
+     Form1.Webbrowser1.Navigate('https://wallet.burst-team.us/rewardassignmentshort.html')
+     else
+
      Form1.Webbrowser1.Navigate('http://127.0.0.1:8125/rewardassignmentshort.html');
      except
-     Form1.Webbrowser1.Navigate('http://wallet.burst-team.us/rewardassignmentshort.html')
+     // Form1.Webbrowser1.Navigate('https://wallet.burst-team.us/rewardassignmentshort.html')
      end;
 
 
@@ -252,6 +254,8 @@ if  Label6.Caption = 'pool.burst-team.us' then
      clipboard2.AsText:='BURST-32TT-TSAC-HTKW-CC26C';
 if  Label6.Caption = 'pool.burstcoin.fr' then
      clipboard2.AsText:='BURST-YNJ6-8XEJ-WKKR-2AHTY';
+if  Label6.Caption = 'burstneon.ddns.net' then
+     clipboard2.AsText:='BURST-YXZW-JH7M-QKR9-9PKBN';
   if  Label6.Caption = 'pool.news-asset.com' then
      begin
      clipboard2.AsText:='BURST-GQSC-8NHH-NL2J-7BH4C';
@@ -362,7 +366,7 @@ begin
     addressstring := Copy(filename.Name, 1, Pos('_', filename.Name) - 1);
 
     begin
-    AssignFile(t2,'burstcoin-jminer-0.4.5-RELEASE/jminer.properties');
+    AssignFile(t2,'burstcoin-jminer-0.4.7-SNAPSHOT/jminer.properties');
     Rewrite(T2);
        Writeln(T2,'plotPaths='+directoriesGPU);
        Writeln(T2,'poolMining=true') ;
@@ -380,12 +384,12 @@ begin
        Writeln(T2,'deviceId=0');
        Writeln(T2,'chunkPartNonces=320000');
        Writeln(T2,'refreshInterval=2000');
-       Writeln(T2,'connectionTimeout=6000');
+       Writeln(T2,'connectionTimeout=30000');
 
     CloseFile(T2);
     end;
 
-  ShellExecute(0, 'open', PChar('run.bat'),PChar('/K'), PChar('burstcoin-jminer-0.4.5-RELEASE'), SW_SHOW);
+  ShellExecute(0, 'open', PChar('run.bat'),PChar('/K'), PChar('burstcoin-jminer-0.4.7-SNAPSHOT'), SW_SHOW);
   close;
     end
 
@@ -393,107 +397,6 @@ begin
   end;
   end;
   end;
-
-procedure TForm4.Button6Click(Sender: TObject);
-var
-clipboard2: Tclipboard;
-idHTTP: TIdHTTP;
-dummy: String;
-
-begin
-IdHTTP := TIdHTTP.Create;
- BurstWallet2.Form1.N7.Enabled := True;
- BurstWallet2.Form1.N6.Enabled := True;
-
-if Label6.Caption='none - choose!' then
-Showmessage('Please choose Pool')
-
-else
-    begin
-     Form1.Webbrowser1.Navigate('http://wallet.burst-team.us/rewardassignmentshort.html') ;
-
-
-
-Form1.N7.Enabled := True;
-
-
-clipboard2 := TClipBoard.create;
-
-if Label6.Caption = 'pool.burstcoin.biz' then
-    clipboard2.AsText:='BURST-6WVW-2WVD-YXE5-EZBHU';
-if Label6.Caption = 'pool.burstcoin.eu' then
-    clipboard2.AsText:='BURST-7Z2V-J9CF-NCW9-HWFRY';
-if Label6.Caption = 'burst.ninja' then
-    clipboard2.AsText:='BURST-7CPJ-BW8N-U4XF-CWW3U';
-if  Label6.Caption = 'pool.burstcoin.it' then
-     clipboard2.AsText:='BURST-LGKU-3UUM-M6Q5-86SLK';
-if  Label6.Caption = 'burst.poolto.be' then
-     clipboard2.AsText:='BURST-5AXK-EABZ-7FTB-4NBT9';
-if  Label6.Caption = 'mininghere.com' then
-     clipboard2.AsText:='BURST-7S5L-6UHX-SVS5-BU6HA';
-if  Label6.Caption = 'us-burstpool.broke-it.net' then
-     clipboard2.AsText:='BURST-NM25-LV2Y-KXVC-HUZ67';
-if  Label6.Caption = 'pool.burst-team.us' then
-     clipboard2.AsText:='BURST-32TT-TSAC-HTKW-CC26C';
-if  Label6.Caption = 'pool.burstcoin.fr' then
-     clipboard2.AsText:='BURST-YNJ6-8XEJ-WKKR-2AHTY';
-if  Label6.Caption = 'pool.news-asset.com' then
-     begin
-     clipboard2.AsText:='BURST-GQSC-8NHH-NL2J-7BH4C';
-     port := '7080';
-     end;
- if  Label6.Caption = '216.165.179.42' then
-     begin
-     clipboard2.AsText:='BURST-896D-RERK-UXXN-G97ED';
-     port := '5080';
-     end;
- if  Label6.Caption = 'burst.lexitoshi.uk' then
-     begin
-     clipboard2.AsText:='BURST-F3XD-Y4M5-SN8C-G9FFJ';
-     port := '8124';
-     end;
- if  Label6.Caption = 'pool.burstcoinmining.com' then
-     begin
-     clipboard2.AsText:='BURST-8HDN-MKTJ-GGYV-FY664';
-     port := '6080';
-     end;
-if  Label6.Caption = 'pool.burstcoin.de' then
-     begin
-     clipboard2.AsText:='BURST-GHTV-7ZP3-DY4B-FPBFA';
-     port := '8080';
-     end;
-if  Label6.Caption = 'burstpool.ddns.net' then
-     clipboard2.AsText:='BURST-JGBV-U7YK-SWHM-4P4QS';
- if  Label6.Caption = 'pool.burstmining.club' then
-     clipboard2.AsText:='BURST-RNMB-9FJW-3BJW-F3Z3M';
-if  Label6.Caption = 'pool.burstcoin.party' then
-     begin
-     clipboard2.AsText:='BURST-PHJ5-JMZP-3EQQ-EAA2B';
-     port := '8081';
-     end;
-if  Label6.Caption = 'pool.burstcoinmining.com' then
-     begin
-     clipboard2.AsText:='BURST-8HDN-MKTJ-GGYV-FY664';
-     port := '6080';
-     end;
-if  Label6.Caption = 'pool.burstcoin.ml' then
-     begin
-     clipboard2.AsText:='BURST-67XA-W9AU-MFGE-DAPPG';
-     port := '8020';
-     end;
-if  Label6.Caption = 'burst.btfg.space' then
-     begin
-     clipboard2.AsText:='BURST-6YBP-TDPA-27KD-9MQVX';
-     port := '8124';
-     end;
-if  Label6.Caption = 'pool.rapidcoin.club' then
-     begin
-     clipboard2.AsText:='BURST-X2WJ-RQMQ-SXET-FVAV3';
-     port := '6080';
-     end;
-ShowMessage('The pool address '+clipboard.AsText+' of '+Label6.Caption+' got copied into your clipboard.'+#13#10+ 'Paste it into the second textbox: "Recipient - Burst address of pool" and paste your wallet passphrase in the first textbox.');
-end;
-end;
 
 
 procedure TForm4.ComboBox1Change(Sender: TObject);
