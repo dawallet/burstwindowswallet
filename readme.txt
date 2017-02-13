@@ -19,6 +19,10 @@ _____
 
 Changelog:
 
+0.3.8.3
+
++ bugfix release
+
 0.3.8.2
 
 + soft shutdown of wallet server against db corruption

@@ -22,9 +22,8 @@ object Form11: TForm11
     Height = 52
     Caption = 
       'Sometimes the local Wallet does not start because of a corrupted' +
-      ' DB. Click the Button below and it will delete the Database (DB ' +
-      '/ Blockchain) and restart the local Wallet for you automatically' +
-      '. '
+      ' DB. Click the Button below to delete the Database (DB / Blockch' +
+      'ain) and restart the local Wallet for you automatically. '
     WordWrap = True
   end
   object Label2: TLabel

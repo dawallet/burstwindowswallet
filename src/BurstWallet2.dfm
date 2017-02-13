@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Burst Client for Win v0.3.8.2'
+  Caption = 'Burst Client for Win v0.3.8.3'
   ClientHeight = 467
   ClientWidth = 816
   Color = clBtnFace
@@ -190,7 +190,7 @@ object Form1: TForm1
     Height = 450
     Align = alClient
     TabOrder = 1
-    ExplicitTop = 9
+    ExplicitTop = 8
     ControlData = {
       4C00000056540000822E00000000000000000000000000000000000000000000
       000000004C000000000000000000000001000000E0D057007335CF11AE690800
@@ -236,6 +236,7 @@ object Form1: TForm1
       end
       object N5Burstburstcoinpt1: TMenuItem
         Caption = '[burstcoin.pt]'
+        Visible = False
         OnClick = N5Burstburstcoinpt1Click
       end
       object N2Burstburstcoinbiz1: TMenuItem

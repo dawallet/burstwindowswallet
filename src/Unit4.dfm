@@ -66,11 +66,11 @@ object Form4: TForm4
   object Label11: TLabel
     Left = 18
     Top = 118
-    Width = 204
+    Width = 214
     Height = 26
     Caption = 
-      'For changing reward assignment you need at least 1 Burst e.g. fr' +
-      'om a faucet.'
+      'To change the reward assignment you need at least 1 Burst e.g. f' +
+      'rom a faucet.'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -127,7 +127,6 @@ object Form4: TForm4
       'burst.lexitoshi.uk'
       'burstneon.ddns.net'
       'pool.burstcoin.sk'
-      'pool.news-asset.com'
       'pool.burstcoin.ml'
       'burst.btfg.space'
       'pool.burstcoin.party'

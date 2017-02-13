@@ -817,7 +817,7 @@ end;
 
 procedure TForm1.OnlineLocal1Click(Sender: TObject);
 begin
-Showmessage('The online and local wallet are showing the same if in sync.'+#13#10+'All data is saved distributed on the Blockchain. With the online wallet you do not need to download the whole Blockchain first.  '+#13#10+'As a disadvantage you rely on a third party. With the local wallet you are totally independent but it will show the real balances only if the Blockchain is fully downloaded.')
+Showmessage('The online and local wallet are able to give you access to the same Accounts'+#13#10+'All data is saved distributed on the Blockchain. The online wallet is ready to use but  '+#13#10+'the disadvantage is that you rely on a third party. If it breaks you have to wait until it gets fixed.'+#13#10+'With a synced local wallet you are totally independent but it will show the real balances only if'+#13#10+'the Blockchain is fully downloaded.')
 end;
 
 procedure TForm1.Open1Click(Sender: TObject);
@@ -1025,7 +1025,7 @@ allcore := true;
 while closedPID = PID do
 
  begin
- Delay(5000);
+  Sleep(5000);
  PID := GetProcId('javaw.exe').ToString;
  //Showmessage(PID);
  end;
