@@ -865,7 +865,7 @@ begin
   end;
      try
      IdHTTP2 := TIdHTTP.Create;
-      checkver:= idHTTP2.Get('https://mwallet.burst-team.us:8125/client/0.3.9.txt');
+      checkver:= idHTTP2.Get('https://mwallet.burst-team.us:8125/client/0.4.txt');
       UpdateAvailable1.Visible := true;
         IdHTTP2.Free;
      except

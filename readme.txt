@@ -1,9 +1,10 @@
-
 Burst is a digital currency like Bitcoin but efficient mineable with free gigabytes instead of computation power (CPU, GPU or ASIC)!
+
+https://en.wikipedia.org/wiki/Burstcoin
 
 Everyone with free disk can join mining. It's a truly decentralized and environment friendly alternative to Bitcoin.
 
-You don't need special hardware.
+You don't need special hardware to be part of the network. 
 _____
 
 How to use it:
@@ -11,13 +12,18 @@ How to use it:
 Install or unzip and start Burst_Wallet.exe
 
 It will take some hours until you can use the local wallet, because the Blockchain has to download in the background. 
-You can use the 'Online' Wallet during this time.
+You can use the 'Online' Wallet during this time. 
 
-All-in-one: With this collection of tools you can generate plots and mine them directly! 
+!! All features of the Client do work with an incomplete / unsynced local wallet !!
 
 _____
 
 Changelog:
+
+0.3.9
+
+updated to core version 1.2.8
+see: https://github.com/burst-team/burstcoin/releases/tag/1.2.8
 
 0.3.8.3
 
