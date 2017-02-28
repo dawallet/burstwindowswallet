@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Burst Client for Win v0.3.9'
+  Caption = 'Burst Client for Win v0.3.9.1'
   ClientHeight = 467
   ClientWidth = 816
   Color = clBtnFace
@@ -235,8 +235,7 @@ object Form1: TForm1
         OnClick = N5Burstburstteamus1Click
       end
       object N5Burstburstcoinpt1: TMenuItem
-        Caption = '[burstcoin.pt]'
-        Visible = False
+        Caption = '[burstnation.com]'
         OnClick = N5Burstburstcoinpt1Click
       end
       object N2Burstburstcoinbiz1: TMenuItem
@@ -250,14 +249,9 @@ object Form1: TForm1
         Caption = 'Forums'
         OnClick = Forums2Click
       end
-      object Alttechchat1: TMenuItem
-        Caption = 'Alttech.chat'
-        OnClick = Alttechchat1Click
-      end
       object DDLBlockchain1: TMenuItem
         Caption = 'DDL Blockchain'
         Visible = False
-        OnClick = DDLBlockchain1Click
       end
       object C1: TMenuItem
         Caption = 'Clean up DB'
@@ -6433,17 +6427,14 @@ object Form1: TForm1
       Default = True
       OnClick = N7Click
     end
-    object UpdateAvailable1: TMenuItem
-      Caption = 'Update Available!'
+    object N2: TMenuItem
+      Caption = '-'
       Visible = False
-      object Sourceforge1: TMenuItem
-        Caption = 'Sourceforge'
-        OnClick = Sourceforge1Click
-      end
-      object Github1: TMenuItem
-        Caption = 'Github'
-        OnClick = Github1Click
-      end
+    end
+    object UpdateAvailable1: TMenuItem
+      Caption = 'Please update!'
+      Visible = False
+      OnClick = UpdateAvailable1Click
     end
   end
   object TrayIcon1: TTrayIcon
@@ -18054,5 +18045,12 @@ object Form1: TForm1
     OnTimer = Timer4Timer
     Left = 136
     Top = 408
+  end
+  object Timer3: TTimer
+    Enabled = False
+    Interval = 2000
+    OnTimer = Timer3Timer
+    Left = 400
+    Top = 248
   end
 end

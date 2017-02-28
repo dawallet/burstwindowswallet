@@ -48,12 +48,9 @@ type
     N5Burstburstcoinpt1: TMenuItem;
     N2Burstburstcoinbiz1: TMenuItem;
     UpdateAvailable1: TMenuItem;
-    Sourceforge1: TMenuItem;
-    Github1: TMenuItem;
     Forums2: TMenuItem;
     DDLBlockchain1: TMenuItem;
     OnlineLocal1: TMenuItem;
-    Alttechchat1: TMenuItem;
     C1: TMenuItem;
     WebBrowser1: TWebBrowser;
     Timer2: TTimer;
@@ -62,6 +59,8 @@ type
     ToolButton16: TToolButton;
     ToolButton17: TToolButton;
     Timer4: TTimer;
+    N2: TMenuItem;
+    Timer3: TTimer;
     procedure FormCreate(Sender: TObject);
     procedure About1Click(Sender: TObject);
     procedure AddWallet1Click(Sender: TObject);
@@ -91,23 +90,21 @@ type
     procedure Market1Click(Sender: TObject);
     procedure Lotteries1Click(Sender: TObject);
     procedure Crowdfunding2Click(Sender: TObject);
-    procedure HowToCrowdfund1Click(Sender: TObject);
     procedure ToolButton5Click(Sender: TObject);
     procedure Network1Click(Sender: TObject);
     procedure N10Burstbyburstcoininfo1Click(Sender: TObject);
     procedure N5Burstburstteamus1Click(Sender: TObject);
     procedure N5Burstburstcoinpt1Click(Sender: TObject);
     procedure N2Burstburstcoinbiz1Click(Sender: TObject);
-    procedure Sourceforge1Click(Sender: TObject);
     procedure Github1Click(Sender: TObject);
-    procedure DDLBlockchain1Click(Sender: TObject);
     procedure Forums2Click(Sender: TObject);
     procedure OnlineLocal1Click(Sender: TObject);
-    procedure IRCChat1Click(Sender: TObject);
     procedure Alttechchat1Click(Sender: TObject);
     procedure C1Click(Sender: TObject);
     procedure Timer2Timer(Sender: TObject);
     procedure Timer4Timer(Sender: TObject);
+    procedure UpdateAvailable1Click(Sender: TObject);
+    procedure Timer3Timer(Sender: TObject);
 
 
 
@@ -118,6 +115,7 @@ type
     { Public-Deklarationen }
     mining: String;
     ws: Textfile;
+    fs: Textfile;
     allcore: Boolean;
     percentage: real;
 
@@ -130,7 +128,8 @@ var
 
 
 implementation
-uses Unit5, Unit6, Unit2, Unit4, Unit3, Unit9, Unit10, Unit8, Unit11;
+uses Unit5, Unit6, Unit2, Unit4, Unit3, Unit9, Unit10, Unit11, Unit7, Unit12,
+  Unit13;
 {$R *.dfm}
 
 procedure Delay( const msecs:integer);
@@ -404,7 +403,8 @@ var
    end;
    CloseFile(WS);
 
-   close;
+  Form1.Hide;
+  Form7.Show;
  end;
 
 procedure TForm1.Crowdfunding2Click(Sender: TObject);
@@ -414,10 +414,6 @@ begin
     N6.Enabled := True;
 end;
 
-procedure TForm1.DDLBlockchain1Click(Sender: TObject);
-begin
-Form8.Show;
-end;
 procedure TForm1.DeleteWallet1Click(Sender: TObject);
 begin
      hide;
@@ -459,7 +455,10 @@ clipboard.AsText :='';
    else Writeln(WS,'wsNormal');
    end;
    CloseFile(WS);
-close;
+
+Form1.Hide;
+Form7.Show;
+
 end;
 
 procedure TForm1.FormActivate(Sender: TObject);
@@ -471,7 +470,6 @@ procedure TForm1.FormCreate(Sender: TObject);
 var
   IdHTTP: TIdHTTP;
   IdHTTP2: TIdHTTP;
-  IdHTTP3: TIdHTTP;
   totalcoins: String;
   totalcoinsInt: Integer;
   coinprice: String;
@@ -493,6 +491,7 @@ var
   price_usd_clean: String;
   formatSettings: TFormatSettings;
   statestring: String;
+  firstStart: String;
 
 begin
 statestring := TFile.ReadAllText('var/winstate');
@@ -504,7 +503,8 @@ statestring:= StringReplace(statestring, #13#10, '', [rfReplaceAll, rfIgnoreCase
   // ShowWindow(Handle, SW_NORMAL);
  end;
 
- Sleep(200);
+
+ //Sleep(200);
 
  try
   try
@@ -549,7 +549,7 @@ statestring:= StringReplace(statestring, #13#10, '', [rfReplaceAll, rfIgnoreCase
 
 
   try
-   IdHTTP2.Create;
+   //IdHTTP2.Create;
    LJsonArr := TJsonArray.Create;
 
   // mydata:= idHTTP2.Get('https://api.coinmarketcap.com/v1/ticker/burst/');
@@ -567,7 +567,7 @@ statestring:= StringReplace(statestring, #13#10, '', [rfReplaceAll, rfIgnoreCase
   market_cap_usd := LJsonObj.GetValue('market_cap_usd') as TJSONValue;
 
    // LJsonArr.Free;
-     IdHTTP2.Free;
+    // IdHTTP2.Free;
   except
    // Showmessage('Json error');
   end;
@@ -578,7 +578,7 @@ statestring:= StringReplace(statestring, #13#10, '', [rfReplaceAll, rfIgnoreCase
 
    try
     begin
-     IdHTTP3 := TIdHTTP.Create;
+
      coinprice:= price_btc.ToString.Remove((price_btc.ToString.Length)-1);
      Delete(coinprice, 1,1);
    // coinprice := Copy(coinprice, 1, Pos(',', coinprice) - 1);
@@ -652,7 +652,35 @@ except
 
   end;
 
-  WinExec('run_java_autodetect.bat', SW_HIDE);
+
+   try
+   begin
+    firstStart := TFile.ReadAllText('var/firststart');
+    firstStart := StringReplace(firstStart, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
+    if firstStart = 'true' then
+      begin
+
+       AssignFile(fs,'var/firststart');
+       Rewrite(FS);
+       Writeln(FS,'false');
+       CloseFile(FS);
+       Timer3.Enabled:= true;
+      end;
+
+
+   end;
+   except
+   Showmessage('Something went wrong');
+ end;
+
+ try
+  if firstStart ='false' then
+     WinExec('run_java_autodetect.bat', SW_HIDE);
+ finally
+
+ end;
+
+
 end;
 
 
@@ -683,28 +711,16 @@ begin
 end;
 
 
-procedure TForm1.HowToCrowdfund1Click(Sender: TObject);
-begin
-ShellExecute(0, 'open', 'https://forums.burst-team.us/topic/69/how-to-start-a-crowdfund-on-burst-quickstart-manual', nil, nil, SW_SHOWNORMAL);
-
-end;
-
-
-procedure TForm1.IRCChat1Click(Sender: TObject);
-begin
-ShellExecute(0, 'open', 'https://kiwiirc.com/client/irc.kiwiirc.com/##burst-coin', nil, nil, SW_SHOWNORMAL);
-
-end;
-
 procedure TForm1.LoadWallet1Click(Sender: TObject);
 begin
-                    Form6.Show;
+     WebBrowser1.Refresh;
+     Form6.Show;
 end;
 
 procedure TForm1.Lotteries1Click(Sender: TObject);
 begin
-             WebBrowser1.Navigate('http://127.0.0.1:8125/atlotteries.html');
-         N7.Enabled := True;
+          WebBrowser1.Navigate('http://127.0.0.1:8125/atlotteries.html');
+          N7.Enabled := True;
           N6.Enabled := True;
 end;
 
@@ -725,7 +741,7 @@ end;
 
 procedure TForm1.N5Burstburstcoinpt1Click(Sender: TObject);
 begin
-ShellExecute(0, 'open', 'http://faucet.burstcoin.pt', nil, nil, SW_SHOWNORMAL);
+ShellExecute(0, 'open', 'http://faucet.burstnation.com', nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TForm1.N5Burstburstteamus1Click(Sender: TObject);
@@ -827,18 +843,10 @@ begin
  Application.BringToFront()
 end;
 
-procedure TForm1.Sourceforge1Click(Sender: TObject);
-begin
-ShellExecute(0, 'open', 'https://sourceforge.net/projects/burstwindowswallet/', nil, nil, SW_SHOWNORMAL);
-
-end;
-
 procedure TForm1.Timer1Timer(Sender: TObject);
 var
 
-    IdHTTP: TIdHTTP;
     IdHTTP2: TIdHTTP;
-    IdHTTP3: TIdHTTP;
     coinprice: String;
     result: real;
     marketcap: String;
@@ -865,8 +873,9 @@ begin
   end;
      try
      IdHTTP2 := TIdHTTP.Create;
-      checkver:= idHTTP2.Get('https://mwallet.burst-team.us:8125/client/0.4.txt');
+      checkver:= idHTTP2.Get('https://mwallet.burst-team.us:8125/client/0.3.9.1.txt');
       UpdateAvailable1.Visible := true;
+      N2.Visible := true;
         IdHTTP2.Free;
      except
        //   Showmessage('no new version');
@@ -897,13 +906,9 @@ begin
    // Showmessage('Json error');
   end;
 
-
-
-
-
    try
     begin
-     IdHTTP3 := TIdHTTP.Create;
+
      coinprice:= price_btc.ToString.Remove((price_btc.ToString.Length)-1);
      Delete(coinprice, 1,1);
    // coinprice := Copy(coinprice, 1, Pos(',', coinprice) - 1);
@@ -976,13 +981,13 @@ except
 
   end;
 
-  try
+ { try
      GetURLAsString('http://localhost:8125/burst?requestType=getBlockchainStatus');
 
   except
 
   end;
-
+  }
 end;
 
 
@@ -1036,6 +1041,13 @@ end;
 end;
 
 
+
+
+procedure TForm1.Timer3Timer(Sender: TObject);
+begin
+Form13.Show;
+Timer3.Enabled := false;
+end;
 
 procedure TForm1.Timer4Timer(Sender: TObject);
 var
@@ -1121,6 +1133,11 @@ procedure TForm1.TrayIcon1MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
      // PopupMenu1.Popup(Mouse.CursorPos.X, Mouse.CursorPos.Y);
+end;
+
+procedure TForm1.UpdateAvailable1Click(Sender: TObject);
+begin
+Form12.Show
 end;
 
 end.
