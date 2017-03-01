@@ -20,6 +20,15 @@ _____
 
 Changelog:
 
+0.3.9.1
+
+updated jminer to version 0.4.8 -> https://github.com/de-luxe/burstcoin-jminer/releases
+Shutdown and welcome dialog
+better background sync of local wallet
+DeviceID option for jminer
+XPlotter admin mode option
+minor improvements and bugfixes
+
 0.3.9
 
 updated to core version 1.2.8

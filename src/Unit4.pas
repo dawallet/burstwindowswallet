@@ -38,8 +38,10 @@ type
     pool : String;
     port : String;
 
+
   public
     { Public-Deklarationen }
+     deviceID : String;
   end;
 
 var
@@ -49,7 +51,7 @@ var
 implementation
 
 {$R *.dfm}
-uses BurstWallet2;
+uses BurstWallet2, Unit14;
 
 
 function isAvxSupported: Boolean;
@@ -102,6 +104,31 @@ function IsDirectoryEmpty(const directory : string) : boolean;
      FindClose(searchRec) ;
    end;
  end;
+
+ function MyMessageDlg(CONST Msg: string; DlgTypt: TmsgDlgType; button: TMsgDlgButtons;
+  Caption: ARRAY OF string; dlgcaption: string): Integer;
+var
+  aMsgdlg: TForm;
+  i: Integer;
+  Dlgbutton: Tbutton;
+  Captionindex: Integer;
+begin
+  aMsgdlg := createMessageDialog(Msg, DlgTypt, button);
+  aMsgdlg.Caption := dlgcaption;
+  aMsgdlg.BiDiMode := bdRightToLeft;
+  Captionindex := 0;
+  for i := 0 to aMsgdlg.componentcount - 1 Do
+  begin
+    if (aMsgdlg.components[i] is Tbutton) then
+    Begin
+      Dlgbutton := Tbutton(aMsgdlg.components[i]);
+      if Captionindex <= High(Caption) then
+        Dlgbutton.Caption := Caption[Captionindex];
+      inc(Captionindex);
+    end;
+  end;
+  Result := aMsgdlg.Showmodal;
+end;
 
 procedure GetFilenames(Path: string; Dest: TStrings);
 var
@@ -215,10 +242,11 @@ begin
 //IdHTTP := TIdHTTP.Create;
  BurstWallet2.Form1.N7.Enabled := True;
  BurstWallet2.Form1.N6.Enabled := True;
-if Label6.Caption='none - choose!' then
-Showmessage('Please choose Pool')
+if ComboBox1.Text = '' then
+Showmessage('Please choose a Pool')
 
-else
+  else
+  begin
     begin
      try
      if BurstWallet2.Form1.percentage < 99 then
@@ -256,6 +284,9 @@ if  Label6.Caption = 'pool.burstcoin.fr' then
      clipboard2.AsText:='BURST-YNJ6-8XEJ-WKKR-2AHTY';
 if  Label6.Caption = 'burstneon.ddns.net' then
      clipboard2.AsText:='BURST-YXZW-JH7M-QKR9-9PKBN';
+if  Label6.Caption = 'pool.burstcoin.sk' then
+     clipboard2.AsText:='BURST-NACG-ZZDB-BHX7-9ELAF';
+
   if  Label6.Caption = 'pool.news-asset.com' then
      begin
      clipboard2.AsText:='BURST-GQSC-8NHH-NL2J-7BH4C';
@@ -321,9 +352,10 @@ if  Label6.Caption = 'pool.rapidcoin.club' then
      port := '6080';
      end;
 ShowMessage('The pool address '+clipboard.AsText+' of '+Combobox1.Text+' got copied into your clipboard.'+#13#10+ 'Paste it into the second textbox: "Recipient - Burst address of pool" and paste your wallet passphrase in the first textbox.');
-end;
-end;
 
+  end;
+end;
+end;
 
 procedure TForm4.Button5Click(Sender: TObject);
  var
@@ -335,6 +367,10 @@ procedure TForm4.Button5Click(Sender: TObject);
    idHTTP: TIdHTTP;
    filename : TSearchRec;
    plotDirectory: String;
+   platformID : String;
+   trigger : boolean;
+
+   buttonSelected: Integer;
 begin
   if ListBox1.Items.Count < 1 then
  Showmessage('No plots found. You have to generate plots before mining! Or you have to put your Plots to: X:\Burst\plots or X:\plots\')
@@ -345,6 +381,7 @@ begin
     Rewrite(T4);
     Writeln(T4,Edit1.Text);
     CloseFile(t4);
+
  end;
 
 
@@ -365,8 +402,31 @@ begin
     FindClose(filename);
     addressstring := Copy(filename.Name, 1, Pos('_', filename.Name) - 1);
 
+   // Show a custom dialog
+   platformID:='0';
+   deviceID:='0';
+
+   begin
+     buttonSelected := MessageDlg('Use your second openCL device to mine?', mtCustom,[mbNo, mbYes], 0);
+       if buttonSelected = mrCancel then
+     begin
+
+     end;
+     if buttonSelected = mrNo then
+     begin
+       deviceID:='0';
+     end;
+     if buttonSelected = mrYes then
+     begin
+       deviceID:='1';
+     end;
+
+
+   end;
+
+
     begin
-    AssignFile(t2,'burstcoin-jminer-0.4.7-SNAPSHOT/jminer.properties');
+    AssignFile(t2,'burstcoin-jminer-0.4.8-RELEASE/jminer.properties');
     Rewrite(T2);
        Writeln(T2,'plotPaths='+directoriesGPU);
        Writeln(T2,'poolMining=true') ;
@@ -380,8 +440,8 @@ begin
        Writeln(T2,'soloServer=http://localhost:8125');
        Writeln(T2,'passPhrase=xxxxxxxxxxxxxx');
        Writeln(T2,'targetDeadline=');
-       Writeln(T2,'platformId=0');
-       Writeln(T2,'deviceId=0');
+       Writeln(T2,'platformId='+platformID);
+       Writeln(T2,'deviceId='+deviceID);
        Writeln(T2,'chunkPartNonces=320000');
        Writeln(T2,'refreshInterval=2000');
        Writeln(T2,'connectionTimeout=30000');
@@ -389,10 +449,10 @@ begin
     CloseFile(T2);
     end;
 
-  ShellExecute(0, 'open', PChar('run.bat'),PChar('/K'), PChar('burstcoin-jminer-0.4.7-SNAPSHOT'), SW_SHOW);
+  ShellExecute(0, 'open', PChar('run.bat'),PChar('/K'), PChar('burstcoin-jminer-0.4.8-RELEASE'), SW_SHOW);
   close;
-    end
 
+   end;
 
   end;
   end;
@@ -502,7 +562,7 @@ end;
 
 procedure TForm4.Label11Click(Sender: TObject);
 begin
-ShellExecute(0, 'open', 'http://faucet.burst-team.us', nil, nil, SW_SHOWNORMAL);
+ShellExecute(0, 'open', 'http://burstcoin.biz/faucet', nil, nil, SW_SHOWNORMAL);
 end;
 
 

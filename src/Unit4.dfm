@@ -5,7 +5,7 @@ object Form4: TForm4
   BorderStyle = bsToolWindow
   Caption = 'Miner '
   ClientHeight = 177
-  ClientWidth = 531
+  ClientWidth = 543
   Color = clBtnFace
   DefaultMonitor = dmMainForm
   Font.Charset = DEFAULT_CHARSET
@@ -124,13 +124,12 @@ object Form4: TForm4
     TabOrder = 2
     OnChange = ComboBox1Change
     Items.Strings = (
+      'pool.burstcoin.party'
       'burst.lexitoshi.uk'
       'burstneon.ddns.net'
       'pool.burstcoin.sk'
       'pool.burstcoin.ml'
       'burst.btfg.space'
-      'pool.burstcoin.party'
-      'pool.burstcoin.fr'
       'burstpool.ddns.net'
       'pool.burstmining.club'
       'pool.burstcoinmining.com'
@@ -157,8 +156,8 @@ object Form4: TForm4
     TabOrder = 4
   end
   object Button5: TButton
-    Left = 365
-    Top = 136
+    Left = 367
+    Top = 137
     Width = 154
     Height = 25
     Hint = 'GPU assisted mining with OpenCL'

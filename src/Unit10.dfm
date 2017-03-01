@@ -1,17 +1,18 @@
 object Form10: TForm10
   Left = 0
   Top = 0
-  BorderIcons = []
+  BorderIcons = [biSystemMenu]
   BorderStyle = bsToolWindow
   Caption = 'About'
-  ClientHeight = 461
-  ClientWidth = 374
+  ClientHeight = 454
+  ClientWidth = 363
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  FormStyle = fsStayOnTop
   OldCreateOrder = False
   Position = poMainFormCenter
   PixelsPerInch = 96
@@ -35,25 +36,18 @@ object Form10: TForm10
     Caption = 'Burst Client version 0.3.9 (for Burst Wallet 1.2.8) by daWallet.'
   end
   object Label3: TLabel
-    Left = 24
-    Top = 385
-    Width = 135
-    Height = 13
-    Caption = 'You want to buy me a beer?'
-  end
-  object Label4: TLabel
-    Left = 63
-    Top = 424
-    Width = 96
-    Height = 13
-    Caption = 'www.burst-team.us'
+    Left = 93
+    Top = 382
+    Width = 209
+    Height = 18
+    Caption = 'Donate for faster development:'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
     Font.Name = 'Tahoma'
-    Font.Style = [fsUnderline]
+    Font.Style = [fsBold]
     ParentFont = False
-    OnClick = Label4Click
+    WordWrap = True
   end
   object Label5: TLabel
     Left = 24
@@ -637,21 +631,26 @@ object Form10: TForm10
       0749F008D583070F1E24C123540F1E3C7890048F503D78F0E04112FE1FA40B97
       0946F0D9B60000000049454E44AE426082}
   end
-  object Button1: TButton
-    Left = 237
-    Top = 419
-    Width = 84
-    Height = 25
-    Caption = 'Ok'
-    TabOrder = 0
-    OnClick = Button1Click
+  object Label4: TLabel
+    Left = 125
+    Top = 425
+    Width = 96
+    Height = 13
+    Caption = 'www.burst-team.us'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsUnderline]
+    ParentFont = False
+    OnClick = Label4Click
   end
   object Edit1: TEdit
-    Left = 177
-    Top = 382
+    Left = 100
+    Top = 398
     Width = 166
     Height = 21
-    TabOrder = 1
+    TabOrder = 0
     Text = 'BURST-YZJ6-LYBY-WAC6-BQYGC'
   end
 end
