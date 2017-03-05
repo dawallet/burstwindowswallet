@@ -61,6 +61,7 @@ type
     Timer4: TTimer;
     N2: TMenuItem;
     Timer3: TTimer;
+    pingofburstbin1: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure About1Click(Sender: TObject);
     procedure AddWallet1Click(Sender: TObject);
@@ -105,6 +106,7 @@ type
     procedure Timer4Timer(Sender: TObject);
     procedure UpdateAvailable1Click(Sender: TObject);
     procedure Timer3Timer(Sender: TObject);
+    procedure pingofburstbin1Click(Sender: TObject);
 
 
 
@@ -373,6 +375,7 @@ var
   PID : String;
   TS : TextFile;
  begin
+ Timer2.Enabled:=false;
    try
 
      PID := GetProcId('javaw.exe').ToString;
@@ -425,6 +428,7 @@ var
   PID : String;
   TS : TextFile;
  begin
+ Timer2.Enabled:=false;
  try
 
      PID := GetProcId('javaw.exe').ToString;
@@ -492,13 +496,14 @@ var
   formatSettings: TFormatSettings;
   statestring: String;
   firstStart: String;
+  MemoryJava: TMemoryStatusex;
 
 begin
 statestring := TFile.ReadAllText('var/winstate');
 statestring:= StringReplace(statestring, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
  begin
    if statestring = 'wsMaximized' then
-   ShowWindow(Handle, SW_MAXIMIZE)
+     ShowWindowAsync(Handle, SW_MAXIMIZE)
    else
   // ShowWindow(Handle, SW_NORMAL);
  end;
@@ -673,9 +678,19 @@ except
    Showmessage('Something went wrong');
  end;
 
+  MemoryJava.dwLength := SizeOf(MemoryJava);
+  GlobalMemoryStatusEx(MemoryJava);
+
  try
   if firstStart ='false' then
-     WinExec('run_java_autodetect.bat', SW_HIDE);
+ // Showmessage(IntToStr(MemoryJava.ullAvailPhys));
+      if MemoryJava.ullAvailPhys > 1000000000 then
+        WinExec('run_java_autodetect.bat', SW_HIDE)
+        else
+         begin
+         Showmessage('Not enough free RAM to run the the Local Wallet. Use the Online Wallet instead.'+#13#10+'The Burst Client is fully functional without a running Local Wallet.');
+         N7.Visible := false;
+         end;
  finally
 
  end;
@@ -713,7 +728,6 @@ end;
 
 procedure TForm1.LoadWallet1Click(Sender: TObject);
 begin
-     WebBrowser1.Refresh;
      Form6.Show;
 end;
 
@@ -843,6 +857,11 @@ begin
  Application.BringToFront()
 end;
 
+procedure TForm1.pingofburstbin1Click(Sender: TObject);
+begin
+ShellExecute(0, 'open', 'http://faucet.pingofburst.win', nil, nil, SW_SHOWNORMAL);
+end;
+
 procedure TForm1.Timer1Timer(Sender: TObject);
 var
 
@@ -886,7 +905,6 @@ begin
    IdHTTP2.Create;
    LJsonArr := TJsonArray.Create;
 
-  // mydata:= idHTTP2.Get('https://api.coinmarketcap.com/v1/ticker/burst/');
   mydata:= GetURLAsString('https://api.coinmarketcap.com/v1/ticker/burst/');
   //   Showmessage(mydata);
 

@@ -432,10 +432,10 @@ begin
        Writeln(T2,'poolMining=true') ;
        Writeln(T2,'numericAccountId='+addressstring);
        Writeln(T2,'poolServer=http://'+Label6.Caption+':'+Edit1.Text);
-       Writeln(T2,'walletServer=');
+       Writeln(T2,'walletServer=http://localhost:8125');
        Writeln(T2,'winnerRetriesOnAsync=');
        Writeln(T2,'winnerRetryIntervalInMs=');
-       Writeln(T2,'devPool=');
+       Writeln(T2,'devPool=false');
        Writeln(T2,'devPoolCommitsPerRound=');
        Writeln(T2,'soloServer=http://localhost:8125');
        Writeln(T2,'passPhrase=xxxxxxxxxxxxxx');

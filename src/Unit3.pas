@@ -25,13 +25,14 @@ type
     CheckBox2: TCheckBox;
     Edit3: TEdit;
     Label18: TLabel;
-    procedure FormActivate(Sender: TObject);
+    CheckBox1: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure TrackBar1Change(Sender: TObject);
     procedure TrackBar2Change(Sender: TObject);
     procedure CheckBox2Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
   private
     { Private-Deklarationen }
 
@@ -300,18 +301,24 @@ if Trackbar1.Position = 1 then
   else
     begin
 
-    if isWin64 = true then
+    if isWin64 = false then
     begin
      parameters:= StringReplace((parameters),':"',' ',[rfReplaceAll]);
 
+    if CheckBox1.Checked = true      then
+
+    ShellExecute(0, 'RunAs', PChar('cmd.exe'),PChar('/K '+GetCurrentDir+'\XPlotter\'+parameters), PChar(path), SW_SHOW)
+     else
     ShellExecute(0, 'open', PChar('cmd.exe'),PChar('/K '+parameters), PChar(path), SW_SHOW);
+
      end
       else
      begin
+      pocParameters:= StringReplace((pocParameters),':"',' ',[rfReplaceAll]);
     Showmessage('You use a 32 bit system! For you theres only the original java plotter available which is slower.');
 
     BatContent:=TStringList.Create;
-    BatContent.Add('java -Xmx'+IntToStr(Memory.ullTotalPhys div 900 div 4096)+'m -cp pocminer.jar;lib/*;lib/akka/*;lib/jetty/* pocminer.POCMiner generate %*');
+    BatContent.Add('java -Xmx'+IntToStr(Memory.ullAvailPhys div 900 div 4096)+'m -cp pocminer.jar;lib/*;lib/akka/*;lib/jetty/* pocminer.POCMiner generate %*');
     BatContent.SaveToFile(path+'/run_generate.bat');
     BatContent.Free;
 
@@ -347,6 +354,7 @@ begin
     Label18.Show;
     Edit3.Show;
 
+
    end
   else
   begin
@@ -369,25 +377,17 @@ begin
 end;
 
 procedure TForm3.FormActivate(Sender: TObject);
-var
-address: String;
-
-  begin
-
-  Label1.Caption:= 'You have ' + IntToStr(Form2.FreeD) + ' GB free on the chosen Drive. You want to fill 1GB with Plots?';
+begin
+Label1.Caption:= 'You have ' + IntToStr(Form2.FreeD) + ' GB free on the chosen Drive. You want to fill 1 GB with Plots?';
   Label2.Caption:= IntToStr(Form2.FreeD-1) + ' GB';
   TrackBar1.Max:= Form2.FreeD-1;
   TrackBar2.Position:= System.CPUCount;
-
-  address:=TFile.ReadAllText('XPlotter/miningaddress.txt');
-  address:= StringReplace(address, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
-  Textfield.Text:=(address);
-
-  end;
+end;
 
 procedure TForm3.FormCreate(Sender: TObject);
 var
   Memory: TMemoryStatus;
+  address: String;
 begin
   Label4.Caption := 'How many CPU cores you want to use?  You chose: X';
   Label5.Caption := IntToStr(System.CPUCount) + ' Cores';
@@ -398,6 +398,16 @@ begin
 
  // Form3.ClientWidth:= 448;
  // Button2.Left := 350;
+
+
+
+  
+
+  address:=TFile.ReadAllText('XPlotter/miningaddress.txt');
+  address:= StringReplace(address, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
+  Textfield.Text:=(address);
+
+
 end;
 
 procedure TForm3.TrackBar1Change(Sender: TObject);

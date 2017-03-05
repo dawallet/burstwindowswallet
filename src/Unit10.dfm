@@ -20,7 +20,7 @@ object Form10: TForm10
   object Label1: TLabel
     Left = 24
     Top = 321
-    Width = 319
+    Width = 303
     Height = 39
     Caption = 
       'Using Official Online Wallet: https://wallet.burst-team.us by ha' +
@@ -36,11 +36,11 @@ object Form10: TForm10
     Caption = 'Burst Client version 0.3.9 (for Burst Wallet 1.2.8) by daWallet.'
   end
   object Label3: TLabel
-    Left = 93
-    Top = 382
-    Width = 209
-    Height = 18
-    Caption = 'Donate for faster development:'
+    Left = 92
+    Top = 380
+    Width = 217
+    Height = 39
+    Caption = 'Donate for further development:'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -91,8 +91,8 @@ object Form10: TForm10
     OnClick = Label9Click
   end
   object Image1: TImage
-    Left = 8
-    Top = 24
+    Left = 0
+    Top = 23
     Width = 340
     Height = 145
     Picture.Data = {
@@ -648,7 +648,7 @@ object Form10: TForm10
   object Edit1: TEdit
     Left = 100
     Top = 398
-    Width = 166
+    Width = 173
     Height = 21
     TabOrder = 0
     Text = 'BURST-YZJ6-LYBY-WAC6-BQYGC'
