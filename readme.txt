@@ -20,14 +20,22 @@ _____
 
 Changelog:
 
+0.3.9.2
+
++ Checks available RAM before starting local wallet
++ bugfix in x86 plotter function
++ bugfix "maximized at start"
++ revert automatic logout when loading passphrase
++ new faucet 
+
 0.3.9.1
 
-updated jminer to version 0.4.8 -> https://github.com/de-luxe/burstcoin-jminer/releases
-Shutdown and welcome dialog
-better background sync of local wallet
-DeviceID option for jminer
-XPlotter admin mode option
-minor improvements and bugfixes
++ updated jminer to version 0.4.8 -> https://github.com/de-luxe/burstcoin-jminer/releases
++ Shutdown and welcome dialog
++ better background sync of local wallet
++ DeviceID option for jminer
++ XPlotter admin mode option
++ minor improvements and bugfixes
 
 0.3.9
 
