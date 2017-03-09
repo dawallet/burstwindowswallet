@@ -20,7 +20,7 @@ object Form10: TForm10
   object Label1: TLabel
     Left = 24
     Top = 321
-    Width = 303
+    Width = 298
     Height = 39
     Caption = 
       'Using Official Online Wallet: https://wallet.burst-team.us by ha' +
@@ -38,8 +38,8 @@ object Form10: TForm10
   object Label3: TLabel
     Left = 92
     Top = 380
-    Width = 217
-    Height = 39
+    Width = 184
+    Height = 13
     Caption = 'Donate for further development:'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText

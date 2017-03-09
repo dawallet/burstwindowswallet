@@ -19,6 +19,11 @@ You can use the 'Online' Wallet during this time.
 _____
 
 Changelog:
+New Version of 0.3.9.2 by Menaxerius
+
++ replaced online wallets on Haitch's Cluster with burstnation online wallets 
++ Set rebroadcasting to after 32 blocks every 4 blocks
++ replaced Burst-team links with Burstnation links
 
 0.3.9.2
 

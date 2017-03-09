@@ -46,7 +46,7 @@ end;
 
 procedure TForm10.Label4Click(Sender: TObject);
 begin
-ShellExecute(0, 'open', 'https://www.burst-team.us', nil, nil, SW_SHOWNORMAL);
+ShellExecute(0, 'open', 'https://www.burstnation.com', nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TForm10.Label6Click(Sender: TObject);
@@ -56,7 +56,7 @@ end;
 
 procedure TForm10.Label9Click(Sender: TObject);
 begin
-ShellExecute(0, 'open', 'https://forums.burst-team.us/category/9/burst-software', nil, nil, SW_SHOWNORMAL);
+ShellExecute(0, 'open', 'https://www.burstnation.com/filebase/', nil, nil, SW_SHOWNORMAL);
 end;
 
 

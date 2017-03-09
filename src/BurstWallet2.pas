@@ -126,8 +126,8 @@ type
 var
   Form1: TForm1;
 
-
-
+ //This Version got edited by Menaxerius to switch to Burstnation Wallets
+ // Feel free to Support me BURST-Y77Y-HWGC-XSMF-2BPZM
 
 implementation
 uses Unit5, Unit6, Unit2, Unit4, Unit3, Unit9, Unit10, Unit11, Unit7, Unit12,
@@ -517,24 +517,24 @@ statestring:= StringReplace(statestring, #13#10, '', [rfReplaceAll, rfIgnoreCase
      N7.Enabled := true;
      N6.Enabled := false;
     try
-   dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8125/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
-    WebBrowser1.Navigate('https://wallet.burst-team.us:8125');
+   dummy2:= (idHTTP2.Get('https://wallet1.burstnation.com:8125/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
+    WebBrowser1.Navigate('https://wallet1.burstnation.com:8125');
      except
       try
-         dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8126/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
-         WebBrowser1.Navigate('https://wallet.burst-team.us:8126');
+         dummy2:= (idHTTP2.Get('https://wallet2.burstnation.com:8125/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
+         WebBrowser1.Navigate('https://wallet2.burstnation.com:8125');
      except
      try
-      dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8127/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
-      WebBrowser1.Navigate('https://wallet.burst-team.us:8127');
+      dummy2:= (idHTTP2.Get('https://wallet3.burstnation.com:8125/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
+      WebBrowser1.Navigate('https://wallet3.burstnation.com:8125');
        except
       try
-      dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8128/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
-      WebBrowser1.Navigate('https://wallet.burst-team.us:8128');
+      dummy2:= (idHTTP2.Get('https://wallet4.burstnation.com:8125/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
+      WebBrowser1.Navigate('https://wallet4.burstnation.com:8125');
       except
         try
-        dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8128/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
-        WebBrowser1.Navigate('https://wallet.burst-team.us:8128');
+        dummy2:= (idHTTP2.Get('https://wallet5.burstnation.com:8125/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
+        WebBrowser1.Navigate('https://wallet5.burstnation.com:8125');
         except
         Showmessage('All online wallets are not available at the moment or you have no internet connection.');
 
@@ -710,7 +710,7 @@ end;
 
 procedure TForm1.Forums2Click(Sender: TObject);
 begin
-ShellExecute(0, 'open', 'https://forums.burst-team.us/category/5/help-support', nil, nil, SW_SHOWNORMAL);
+ShellExecute(0, 'open', 'https://www.burstnation.com/wbb/index.php?board/3-help-and-support/', nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TForm1.Github1Click(Sender: TObject);
@@ -722,7 +722,7 @@ procedure TForm1.HeaderControl1MouseActivate(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y, HitTest: Integer;
   var MouseActivate: TMouseActivate);
 begin
-   WebBrowser1.Navigate('https://wallet.burst-team.us');
+   WebBrowser1.Navigate('https://wallet1.burstnation.com:8125');
 end;
 
 
@@ -772,24 +772,24 @@ IdHTTP2 := TIdHTTP.Create;
  N7.Enabled := True;
  N6.Enabled := False;
  try
- dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8125/burst?requestType=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
- WebBrowser1.Navigate('https://wallet.burst-team.us:8125');
+ dummy2:= (idHTTP2.Get('https://wallet1.burstnation.com:8125/burst?requestType=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
+ WebBrowser1.Navigate('https://wallet1.burstnation.com:8125');
  except
   try
-    dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8126/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
-    WebBrowser1.Navigate('https://wallet.burst-team.us:8126');
+    dummy2:= (idHTTP2.Get('https://wallet1.burstnation.com:8125/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
+    WebBrowser1.Navigate('https://wallet1.burstnation.com:8125');
   except
     try
-     dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8127/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
-     WebBrowser1.Navigate('https://wallet.burst-team.us:8127');
+     dummy2:= (idHTTP2.Get('https://wallet1.burstnation.com:8125/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
+     WebBrowser1.Navigate('https://wallet1.burstnation.com:8125');
     except
       try
-      dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8128/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
-      WebBrowser1.Navigate('https://wallet.burst-team.us:8128');
+      dummy2:= (idHTTP2.Get('https://wallet1.burstnation.com:8125/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
+      WebBrowser1.Navigate('https://wallet1.burstnation.com:8125');
       except
         try
-        dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8128/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
-        WebBrowser1.Navigate('https://wallet.burst-team.us:8128');
+        dummy2:= (idHTTP2.Get('https://wallet1.burstnation.com:8125/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
+        WebBrowser1.Navigate('https://wallet1.burstnation.com:8125');
         except
         Showmessage('All online wallets are down at the moment :( or you have no internet connection!');
 
@@ -828,19 +828,19 @@ end;
 
 procedure TForm1.Network1Click(Sender: TObject);
 begin
-ShellExecute(0, 'open', 'http://util.burst-team.us:8888', nil, nil, SW_SHOWNORMAL);
+ShellExecute(0, 'open', 'https://www.burstnation.com/filebase/', nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TForm1.Online1Click(Sender: TObject);
 begin
-           WebBrowser1.Navigate('https://wallet.burst-team.us/atcrowdfund.html');
+           WebBrowser1.Navigate('https://wallet1.burstnation.com:8125/atcrowdfund.html');
     N7.Enabled := True;
  N6.Enabled := True;
 end;
 
 procedure TForm1.Online2Click(Sender: TObject);
 begin
-      WebBrowser1.Navigate('https://wallet.burst-team.us/atlotteries.html');
+      WebBrowser1.Navigate('https://wallet1.burstnation.com:8125/atlotteries.html');
          N7.Enabled := True;
           N6.Enabled := True;
 end;
@@ -892,7 +892,7 @@ begin
   end;
      try
      IdHTTP2 := TIdHTTP.Create;
-      checkver:= idHTTP2.Get('https://mwallet.burst-team.us:8125/client/0.3.9.1.txt');
+      checkver:= idHTTP2.Get('https://wallet1.burstnation.com:8125/client/0.3.9.1.txt');
       UpdateAvailable1.Visible := true;
       N2.Visible := true;
         IdHTTP2.Free;

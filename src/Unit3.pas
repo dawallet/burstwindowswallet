@@ -188,7 +188,7 @@ IdHTTP := TIdHTTP.Create;
     end;
    except
     try
-     addressstring:= (idHTTP.Get('https://wallet.burst-team.us:8125/burst?requestType=rsConvert&account='+Textfield.Text));
+     addressstring:= (idHTTP.Get('https://wallet1.burstnation.com:8125/burst?requestType=rsConvert&account='+Textfield.Text));
     Delete(addressstring, 1, 79);
     addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
     addressstring:= StringReplace((addressstring),' ','',[rfReplaceAll]);
@@ -196,7 +196,7 @@ IdHTTP := TIdHTTP.Create;
     addressstring:= StringReplace((addressstring),#13#10,'',[rfReplaceAll]);
     except
        try
-       addressstring:= (idHTTP.Get('https://wallet.burst-team.us:8126/burst?requestType=rsConvert&account='+Textfield.Text));
+       addressstring:= (idHTTP.Get('https://wallet2.burstnation.com:8125/burst?requestType=rsConvert&account='+Textfield.Text));
     Delete(addressstring, 1, 79);
     addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
     addressstring:= StringReplace((addressstring),' ','',[rfReplaceAll]);
@@ -204,7 +204,7 @@ IdHTTP := TIdHTTP.Create;
     addressstring:= StringReplace((addressstring),#13#10,'',[rfReplaceAll]);
        except
            try
-       addressstring:= (idHTTP.Get('https://wallet.burst-team.us:8127/burst?requestType=rsConvert&account='+Textfield.Text));
+       addressstring:= (idHTTP.Get('https://wallet3.burstnation.com:8125/burst?requestType=rsConvert&account='+Textfield.Text));
     Delete(addressstring, 1, 79);
     addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
     addressstring:= StringReplace((addressstring),' ','',[rfReplaceAll]);
@@ -212,7 +212,7 @@ IdHTTP := TIdHTTP.Create;
     addressstring:= StringReplace((addressstring),#13#10,'',[rfReplaceAll]);
        except
             try
-             addressstring:= (idHTTP.Get('https://wallet.burst-team.us:8128/burst?requestType=rsConvert&account='+Textfield.Text));
+             addressstring:= (idHTTP.Get('https://wallet4.burstnation.com:8125/burst?requestType=rsConvert&account='+Textfield.Text));
               Delete(addressstring, 1, 79);
               addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
               addressstring:= StringReplace((addressstring),' ','',[rfReplaceAll]);
@@ -301,8 +301,8 @@ if Trackbar1.Position = 1 then
   else
     begin
 
-    if isWin64 = false then
-    begin
+    //if isWin64 = false then
+    //begin
      parameters:= StringReplace((parameters),':"',' ',[rfReplaceAll]);
 
     if CheckBox1.Checked = true      then
@@ -311,19 +311,19 @@ if Trackbar1.Position = 1 then
      else
     ShellExecute(0, 'open', PChar('cmd.exe'),PChar('/K '+parameters), PChar(path), SW_SHOW);
 
-     end
-      else
-     begin
-      pocParameters:= StringReplace((pocParameters),':"',' ',[rfReplaceAll]);
-    Showmessage('You use a 32 bit system! For you theres only the original java plotter available which is slower.');
-
-    BatContent:=TStringList.Create;
-    BatContent.Add('java -Xmx'+IntToStr(Memory.ullAvailPhys div 900 div 4096)+'m -cp pocminer.jar;lib/*;lib/akka/*;lib/jetty/* pocminer.POCMiner generate %*');
-    BatContent.SaveToFile(path+'/run_generate.bat');
-    BatContent.Free;
-
-    ShellExecute(0, 'open', PChar('cmd.exe'),PChar('/K '+pocParameters), PChar(path+'x86\'), SW_SHOW);
      end;
+     // else
+    // begin
+    //  pocParameters:= StringReplace((pocParameters),':"',' ',[rfReplaceAll]);
+    //Showmessage('You use a 32 bit system! For you theres only the original java plotter available which is slower.');
+
+    //BatContent:=TStringList.Create;
+    //BatContent.Add('java -Xmx'+IntToStr(Memory.ullAvailPhys div 900 div 4096)+'m -cp pocminer.jar;lib/*;lib/akka/*;lib/jetty/* pocminer.POCMiner generate %*');
+    //BatContent.SaveToFile(path+'/run_generate.bat');
+    //BatContent.Free;
+
+    //ShellExecute(0, 'open', PChar('cmd.exe'),PChar('/K '+pocParameters), PChar(path+'x86\'), SW_SHOW);
+     //end;
 
     //Showmessage(parameters);
     close;
