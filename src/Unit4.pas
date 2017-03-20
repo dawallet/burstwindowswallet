@@ -250,7 +250,7 @@ Showmessage('Please choose a Pool')
     begin
      try
      if BurstWallet2.Form1.percentage < 99 then
-     Form1.Webbrowser1.Navigate('https://wallet.burst-team.us/rewardassignmentshort.html')
+     Form1.Webbrowser1.Navigate(Form1.owallet1+'/rewardassignmentshort.html')
      else
 
      Form1.Webbrowser1.Navigate('http://127.0.0.1:8125/rewardassignmentshort.html');

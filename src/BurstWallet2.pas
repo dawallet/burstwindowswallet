@@ -120,6 +120,10 @@ type
     fs: Textfile;
     allcore: Boolean;
     percentage: real;
+    owallet1: String;
+    owallet2: String;
+    owallet3: String;
+    owallet4: String;
 
   end;
 
@@ -508,7 +512,17 @@ statestring:= StringReplace(statestring, #13#10, '', [rfReplaceAll, rfIgnoreCase
   // ShowWindow(Handle, SW_NORMAL);
  end;
 
+owallet1 := TFile.ReadAllText('var/owallet1');
+owallet1 := StringReplace(owallet1, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
 
+owallet2 := TFile.ReadAllText('var/owallet2');
+owallet2 := StringReplace(owallet2, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
+
+owallet3 := TFile.ReadAllText('var/owallet3');
+owallet3 := StringReplace(owallet3, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
+
+owallet4 := TFile.ReadAllText('var/owallet4');
+owallet4 := StringReplace(owallet4, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
  //Sleep(200);
 
  try
@@ -517,29 +531,26 @@ statestring:= StringReplace(statestring, #13#10, '', [rfReplaceAll, rfIgnoreCase
      N7.Enabled := true;
      N6.Enabled := false;
     try
-   dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8125/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
-    WebBrowser1.Navigate('https://wallet.burst-team.us:8125');
+      dummy2:= (idHTTP2.Get(owallet1+'/LICENSES'));
+      WebBrowser1.Navigate(owallet1);
      except
       try
-         dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8126/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
-         WebBrowser1.Navigate('https://wallet.burst-team.us:8126');
+            dummy2:= (idHTTP2.Get(owallet2+'/LICENSES'));
+            WebBrowser1.Navigate(owallet2);
      except
      try
-      dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8127/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
-      WebBrowser1.Navigate('https://wallet.burst-team.us:8127');
+            dummy2:= (idHTTP2.Get(owallet3+'/LICENSES'));
+            WebBrowser1.Navigate(owallet3);
        except
       try
-      dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8128/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
-      WebBrowser1.Navigate('https://wallet.burst-team.us:8128');
+            dummy2:= (idHTTP2.Get(owallet4+'/LICENSES'));
+            WebBrowser1.Navigate(owallet4);
       except
-        try
-        dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8128/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
-        WebBrowser1.Navigate('https://wallet.burst-team.us:8128');
-        except
-        Showmessage('All online wallets are not available at the moment or you have no internet connection.');
+
+        Showmessage('Online wallets are not available at the moment. Use the your Local Wallet instead.');
 
         end;
-      end;
+
       end;
       end;
         IdHTTP2.Free;
@@ -771,31 +782,29 @@ begin
 IdHTTP2 := TIdHTTP.Create;
  N7.Enabled := True;
  N6.Enabled := False;
- try
- dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8125/burst?requestType=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
- WebBrowser1.Navigate('https://wallet.burst-team.us:8125');
- except
-  try
-    dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8126/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
-    WebBrowser1.Navigate('https://wallet.burst-team.us:8126');
-  except
-    try
-     dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8127/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
-     WebBrowser1.Navigate('https://wallet.burst-team.us:8127');
-    except
+       try
+      dummy2:= (idHTTP2.Get(owallet1+'/LICENSES'));
+      WebBrowser1.Navigate(owallet1);
+     except
       try
-      dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8128/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
-      WebBrowser1.Navigate('https://wallet.burst-team.us:8128');
+            dummy2:= (idHTTP2.Get(owallet2+'/LICENSES'));
+            WebBrowser1.Navigate(owallet2);
+     except
+     try
+            dummy2:= (idHTTP2.Get(owallet3+'/LICENSES'));
+            WebBrowser1.Navigate(owallet3);
+       except
+      try
+            dummy2:= (idHTTP2.Get(owallet4+'/LICENSES'));
+            WebBrowser1.Navigate(owallet4);
       except
-        try
-        dummy2:= (idHTTP2.Get('https://wallet.burst-team.us:8128/burst?requestType=rsConvert&account=BURST-QHCJ-9HB5-PTGC-5Q8J9'));
-        WebBrowser1.Navigate('https://wallet.burst-team.us:8128');
-        except
-        Showmessage('All online wallets are down at the moment :( or you have no internet connection!');
+
+        Showmessage('Online wallets are not available at the moment. Use the your Local Wallet instead.');
 
         end;
+
       end;
-      end;
+
   end;
 
  end;
@@ -892,7 +901,7 @@ begin
   end;
      try
      IdHTTP2 := TIdHTTP.Create;
-      checkver:= idHTTP2.Get('https://mwallet.burst-team.us:8125/client/0.3.9.1.txt');
+      checkver:= idHTTP2.Get('https://mwallet.burst-team.us:8125/client/0.3.9.3.txt');
       UpdateAvailable1.Visible := true;
       N2.Visible := true;
         IdHTTP2.Free;

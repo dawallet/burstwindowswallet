@@ -48,7 +48,7 @@ var
 implementation
 
 {$R *.dfm}
-uses Unit2;
+uses Unit2, BurstWallet2;
 
 function CharToNum(Ch: Char): Integer;
   asm
@@ -188,7 +188,7 @@ IdHTTP := TIdHTTP.Create;
     end;
    except
     try
-     addressstring:= (idHTTP.Get('https://wallet.burst-team.us:8125/burst?requestType=rsConvert&account='+Textfield.Text));
+     addressstring:= (idHTTP.Get(Form1.owallet1+'/burst?requestType=rsConvert&account='+Textfield.Text));
     Delete(addressstring, 1, 79);
     addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
     addressstring:= StringReplace((addressstring),' ','',[rfReplaceAll]);
@@ -196,7 +196,7 @@ IdHTTP := TIdHTTP.Create;
     addressstring:= StringReplace((addressstring),#13#10,'',[rfReplaceAll]);
     except
        try
-       addressstring:= (idHTTP.Get('https://wallet.burst-team.us:8126/burst?requestType=rsConvert&account='+Textfield.Text));
+       addressstring:= (idHTTP.Get(Form1.owallet2+'/burst?requestType=rsConvert&account='+Textfield.Text));
     Delete(addressstring, 1, 79);
     addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
     addressstring:= StringReplace((addressstring),' ','',[rfReplaceAll]);
@@ -204,7 +204,7 @@ IdHTTP := TIdHTTP.Create;
     addressstring:= StringReplace((addressstring),#13#10,'',[rfReplaceAll]);
        except
            try
-       addressstring:= (idHTTP.Get('https://wallet.burst-team.us:8127/burst?requestType=rsConvert&account='+Textfield.Text));
+       addressstring:= (idHTTP.Get(Form1.owallet3+'/burst?requestType=rsConvert&account='+Textfield.Text));
     Delete(addressstring, 1, 79);
     addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
     addressstring:= StringReplace((addressstring),' ','',[rfReplaceAll]);
@@ -212,7 +212,7 @@ IdHTTP := TIdHTTP.Create;
     addressstring:= StringReplace((addressstring),#13#10,'',[rfReplaceAll]);
        except
             try
-             addressstring:= (idHTTP.Get('https://wallet.burst-team.us:8128/burst?requestType=rsConvert&account='+Textfield.Text));
+             addressstring:= (idHTTP.Get(Form1.owallet4+'/burst?requestType=rsConvert&account='+Textfield.Text));
               Delete(addressstring, 1, 79);
               addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
               addressstring:= StringReplace((addressstring),' ','',[rfReplaceAll]);
@@ -301,7 +301,7 @@ if Trackbar1.Position = 1 then
   else
     begin
 
-    if isWin64 = false then
+    if isWin64 = true then
     begin
      parameters:= StringReplace((parameters),':"',' ',[rfReplaceAll]);
 
