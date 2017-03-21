@@ -187,14 +187,6 @@ IdHTTP := TIdHTTP.Create;
 
     end;
    except
-    try
-     addressstring:= (idHTTP.Get(Form1.owallet1+'/burst?requestType=rsConvert&account='+Textfield.Text));
-    Delete(addressstring, 1, 79);
-    addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
-    addressstring:= StringReplace((addressstring),' ','',[rfReplaceAll]);
-     addressstring:= StringReplace((addressstring),'"','',[rfReplaceAll]);
-    addressstring:= StringReplace((addressstring),#13#10,'',[rfReplaceAll]);
-    except
        try
        addressstring:= (idHTTP.Get(Form1.owallet2+'/burst?requestType=rsConvert&account='+Textfield.Text));
     Delete(addressstring, 1, 79);
@@ -232,7 +224,7 @@ IdHTTP := TIdHTTP.Create;
             end;
            end;
        end;
-    end;
+
     end;
 
   begin

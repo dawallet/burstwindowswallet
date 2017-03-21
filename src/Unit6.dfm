@@ -1,6 +1,7 @@
 object Form6: TForm6
   Left = 0
   Top = 0
+  AlphaBlendValue = 150
   BorderIcons = [biSystemMenu]
   BorderStyle = bsToolWindow
   Caption = 'Account Manager'
@@ -12,6 +13,7 @@ object Form6: TForm6
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  FormStyle = fsStayOnTop
   OldCreateOrder = False
   Position = poMainFormCenter
   OnActivate = FormActivate

@@ -11,6 +11,7 @@ object Form11: TForm11
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  FormStyle = fsStayOnTop
   OldCreateOrder = False
   Position = poMainFormCenter
   PixelsPerInch = 96
@@ -27,7 +28,7 @@ object Form11: TForm11
     WordWrap = True
   end
   object Label2: TLabel
-    Left = 246
+    Left = 258
     Top = 113
     Width = 25
     Height = 13

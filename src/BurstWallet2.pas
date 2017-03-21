@@ -52,7 +52,6 @@ type
     DDLBlockchain1: TMenuItem;
     OnlineLocal1: TMenuItem;
     C1: TMenuItem;
-    WebBrowser1: TWebBrowser;
     Timer2: TTimer;
     ToolButton14: TToolButton;
     ToolButton15: TToolButton;
@@ -62,6 +61,7 @@ type
     N2: TMenuItem;
     Timer3: TTimer;
     pingofburstbin1: TMenuItem;
+    WebBrowser1: TWebBrowser;
     procedure FormCreate(Sender: TObject);
     procedure About1Click(Sender: TObject);
     procedure AddWallet1Click(Sender: TObject);
@@ -87,7 +87,6 @@ type
     procedure DeleteWallet1Click(Sender: TObject);
     procedure ToolButton11Click(Sender: TObject);
     procedure ToolButton10Click(Sender: TObject);
-    procedure burstfaucetcom1Click(Sender: TObject);
     procedure Market1Click(Sender: TObject);
     procedure Lotteries1Click(Sender: TObject);
     procedure Crowdfunding2Click(Sender: TObject);
@@ -107,12 +106,26 @@ type
     procedure UpdateAvailable1Click(Sender: TObject);
     procedure Timer3Timer(Sender: TObject);
     procedure pingofburstbin1Click(Sender: TObject);
-
-
-
+    procedure FormShow(Sender: TObject);
 
   private
     { Private-Deklarationen }
+  coinprice: String;
+  result: real;
+  marketcap: String;
+  dummy2: String;
+  LJsonArr : TJSONArray;
+  LJsonObj: TJSONObject;
+  price_usd : TJSONValue;
+  percent_change_24h : TJSONValue;
+  market_cap_usd : TJSONValue;
+  price_btc : TJSONValue;
+  mydata : String;
+  price_usd_clean: String;
+  formatSettings: TFormatSettings;
+  statestring: String;
+  firstStart: String;
+  MemoryJava: TMemoryStatusex;
   public
     { Public-Deklarationen }
     mining: String;
@@ -342,12 +355,6 @@ begin
 end;
 
 
-procedure TForm1.burstfaucetcom1Click(Sender: TObject);
-begin
-ShellExecute(0, 'open', 'http://www.burstfaucet.com', nil, nil, SW_SHOWNORMAL);
-
-end;
-
 procedure TForm1.About1Click(Sender: TObject);
 begin
 Form10.Show;
@@ -475,42 +482,9 @@ begin
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
-var
-  IdHTTP: TIdHTTP;
-  IdHTTP2: TIdHTTP;
-  totalcoins: String;
-  totalcoinsInt: Integer;
-  coinprice: String;
-  coinpriceEx: real;
-  amount: real;
-  result: real;
-  marketcap: String;
-  check: String;
-  dummy2: String;
-  LJsonArr : TJSONArray;
-  LJsonObj: TJSONObject;
-  price_usd : TJSONValue;
-  percent_change_24h : TJSONValue;
-  market_cap_usd : TJSONValue;
-  price_btc : TJSONValue;
-  mydata : String;
-  checkver: String;
-  lStream: TFilestream;
-  price_usd_clean: String;
-  formatSettings: TFormatSettings;
-  statestring: String;
-  firstStart: String;
-  MemoryJava: TMemoryStatusex;
+
 
 begin
-statestring := TFile.ReadAllText('var/winstate');
-statestring:= StringReplace(statestring, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
- begin
-   if statestring = 'wsMaximized' then
-     ShowWindowAsync(Handle, SW_MAXIMIZE)
-   else
-  // ShowWindow(Handle, SW_NORMAL);
- end;
 
 owallet1 := TFile.ReadAllText('var/owallet1');
 owallet1 := StringReplace(owallet1, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
@@ -525,43 +499,14 @@ owallet4 := TFile.ReadAllText('var/owallet4');
 owallet4 := StringReplace(owallet4, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
  //Sleep(200);
 
- try
   try
-     IdHTTP2 := TIdHTTP.Create;
-     N7.Enabled := true;
-     N6.Enabled := false;
-    try
-      dummy2:= (idHTTP2.Get(owallet1+'/LICENSES'));
-      WebBrowser1.Navigate(owallet1);
+     WebBrowser1.Navigate(owallet1);
      except
-      try
-            dummy2:= (idHTTP2.Get(owallet2+'/LICENSES'));
-            WebBrowser1.Navigate(owallet2);
-     except
-     try
-            dummy2:= (idHTTP2.Get(owallet3+'/LICENSES'));
-            WebBrowser1.Navigate(owallet3);
-       except
-      try
-            dummy2:= (idHTTP2.Get(owallet4+'/LICENSES'));
-            WebBrowser1.Navigate(owallet4);
-      except
-
-        Showmessage('Online wallets are not available at the moment. Use the your Local Wallet instead.');
-
-        end;
-
-      end;
-      end;
-        IdHTTP2.Free;
-     end;
-
-   except
+    Showmessage('Online wallets are not available at the moment. Use the your Local Wallet instead.');
+end;
 
 
 
-
-  end;
 
 
   try
@@ -664,9 +609,8 @@ owallet4 := StringReplace(owallet4, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
    end;
 
 
-except
 
-  end;
+
 
 
    try
@@ -706,7 +650,7 @@ except
 
  end;
 
-
+ WebBrowser1.Navigate(owallet1);
 end;
 
 
@@ -717,6 +661,65 @@ procedure TForm1.FormHide(Sender: TObject);
 begin
 
   ShowWindow(Application.Handle, SW_HIDE);
+end;
+
+procedure TForm1.FormShow(Sender: TObject);
+begin
+
+
+
+
+
+{
+  try
+   //  IdHTTP2 := TIdHTTP.Create;
+     N7.Enabled := true;
+     N6.Enabled := false;
+    try
+     // dummy2:= (idHTTP2.Get(owallet1+'/LICENSES'));
+      WebBrowser1.Navigate(owallet1);
+     except
+      try
+       //     dummy2:= (idHTTP2.Get(owallet2+'/LICENSES'));
+            WebBrowser1.Navigate(owallet2);
+     except
+     try
+         //   dummy2:= (idHTTP2.Get(owallet3+'/LICENSES'));
+            WebBrowser1.Navigate(owallet3);
+       except
+      try
+           // dummy2:= (idHTTP2.Get(owallet4+'/LICENSES'));
+            WebBrowser1.Navigate(owallet4);
+      except
+
+        Showmessage('Online wallets are not available at the moment. Use the your Local Wallet instead.');
+
+        end;
+
+      end;
+      end;
+     //   IdHTTP2.Free;
+     end;
+
+   except
+
+
+
+
+  end;    }
+
+ statestring := TFile.ReadAllText('var/winstate');
+ statestring:= StringReplace(statestring, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
+ begin
+   if statestring = 'wsMaximized' then
+    begin
+     ShowWindowAsync(Handle, SW_MAXIMIZE);
+
+    end
+   else
+  // ShowWindow(Handle, SW_NORMAL);
+ end;
+
 end;
 
 procedure TForm1.Forums2Click(Sender: TObject);
@@ -756,46 +759,53 @@ end;
 
 procedure TForm1.N10Burstbyburstcoininfo1Click(Sender: TObject);
 begin
-ShellExecute(0, 'open', 'https://faucet.burstcoin.info', nil, nil, SW_SHOWNORMAL);
+  ShellExecute(0, 'open', 'https://faucet.burstcoin.info', nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TForm1.N2Burstburstcoinbiz1Click(Sender: TObject);
 begin
-ShellExecute(0, 'open', 'http://burstcoin.biz/faucet', nil, nil, SW_SHOWNORMAL);
+ ShellExecute(0, 'open', 'http://burstcoin.biz/faucet', nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TForm1.N5Burstburstcoinpt1Click(Sender: TObject);
 begin
-ShellExecute(0, 'open', 'http://faucet.burstnation.com', nil, nil, SW_SHOWNORMAL);
+ ShellExecute(0, 'open', 'http://faucet.burstnation.com', nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TForm1.N5Burstburstteamus1Click(Sender: TObject);
 begin
-ShellExecute(0, 'open', 'https://faucet.burst-team.us', nil, nil, SW_SHOWNORMAL);
+  ShellExecute(0, 'open', 'https://faucet.burst-team.us', nil, nil, SW_SHOWNORMAL);
+end;
+
+procedure TForm1.pingofburstbin1Click(Sender: TObject);
+begin
+ShellExecute(0, 'open', 'http://faucet.pingofburst.win', nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TForm1.N6Click(Sender: TObject);
-var
-dummy2: String;
-IdHTTP2: TIdHTTP;
+//var
+//dummy2: String;
+//IdHTTP2: TIdHTTP;
 begin
-IdHTTP2 := TIdHTTP.Create;
+//IdHTTP2 := TIdHTTP.Create;
  N7.Enabled := True;
  N6.Enabled := False;
-       try
-      dummy2:= (idHTTP2.Get(owallet1+'/LICENSES'));
+
+    WebBrowser1.Navigate(owallet1);
+    {   try
+   //   dummy2:= (idHTTP2.Get(owallet1+'/LICENSES'));
       WebBrowser1.Navigate(owallet1);
      except
       try
-            dummy2:= (idHTTP2.Get(owallet2+'/LICENSES'));
+          //  dummy2:= (idHTTP2.Get(owallet2+'/LICENSES'));
             WebBrowser1.Navigate(owallet2);
      except
      try
-            dummy2:= (idHTTP2.Get(owallet3+'/LICENSES'));
+         //   dummy2:= (idHTTP2.Get(owallet3+'/LICENSES'));
             WebBrowser1.Navigate(owallet3);
        except
       try
-            dummy2:= (idHTTP2.Get(owallet4+'/LICENSES'));
+          //  dummy2:= (idHTTP2.Get(owallet4+'/LICENSES'));
             WebBrowser1.Navigate(owallet4);
       except
 
@@ -808,7 +818,7 @@ IdHTTP2 := TIdHTTP.Create;
   end;
 
  end;
-IdHTTP2.Free;
+//IdHTTP2.Free; }
 end;
 
 
@@ -825,8 +835,8 @@ dummy:= (idHTTP2.Get('http://127.0.0.1:8125/burst?requestType=rsConvert&account=
 WebBrowser1.Navigate('http://127.0.0.1:8125');
 Timer2.Enabled := true;
  except
-
-  WebBrowser1.Navigate('file:///'+GetCurrentDir+'/offline_2.html');
+  //Showmessage('Local wallet not available yet');
+  WebBrowser1.Navigate(GetCurrentDir+'\offline_2.html');
   N7.Enabled := True;
  end;
 IdHTTP2.Free;
@@ -864,11 +874,6 @@ begin
   Show();
  WindowState := wsNormal;
  Application.BringToFront()
-end;
-
-procedure TForm1.pingofburstbin1Click(Sender: TObject);
-begin
-ShellExecute(0, 'open', 'http://faucet.pingofburst.win', nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TForm1.Timer1Timer(Sender: TObject);
@@ -1008,13 +1013,9 @@ except
 
   end;
 
- { try
-     GetURLAsString('http://localhost:8125/burst?requestType=getBlockchainStatus');
 
-  except
 
-  end;
-  }
+
 end;
 
 

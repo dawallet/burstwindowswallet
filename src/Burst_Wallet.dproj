@@ -129,23 +129,18 @@
         </DCCReference>
         <DCCReference Include="Unit7.pas">
             <Form>Form7</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Unit12.pas">
             <Form>Form12</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Unit8.pas">
             <Form>Form8</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Unit13.pas">
             <Form>Form13</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Unit14.pas">
             <Form>Form14</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
