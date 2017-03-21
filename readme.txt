@@ -20,6 +20,11 @@ _____
 
 Changelog:
 
+0.3.9.3
+
++ updated jminer to version 0.4.9 -> https://github.com/de-luxe/burstcoin-jminer/releases
++ online wallets can be changed in /var/owallet 
+
 0.3.9.2
 
 + Checks available RAM before starting local wallet
