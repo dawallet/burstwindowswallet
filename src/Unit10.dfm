@@ -17,24 +17,6 @@ object Form10: TForm10
   Position = poMainFormCenter
   PixelsPerInch = 96
   TextHeight = 13
-  object Label1: TLabel
-    Left = 24
-    Top = 321
-    Width = 298
-    Height = 39
-    Caption = 
-      'Using Official Online Wallet: https://wallet.burst-team.us by ha' +
-      'itch. Thanks to dcct, Janror, Blago and Luxe for the plotter and' +
-      ' miner software! '
-    WordWrap = True
-  end
-  object Label2: TLabel
-    Left = 26
-    Top = 182
-    Width = 301
-    Height = 13
-    Caption = 'Burst Client version 0.3.9 (for Burst Wallet 1.2.8) by daWallet.'
-  end
   object Label3: TLabel
     Left = 92
     Top = 380
@@ -50,8 +32,8 @@ object Form10: TForm10
     WordWrap = True
   end
   object Label5: TLabel
-    Left = 24
-    Top = 206
+    Left = 31
+    Top = 193
     Width = 324
     Height = 52
     AutoSize = False
@@ -62,36 +44,8 @@ object Form10: TForm10
       'out each software individually: '
     WordWrap = True
   end
-  object Label6: TLabel
-    Left = 53
-    Top = 272
-    Width = 241
-    Height = 13
-    Caption = 'Original Wallet:  github.com/burst-team/burstcoin/'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsUnderline]
-    ParentFont = False
-    OnClick = Label6Click
-  end
-  object Label9: TLabel
-    Left = 53
-    Top = 291
-    Width = 264
-    Height = 13
-    Caption = 'Burst Software: forums.burst-team.us/burst-software/'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = [fsUnderline]
-    ParentFont = False
-    OnClick = Label9Click
-  end
   object Image1: TImage
-    Left = 0
+    Left = 8
     Top = 23
     Width = 340
     Height = 145
@@ -632,11 +586,11 @@ object Form10: TForm10
       0946F0D9B60000000049454E44AE426082}
   end
   object Label4: TLabel
-    Left = 139
-    Top = 428
-    Width = 96
+    Left = 125
+    Top = 425
+    Width = 106
     Height = 13
-    Caption = 'www.burst-team.us'
+    Caption = 'www.burstnation.com'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -645,12 +599,77 @@ object Form10: TForm10
     ParentFont = False
     OnClick = Label4Click
   end
-  object Edit1: TEdit
-    Left = 100
+  object Label9: TLabel
+    Left = 31
+    Top = 290
+    Width = 279
+    Height = 26
+    Caption = 
+      'Support Thread: burstnation.com/wbb/index.php?thread/ 1076-burst' +
+      '-wallet-with-burstnation-wallet-as-online-wallet'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsUnderline]
+    ParentFont = False
+    WordWrap = True
+    OnClick = Label9Click
+  end
+  object Label2: TLabel
+    Left = 31
+    Top = 174
+    Width = 314
+    Height = 13
+    Caption = 
+      'Burst Client version 0.3.9 (for Burst Wallet 1.2.8) by Menaxeriu' +
+      's.'
+  end
+  object Label1: TLabel
+    Left = 31
+    Top = 322
+    Width = 288
+    Height = 52
+    Caption = 
+      'Using the Burstnation Online Wallet: https://wallet1.burstnation' +
+      '.com. Thanks to daWallet for the original Wallet Code, dcct, Jan' +
+      'ror, Blago and Luxe for the plotter and miner software! '
+    WordWrap = True
+  end
+  object Label7: TLabel
+    Left = 31
+    Top = 252
+    Width = 241
+    Height = 13
+    Caption = 'Original Wallet:  github.com/burst-team/burstcoin/'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsUnderline]
+    ParentFont = False
+    OnClick = Label6Click
+  end
+  object Label6: TLabel
+    Left = 31
+    Top = 271
+    Width = 203
+    Height = 13
+    Caption = 'This Wallet:  github.com/Menaxerius/Burst'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsUnderline]
+    ParentFont = False
+    OnClick = Label6Click
+  end
+  object Edit2: TEdit
+    Left = 92
     Top = 398
     Width = 173
     Height = 21
     TabOrder = 0
-    Text = 'BURST-YZJ6-LYBY-WAC6-BQYGC'
+    Text = 'BURST-Y77Y-HWGC-XSMF-2BPZM'
   end
 end

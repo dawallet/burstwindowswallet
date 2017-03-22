@@ -1,1 +1,1 @@
-SendSignalCtrlC64 7336
+SendSignalCtrlC64 -1
