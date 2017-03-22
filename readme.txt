@@ -16,6 +16,7 @@ You can use the 'Online' Wallet during this time.
 
 !! All features of the Client do work with an incomplete / unsynced local wallet !!
 
+Original Wallet software by Dawallet, changes for Burstnation by Menaxerius
 _____
 
 Changelog:
