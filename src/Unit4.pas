@@ -1,8 +1,7 @@
 unit Unit4;
 
 interface
-    //This Version got edited by Menaxerius to switch to Burstnation Wallets
- // Feel free to Support me BURST-Y77Y-HWGC-XSMF-2BPZM
+
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, System.UITypes, Vcl.ComCtrls, Types, IOUtils, ShellApi,idHTTP, Vcl.ExtCtrls, Vcl.Clipbrd, StrUtils,  IdBaseComponent,IdComponent;
@@ -251,12 +250,12 @@ Showmessage('Please choose a Pool')
     begin
      try
      if BurstWallet2.Form1.percentage < 99 then
-     Form1.Webbrowser1.Navigate('https://wallet1.burstnation.com:8125/rewardassignmentshort.html')
+     Form1.WebBrowser1.Navigate(Form1.owallet1+'/rewardassignmentshort.html')
      else
 
-     Form1.Webbrowser1.Navigate('http://127.0.0.1:8125/rewardassignmentshort.html');
+     Form1.WebBrowser1.Navigate('http://127.0.0.1:8125/rewardassignmentshort.html');
      except
-     // Form1.Webbrowser1.Navigate('https://wallet1.burstnation.com:8125/rewardassignmentshort.html')
+     // Form1.Webbrowser1.Navigate('https://wallet.burst-team.us/rewardassignmentshort.html')
      end;
 
 
@@ -427,7 +426,7 @@ begin
 
 
     begin
-    AssignFile(t2,'burstcoin-jminer-0.4.8-RELEASE/jminer.properties');
+    AssignFile(t2,'burstcoin-jminer-0.4.9-SNAPSHOT/jminer.properties');
     Rewrite(T2);
        Writeln(T2,'plotPaths='+directoriesGPU);
        Writeln(T2,'poolMining=true') ;
@@ -450,7 +449,7 @@ begin
     CloseFile(T2);
     end;
 
-  ShellExecute(0, 'open', PChar('run.bat'),PChar('/K'), PChar('burstcoin-jminer-0.4.8-RELEASE'), SW_SHOW);
+  ShellExecute(0, 'open', PChar('run.bat'),PChar('/K'), PChar('burstcoin-jminer-0.4.9-SNAPSHOT'), SW_SHOW);
   close;
 
    end;

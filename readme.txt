@@ -19,6 +19,12 @@ You can use the 'Online' Wallet during this time.
 _____
 
 Changelog:
+
+0.3.9.3
+
++ updated jminer to version 0.4.9 -> https://github.com/de-luxe/burstcoin-jminer/releases
++ online wallets can be changed in /var/owallet 
+
 New Version of 0.3.9.2 by Menaxerius
 
 + replaced online wallets on Haitch's Cluster with burstnation online wallets 

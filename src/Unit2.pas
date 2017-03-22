@@ -74,7 +74,9 @@ end;
 
 procedure TForm2.Button3Click(Sender: TObject);
 begin
-ShowMessage('Plots are prewritten hashes for mining Burst. As an example: imagine that 500 GB of plots are like 5 CPU / GPU or ASICS you mine with:' +#13#10+ 'If you double your plot size you double your mining power!' +#13#10+ 'You have to plot only ONCE! Then you can mine with your Plots as long as you want. To plot 500 GB can takes 12 hours on a average machine.')
+//ShowMessage('Plots are prewritten hashes for mining Burst. As an example: imagine that 500 GB of plots are like 5 CPU / GPU or ASICS you mine with:' +#13#10+ 'If you double your plot size you double your mining power!' +#13#10+ 'You have to plot only ONCE! Then you can mine with your Plots as long as you want. To plot 500 GB can takes 12 hours on a average machine.')
+ShellExecute(0, 'open', 'https://forums.burst-team.us/topic/288/plots-101', nil, nil, SW_SHOWNORMAL);
+
 end;
 
 procedure TForm2.DriveComboBox1Change(Sender: TObject);

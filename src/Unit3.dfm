@@ -5,7 +5,7 @@ object Form3: TForm3
   BorderStyle = bsSizeToolWin
   Caption = 'Plotter'
   ClientHeight = 241
-  ClientWidth = 453
+  ClientWidth = 454
   Color = clBtnFace
   TransparentColorValue = clRed
   Font.Charset = DEFAULT_CHARSET
@@ -13,6 +13,7 @@ object Form3: TForm3
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  FormStyle = fsStayOnTop
   OldCreateOrder = False
   PopupMode = pmExplicit
   Position = poMainFormCenter
@@ -66,7 +67,7 @@ object Form3: TForm3
     Caption = '  1 Core'
   end
   object Label7: TLabel
-    Left = 178
+    Left = 162
     Top = 155
     Width = 103
     Height = 13
@@ -118,15 +119,15 @@ object Form3: TForm3
     OnChange = TrackBar2Change
   end
   object Textfield: TEdit
-    Left = 143
+    Left = 127
     Top = 174
-    Width = 177
+    Width = 170
     Height = 21
     TabOrder = 3
-    Text = 'BURST-XXXX-XXXX-XXXX-XXXX'
+    Text = 'BURST-XXXX-XXXX-XXXX-XXXXX'
   end
   object Button2: TButton
-    Left = 360
+    Left = 350
     Top = 199
     Width = 75
     Height = 25
@@ -163,5 +164,13 @@ object Form3: TForm3
     TabOrder = 7
     Text = '1'
     Visible = False
+  end
+  object CheckBox1: TCheckBox
+    Left = 326
+    Top = 176
+    Width = 136
+    Height = 17
+    Caption = 'Run as Admin (faster)'
+    TabOrder = 8
   end
 end

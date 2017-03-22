@@ -632,8 +632,8 @@ object Form10: TForm10
       0946F0D9B60000000049454E44AE426082}
   end
   object Label4: TLabel
-    Left = 125
-    Top = 425
+    Left = 139
+    Top = 428
     Width = 96
     Height = 13
     Caption = 'www.burst-team.us'
