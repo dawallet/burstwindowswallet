@@ -20,6 +20,12 @@ _____
 
 Changelog:
 
+0.3.9.4
+
+Bugfix release:
++ fixed market information in footer
++ fixed outdated links
+
 0.3.9.3
 
 + updated jminer to version 0.4.9 -> https://github.com/de-luxe/burstcoin-jminer/releases

@@ -60,8 +60,10 @@ type
     Timer4: TTimer;
     N2: TMenuItem;
     Timer3: TTimer;
-    pingofburstbin1: TMenuItem;
     WebBrowser1: TWebBrowser;
+    Network2: TMenuItem;
+    BlockExplorer1: TMenuItem;
+    AssetExplorer1: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure About1Click(Sender: TObject);
     procedure AddWallet1Click(Sender: TObject);
@@ -80,8 +82,6 @@ type
       var MouseActivate: TMouseActivate);
     procedure N7Click(Sender: TObject);
     procedure N6Click(Sender: TObject);
-    procedure Online1Click(Sender: TObject);
-    procedure Online2Click(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure Exit1Click(Sender: TObject);
     procedure DeleteWallet1Click(Sender: TObject);
@@ -91,7 +91,6 @@ type
     procedure Lotteries1Click(Sender: TObject);
     procedure Crowdfunding2Click(Sender: TObject);
     procedure ToolButton5Click(Sender: TObject);
-    procedure Network1Click(Sender: TObject);
     procedure N10Burstbyburstcoininfo1Click(Sender: TObject);
     procedure N5Burstburstteamus1Click(Sender: TObject);
     procedure N5Burstburstcoinpt1Click(Sender: TObject);
@@ -107,6 +106,11 @@ type
     procedure Timer3Timer(Sender: TObject);
     procedure pingofburstbin1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure Network2Click(Sender: TObject);
+    procedure BlockExplorer1Click(Sender: TObject);
+    procedure AssetExplorer1Click(Sender: TObject);
+    procedure ToolButton3Click(Sender: TObject);
+    procedure ToolButton4Click(Sender: TObject);
 
   private
     { Private-Deklarationen }
@@ -355,6 +359,16 @@ begin
 end;
 
 
+procedure TForm1.AssetExplorer1Click(Sender: TObject);
+begin
+ShellExecute(0, 'open', 'http://asset.burstnation.com', nil, nil, SW_SHOWNORMAL);
+end;
+
+procedure TForm1.BlockExplorer1Click(Sender: TObject);
+begin
+ShellExecute(0, 'open', 'http://www.burstcoin.biz', nil, nil, SW_SHOWNORMAL);
+end;
+
 procedure TForm1.About1Click(Sender: TObject);
 begin
 Form10.Show;
@@ -557,16 +571,21 @@ end;
              1, 2, 3, 4, 5: ;
              6: Insert(',', marketcap, 4) ;
              7: begin
-                 Insert(',', marketcap, 2) ;
+                  Insert(',', marketcap, 2) ;
                   Insert(',', marketcap, 6) ;
                  end;
              8: begin
-                Insert(',', marketcap, 3) ;
-                Insert(',', marketcap, 8) ;
+                 Insert(',', marketcap, 3) ;
+                 Insert(',', marketcap, 7) ;
                 end;
              9: begin
                  Insert(',', marketcap, 4) ;
-                   Insert(',', marketcap, 10) ;
+                 Insert(',', marketcap, 8) ;
+                 end;
+            10: begin
+                  Insert(',', marketcap, 2) ;
+                  Insert(',', marketcap, 6) ;
+                  Insert(',', marketcap, 10) ;
                  end;
               end
           end
@@ -585,7 +604,7 @@ end;
         price_usd_clean := price_usd.ToString.Remove(price_usd.ToString.Length-2);
         Delete(price_usd_clean, 1,1);
          // Showmessage(price_usd_clean);
-         result:= ((StrToFloat(price_usd_clean, formatSettings)) * 10000);
+         result:= ((StrToFloat(price_usd_clean, formatSettings)) * 1000);
          // Showmessage(FloatToStr(result));
          price_usd_clean:= FloatToStrF((result), ffFixed, 15, 2);
          price_usd_clean  := StringReplace(price_usd_clean, ',', '.',
@@ -845,24 +864,11 @@ end;
 
 
 
-procedure TForm1.Network1Click(Sender: TObject);
+procedure TForm1.Network2Click(Sender: TObject);
 begin
-ShellExecute(0, 'open', 'http://util.burst-team.us:8888', nil, nil, SW_SHOWNORMAL);
+ShellExecute(0, 'open', 'http://www.burstcoin.cc', nil, nil, SW_SHOWNORMAL);
 end;
 
-procedure TForm1.Online1Click(Sender: TObject);
-begin
-           WebBrowser1.Navigate('https://wallet.burst-team.us/atcrowdfund.html');
-    N7.Enabled := True;
- N6.Enabled := True;
-end;
-
-procedure TForm1.Online2Click(Sender: TObject);
-begin
-      WebBrowser1.Navigate('https://wallet.burst-team.us/atlotteries.html');
-         N7.Enabled := True;
-          N6.Enabled := True;
-end;
 
 procedure TForm1.OnlineLocal1Click(Sender: TObject);
 begin
@@ -986,7 +992,7 @@ begin
         price_usd_clean := price_usd.ToString.Remove(price_usd.ToString.Length-2);
         Delete(price_usd_clean, 1,1);
          // Showmessage(price_usd_clean);
-         result:= ((StrToFloat(price_usd_clean, formatSettings)) * 10000);
+         result:= ((StrToFloat(price_usd_clean, formatSettings)) * 1000);
          // Showmessage(FloatToStr(result));
          price_usd_clean:= FloatToStrF((result), ffFixed, 15, 2);
          price_usd_clean  := StringReplace(price_usd_clean, ',', '.',
@@ -1141,6 +1147,16 @@ procedure TForm1.ToolButton11Click(Sender: TObject);
 begin
 Form2.Show;
 //Form2.DriveComboBox1.Update;
+end;
+
+procedure TForm1.ToolButton3Click(Sender: TObject);
+begin
+ShellExecute(0, 'open', 'http://burst.today/', nil, nil, SW_SHOWNORMAL);
+end;
+
+procedure TForm1.ToolButton4Click(Sender: TObject);
+begin
+ShellExecute(0, 'open', 'http://burst.today', nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TForm1.ToolButton5Click(Sender: TObject);
