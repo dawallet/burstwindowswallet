@@ -15,6 +15,7 @@ object Form2: TForm2
   FormStyle = fsStayOnTop
   OldCreateOrder = False
   Position = poMainFormCenter
+  OnActivate = FormActivate
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -54,6 +55,9 @@ object Form2: TForm2
     Top = 26
     Width = 217
     Height = 19
+    Color = clBtnHighlight
+    ParentShowHint = False
+    ShowHint = False
     TabOrder = 1
     OnChange = DriveComboBox1Change
   end

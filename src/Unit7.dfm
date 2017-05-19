@@ -4,8 +4,8 @@ object Form7: TForm7
   BorderStyle = bsNone
   BorderWidth = 5
   Caption = 'Shutting down...'
-  ClientHeight = 60
-  ClientWidth = 201
+  ClientHeight = 56
+  ClientWidth = 195
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,23 +19,26 @@ object Form7: TForm7
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 32
-    Top = 24
-    Width = 142
-    Height = 13
-    Caption = 'Shutting down Burst Wallet...'
+    Left = 28
+    Top = 15
+    Width = 145
+    Height = 26
+    Alignment = taCenter
+    Caption = 'Shutting down Burst Wallet... This can take several minutes.'
+    Layout = tlCenter
+    WordWrap = True
   end
   object Panel1: TPanel
-    Left = 0
-    Top = 2
-    Width = 201
-    Height = 57
+    Left = 2
+    Top = 0
+    Width = 193
+    Height = 55
     TabOrder = 0
   end
   object Timer1: TTimer
     Enabled = False
     OnTimer = Timer1Timer
-    Left = 160
-    Top = 16
+    Left = 65520
+    Top = 48
   end
 end

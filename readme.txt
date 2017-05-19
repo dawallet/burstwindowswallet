@@ -20,6 +20,12 @@ _____
 
 Changelog:
 
+0.3.9.5
+
++ added new pools
++ updated jminer to the latest version -> https://github.com/de-luxe/burstcoin-jminer/releases
++ bugfixes and improvements
+
 0.3.9.4
 
 Bugfix release:

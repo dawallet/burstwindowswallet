@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Burst Client for Win v0.3.9.3'
+  Caption = 'Burst Client for Win v0.3.9.4'
   ClientHeight = 467
   ClientWidth = 816
   Color = clBtnFace
@@ -47,12 +47,16 @@ object Form1: TForm1
     TabOrder = 0
     TabStop = True
     Transparent = True
+    ExplicitTop = 456
     object ToolButton1: TToolButton
       Left = 0
       Top = 0
+      Hint = 'Price of one Burstcoin in Bitcoin'
       AutoSize = True
       Caption = 'Price:'
       ImageIndex = 0
+      ParentShowHint = False
+      ShowHint = True
     end
     object ToolButton2: TToolButton
       Left = 39
@@ -72,19 +76,27 @@ object Form1: TForm1
     object ToolButton3: TToolButton
       Left = 66
       Top = 0
+      Hint = 'Open Calculator'
       AutoSize = True
-      Caption = '10.000 Burst ='
+      Caption = '1'#39'000 Burst ='
       ImageIndex = 2
+      ParentShowHint = False
+      ShowHint = True
+      OnClick = ToolButton3Click
     end
     object ToolButton4: TToolButton
-      Left = 144
+      Left = 138
       Top = 0
       AutoSize = True
       Caption = '-'
+      DragCursor = crArrow
       ImageIndex = 3
+      ParentShowHint = False
+      ShowHint = True
+      OnClick = ToolButton4Click
     end
     object ToolButton8: TToolButton
-      Left = 163
+      Left = 157
       Top = 0
       Width = 8
       Caption = 'ToolButton8'
@@ -92,22 +104,25 @@ object Form1: TForm1
       Style = tbsSeparator
     end
     object ToolButton5: TToolButton
-      Left = 171
+      Left = 165
       Top = 0
+      Hint = 'Click here to open Coinmarketcap.com!'
       AutoSize = True
       Caption = 'Market Cap:'
       ImageIndex = 4
+      ParentShowHint = False
+      ShowHint = True
       OnClick = ToolButton5Click
     end
     object ToolButton6: TToolButton
-      Left = 239
+      Left = 233
       Top = 0
       AutoSize = True
       Caption = '-'
       ImageIndex = 5
     end
     object ToolButton13: TToolButton
-      Left = 258
+      Left = 252
       Top = 0
       Width = 8
       Caption = 'ToolButton13 '
@@ -115,7 +130,7 @@ object Form1: TForm1
       Style = tbsSeparator
     end
     object ToolButton12: TToolButton
-      Left = 266
+      Left = 260
       Top = 0
       Width = 8
       Caption = 'ToolButton12'
@@ -125,15 +140,18 @@ object Form1: TForm1
     end
     object ToolButton11: TToolButton
       AlignWithMargins = True
-      Left = 274
+      Left = 268
       Top = 0
+      Hint = 'Plot files are needed for mining!'
       AutoSize = True
       Caption = 'Write Plots'
       ImageIndex = 7
+      ParentShowHint = False
+      ShowHint = True
       OnClick = ToolButton11Click
     end
     object ToolButton16: TToolButton
-      Left = 334
+      Left = 328
       Top = 0
       Width = 8
       Caption = 'ToolButton16'
@@ -142,16 +160,19 @@ object Form1: TForm1
     end
     object ToolButton10: TToolButton
       AlignWithMargins = True
-      Left = 342
+      Left = 336
       Top = 0
+      Hint = 'Here you can mine your previously written plots.'
       Margins.Bottom = 0
       AutoSize = True
       Caption = 'Start Mining'
       ImageIndex = 6
+      ParentShowHint = False
+      ShowHint = True
       OnClick = ToolButton10Click
     end
     object ToolButton17: TToolButton
-      Left = 408
+      Left = 402
       Top = 0
       Width = 8
       Caption = 'ToolButton17'
@@ -160,23 +181,30 @@ object Form1: TForm1
       Visible = False
     end
     object ToolButton14: TToolButton
-      Left = 416
+      Left = 410
       Top = 0
+      Hint = 'The local wallet makes you completely independent.'
       Caption = 'Syncing Local Wallet: '
       ImageIndex = 6
+      ParentShowHint = False
+      ShowHint = True
       Visible = False
     end
     object ToolButton15: TToolButton
-      Left = 518
+      Left = 512
       Top = 0
+      Hint = 'Click here to sync with 100% CPU!'
       AutoSize = True
       Caption = '0 %'
       ImageIndex = 7
+      ParentShowHint = False
+      ShowHint = True
       Visible = False
+      OnClick = ToolButton15Click
     end
     object ToolButton9: TToolButton
       AlignWithMargins = True
-      Left = 552
+      Left = 546
       Top = 0
       Width = 24
       Caption = 'ToolButton9'
@@ -190,8 +218,10 @@ object Form1: TForm1
     Width = 816
     Height = 450
     Align = alClient
+    DragCursor = crDefault
     TabOrder = 1
-    ExplicitTop = 168
+    ExplicitLeft = -56
+    ExplicitTop = 56
     ControlData = {
       4C00000056540000822E00000000000000000000000000000000000000000000
       000000004C000000000000000000000001000000E0D057007335CF11AE690800
@@ -222,8 +252,19 @@ object Form1: TForm1
       end
     end
     object Network1: TMenuItem
-      Caption = 'Network'
-      OnClick = Network1Click
+      Caption = 'Explorer'
+      object Network2: TMenuItem
+        Caption = 'Network'
+        OnClick = Network2Click
+      end
+      object BlockExplorer1: TMenuItem
+        Caption = 'Block Explorer'
+        OnClick = BlockExplorer1Click
+      end
+      object AssetExplorer1: TMenuItem
+        Caption = 'Asset Explorer'
+        OnClick = AssetExplorer1Click
+      end
     end
     object Faucets1: TMenuItem
       Caption = 'Faucets'
@@ -235,17 +276,9 @@ object Form1: TForm1
         Caption = '[burst-team.us]'
         OnClick = N5Burstburstteamus1Click
       end
-      object N5Burstburstcoinpt1: TMenuItem
-        Caption = '[burstnation.com]'
-        OnClick = N5Burstburstcoinpt1Click
-      end
       object N2Burstburstcoinbiz1: TMenuItem
         Caption = '[burstcoin.biz]'
         OnClick = N2Burstburstcoinbiz1Click
-      end
-      object pingofburstbin1: TMenuItem
-        Caption = '[pingofburst.win]'
-        OnClick = pingofburstbin1Click
       end
     end
     object Forums1: TMenuItem

@@ -286,6 +286,8 @@ if  Label6.Caption = 'burstneon.ddns.net' then
      clipboard2.AsText:='BURST-YXZW-JH7M-QKR9-9PKBN';
 if  Label6.Caption = 'pool.burstcoin.sk' then
      clipboard2.AsText:='BURST-NACG-ZZDB-BHX7-9ELAF';
+if  Label6.Caption = 'bcaworldteampool.com' then
+     clipboard2.AsText:='BURST-XF5T-EGZV-VE3C-6TFKS';
 
   if  Label6.Caption = 'pool.news-asset.com' then
      begin
@@ -351,8 +353,22 @@ if  Label6.Caption = 'pool.rapidcoin.club' then
      clipboard2.AsText:='BURST-X2WJ-RQMQ-SXET-FVAV3';
      port := '6080';
      end;
-ShowMessage('The pool address '+clipboard.AsText+' of '+Combobox1.Text+' got copied into your clipboard.'+#13#10+ 'Paste it into the second textbox: "Recipient - Burst address of pool" and paste your wallet passphrase in the first textbox.');
-
+if  Label6.Caption = '128.0.0.1' then
+     begin
+     clipboard2.AsText:='for solo mining this is your own BURST- Address!';
+     port := '8125';
+     end;
+if  Label6.Caption = 'pool.ccminer.net' then
+     begin
+     clipboard2.AsText:='BURST-LZPT-6AY5-BM5L-B73UB';
+     port := '8080';
+     end;
+if Label6.Caption = '128.0.0.1' then
+    begin
+    ShowMessage('For solo mining the reward assignment has to point to your own account!'+#13#10+ ' This is the case by default except you were pool mining before.')
+    end
+    else
+    ShowMessage('The pool address '+clipboard.AsText+' of '+Combobox1.Text+' got copied into your clipboard.'+#13#10+ 'Paste it into the second textbox: "Recipient - Burst address of pool" and paste your wallet passphrase in the first textbox.');
   end;
 end;
 end;
@@ -426,7 +442,7 @@ begin
 
 
     begin
-    AssignFile(t2,'burstcoin-jminer-0.4.9-SNAPSHOT/jminer.properties');
+    AssignFile(t2,'burstcoin-jminer-0.4.10-SNAPSHOT/jminer.properties');
     Rewrite(T2);
        Writeln(T2,'plotPaths='+directoriesGPU);
        Writeln(T2,'poolMining=true') ;
@@ -449,7 +465,7 @@ begin
     CloseFile(T2);
     end;
 
-  ShellExecute(0, 'open', PChar('run.bat'),PChar('/K'), PChar('burstcoin-jminer-0.4.9-SNAPSHOT'), SW_SHOW);
+  ShellExecute(0, 'open', PChar('run.bat'),PChar('/K'), PChar('burstcoin-jminer-0.4.10-SNAPSHOT'), SW_SHOW);
   close;
 
    end;
@@ -515,6 +531,14 @@ if  Label6.Caption = 'burst.btfg.space' then
 if  Label6.Caption = 'pool.rapidcoin.club' then
      begin
       Edit1.Text := '6080';
+     end;
+if  Label6.Caption = '128.0.0.1' then
+     begin
+      Edit1.Text := '8125';
+     end;
+if  Label6.Caption = 'pool.ccminer.net' then
+     begin
+      Edit1.Text := '8080';
      end;
 
 

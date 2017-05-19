@@ -69,8 +69,8 @@ object Form4: TForm4
     Width = 214
     Height = 26
     Caption = 
-      'To change the reward assignment you need at least 1 Burst e.g. f' +
-      'rom a faucet.'
+      'To change the reward assignment you need at least 1 Burstcoin e.' +
+      'g. from a faucet.'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -124,6 +124,7 @@ object Form4: TForm4
     TabOrder = 2
     OnChange = ComboBox1Change
     Items.Strings = (
+      'bcaworldteampool.com'
       'pool.burstcoin.party'
       'burst.lexitoshi.uk'
       'burstneon.ddns.net'
@@ -136,7 +137,9 @@ object Form4: TForm4
       'pool.burstcoin.eu'
       'pool.burstcoin.biz'
       'pool.burst-team.us'
-      'burst.poolto.be')
+      'pool.ccminer.net'
+      'burst.poolto.be'
+      '128.0.0.1')
   end
   object Button2: TButton
     Left = 163

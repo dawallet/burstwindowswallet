@@ -45,7 +45,6 @@ type
     Network1: TMenuItem;
     N10Burstbyburstcoininfo1: TMenuItem;
     N5Burstburstteamus1: TMenuItem;
-    N5Burstburstcoinpt1: TMenuItem;
     N2Burstburstcoinbiz1: TMenuItem;
     UpdateAvailable1: TMenuItem;
     Forums2: TMenuItem;
@@ -111,6 +110,7 @@ type
     procedure AssetExplorer1Click(Sender: TObject);
     procedure ToolButton3Click(Sender: TObject);
     procedure ToolButton4Click(Sender: TObject);
+    procedure ToolButton15Click(Sender: TObject);
 
   private
     { Private-Deklarationen }
@@ -569,23 +569,23 @@ end;
            Delete(marketcap, 1,1);
             case marketcap.Length of
              1, 2, 3, 4, 5: ;
-             6: Insert(',', marketcap, 4) ;
+             6: Insert('''', marketcap, 4) ;
              7: begin
-                  Insert(',', marketcap, 2) ;
-                  Insert(',', marketcap, 6) ;
+                  Insert('''', marketcap, 2) ;
+                  Insert('''', marketcap, 6) ;
                  end;
              8: begin
-                 Insert(',', marketcap, 3) ;
-                 Insert(',', marketcap, 7) ;
+                 Insert('''', marketcap, 3) ;
+                 Insert('''', marketcap, 7) ;
                 end;
              9: begin
-                 Insert(',', marketcap, 4) ;
-                 Insert(',', marketcap, 8) ;
+                 Insert('''', marketcap, 4) ;
+                 Insert('''', marketcap, 8) ;
                  end;
             10: begin
-                  Insert(',', marketcap, 2) ;
-                  Insert(',', marketcap, 6) ;
-                  Insert(',', marketcap, 10) ;
+                  Insert('''', marketcap, 2) ;
+                  Insert('''', marketcap, 6) ;
+                  Insert('''', marketcap, 10) ;
                  end;
               end
           end
@@ -912,7 +912,7 @@ begin
   end;
      try
      IdHTTP2 := TIdHTTP.Create;
-      checkver:= idHTTP2.Get('https://mwallet.burst-team.us:8125/client/0.3.9.3.txt');
+      checkver:= idHTTP2.Get('https://mwallet.burst-team.us:8125/client/0.3.9.4.txt');
       UpdateAvailable1.Visible := true;
       N2.Visible := true;
         IdHTTP2.Free;
@@ -960,26 +960,31 @@ begin
            marketcap:= market_cap_usd.ToString;
            marketcap := marketcap.Remove(marketcap.Length-3);
            Delete(marketcap, 1,1);
-            case marketcap.Length of
-             1, 2, 3, 4, 5: ;
-             6: Insert(',', marketcap, 4) ;
+           case marketcap.Length of
+               1, 2, 3, 4, 5: ;
+             6: Insert('''', marketcap, 4) ;
              7: begin
-                 Insert(',', marketcap, 2) ;
-                  Insert(',', marketcap, 6) ;
+                  Insert('''', marketcap, 2) ;
+                  Insert('''', marketcap, 6) ;
                  end;
              8: begin
-                Insert(',', marketcap, 3) ;
-                Insert(',', marketcap, 8) ;
+                 Insert('''', marketcap, 3) ;
+                 Insert('''', marketcap, 7) ;
                 end;
              9: begin
-                 Insert(',', marketcap, 4) ;
-                   Insert(',', marketcap, 10) ;
+                 Insert('''', marketcap, 4) ;
+                 Insert('''', marketcap, 8) ;
                  end;
-              end
-          end
+            10: begin
+                  Insert('''', marketcap, 2) ;
+                  Insert('''', marketcap, 6) ;
+                  Insert('''', marketcap, 10) ;
+                 end;
+           end
+        end;
           except
         //  Showmessage('Market Cap error')
-        end;
+         end;
 
 
        ToolButton6.Caption := ('$ '+marketcap);
@@ -1035,7 +1040,7 @@ var
  begin
  if allcore = false then
   begin
-    if  percentage < 95 then
+    if  percentage < 98 then
 
       try
 
@@ -1147,6 +1152,11 @@ procedure TForm1.ToolButton11Click(Sender: TObject);
 begin
 Form2.Show;
 //Form2.DriveComboBox1.Update;
+end;
+
+procedure TForm1.ToolButton15Click(Sender: TObject);
+begin
+Timer2.Enabled:=true;
 end;
 
 procedure TForm1.ToolButton3Click(Sender: TObject);

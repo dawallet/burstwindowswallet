@@ -20,6 +20,7 @@ type
     procedure Button3Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
   private
     { Private-Deklarationen }
   public
@@ -82,6 +83,7 @@ end;
 procedure TForm2.DriveComboBox1Change(Sender: TObject);
 
 begin
+
   try
     Total:=DiskSize(ord(DriveComboBox1.Drive)-64) div 1024;
   Total:= Total div 1024;
@@ -98,6 +100,11 @@ begin
   end;
 
 
+end;
+
+procedure TForm2.FormActivate(Sender: TObject);
+begin
+DriveComboBox1.TextCase := DriveComboBox1.TextCase;
 end;
 
 procedure TForm2.FormCreate(Sender: TObject);
