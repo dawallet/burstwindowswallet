@@ -5,8 +5,8 @@ object Form6: TForm6
   BorderIcons = [biSystemMenu]
   BorderStyle = bsToolWindow
   Caption = 'Account Manager'
-  ClientHeight = 388
-  ClientWidth = 238
+  ClientHeight = 389
+  ClientWidth = 241
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,7 +20,7 @@ object Form6: TForm6
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 16
+    Left = 8
     Top = 8
     Width = 60
     Height = 13

@@ -4,8 +4,8 @@ object Form4: TForm4
   BorderIcons = [biSystemMenu]
   BorderStyle = bsToolWindow
   Caption = 'Miner '
-  ClientHeight = 177
-  ClientWidth = 543
+  ClientHeight = 179
+  ClientWidth = 537
   Color = clBtnFace
   DefaultMonitor = dmMainForm
   Font.Charset = DEFAULT_CHARSET
@@ -50,7 +50,7 @@ object Form4: TForm4
     WordWrap = True
   end
   object Label5: TLabel
-    Left = 365
+    Left = 367
     Top = 58
     Width = 27
     Height = 13
@@ -94,9 +94,18 @@ object Form4: TForm4
     Height = 13
     Caption = ':'
   end
+  object Label9: TLabel
+    Left = 95
+    Top = 192
+    Width = 344
+    Height = 13
+    Caption = 
+      'Beware: For Solo Mining your passphrase has to be saved in plain' +
+      'text:  '
+  end
   object Button1: TButton
-    Left = 365
-    Top = 88
+    Left = 367
+    Top = 91
     Width = 154
     Height = 25
     Hint = 'CPU assisted mining. Works always.'
@@ -124,7 +133,7 @@ object Form4: TForm4
     TabOrder = 2
     OnChange = ComboBox1Change
     Items.Strings = (
-      'bcaworldteampool.com'
+      'poolofd32th.club'
       'pool.burstcoin.party'
       'burst.lexitoshi.uk'
       'burstneon.ddns.net'
@@ -139,7 +148,8 @@ object Form4: TForm4
       'pool.burst-team.us'
       'pool.ccminer.net'
       'burst.poolto.be'
-      '128.0.0.1')
+      'bcaworldteampool.com'
+      '127.0.0.1')
   end
   object Button2: TButton
     Left = 163
@@ -152,7 +162,7 @@ object Form4: TForm4
   end
   object Button3: TButton
     Left = 248
-    Top = 0
+    Top = -8
     Width = 4
     Height = 177
     Default = True
@@ -176,5 +186,21 @@ object Form4: TForm4
     Height = 21
     TabOrder = 6
     Text = '8124'
+  end
+  object Edit2: TEdit
+    Left = 95
+    Top = 211
+    Width = 276
+    Height = 21
+    TabOrder = 7
+  end
+  object Button4: TButton
+    Left = 377
+    Top = 209
+    Width = 69
+    Height = 25
+    Caption = 'Save'
+    TabOrder = 8
+    OnClick = Button4Click
   end
 end

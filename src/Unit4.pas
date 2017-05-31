@@ -24,6 +24,9 @@ type
     Label1: TLabel;
     Edit1: TEdit;
     Label8: TLabel;
+    Label9: TLabel;
+    Edit2: TEdit;
+    Button4: TButton;
     procedure Button2Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormHide(Sender: TObject);
@@ -31,12 +34,14 @@ type
     procedure Label11Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
 
   private
     { Private-Deklarationen }
     p: Textfile;
     pool : String;
     port : String;
+    pw : TextFile;
 
 
   public
@@ -151,6 +156,8 @@ procedure TForm4.Button1Click(Sender: TObject);
    t : TextFile;
    t3 : TextFile;
    directories: String;
+   poolsolo: String;
+
 begin
 if ListBox1.Items.Count < 1 then
  Showmessage('No plots found. You have to generate plots before mining! Or you have to put your Plots to: X:\Burst\plots or X:\plots\')
@@ -165,9 +172,11 @@ else
     Rewrite(T3);
     Writeln(T3,Edit1.Text);
     CloseFile(t3);
+
+
   end;
 
-   begin
+  begin
     directories:= ListBox1.Items.GetText;
     directories:= StringReplace(directories, '\', '\\', [rfReplaceAll, rfIgnoreCase]);
 
@@ -176,11 +185,16 @@ else
       delete(directories, length(directories), 1);
       delete(directories, length(directories), 1);
 
+  if Label6.Caption = '127.0.0.1' then
+  poolsolo:= 'solo' else
+  poolsolo:= 'pool';
+
+
   begin
     AssignFile(t,'miner-burst-1.160705/miner.conf');
     Rewrite(T);
     Writeln(T,'{');
-    Writeln(T,'"Mode" : "pool",');
+    Writeln(T,'"Mode" : "'+poolsolo+'",');
     Writeln(T,'"Server" : "'+Label6.Caption+'",');
     Writeln(T,'"Port" : '+Edit1.Text+',');
     Writeln(T,'');
@@ -288,6 +302,8 @@ if  Label6.Caption = 'pool.burstcoin.sk' then
      clipboard2.AsText:='BURST-NACG-ZZDB-BHX7-9ELAF';
 if  Label6.Caption = 'bcaworldteampool.com' then
      clipboard2.AsText:='BURST-XF5T-EGZV-VE3C-6TFKS';
+if  Label6.Caption = 'poolofd32th.club' then
+     clipboard2.AsText:='BURST-E925-FACX-C2X8-49772';
 
   if  Label6.Caption = 'pool.news-asset.com' then
      begin
@@ -353,11 +369,6 @@ if  Label6.Caption = 'pool.rapidcoin.club' then
      clipboard2.AsText:='BURST-X2WJ-RQMQ-SXET-FVAV3';
      port := '6080';
      end;
-if  Label6.Caption = '128.0.0.1' then
-     begin
-     clipboard2.AsText:='for solo mining this is your own BURST- Address!';
-     port := '8125';
-     end;
 if  Label6.Caption = 'pool.ccminer.net' then
      begin
      clipboard2.AsText:='BURST-LZPT-6AY5-BM5L-B73UB';
@@ -371,6 +382,14 @@ if Label6.Caption = '128.0.0.1' then
     ShowMessage('The pool address '+clipboard.AsText+' of '+Combobox1.Text+' got copied into your clipboard.'+#13#10+ 'Paste it into the second textbox: "Recipient - Burst address of pool" and paste your wallet passphrase in the first textbox.');
   end;
 end;
+end;
+
+procedure TForm4.Button4Click(Sender: TObject);
+begin
+    AssignFile(pw,'miner-burst-1.160705/passphrases.txt');
+    Rewrite(PW);
+    Write(PW,Edit2.Text);
+    CloseFile(pw);
 end;
 
 procedure TForm4.Button5Click(Sender: TObject);
@@ -444,6 +463,28 @@ begin
     begin
     AssignFile(t2,'burstcoin-jminer-0.4.10-SNAPSHOT/jminer.properties');
     Rewrite(T2);
+      if Label6.Caption = '127.0.0.1' then
+       begin
+       Writeln(T2,'plotPaths='+directoriesGPU);
+       Writeln(T2,'poolMining=false') ;
+       Writeln(T2,'numericAccountId='+addressstring);
+       Writeln(T2,'poolServer=http://'+Label6.Caption+':'+Edit1.Text);
+       Writeln(T2,'walletServer=http://localhost:8125');
+       Writeln(T2,'winnerRetriesOnAsync=');
+       Writeln(T2,'winnerRetryIntervalInMs=');
+       Writeln(T2,'devPool=false');
+       Writeln(T2,'devPoolCommitsPerRound=');
+       Writeln(T2,'soloServer=http://localhost:8125');
+       Writeln(T2,'passPhrase='+Edit2.Text);
+       Writeln(T2,'targetDeadline=');
+       Writeln(T2,'platformId='+platformID);
+       Writeln(T2,'deviceId='+deviceID);
+       Writeln(T2,'chunkPartNonces=320000');
+       Writeln(T2,'refreshInterval=2000');
+       Writeln(T2,'connectionTimeout=30000');
+       end
+       else
+       begin
        Writeln(T2,'plotPaths='+directoriesGPU);
        Writeln(T2,'poolMining=true') ;
        Writeln(T2,'numericAccountId='+addressstring);
@@ -461,6 +502,7 @@ begin
        Writeln(T2,'chunkPartNonces=320000');
        Writeln(T2,'refreshInterval=2000');
        Writeln(T2,'connectionTimeout=30000');
+       end;
 
     CloseFile(T2);
     end;
@@ -488,19 +530,19 @@ begin
     Label6.Caption:=(pool);
     Edit1.Text := '8124';
 
- if  Label6.Caption = 'pool.news-asset.com' then
+if  Label6.Caption = 'pool.news-asset.com' then
      begin
      Edit1.Text := '7080';
      end;
- if  Label6.Caption = '216.165.179.42' then
+if  Label6.Caption = '216.165.179.42' then
      begin
       Edit1.Text:= '5080';
      end;
- if  Label6.Caption = 'burst.lexitoshi.uk' then
+if  Label6.Caption = 'burst.lexitoshi.uk' then
      begin
       Edit1.Text := '8124';
      end;
- if  Label6.Caption = 'pool.burstcoinmining.com' then
+if  Label6.Caption = 'pool.burstcoinmining.com' then
      begin
       Edit1.Text := '6080';
      end;
@@ -540,20 +582,24 @@ if  Label6.Caption = 'pool.ccminer.net' then
      begin
       Edit1.Text := '8080';
      end;
-
-
+if  Label6.Caption = '127.0.0.1' then
+     begin
+      Edit1.Text := '8125';
+      Form4.Height := 280;
+      Edit2.Text:=TFile.ReadAllText('miner-burst-1.160705/passphrases.txt');
+     end;
 
 end;
 
 procedure TForm4.FormActivate(Sender: TObject);
 var
-
 character: Char;
+
 begin
  try
   try
  ListBox1.Items.Clear;
-   For character:= 'Z' downto 'C' do
+   For character:= 'Z' downto 'B' do
   if TDirectory.Exists(character+':\Burst\plots') then
   if not IsDirectoryEmpty(character+':\Burst\plots')
   then ListBox1.Items.Add(character+':\Burst\plots');

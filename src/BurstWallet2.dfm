@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Burst Client for Win v0.3.9.4'
+  Caption = 'Burst Client for Win v0.3.9.6 RC1'
   ClientHeight = 467
   ClientWidth = 816
   Color = clBtnFace
@@ -47,7 +47,6 @@ object Form1: TForm1
     TabOrder = 0
     TabStop = True
     Transparent = True
-    ExplicitTop = 456
     object ToolButton1: TToolButton
       Left = 0
       Top = 0

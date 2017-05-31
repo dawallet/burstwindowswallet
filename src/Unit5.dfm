@@ -4,7 +4,7 @@ object Form5: TForm5
   BorderIcons = [biSystemMenu]
   BorderStyle = bsToolWindow
   Caption = 'Save Wallet'
-  ClientHeight = 92
+  ClientHeight = 91
   ClientWidth = 330
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -20,16 +20,16 @@ object Form5: TForm5
   object Label1: TLabel
     Left = 16
     Top = 24
-    Width = 27
+    Width = 55
     Height = 13
-    Caption = 'Name'
+    Caption = 'Name:'
   end
   object Label2: TLabel
     Left = 16
-    Top = 56
-    Width = 55
+    Top = 51
+    Width = 59
     Height = 13
-    Caption = 'Passphrase'
+    Caption = 'Passphrase:'
   end
   object Edit1: TEdit
     Left = 96
