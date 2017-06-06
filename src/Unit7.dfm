@@ -29,10 +29,10 @@ object Form7: TForm7
     WordWrap = True
   end
   object Panel1: TPanel
-    Left = 2
+    Left = 1
     Top = 0
-    Width = 193
-    Height = 55
+    Width = 194
+    Height = 54
     TabOrder = 0
   end
   object Timer1: TTimer

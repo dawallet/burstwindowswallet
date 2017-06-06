@@ -117,7 +117,6 @@ type
   coinprice: String;
   result: real;
   marketcap: String;
-  dummy2: String;
   LJsonArr : TJSONArray;
   LJsonObj: TJSONObject;
   price_usd : TJSONValue;
@@ -166,6 +165,20 @@ until
 ((GetTickCount-FirstTickCount) >= Longint(msecs));
 end;
 
+function IsWin64: Boolean;
+var
+  IsWow64Process : function(hProcess : THandle; var Wow64Process : BOOL): BOOL; stdcall;
+  Wow64Process : BOOL;
+begin
+  Result := False;
+  IsWow64Process := GetProcAddress(GetModuleHandle(Kernel32), 'IsWow64Process');
+  if Assigned(IsWow64Process) then begin
+    if IsWow64Process(GetCurrentProcess, Wow64Process) then begin
+      Result := Wow64Process;
+    end;
+  end;
+end;
+
 function GetProcID(sProcName: String): Integer;
 var
   hProcSnap: THandle;
@@ -202,20 +215,6 @@ begin
   finally
     FreeAndNil(lHTTP);
     FreeAndNil(lStream);
-  end;
-end;
-
-function IsWin64: Boolean;
-var
-  IsWow64Process : function(hProcess : THandle; var Wow64Process : BOOL): BOOL; stdcall;
-  Wow64Process : BOOL;
-begin
-  Result := False;
-  IsWow64Process := GetProcAddress(GetModuleHandle(Kernel32), 'IsWow64Process');
-  if Assigned(IsWow64Process) then begin
-    if IsWow64Process(GetCurrentProcess, Wow64Process) then begin
-      Result := Wow64Process;
-    end;
   end;
 end;
 
@@ -685,48 +684,6 @@ end;
 procedure TForm1.FormShow(Sender: TObject);
 begin
 
-
-
-
-
-{
-  try
-   //  IdHTTP2 := TIdHTTP.Create;
-     N7.Enabled := true;
-     N6.Enabled := false;
-    try
-     // dummy2:= (idHTTP2.Get(owallet1+'/LICENSES'));
-      WebBrowser1.Navigate(owallet1);
-     except
-      try
-       //     dummy2:= (idHTTP2.Get(owallet2+'/LICENSES'));
-            WebBrowser1.Navigate(owallet2);
-     except
-     try
-         //   dummy2:= (idHTTP2.Get(owallet3+'/LICENSES'));
-            WebBrowser1.Navigate(owallet3);
-       except
-      try
-           // dummy2:= (idHTTP2.Get(owallet4+'/LICENSES'));
-            WebBrowser1.Navigate(owallet4);
-      except
-
-        Showmessage('Online wallets are not available at the moment. Use the your Local Wallet instead.');
-
-        end;
-
-      end;
-      end;
-     //   IdHTTP2.Free;
-     end;
-
-   except
-
-
-
-
-  end;    }
-
  statestring := TFile.ReadAllText('var/winstate');
  statestring:= StringReplace(statestring, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
  begin
@@ -1142,7 +1099,7 @@ begin
 Form4.Show
 end
 else
-Form9.Show;
+Showmessage('Mining is not supported on a 32 bit system. Upgrade or use another PC.')
 
 end;
 
@@ -1150,7 +1107,10 @@ end;
 
 procedure TForm1.ToolButton11Click(Sender: TObject);
 begin
-Form2.Show;
+if isWin64 = true then
+Form2.Show
+else
+Showmessage('Plotting is not supported on a 32 bit system. Use another computer.');
 //Form2.DriveComboBox1.Update;
 end;
 

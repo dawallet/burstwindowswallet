@@ -4,8 +4,8 @@ object Form4: TForm4
   BorderIcons = [biSystemMenu]
   BorderStyle = bsToolWindow
   Caption = 'Miner '
-  ClientHeight = 179
-  ClientWidth = 537
+  ClientHeight = 173
+  ClientWidth = 532
   Color = clBtnFace
   DefaultMonitor = dmMainForm
   Font.Charset = DEFAULT_CHARSET
@@ -95,13 +95,24 @@ object Form4: TForm4
     Caption = ':'
   end
   object Label9: TLabel
-    Left = 95
-    Top = 192
+    Left = 97
+    Top = 182
     Width = 344
     Height = 13
     Caption = 
       'Beware: For Solo Mining your passphrase has to be saved in plain' +
       'text:  '
+  end
+  object Label10: TLabel
+    Left = 122
+    Top = 228
+    Width = 293
+    Height = 26
+    Alignment = taCenter
+    Caption = 
+      'Do not forget to change reward assignment back to yourself if yo' +
+      'u were pool mining before! '
+    WordWrap = True
   end
   object Button1: TButton
     Left = 367
@@ -148,7 +159,6 @@ object Form4: TForm4
       'pool.burst-team.us'
       'pool.ccminer.net'
       'burst.poolto.be'
-      'bcaworldteampool.com'
       '127.0.0.1')
   end
   object Button2: TButton
@@ -188,15 +198,15 @@ object Form4: TForm4
     Text = '8124'
   end
   object Edit2: TEdit
-    Left = 95
-    Top = 211
+    Left = 97
+    Top = 201
     Width = 276
     Height = 21
     TabOrder = 7
   end
   object Button4: TButton
-    Left = 377
-    Top = 209
+    Left = 379
+    Top = 199
     Width = 69
     Height = 25
     Caption = 'Save'

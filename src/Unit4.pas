@@ -27,6 +27,7 @@ type
     Label9: TLabel;
     Edit2: TEdit;
     Button4: TButton;
+    Label10: TLabel;
     procedure Button2Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormHide(Sender: TObject);
@@ -93,6 +94,38 @@ asm
     mov rbx, r10
 {$ENDIF}
 end;
+
+function IsAVX2supported: boolean;
+asm
+    // Save EBX
+    {$IFDEF CPUx86}
+      push ebx
+    {$ELSE CPUx64}
+      mov r10, rbx
+    {$ENDIF}
+    //Check CPUID.0
+    xor eax, eax
+    cpuid //modifies EAX,EBX,ECX,EDX
+    cmp al, 7 // do we have a CPUID leaf 7 ?
+    jge @Leaf7
+      xor eax, eax
+      jmp @Exit
+    @Leaf7:
+      //Check CPUID.7
+      mov eax, 7h
+      xor ecx, ecx
+      cpuid
+      bt ebx, 5 //AVX2: CPUID.(EAX=07H, ECX=0H):EBX.AVX2[bit 5]=1
+      setc al
+   @Exit:
+   // Restore EBX
+   {$IFDEF CPUx86}
+     pop ebx
+   {$ELSE CPUx64}
+     mov rbx, r10
+   {$ENDIF}
+end;
+
 function IsDirectoryEmpty(const directory : string) : boolean;
  var
    searchRec :TSearchRec;
@@ -168,7 +201,7 @@ else
   else
  begin
    begin
-   AssignFile(t3,'miner-burst-1.160705/chosen_port.txt');
+   AssignFile(t3,'miner-burst-1.170603/chosen_port.txt');
     Rewrite(T3);
     Writeln(T3,Edit1.Text);
     CloseFile(t3);
@@ -191,7 +224,7 @@ else
 
 
   begin
-    AssignFile(t,'miner-burst-1.160705/miner.conf');
+    AssignFile(t,'miner-burst-1.170603/miner.conf');
     Rewrite(T);
     Writeln(T,'{');
     Writeln(T,'"Mode" : "'+poolsolo+'",');
@@ -211,33 +244,35 @@ else
     Writeln(T,'[');
     Writeln(T,'        "'+directories+'"');
     Writeln(T,'],');
-    Writeln(T,'"CacheSize" : 100000,');
+    Writeln(T,'"CacheSize" : 40000,');
     Writeln(T,'"ShowMsg" : false,');
     Writeln(T,'"ShowUpdates" : false,');
     Writeln(T,'');
     Writeln(T,'"Debug" : true,');
-    //Writeln(T,'"UseHDDWakeUp" : true,');
+    Writeln(T,'"UseHDDWakeUp" : true,');
     Writeln(T,'');
     Writeln(T,'"SendBestOnly" : true,');
-    Writeln(T,'"TargetDeadline": 6048000,');
+    Writeln(T,'"TargetDeadline": 80000000,');
     Writeln(T,'');
     Writeln(T,'"UseFastRcv" : false,');
     Writeln(T,'"SendInterval" : 100,');
     Writeln(T,'"UpdateInterval" : 950,');
     Writeln(T,'');
-    Writeln(T,'"UseLog" : true,');
-    Writeln(T,'"ShowWinner" : false,');
+    Writeln(T,'"UseLog" : false,');
+    Writeln(T,'"ShowWinner" : true,');
     Writeln(T,'"UseBoost" : false,');
     Writeln(T,'');
-    Writeln(T,'"WinSizeX" : 80,');
+    Writeln(T,'"WinSizeX" : 76,');
     Writeln(T,'"WinSizeY" : 60');
       Writeln(T,'}');
     CloseFile(T);
 
-    if isAvxSupported = true then
-    ShellExecute(0, 'open', PChar('miner-v1.160705_AVX.exe'),PChar('/K'), PChar('miner-burst-1.160705'), SW_SHOW)
-     else
-     ShellExecute(0, 'open', PChar('miner-v1.160705.exe'),PChar('/K'), PChar('miner-burst-1.160705'), SW_SHOW);
+    if IsAVX2supported = true then
+      ShellExecute(0, 'open', PChar('miner-v1.170603_AVX2.exe'),PChar('/K'), PChar('miner-burst-1.170603'), SW_SHOW)
+      else if isAvxSupported = true then
+        ShellExecute(0, 'open', PChar('miner-v1.170603_AVX.exe'),PChar('/K'), PChar('miner-burst-1.170603'), SW_SHOW)
+         else
+           ShellExecute(0, 'open', PChar('miner-v1.170603.exe'),PChar('/K'), PChar('miner-burst-1.170603'), SW_SHOW);
 
      close;
      end;
@@ -374,7 +409,7 @@ if  Label6.Caption = 'pool.ccminer.net' then
      clipboard2.AsText:='BURST-LZPT-6AY5-BM5L-B73UB';
      port := '8080';
      end;
-if Label6.Caption = '128.0.0.1' then
+if Label6.Caption = '127.0.0.1' then
     begin
     ShowMessage('For solo mining the reward assignment has to point to your own account!'+#13#10+ ' This is the case by default except you were pool mining before.')
     end
@@ -386,7 +421,7 @@ end;
 
 procedure TForm4.Button4Click(Sender: TObject);
 begin
-    AssignFile(pw,'miner-burst-1.160705/passphrases.txt');
+    AssignFile(pw,'miner-burst-1.170603/passphrases.txt');
     Rewrite(PW);
     Write(PW,Edit2.Text);
     CloseFile(pw);
@@ -412,7 +447,7 @@ begin
 else
 begin
  begin
-   AssignFile(t4,'miner-burst-1.160705/chosen_port.txt');
+   AssignFile(t4,'miner-burst-1.170603/chosen_port.txt');
     Rewrite(T4);
     Writeln(T4,Edit1.Text);
     CloseFile(t4);
@@ -475,7 +510,7 @@ begin
        Writeln(T2,'devPool=false');
        Writeln(T2,'devPoolCommitsPerRound=');
        Writeln(T2,'soloServer=http://localhost:8125');
-       Writeln(T2,'passPhrase='+Edit2.Text);
+       Writeln(T2,'passPhrase='+TFile.ReadAllText('miner-burst-1.170603/passphrases.txt'));
        Writeln(T2,'targetDeadline=');
        Writeln(T2,'platformId='+platformID);
        Writeln(T2,'deviceId='+deviceID);
@@ -519,13 +554,14 @@ begin
 
 procedure TForm4.ComboBox1Change(Sender: TObject);
 begin
- AssignFile(p,'miner-burst-1.160705/chosen_pool.txt');
+
+ AssignFile(p,'miner-burst-1.170603/chosen_pool.txt');
    Rewrite(P);
    Writeln(P,Combobox1.Text);
    CloseFile(P);
 //Showmessage('Changes saved');
 
-    pool:=TFile.ReadAllText('miner-burst-1.160705/chosen_pool.txt');
+    pool:=TFile.ReadAllText('miner-burst-1.170603/chosen_pool.txt');
     pool:= StringReplace(pool, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
     Label6.Caption:=(pool);
     Edit1.Text := '8124';
@@ -585,8 +621,8 @@ if  Label6.Caption = 'pool.ccminer.net' then
 if  Label6.Caption = '127.0.0.1' then
      begin
       Edit1.Text := '8125';
-      Form4.Height := 280;
-      Edit2.Text:=TFile.ReadAllText('miner-burst-1.160705/passphrases.txt');
+      Form4.Height := 290;
+      Edit2.Text:=TFile.ReadAllText('miner-burst-1.170603/passphrases.txt');
      end;
 
 end;
@@ -613,10 +649,10 @@ begin
 
  end;
 
-   port:=TFile.ReadAllText('miner-burst-1.160705/chosen_port.txt');
+   port:=TFile.ReadAllText('miner-burst-1.170603/chosen_port.txt');
    Edit1.Text:= StringReplace(port, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
 
-   pool:=TFile.ReadAllText('miner-burst-1.160705/chosen_pool.txt');
+   pool:=TFile.ReadAllText('miner-burst-1.170603/chosen_pool.txt');
    pool:= StringReplace(pool, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
 
   if pool = '' then
