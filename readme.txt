@@ -20,6 +20,12 @@ _____
 
 Changelog:
 
+0.3.9.6
+
++ added solo mining feature in gui
++ added newest blago's miner (AVX2 support) https://github.com/Blagodarenko/miner-burst/releases/tag/v1.170603
++ removed 32 bit plotting/mining support (half filesize)
+
 0.3.9.5
 
 + added new pools

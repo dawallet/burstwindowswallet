@@ -55,11 +55,11 @@ object Form13: TForm13
     WordWrap = True
   end
   object Label4: TLabel
-    Left = 17
-    Top = 146
-    Width = 294
+    Left = 37
+    Top = 148
+    Width = 271
     Height = 16
-    Caption = 'Do you still want to speed up the local wallet sync? '
+    Caption = 'Do you want to speed up the local wallet sync? '
   end
   object Button1: TButton
     Left = 161

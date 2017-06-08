@@ -249,7 +249,7 @@ else
     Writeln(T,'"ShowUpdates" : false,');
     Writeln(T,'');
     Writeln(T,'"Debug" : true,');
-    Writeln(T,'"UseHDDWakeUp" : true,');
+    Writeln(T,'"UseHDDWakeUp" : false,');
     Writeln(T,'');
     Writeln(T,'"SendBestOnly" : true,');
     Writeln(T,'"TargetDeadline": 80000000,');
@@ -339,6 +339,8 @@ if  Label6.Caption = 'bcaworldteampool.com' then
      clipboard2.AsText:='BURST-XF5T-EGZV-VE3C-6TFKS';
 if  Label6.Caption = 'poolofd32th.club' then
      clipboard2.AsText:='BURST-E925-FACX-C2X8-49772';
+if  Label6.Caption = 'pool.burstcoin.space' then
+     clipboard2.AsText:='BURST-SPAC-EWWF-CRX2-78Z6Z';
 
   if  Label6.Caption = 'pool.news-asset.com' then
      begin

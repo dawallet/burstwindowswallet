@@ -21,15 +21,15 @@ object Form4: TForm4
   PixelsPerInch = 96
   TextHeight = 13
   object Label2: TLabel
-    Left = 268
+    Left = 257
     Top = 9
     Width = 60
     Height = 13
     Caption = 'Found Plots:'
   end
   object Label3: TLabel
-    Left = 365
-    Top = 9
+    Left = 352
+    Top = 8
     Width = 63
     Height = 13
     Caption = 'Choose pool:'
@@ -50,15 +50,15 @@ object Form4: TForm4
     WordWrap = True
   end
   object Label5: TLabel
-    Left = 367
-    Top = 58
+    Left = 359
+    Top = 57
     Width = 27
     Height = 13
     Caption = 'Pool: '
   end
   object Label6: TLabel
-    Left = 400
-    Top = 58
+    Left = 392
+    Top = 57
     Width = 72
     Height = 13
     Caption = 'none - choose!'
@@ -115,9 +115,9 @@ object Form4: TForm4
     WordWrap = True
   end
   object Button1: TButton
-    Left = 367
+    Left = 355
     Top = 91
-    Width = 154
+    Width = 166
     Height = 25
     Hint = 'CPU assisted mining. Works always.'
     Caption = 'Start Mining (CPU / AVX)'
@@ -125,7 +125,7 @@ object Form4: TForm4
     OnClick = Button1Click
   end
   object ListBox1: TListBox
-    Left = 268
+    Left = 257
     Top = 28
     Width = 85
     Height = 133
@@ -136,15 +136,16 @@ object Form4: TForm4
     TabOrder = 1
   end
   object ComboBox1: TComboBox
-    Left = 365
+    Left = 352
     Top = 28
-    Width = 116
+    Width = 129
     Height = 21
     AutoComplete = False
     TabOrder = 2
     OnChange = ComboBox1Change
     Items.Strings = (
       'poolofd32th.club'
+      'pool.burstcoin.space'
       'pool.burstcoin.party'
       'burst.lexitoshi.uk'
       'burstneon.ddns.net'
@@ -171,7 +172,7 @@ object Form4: TForm4
     OnClick = Button2Click
   end
   object Button3: TButton
-    Left = 248
+    Left = 241
     Top = -8
     Width = 4
     Height = 177
@@ -179,9 +180,9 @@ object Form4: TForm4
     TabOrder = 4
   end
   object Button5: TButton
-    Left = 367
+    Left = 356
     Top = 137
-    Width = 154
+    Width = 165
     Height = 25
     Hint = 'GPU assisted mining with OpenCL'
     Caption = 'Start Mining (OpenCL)'

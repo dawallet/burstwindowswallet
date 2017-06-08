@@ -118,9 +118,6 @@
         <DCCReference Include="Unit4.pas">
             <Form>Form4</Form>
         </DCCReference>
-        <DCCReference Include="Unit9.pas">
-            <Form>Form9</Form>
-        </DCCReference>
         <DCCReference Include="Unit10.pas">
             <Form>Form10</Form>
         </DCCReference>
@@ -132,9 +129,6 @@
         </DCCReference>
         <DCCReference Include="Unit12.pas">
             <Form>Form12</Form>
-        </DCCReference>
-        <DCCReference Include="Unit8.pas">
-            <Form>Form8</Form>
         </DCCReference>
         <DCCReference Include="Unit13.pas">
             <Form>Form13</Form>
