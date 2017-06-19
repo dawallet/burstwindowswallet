@@ -148,6 +148,7 @@ object Form4: TForm4
       'pool.burstcoin.space'
       'pool.burstcoin.party'
       'burst.lexitoshi.uk'
+      'all.poolofd32th.club'
       'burstneon.ddns.net'
       'pool.burstcoin.sk'
       'pool.burstcoin.ml'

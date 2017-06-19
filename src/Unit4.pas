@@ -313,12 +313,11 @@ Form1.N7.Enabled := True;
 
 clipboard2 := TClipBoard.create;
 
+
 if Label6.Caption = 'pool.burstcoin.biz' then
     clipboard2.AsText:='BURST-6WVW-2WVD-YXE5-EZBHU';
 if Label6.Caption = 'pool.burstcoin.eu' then
     clipboard2.AsText:='BURST-7Z2V-J9CF-NCW9-HWFRY';
-if Label6.Caption = 'burst.ninja' then
-    clipboard2.AsText:='BURST-7CPJ-BW8N-U4XF-CWW3U';
 if  Label6.Caption = 'pool.burstcoin.it' then
      clipboard2.AsText:='BURST-LGKU-3UUM-M6Q5-86SLK';
 if  Label6.Caption = 'burst.poolto.be' then
@@ -341,6 +340,10 @@ if  Label6.Caption = 'poolofd32th.club' then
      clipboard2.AsText:='BURST-E925-FACX-C2X8-49772';
 if  Label6.Caption = 'pool.burstcoin.space' then
      clipboard2.AsText:='BURST-SPAC-EWWF-CRX2-78Z6Z';
+if  Label6.Caption = 'all.poolofd32th.club' then
+     clipboard2.AsText:='BURST-LBQ2-XLPT-S2S8-64ZG5';
+
+ port := '8124';
 
   if  Label6.Caption = 'pool.news-asset.com' then
      begin
@@ -415,9 +418,13 @@ if Label6.Caption = '127.0.0.1' then
     begin
     ShowMessage('For solo mining the reward assignment has to point to your own account!'+#13#10+ ' This is the case by default except you were pool mining before.')
     end
+
+
     else
     ShowMessage('The pool address '+clipboard.AsText+' of '+Combobox1.Text+' got copied into your clipboard.'+#13#10+ 'Paste it into the second textbox: "Recipient - Burst address of pool" and paste your wallet passphrase in the first textbox.');
   end;
+
+
 end;
 end;
 

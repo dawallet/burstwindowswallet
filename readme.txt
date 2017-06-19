@@ -20,6 +20,11 @@ _____
 
 Changelog:
 
+0.3.9.7
+
++ added pool
++ code clean up of unused permissions
+
 0.3.9.6
 
 + added solo mining feature in gui

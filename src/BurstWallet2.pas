@@ -4,10 +4,9 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, TLHelp32, Vcl.Clipbrd, ShellAPI, Vcl.Menus,
-  Vcl.OleCtrls, SHDocVw, Vcl.ComCtrls, Vcl.ToolWin, Vcl.StdCtrls, idHTTP, IdBaseComponent,IdComponent,IOUtils,
-  IdTCPConnection, IdTCPClient,IdIOHandler, IdIOHandlerSocket, IdIOHandlerStack, IdSSL,
-IdSSLOpenSSL, registry, JSON, URLMon, WinInet, System.Zip, SHDocVw_TLB, WinSvc;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, TLHelp32, Vcl.Clipbrd, ShellAPI, Vcl.Menus, SHDocVw, Vcl.ComCtrls, Vcl.StdCtrls,
+  idHTTP, IdBaseComponent,IdComponent,IOUtils, IdTCPConnection, IdTCPClient, IdSSLOpenSSL, JSON, WinInet, WinSvc, Vcl.OleCtrls, Vcl.ToolWin,
+  SHDocVw_TLB;
 
 type
   TForm1 = class(TForm)
