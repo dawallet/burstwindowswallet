@@ -111,6 +111,7 @@ type
     procedure ToolButton4Click(Sender: TObject);
     procedure ToolButton15Click(Sender: TObject);
 
+
   private
     { Private-Deklarationen }
   coinprice: String;
@@ -149,7 +150,7 @@ var
 
 
 implementation
-uses Unit5, Unit6, Unit2, Unit4, Unit3, Unit9, Unit10, Unit11, Unit7, Unit12,
+uses Unit5, Unit6, Unit2, Unit4, Unit3, Unit10, Unit11, Unit7, Unit12,
   Unit13;
 {$R *.dfm}
 
@@ -493,56 +494,51 @@ begin
 // ShowWindow(Application.Handle, SW_HIDE);
 end;
 
+procedure LoadOWallet;
+  begin
+
+ end;
+
 procedure TForm1.FormCreate(Sender: TObject);
-
-
 begin
 
-owallet1 := TFile.ReadAllText('var/owallet1');
-owallet1 := StringReplace(owallet1, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
+       begin
 
-owallet2 := TFile.ReadAllText('var/owallet2');
-owallet2 := StringReplace(owallet2, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
+  owallet1 := TFile.ReadAllText('var/owallet1');
+  owallet1 := StringReplace(owallet1, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
 
-owallet3 := TFile.ReadAllText('var/owallet3');
-owallet3 := StringReplace(owallet3, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
+  owallet2 := TFile.ReadAllText('var/owallet2');
+  owallet2 := StringReplace(owallet2, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
 
-owallet4 := TFile.ReadAllText('var/owallet4');
-owallet4 := StringReplace(owallet4, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
- //Sleep(200);
+  owallet3 := TFile.ReadAllText('var/owallet3');
+  owallet3 := StringReplace(owallet3, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
+
+  owallet4 := TFile.ReadAllText('var/owallet4');
+  owallet4 := StringReplace(owallet4, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
 
   try
      WebBrowser1.Navigate(owallet1);
      except
     Showmessage('Online wallets are not available at the moment. Use the your Local Wallet instead.');
-end;
+  end;
 
 
-
+  end;
 
 
   try
-   //IdHTTP2.Create;
    LJsonArr := TJsonArray.Create;
-
-  // mydata:= idHTTP2.Get('https://api.coinmarketcap.com/v1/ticker/burst/');
-  mydata:= GetURLAsString('https://api.coinmarketcap.com/v1/ticker/burst/');
-  //   Showmessage(mydata);
-
+   mydata:= GetURLAsString('https://api.coinmarketcap.com/v1/ticker/burst/');
    LJsonArr := TJSONObject.ParseJSONValue(TEncoding.UTF8.GetBytes(mydata), 0) as TJSONArray;
 
+   LJsonObj := LJsonArr.Get(0) as TJSONObject;
+   price_usd := LJsonObj.GetValue('price_usd') as TJSONValue;
+   price_btc := LJsonObj.GetValue('price_btc') as TJSONValue;
+   percent_change_24h :=  LJsonObj.GetValue('percent_change_24h') as TJSONValue;
+   market_cap_usd := LJsonObj.GetValue('market_cap_usd') as TJSONValue;
 
-
-  LJsonObj := LJsonArr.Get(0) as TJSONObject;
-  price_usd := LJsonObj.GetValue('price_usd') as TJSONValue;
-  price_btc := LJsonObj.GetValue('price_btc') as TJSONValue;
-  percent_change_24h :=  LJsonObj.GetValue('percent_change_24h') as TJSONValue;
-  market_cap_usd := LJsonObj.GetValue('market_cap_usd') as TJSONValue;
-
-   // LJsonArr.Free;
-    // IdHTTP2.Free;
   except
-   // Showmessage('Json error');
+
   end;
 
 
@@ -554,10 +550,6 @@ end;
 
      coinprice:= price_btc.ToString.Remove((price_btc.ToString.Length)-1);
      Delete(coinprice, 1,1);
-   // coinprice := Copy(coinprice, 1, Pos(',', coinprice) - 1);
-
-   //  Showmessage(coinprice);
-
 
        try
         begin
@@ -668,10 +660,10 @@ end;
  end;
 
  WebBrowser1.Navigate(owallet1);
+
+
+
 end;
-
-
-
 
 
 procedure TForm1.FormHide(Sender: TObject);
@@ -976,7 +968,7 @@ begin
    end;
 
 
-except
+   except
 
   end;
 
