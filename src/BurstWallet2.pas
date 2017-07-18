@@ -71,8 +71,6 @@ type
     procedure Open1Click(Sender: TObject);
     procedure Close1Click(Sender: TObject);
     procedure FormHide(Sender: TObject);
-    procedure TrayIcon1MouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
     procedure FormActivate(Sender: TObject);
     procedure WmSysCommand(var Msg: TWMSysCommand); message WM_SYSCOMMAND;
     procedure HeaderControl1MouseActivate(Sender: TObject; Button: TMouseButton;
@@ -140,14 +138,10 @@ type
     owallet2: String;
     owallet3: String;
     owallet4: String;
-
   end;
 
 var
   Form1: TForm1;
-
-
-
 
 implementation
 uses Unit5, Unit6, Unit2, Unit4, Unit3, Unit10, Unit11, Unit7, Unit12,
@@ -306,8 +300,6 @@ Begin
            PostMessage(WND, WM_CLOSE, 0, 0);
 End;
 
-
-
 function DownloadFile2(
     const url: string;
     const destinationFileName: string): boolean;
@@ -357,7 +349,6 @@ begin
   TrayIcon1.ShowBalloonHint;
 end;
 
-
 procedure TForm1.AssetExplorer1Click(Sender: TObject);
 begin
 ShellExecute(0, 'open', 'http://asset.burstnation.com', nil, nil, SW_SHOWNORMAL);
@@ -378,11 +369,6 @@ begin
  Form5.Show;
 end;
 
-
-
-
-
-
 procedure TForm1.Alttechchat1Click(Sender: TObject);
 begin
 ShellExecute(0, 'open', 'https://alttech.chat/login', nil, nil, SW_SHOWNORMAL);
@@ -394,7 +380,6 @@ Form11.Show;
 end;
 
 procedure TForm1.Close1Click(Sender: TObject);
-
 var
   PID : String;
   TS : TextFile;
@@ -412,16 +397,12 @@ var
        Writeln(TS,'SendSignalCtrlC '+PID);
        CloseFile(TS);
         ShellExecute(0, 'open', PChar('close_softly.bat'),PChar('/K'), PChar('3rd'), SW_HIDE);
-
      except
      Killtask('javaw.exe');
-
-
   end;
    clipboard := TClipBoard.create;
    clipboard.AsText :='';
-
-  AssignFile(ws,'var/winstate');
+   AssignFile(ws,'var/winstate');
    Rewrite(WS);
    begin
    if Self.WindowState = wsMaximized then
@@ -429,14 +410,13 @@ var
    else Writeln(WS,'wsNormal');
    end;
    CloseFile(WS);
-
   Form1.Hide;
   Form7.Show;
  end;
 
 procedure TForm1.Crowdfunding2Click(Sender: TObject);
 begin
-      WebBrowser1.Navigate('http://127.0.0.1:8125/atcrowdfund.html');
+    WebBrowser1.Navigate('http://127.0.0.1:8125/atcrowdfund.html');
     N7.Enabled := true;
     N6.Enabled := True;
 end;
@@ -454,24 +434,18 @@ var
  begin
  Timer2.Enabled:=false;
  try
-
-     PID := GetProcId('javaw.exe').ToString;
-    // Showmessage(PID);
-       AssignFile(ts,'3rd/close_softly.bat');
-       Rewrite(TS);
-      if isWin64 = true then
-       Writeln(TS,'SendSignalCtrlC64 '+PID)
+        PID := GetProcId('javaw.exe').ToString;
+        AssignFile(ts,'3rd/close_softly.bat');
+        Rewrite(TS);
+       if isWin64 = true then
+        Writeln(TS,'SendSignalCtrlC64 '+PID)
        else
-       Writeln(TS,'SendSignalCtrlC '+PID);
-       CloseFile(TS);
+        Writeln(TS,'SendSignalCtrlC '+PID);
+        CloseFile(TS);
         ShellExecute(0, 'open', PChar('close_softly.bat'),PChar('/K'), PChar('3rd'), SW_HIDE);
-
      except
      Killtask('javaw.exe');
-
-
  end;
-
 
 clipboard := TClipBoard.create;
 clipboard.AsText :='';
@@ -483,10 +457,8 @@ clipboard.AsText :='';
    else Writeln(WS,'wsNormal');
    end;
    CloseFile(WS);
-
 Form1.Hide;
 Form7.Show;
-
 end;
 
 procedure TForm1.FormActivate(Sender: TObject);
@@ -501,9 +473,7 @@ procedure LoadOWallet;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-
-       begin
-
+  begin
   owallet1 := TFile.ReadAllText('var/owallet1');
   owallet1 := StringReplace(owallet1, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
 
@@ -519,38 +489,26 @@ begin
   try
      WebBrowser1.Navigate(owallet1);
      except
-    Showmessage('Online wallets are not available at the moment. Use the your Local Wallet instead.');
+     Showmessage('Online wallets are not available at the moment. Use the your Local Wallet instead.');
   end;
-
-
   end;
-
 
   try
    LJsonArr := TJsonArray.Create;
    mydata:= GetURLAsString('https://api.coinmarketcap.com/v1/ticker/burst/');
    LJsonArr := TJSONObject.ParseJSONValue(TEncoding.UTF8.GetBytes(mydata), 0) as TJSONArray;
-
    LJsonObj := LJsonArr.Get(0) as TJSONObject;
    price_usd := LJsonObj.GetValue('price_usd') as TJSONValue;
    price_btc := LJsonObj.GetValue('price_btc') as TJSONValue;
    percent_change_24h :=  LJsonObj.GetValue('percent_change_24h') as TJSONValue;
    market_cap_usd := LJsonObj.GetValue('market_cap_usd') as TJSONValue;
-
   except
-
   end;
-
-
-
-
 
    try
     begin
-
      coinprice:= price_btc.ToString.Remove((price_btc.ToString.Length)-1);
      Delete(coinprice, 1,1);
-
        try
         begin
            // market cap
@@ -583,13 +541,9 @@ begin
         //  Showmessage('Market Cap error')
         end;
 
-
        ToolButton6.Caption := ('$ '+marketcap);
        // coinprice
         ToolButton2.Caption := '฿ '+ coinprice;
-
-
-         // 10.000 Burst info
         formatSettings.DecimalSeparator := '.';
         price_usd_clean := price_usd.ToString.Remove(price_usd.ToString.Length-2);
         Delete(price_usd_clean, 1,1);
@@ -602,9 +556,6 @@ begin
          //ToolButton4.Caption := '$ '+(FloatToStrF((result), ffFixed, 15, 2)) ;
          ToolButton4.Caption := '$ '+ price_usd_clean;
       end;
-
-
-
     except
       begin
       ToolButton1.Visible:=false;
@@ -613,14 +564,8 @@ begin
       ToolButton4.Visible:=false;
       ToolButton5.Caption:='Market Information';
       ToolButton6.Visible:=false;
-       //IdHTTP.Free;
        end;
    end;
-
-
-
-
-
 
    try
    begin
@@ -628,20 +573,16 @@ begin
     firstStart := StringReplace(firstStart, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
     if firstStart = 'true' then
       begin
-
        AssignFile(fs,'var/firststart');
        Rewrite(FS);
        Writeln(FS,'false');
        CloseFile(FS);
        Timer3.Enabled:= true;
       end;
-
-
    end;
    except
    Showmessage('Something went wrong');
  end;
-
   MemoryJava.dwLength := SizeOf(MemoryJava);
   GlobalMemoryStatusEx(MemoryJava);
 
@@ -656,37 +597,28 @@ begin
          N7.Visible := false;
          end;
  finally
-
  end;
-
  WebBrowser1.Navigate(owallet1);
-
-
-
 end;
 
 
 procedure TForm1.FormHide(Sender: TObject);
 begin
-
   ShowWindow(Application.Handle, SW_HIDE);
 end;
 
 procedure TForm1.FormShow(Sender: TObject);
 begin
-
  statestring := TFile.ReadAllText('var/winstate');
  statestring:= StringReplace(statestring, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
  begin
    if statestring = 'wsMaximized' then
     begin
      ShowWindowAsync(Handle, SW_MAXIMIZE);
-
     end
    else
   // ShowWindow(Handle, SW_NORMAL);
  end;
-
 end;
 
 procedure TForm1.Forums2Click(Sender: TObject);
@@ -705,7 +637,6 @@ procedure TForm1.HeaderControl1MouseActivate(Sender: TObject;
 begin
    WebBrowser1.Navigate('https://wallet.burst-team.us');
 end;
-
 
 procedure TForm1.LoadWallet1Click(Sender: TObject);
 begin
@@ -743,51 +674,17 @@ procedure TForm1.N5Burstburstteamus1Click(Sender: TObject);
 begin
   ShellExecute(0, 'open', 'https://faucet.burst-team.us', nil, nil, SW_SHOWNORMAL);
 end;
-
 procedure TForm1.pingofburstbin1Click(Sender: TObject);
 begin
 ShellExecute(0, 'open', 'http://faucet.pingofburst.win', nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TForm1.N6Click(Sender: TObject);
-//var
-//dummy2: String;
-//IdHTTP2: TIdHTTP;
 begin
-//IdHTTP2 := TIdHTTP.Create;
  N7.Enabled := True;
  N6.Enabled := False;
-
-    WebBrowser1.Navigate(owallet1);
-    {   try
-   //   dummy2:= (idHTTP2.Get(owallet1+'/LICENSES'));
-      WebBrowser1.Navigate(owallet1);
-     except
-      try
-          //  dummy2:= (idHTTP2.Get(owallet2+'/LICENSES'));
-            WebBrowser1.Navigate(owallet2);
-     except
-     try
-         //   dummy2:= (idHTTP2.Get(owallet3+'/LICENSES'));
-            WebBrowser1.Navigate(owallet3);
-       except
-      try
-          //  dummy2:= (idHTTP2.Get(owallet4+'/LICENSES'));
-            WebBrowser1.Navigate(owallet4);
-      except
-
-        Showmessage('Online wallets are not available at the moment. Use the your Local Wallet instead.');
-
-        end;
-
-      end;
-
-  end;
-
- end;
-//IdHTTP2.Free; }
+ WebBrowser1.Navigate(owallet1);
 end;
-
 
 procedure TForm1.N7Click(Sender: TObject);
 var
@@ -802,7 +699,6 @@ dummy:= (idHTTP2.Get('http://127.0.0.1:8125/burst?requestType=rsConvert&account=
 WebBrowser1.Navigate('http://127.0.0.1:8125');
 Timer2.Enabled := true;
  except
-  //Showmessage('Local wallet not available yet');
   WebBrowser1.Navigate(GetCurrentDir+'\offline_2.html');
   N7.Enabled := True;
  end;
@@ -810,13 +706,10 @@ IdHTTP2.Free;
 
 end;
 
-
-
 procedure TForm1.Network2Click(Sender: TObject);
 begin
 ShellExecute(0, 'open', 'http://www.burstcoin.cc', nil, nil, SW_SHOWNORMAL);
 end;
-
 
 procedure TForm1.OnlineLocal1Click(Sender: TObject);
 begin
@@ -872,22 +765,16 @@ begin
   try
    IdHTTP2.Create;
    LJsonArr := TJsonArray.Create;
-
-  mydata:= GetURLAsString('https://api.coinmarketcap.com/v1/ticker/burst/');
+   mydata:= GetURLAsString('https://api.coinmarketcap.com/v1/ticker/burst/');
   //   Showmessage(mydata);
 
-   LJsonArr := TJSONObject.ParseJSONValue(TEncoding.UTF8.GetBytes(mydata), 0) as TJSONArray;
-
-
-
+  LJsonArr := TJSONObject.ParseJSONValue(TEncoding.UTF8.GetBytes(mydata), 0) as TJSONArray;
   LJsonObj := LJsonArr.Get(0) as TJSONObject;
   price_usd := LJsonObj.GetValue('price_usd') as TJSONValue;
   price_btc := LJsonObj.GetValue('price_btc') as TJSONValue;
   percent_change_24h :=  LJsonObj.GetValue('percent_change_24h') as TJSONValue;
   market_cap_usd := LJsonObj.GetValue('market_cap_usd') as TJSONValue;
-
-   // LJsonArr.Free;
-     IdHTTP2.Free;
+  IdHTTP2.Free;
   except
    // Showmessage('Json error');
   end;
@@ -897,11 +784,6 @@ begin
 
      coinprice:= price_btc.ToString.Remove((price_btc.ToString.Length)-1);
      Delete(coinprice, 1,1);
-   // coinprice := Copy(coinprice, 1, Pos(',', coinprice) - 1);
-
-   //  Showmessage(coinprice);
-
-
        try
         begin
            // market cap
@@ -936,11 +818,7 @@ begin
 
 
        ToolButton6.Caption := ('$ '+marketcap);
-       // coinprice
         ToolButton2.Caption := '฿ '+ coinprice;
-
-
-         // 10.000 Burst info
         formatSettings.DecimalSeparator := '.';
         price_usd_clean := price_usd.ToString.Remove(price_usd.ToString.Length-2);
         Delete(price_usd_clean, 1,1);
@@ -954,7 +832,6 @@ begin
          ToolButton4.Caption := '$ '+ price_usd_clean;
          // Mining Wallet info
          end
-
     except
       begin
       ToolButton1.Visible:=false;
@@ -963,22 +840,11 @@ begin
       ToolButton4.Visible:=false;
       ToolButton5.Caption:='Market Information';
       ToolButton6.Visible:=false;
-       //IdHTTP.Free;
        end;
    end;
-
-
    except
-
   end;
-
-
-
-
 end;
-
-
-
 
 procedure TForm1.Timer2Timer(Sender: TObject);
 var
@@ -989,7 +855,6 @@ var
  if allcore = false then
   begin
     if  percentage < 98 then
-
       try
 
        PID := GetProcId('javaw.exe').ToString;
@@ -1000,16 +865,11 @@ var
        Writeln(TS,'SendSignalCtrlC64 '+PID)
        else
        Writeln(TS,'SendSignalCtrlC '+PID);
-
       CloseFile(TS);
       ShellExecute(0, 'open', PChar('close_softly.bat'),PChar('/K'), PChar('3rd'), SW_HIDE);
-
       except
       Killtask('javaw.exe');
-
-
       end;
-
 closedPID := PID;
 Timer2.Enabled:= false;
 allcore := true;
@@ -1021,14 +881,9 @@ while closedPID = PID do
  PID := GetProcId('javaw.exe').ToString;
  //Showmessage(PID);
  end;
-
  WinExec('run_java_autodetect_all_cpus.bat', SW_HIDE);
-
 end;
 end;
-
-
-
 
 procedure TForm1.Timer3Timer(Sender: TObject);
 begin
@@ -1045,22 +900,11 @@ BlockchainStatus : TJSONObject;
   percentageStr: String;
 begin
   try
-
-   BlockchainStatus := TJsonObject.Create;
-
-  // mydata:= idHTTP2.Get('https://api.coinmarketcap.com/v1/ticker/burst/');
+  BlockchainStatus := TJsonObject.Create;
   bcdata:= GetURLAsString('http://localhost:8125/burst?requestType=getBlockchainStatus');
-   //  Showmessage(bcdata);
-
   BlockchainStatus := TJSONObject.ParseJSONValue(TEncoding.UTF8.GetBytes(bcdata), 0) as TJSONObject;
-  // Showmessage(BlockchainStatus.ToString);
-
   currBlockHeight := BlockchainStatus.GetValue('lastBlockchainFeederHeight') as TJSONValue;
   ownBlockHeight := BlockchainStatus.GetValue('numberOfBlocks') as TJSONValue;
-
- // Showmessage(currBlockHeight.ToString);
- // Showmessage(ownBlockHeight.ToString);
-
    if StrToInt(currBlockHeight.ToString) > 0 then
    begin
    try
@@ -1075,12 +919,8 @@ begin
    ToolButton14.Visible := true;
    ToolButton15.Visible := true;
    ToolButton17.Visible := true;
-
-
   end
-
   except
-
  end;
 end;
 procedure TForm1.ToolButton10Click(Sender: TObject);
@@ -1091,10 +931,7 @@ Form4.Show
 end
 else
 Showmessage('Mining is not supported on a 32 bit system. Upgrade or use another PC.')
-
 end;
-
-
 
 procedure TForm1.ToolButton11Click(Sender: TObject);
 begin
@@ -1102,7 +939,6 @@ if isWin64 = true then
 Form2.Show
 else
 Showmessage('Plotting is not supported on a 32 bit system. Use another computer.');
-//Form2.DriveComboBox1.Update;
 end;
 
 procedure TForm1.ToolButton15Click(Sender: TObject);
@@ -1128,21 +964,13 @@ end;
 procedure TForm1.TrayIcon1Click(Sender: TObject);
 
 begin
-
  Show();
  WindowState := wsNormal;
  Application.BringToFront()
-end;
-
-procedure TForm1.TrayIcon1MouseDown(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer);
-begin
-     // PopupMenu1.Popup(Mouse.CursorPos.X, Mouse.CursorPos.Y);
 end;
 
 procedure TForm1.UpdateAvailable1Click(Sender: TObject);
 begin
 Form12.Show
 end;
-
 end.

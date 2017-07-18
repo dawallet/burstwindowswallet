@@ -33,8 +33,8 @@ uses BurstWallet2;
 
 procedure TForm13.Button1Click(Sender: TObject);
 begin
-WinExec('run_java_autodetect.bat', SW_HIDE);
-Hide;
+  WinExec('run_java_autodetect.bat', SW_HIDE);
+  Hide;
 end;
 
 procedure TForm13.Button2Click(Sender: TObject);

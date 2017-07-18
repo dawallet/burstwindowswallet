@@ -20,13 +20,12 @@ type
     { Private-Deklarationen }
   public
     { Public-Deklarationen }
-
   end;
 
 var
-  Form6: TForm6;
+   Form6: TForm6;
    clipboard: TClipboard;
-  fileName: String;
+   fileName: String;
    text2: tstringlist;
    pwString: String;
 implementation
@@ -81,16 +80,11 @@ begin
     end;
 end;
 
-
-
-
-
-
 procedure TForm6.FormActivate(Sender: TObject);
-begin
-                  Listbox1.Items.Clear;
- GetFilesInDirectory('','*.txt',Listbox1.Items,False);
-end;
+ begin
+  Listbox1.Items.Clear;
+  GetFilesInDirectory('','*.txt',Listbox1.Items,False);
+ end;
 
 procedure TForm6.ListBox1DblClick(Sender: TObject);
 begin
@@ -105,17 +99,15 @@ hide;
 end;
 
 procedure TForm6.ListBox1Enter(Sender: TObject);
-begin
-                  Listbox1.Items.Clear;
- GetFilesInDirectory('','*.txt',Listbox1.Items,False);
-end;
+  begin
+   Listbox1.Items.Clear;
+   GetFilesInDirectory('','*.txt',Listbox1.Items,False);
+  end;
 
 procedure TForm6.Timer1Timer(Sender: TObject);
-begin
-
-clipboard.Clear;
-Timer1.Enabled:=false;
-end;
-
+  begin
+   clipboard.Clear;
+   Timer1.Enabled:=false;
+  end;
 end.
 

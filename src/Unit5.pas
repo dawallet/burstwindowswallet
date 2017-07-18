@@ -29,8 +29,6 @@ var
   SaveString: String;
   AnString: AnsiString;
 
-
-
 implementation
 
 {$R *.dfm}
@@ -65,44 +63,41 @@ begin
     fs.Free;
   end;
 end;
+
 procedure TForm5.Button1Click(Sender: TObject);
 var
   text: TStringList;
 begin
-PassString := Edit2.Text;
-NameString := Edit1.Text;
-text := tstringlist.Create;
-
+ PassString := Edit2.Text;
+ NameString := Edit1.Text;
+ text := tstringlist.Create;
 
 if NameString = '' then
-
   ShowMessage('No Name entered. Please choose a name for your wallet.')
  else
  begin
-if PassString = '' then
+  if PassString = '' then
   ShowMessage('No Passphrase entered')
-  else
-  begin
-  PassString := StringToHex(PassString);
-  PassString := EnDeCrypt(PassString);
+   else
+   begin
+   PassString := StringToHex(PassString);
+   PassString := EnDeCrypt(PassString);
 
-    text.Add(PassString);
-    text.SaveToFile(Edit1.Text + '.txt', TEncoding.UTF8);
+   text.Add(PassString);
+   text.SaveToFile(Edit1.Text + '.txt', TEncoding.UTF8);
 
-    Showmessage(Edit1.Text + ' saved locally and not in plain text!');
-    Edit2.Text :='';
-    Edit1.Text :='';
+   Showmessage(Edit1.Text + ' saved locally and not in plain text! Make a backup of your passphrase on paper, too!');
+   Edit2.Text :='';
+   Edit1.Text :='';
 
-    close;
+   close;
   end;
 end;
 
 end;
 
-
 procedure TForm5.Button2Click(Sender: TObject);
 begin
 close;
 end;
-
 end.

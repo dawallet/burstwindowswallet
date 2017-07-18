@@ -20,9 +20,15 @@ _____
 
 Changelog:
 
+0.3.9.8
+
++ refactoring code
++ added pools
+
 0.3.9.7
 
 + added pool
++ no js errors popup
 + code clean up of unused permissions
 
 0.3.9.6

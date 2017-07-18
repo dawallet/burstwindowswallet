@@ -30,7 +30,7 @@ object Form7: TForm7
   end
   object Panel1: TPanel
     Left = 1
-    Top = 0
+    Top = 1
     Width = 194
     Height = 54
     TabOrder = 0

@@ -41,8 +41,6 @@ begin
 close;
 end;
 
-
-
 procedure TForm10.Label4Click(Sender: TObject);
 begin
 ShellExecute(0, 'open', 'https://www.burst-team.us', nil, nil, SW_SHOWNORMAL);
@@ -57,6 +55,4 @@ procedure TForm10.Label9Click(Sender: TObject);
 begin
 ShellExecute(0, 'open', 'https://forums.burst-team.us/category/9/burst-software', nil, nil, SW_SHOWNORMAL);
 end;
-
-
 end.

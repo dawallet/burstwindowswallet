@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Burst Client for Win v0.3.9.7'
+  Caption = 'Burst Client for Win v0.3.9.8'
   ClientHeight = 467
   ClientWidth = 816
   Color = clBtnFace
@@ -224,7 +224,7 @@ object Form1: TForm1
     ControlData = {
       4C00000056540000822E00000000000000000000000000000000000000000000
       000000004C000000000000000000000001000000E0D057007335CF11AE690800
-      2B2E126208000000000000004C0000000114020000000000C000000000000046
+      2B2E12620A000000000000004C0000000114020000000000C000000000000046
       8000000000000000000000000000000000000000000000000000000000000000
       00000000000000000100000000000000000000000000000000000000}
   end
@@ -262,6 +262,7 @@ object Form1: TForm1
       end
       object AssetExplorer1: TMenuItem
         Caption = 'Asset Explorer'
+        Visible = False
         OnClick = AssetExplorer1Click
       end
     end
@@ -18048,7 +18049,6 @@ object Form1: TForm1
     PopupMenu = PopupMenu1
     Visible = True
     OnClick = TrayIcon1Click
-    OnMouseDown = TrayIcon1MouseDown
     Left = 495
     Top = 320
   end

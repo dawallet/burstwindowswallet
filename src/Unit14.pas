@@ -31,9 +31,6 @@ implementation
 procedure TForm14.Button1Click(Sender: TObject);
 begin
  deviceID:='0';
-
-
-
  Form4.Hide;
  Hide;
 end;
@@ -41,7 +38,6 @@ end;
 procedure TForm14.Button2Click(Sender: TObject);
 begin
  deviceID:='1';
-
  Form4.Hide;
  Hide;
 end;

@@ -54,8 +54,7 @@ end;
 
 procedure TForm7.Timer1Timer(Sender: TObject);
 begin
- if  IsExeRunning('javaw.exe')then
- else
+ if not IsExeRunning('javaw.exe') then
  Form1.close;
 end;
 

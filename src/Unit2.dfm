@@ -15,7 +15,6 @@ object Form2: TForm2
   FormStyle = fsStayOnTop
   OldCreateOrder = False
   Position = poMainFormCenter
-  OnActivate = FormActivate
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13

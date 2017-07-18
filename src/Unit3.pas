@@ -33,6 +33,7 @@ type
     procedure TrackBar2Change(Sender: TObject);
     procedure CheckBox2Click(Sender: TObject);
     procedure FormActivate(Sender: TObject);
+
   private
     { Private-Deklarationen }
 
@@ -130,18 +131,6 @@ begin
   end;
 end;
 
-
-procedure CopyFilesToPath(aFiles: array of string; DestPath: string);
-var
-  InFile, OutFile: string;
-begin
-  for InFile in aFiles do
-  begin
-    OutFile := TPath.Combine( DestPath, TPath.GetFileName( InFile ) );
-    TFile.Copy( InFile, OutFile, True);
-  end;
-end;
-
 function GetSystemMem: string;  { Returns installed RAM (as viewed by your OS) in GB, with 2 decimals }
 VAR MS_Ex : MemoryStatusEx;
 begin
@@ -151,10 +140,20 @@ begin
 end;
 
 procedure TForm3.Button1Click(Sender: TObject);
-begin
-Form2.Show;
-Close;
-end;
+ begin
+ Form2.Show;
+ Close;
+ end;
+
+function TrimString(addressstring: String): string;
+ begin
+    Delete(addressstring, 1, 79);
+    addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
+    addressstring:= StringReplace((addressstring),' ','',[rfReplaceAll]);
+    addressstring:= StringReplace((addressstring),'"','',[rfReplaceAll]);
+    addressstring:= StringReplace((addressstring),#13#10,'',[rfReplaceAll]);
+    result:= addressstring;
+ end;
 
 procedure TForm3.Button2Click(Sender: TObject);
 var
@@ -171,66 +170,39 @@ nonces: Integer;
 ram: integer;
 
 begin
-//wplotgenerator [account id] [start nonce] [number of nonces] [stagger size] [threads]
-
 
 IdHTTP := TIdHTTP.Create;
   try
    begin
       addressstring:= (idHTTP.Get('http://localhost:8125/burst?requestType=rsConvert&account='+Textfield.Text));
-
-    Delete(addressstring, 1, 79);
-    addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
-    addressstring:= StringReplace((addressstring),' ','',[rfReplaceAll]);
-    addressstring:= StringReplace((addressstring),'"','',[rfReplaceAll]);
-    addressstring:= StringReplace((addressstring),#13#10,'',[rfReplaceAll]);
-
+      addressstring:= TrimString(addressstring);
     end;
-   except
+     except
        try
-       addressstring:= (idHTTP.Get(Form1.owallet2+'/burst?requestType=rsConvert&account='+Textfield.Text));
-    Delete(addressstring, 1, 79);
-    addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
-    addressstring:= StringReplace((addressstring),' ','',[rfReplaceAll]);
-     addressstring:= StringReplace((addressstring),'"','',[rfReplaceAll]);
-    addressstring:= StringReplace((addressstring),#13#10,'',[rfReplaceAll]);
-       except
+        addressstring:= (idHTTP.Get(Form1.owallet2+'/burst?requestType=rsConvert&account='+Textfield.Text));
+        addressstring:= TrimString(addressstring);
+         except
            try
-       addressstring:= (idHTTP.Get(Form1.owallet3+'/burst?requestType=rsConvert&account='+Textfield.Text));
-    Delete(addressstring, 1, 79);
-    addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
-    addressstring:= StringReplace((addressstring),' ','',[rfReplaceAll]);
-     addressstring:= StringReplace((addressstring),'"','',[rfReplaceAll]);
-    addressstring:= StringReplace((addressstring),#13#10,'',[rfReplaceAll]);
-       except
+           addressstring:= (idHTTP.Get(Form1.owallet3+'/burst?requestType=rsConvert&account='+Textfield.Text));
+           addressstring:= TrimString(addressstring);
+           except
             try
              addressstring:= (idHTTP.Get(Form1.owallet4+'/burst?requestType=rsConvert&account='+Textfield.Text));
-              Delete(addressstring, 1, 79);
-              addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
-              addressstring:= StringReplace((addressstring),' ','',[rfReplaceAll]);
-              addressstring:= StringReplace((addressstring),'"','',[rfReplaceAll]);
-               addressstring:= StringReplace((addressstring),#13#10,'',[rfReplaceAll]);
-       except
+              addressstring:= TrimString(addressstring);
+               except
                 try
                 addressstring:= (idHTTP.Get('https://mwallet.burst-team.us:8125/burst?requestType=rsConvert&account='+Textfield.Text));
-                  Delete(addressstring, 1, 79);
-                 addressstring:= StringReplace((addressstring),'"}','',[rfReplaceAll]);
-                 addressstring:= StringReplace((addressstring),' ','',[rfReplaceAll]);
-                 addressstring:= StringReplace((addressstring),'"','',[rfReplaceAll]);
-                 addressstring:= StringReplace((addressstring),#13#10,'',[rfReplaceAll]);
+                addressstring:= TrimString(addressstring);
                 except
                 Showmessage('Not able to translate Burst ID. Are you offline?')
                 end;
             end;
            end;
        end;
-
     end;
 
   begin
   IdHTTP.Free;
-
-
 
    AssignFile(ma,'XPlotter/miningaddress.txt');
    Rewrite(MA);
@@ -239,22 +211,15 @@ IdHTTP := TIdHTTP.Create;
 
     Memory.dwLength := SizeOf(Memory);
     GlobalMemoryStatusEx(Memory);
-
-//Showmessage(IntToStr(CharToNum(Form2.DriveComboBox1.Drive)-31));
-multiplier:= (CharToNum(Form2.DriveComboBox1.Drive)-31);
+    multiplier:= (CharToNum(Form2.DriveComboBox1.Drive)-31);
 
 if multiplier > 26 then
 Showmessage('Can not determine start nonce, please use the expert mode')
 else
-multiplier := multiplier*100000000;
-
-
-//ShowMessage('wplotgenerator' + ' ' + (Textfield.Text) + ' ' + '0' +' '+ IntToStr(((1024*1000) div 256) *(TrackBar1.Position)) + ' ' + IntToStr(Memory.dwTotalPhys div 1024 div 2048) + ' ' + IntToStr(TrackBar2.Position));
+multiplier := multiplier*100000000; // multiplier against overlapping. Every disk drive letter gets a prefix number.
 path:= (Form2.DriveComboBox1.Drive) + ':\Burst\';
-
 _GetFolderSize(ExcludeTrailingPathDelimiter(path + 'plots\'), dirSize, false);
 dirSize:= (dirSize div 1024 div 256)+1;
-//Showmessage(IntToStr(dirSize));
 
 nonces :=((1024*1024) div 256) *(TrackBar1.Position);
 ram :=  (Memory.ullAvailPhys div 1024 div 400 div 64)*64;
@@ -262,10 +227,10 @@ nonces := (nonces DIV ram) * ram;
 
 if Trackbar1.Position = Form2.FreeD-1 then nonces := 0;
 
-if Checkbox2.Checked = false then
+if not Checkbox2.Checked then
  begin
    pocParameters :='run_generate.bat '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(nonces) + ' ' + IntToStr((((Memory.ullTotalPhys div 1024 div 1024 div 10)*6)div 64)*64) + ' ' + IntToStr(TrackBar2.Position));
-    if isAvxSupported = true then
+    if isAvxSupported then
      parameters :='XPlotter_avx.exe -id '+((addressstring) + ' -sn ' + IntToStr(dirSize + multiplier) +' -n '+ IntToStr(nonces) + ' -t ' + IntToStr(TrackBar2.Position) + ' -path ' + (Form2.DriveComboBox1.Drive) + ':\Burst\plots')
      else
      parameters :='XPlotter_sse.exe -id '+((addressstring) + ' -sn ' + IntToStr(dirSize + multiplier) +' -n '+ IntToStr(nonces) + ' -t ' + IntToStr(TrackBar2.Position) + ' -path ' + (Form2.DriveComboBox1.Drive) + ':\Burst\plots' );
@@ -273,14 +238,11 @@ if Checkbox2.Checked = false then
  else
  begin
     pocParameters :='run_generate.bat '+((addressstring) + ' ' + IntToStr(dirSize + multiplier) +' '+ IntToStr(nonces) + ' ' + IntToStr((((Memory.ullTotalPhys div 1024 div 1024 div 10)*6)div 64)*64) + ' ' + IntToStr(TrackBar2.Position));
-   if isAvxSupported = true then
+   if isAvxSupported then
     parameters :='XPlotter_avx.exe -id '+((addressstring) + ' -sn ' + Edit1.Text +' -n '+ IntToStr(nonces) + ' -t ' + (Edit3.Text)+ ' -path ' + (Form2.DriveComboBox1.Drive) + ':\Burst\plots' )
     else
    parameters :='XPlotter_sse.exe -id '+((addressstring) + ' -sn ' + Edit1.Text +' -n '+ IntToStr(nonces) + ' -t ' + (Edit3.Text)+ ' -path ' + (Form2.DriveComboBox1.Drive) + ':\Burst\plots' );
-
-
  end;
-
 
 if Trackbar1.Position = 1 then
     begin
@@ -292,78 +254,57 @@ if Trackbar1.Position = 1 then
    Showmessage('Your Burst Account is not activated, mistyped or does not exist.')
   else
     begin
-
-    if isWin64 = true then
+    if isWin64 then
     begin
      parameters:= StringReplace((parameters),':"',' ',[rfReplaceAll]);
-
-    if CheckBox1.Checked = true      then
-
+    if CheckBox1.Checked then
     ShellExecute(0, 'RunAs', PChar('cmd.exe'),PChar('/K '+GetCurrentDir+'\XPlotter\'+parameters), PChar(path), SW_SHOW)
      else
     ShellExecute(0, 'open', PChar('cmd.exe'),PChar('/K '+parameters), PChar(path), SW_SHOW);
-
      end
       else
      begin
       pocParameters:= StringReplace((pocParameters),':"',' ',[rfReplaceAll]);
-    Showmessage('You use a 32 bit system! For you theres only the original java plotter available which is slower.');
+      Showmessage('You use a 32 bit system! For you theres only the original java plotter available which is slower.');
 
-    BatContent:=TStringList.Create;
-    BatContent.Add('java -Xmx'+IntToStr(Memory.ullAvailPhys div 900 div 4096)+'m -cp pocminer.jar;lib/*;lib/akka/*;lib/jetty/* pocminer.POCMiner generate %*');
-    BatContent.SaveToFile(path+'/run_generate.bat');
-    BatContent.Free;
-
-    ShellExecute(0, 'open', PChar('cmd.exe'),PChar('/K '+pocParameters), PChar(path+'x86\'), SW_SHOW);
+      BatContent:=TStringList.Create;
+      BatContent.Add('java -Xmx'+IntToStr(Memory.ullAvailPhys div 900 div 4096)+'m -cp pocminer.jar;lib/*;lib/akka/*;lib/jetty/* pocminer.POCMiner generate %*');
+      BatContent.SaveToFile(path+'/run_generate.bat');
+      BatContent.Free;
+      ShellExecute(0, 'open', PChar('cmd.exe'),PChar('/K '+pocParameters), PChar(path+'x86\'), SW_SHOW);
      end;
-
-    //Showmessage(parameters);
     close;
     end
-
-
    end;
   end;
 
 end;
 
-
 procedure TForm3.CheckBox2Click(Sender: TObject);
 begin
- if CheckBox2.Checked = true then
+ if CheckBox2.Checked then
    begin
-   // Showmessage('Expert mode');
-  //   Form3.ClientWidth:= 448;
-  //   Button2.Left := 350;
     TrackBar2.Enabled := false;
     TrackBar2.Hide;
     Label4.Hide;
     Label5.Hide;
     Label6.Hide;
-
     Edit1.Show;
     Label8.Show;
     Label18.Show;
     Edit3.Show;
-
-
    end
   else
   begin
-   // Showmessage('Standard mode');
-  //   Form3.ClientWidth:= 448;
-   //  Button2.Left := 350;
      TrackBar2.Show;
      Label4.Show;
      Label5.Show;
      Label6.Show;
      TrackBar2.Enabled := true;
-
-    Edit1.Hide;
-    Label8.Hide;
-    Label18.Hide;
-    Edit3.Hide;
-
+     Edit1.Hide;
+     Label8.Hide;
+     Label18.Hide;
+     Edit3.Hide;
   end;
 
 end;
@@ -388,18 +329,9 @@ begin
   Memory.dwLength := SizeOf(Memory);
   GlobalMemoryStatus(Memory);
 
- // Form3.ClientWidth:= 448;
- // Button2.Left := 350;
-
-
-
-  
-
   address:=TFile.ReadAllText('XPlotter/miningaddress.txt');
   address:= StringReplace(address, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
   Textfield.Text:=(address);
-
-
 end;
 
 procedure TForm3.TrackBar1Change(Sender: TObject);

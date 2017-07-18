@@ -120,9 +120,6 @@ Sleep(1000);
 WinExec('run_java_autodetect.bat', SW_HIDE);
 Label2.Visible:=true;
 Button2.Caption:='Close';
-
 end;
-
 end;
-
 end.
