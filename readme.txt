@@ -20,8 +20,9 @@ _____
 
 Changelog:
 
-0.3.9.8
+0.3.10
 
++ updated to Core version 1.2.9
 + refactoring code
 + added pools
 
