@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, TlHelp32, System.UITypes;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, TlHelp32, System.UITypes,idHTTP;
 
 type
   TForm11 = class(TForm)
@@ -12,8 +12,11 @@ type
     Button2: TButton;
     Label2: TLabel;
     Button3: TButton;
+    Label4: TLabel;
+    Button1: TButton;
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     { Private-Deklarationen }
   public
@@ -25,6 +28,7 @@ var
 
 implementation
 
+uses BurstWallet2;
 {$R *.dfm}
 function KillTask(ExeFileName: string): Integer;
 const
@@ -101,8 +105,11 @@ begin
   RemoveDir(DirName);
 end;
 
-
-
+procedure TForm11.Button1Click(Sender: TObject);
+begin
+Form1.WebBrowser1.Navigate('http://localhost:8125/test?requestType=popOff');
+Button2.Caption:='Close';
+end;
 
 procedure TForm11.Button2Click(Sender: TObject);
 begin

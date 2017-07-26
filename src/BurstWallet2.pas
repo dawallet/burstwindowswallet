@@ -725,7 +725,6 @@ end;
 
 procedure TForm1.Timer1Timer(Sender: TObject);
 var
-
     IdHTTP2: TIdHTTP;
     coinprice: String;
     result: real;
@@ -753,7 +752,7 @@ begin
   end;
      try
      IdHTTP2 := TIdHTTP.Create;
-      checkver:= idHTTP2.Get('https://mwallet.burst-team.us:8125/client/0.3.9.4.txt');
+      checkver:= idHTTP2.Get('https://mwallet.burst-team.us:8125/client/0.3.10.txt');
       UpdateAvailable1.Visible := true;
       N2.Visible := true;
         IdHTTP2.Free;
