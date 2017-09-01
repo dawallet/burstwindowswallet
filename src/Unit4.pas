@@ -43,7 +43,7 @@ type
     pool : String;
     port : String;
     pw : TextFile;
-    const BLAGO_VERSION = String('1.170603');
+    const BLAGO_VERSION = String('1.170820');
     const JMINER_VERSION = String('0.4.10-SNAPSHOT');
 
   public
@@ -236,21 +236,17 @@ else
     Writeln(T,'        "'+directories+'"');
     Writeln(T,'],');
     Writeln(T,'"CacheSize" : 40000,');
-    Writeln(T,'"ShowMsg" : false,');
-    Writeln(T,'"ShowUpdates" : false,');
     Writeln(T,'');
     Writeln(T,'"Debug" : true,');
     Writeln(T,'"UseHDDWakeUp" : false,');
     Writeln(T,'');
-    Writeln(T,'"SendBestOnly" : true,');
     Writeln(T,'"TargetDeadline": 80000000,');
     Writeln(T,'');
-    Writeln(T,'"UseFastRcv" : false,');
     Writeln(T,'"SendInterval" : 100,');
     Writeln(T,'"UpdateInterval" : 950,');
     Writeln(T,'');
     Writeln(T,'"UseLog" : false,');
-    Writeln(T,'"ShowWinner" : true,');
+    Writeln(T,'"ShowWinner" : false,');
     Writeln(T,'"UseBoost" : false,');
     Writeln(T,'');
     Writeln(T,'"WinSizeX" : 76,');
@@ -633,6 +629,6 @@ end;
 
 procedure TForm4.Label11Click(Sender: TObject);
 begin
-ShellExecute(0, 'open', 'http://burstcoin.biz/faucet', nil, nil, SW_SHOWNORMAL);
+ShellExecute(0, 'open', 'https://forums.burst-team.us/category/51/i-need-a-burst-a-burst-is-all-i-need', nil, nil, SW_SHOWNORMAL);
 end;
 end.

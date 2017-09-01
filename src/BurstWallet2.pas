@@ -61,7 +61,7 @@ type
     WebBrowser1: TWebBrowser;
     Network2: TMenuItem;
     BlockExplorer1: TMenuItem;
-    AssetExplorer1: TMenuItem;
+    Forums21: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure About1Click(Sender: TObject);
     procedure AddWallet1Click(Sender: TObject);
@@ -104,10 +104,10 @@ type
     procedure FormShow(Sender: TObject);
     procedure Network2Click(Sender: TObject);
     procedure BlockExplorer1Click(Sender: TObject);
-    procedure AssetExplorer1Click(Sender: TObject);
     procedure ToolButton3Click(Sender: TObject);
     procedure ToolButton4Click(Sender: TObject);
     procedure ToolButton15Click(Sender: TObject);
+    procedure Forums21Click(Sender: TObject);
 
 
   private
@@ -347,11 +347,6 @@ begin
   WindowState := wsMinimized;
 
   TrayIcon1.ShowBalloonHint;
-end;
-
-procedure TForm1.AssetExplorer1Click(Sender: TObject);
-begin
-ShellExecute(0, 'open', 'http://asset.burstnation.com', nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TForm1.BlockExplorer1Click(Sender: TObject);
@@ -619,6 +614,11 @@ begin
    else
   // ShowWindow(Handle, SW_NORMAL);
  end;
+end;
+
+procedure TForm1.Forums21Click(Sender: TObject);
+begin
+ShellExecute(0, 'open', 'https://forums.getburst.net/', nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TForm1.Forums2Click(Sender: TObject);

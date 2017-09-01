@@ -115,8 +115,8 @@ object Form4: TForm4
     WordWrap = True
   end
   object Button1: TButton
-    Left = 355
-    Top = 91
+    Left = 356
+    Top = 88
     Width = 166
     Height = 25
     Hint = 'CPU assisted mining. Works always.'

@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Burst Client for Win v0.3.10'
+  Caption = 'Burst Client for Win v0.3.11'
   ClientHeight = 467
   ClientWidth = 816
   Color = clBtnFace
@@ -260,14 +260,10 @@ object Form1: TForm1
         Caption = 'Block Explorer'
         OnClick = BlockExplorer1Click
       end
-      object AssetExplorer1: TMenuItem
-        Caption = 'Asset Explorer'
-        Visible = False
-        OnClick = AssetExplorer1Click
-      end
     end
     object Faucets1: TMenuItem
       Caption = 'Faucets'
+      Visible = False
       object N10Burstbyburstcoininfo1: TMenuItem
         Caption = '[burstcoin.info]'
         OnClick = N10Burstbyburstcoininfo1Click
@@ -286,6 +282,10 @@ object Form1: TForm1
       object Forums2: TMenuItem
         Caption = 'Forums'
         OnClick = Forums2Click
+      end
+      object Forums21: TMenuItem
+        Caption = 'Forums #2'
+        OnClick = Forums21Click
       end
       object DDLBlockchain1: TMenuItem
         Caption = 'DDL Blockchain'

@@ -3,8 +3,8 @@ object Form11: TForm11
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Clean up DB'
-  ClientHeight = 118
-  ClientWidth = 355
+  ClientHeight = 129
+  ClientWidth = 352
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,8 +19,8 @@ object Form11: TForm11
   object Label1: TLabel
     Left = 16
     Top = 16
-    Width = 331
-    Height = 39
+    Width = 316
+    Height = 52
     Caption = 
       'Sometimes the local Wallet does not start because of a corrupted' +
       ' DB. Click the Button below to delete some or all Blocks of the ' +
@@ -29,8 +29,8 @@ object Form11: TForm11
     WordWrap = True
   end
   object Label2: TLabel
-    Left = 213
-    Top = 104
+    Left = 204
+    Top = 107
     Width = 25
     Height = 13
     Caption = 'Done'
@@ -38,14 +38,14 @@ object Form11: TForm11
   end
   object Label4: TLabel
     Left = 117
-    Top = 79
-    Width = 23
+    Top = 87
+    Width = 10
     Height = 13
     Caption = 'or'
   end
   object Button2: TButton
     Left = 246
-    Top = 73
+    Top = 81
     Width = 75
     Height = 25
     Caption = 'Cancel'
@@ -54,7 +54,7 @@ object Form11: TForm11
   end
   object Button3: TButton
     Left = 140
-    Top = 73
+    Top = 81
     Width = 75
     Height = 25
     Caption = 'Clean DB'
@@ -63,7 +63,7 @@ object Form11: TForm11
   end
   object Button1: TButton
     Left = 30
-    Top = 73
+    Top = 81
     Width = 75
     Height = 25
     Caption = 'PopOff'

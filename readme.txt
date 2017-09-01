@@ -20,6 +20,12 @@ _____
 
 Changelog:
 
+0.3.11
+
++ added blago's latest miner (v1.170820) 25% faster! github.com/Blagodarenko/miner-burst/releases
++ replaced online wallet links
++ minor improvements and bugfixes
+
 0.3.10
 
 + updated to Core version 1.2.9
