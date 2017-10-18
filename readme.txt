@@ -1,5 +1,7 @@
 Burst is a digital currency like Bitcoin but efficient mineable with free gigabytes instead of computation power (CPU, GPU or ASIC)!
 
+https://www.burst-coin.org
+https://burstwiki.org
 https://en.wikipedia.org/wiki/Burstcoin
 
 Everyone with free disk can join mining. It's a truly decentralized and environment friendly alternative to Bitcoin.
@@ -19,6 +21,11 @@ You can use the 'Online' Wallet during this time.
 _____
 
 Changelog:
+
+0.3.12
+
++ updated websites, links and explorers
++ updated pools
 
 0.3.11
 

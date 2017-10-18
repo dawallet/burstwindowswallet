@@ -44,7 +44,6 @@ type
     Network1: TMenuItem;
     N10Burstbyburstcoininfo1: TMenuItem;
     N5Burstburstteamus1: TMenuItem;
-    N2Burstburstcoinbiz1: TMenuItem;
     UpdateAvailable1: TMenuItem;
     Forums2: TMenuItem;
     DDLBlockchain1: TMenuItem;
@@ -62,6 +61,11 @@ type
     Network2: TMenuItem;
     BlockExplorer1: TMenuItem;
     Forums21: TMenuItem;
+    BurstWiki1: TMenuItem;
+    News1: TMenuItem;
+    N3: TMenuItem;
+    N4: TMenuItem;
+    BlockExplorer31: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure About1Click(Sender: TObject);
     procedure AddWallet1Click(Sender: TObject);
@@ -108,6 +112,11 @@ type
     procedure ToolButton4Click(Sender: TObject);
     procedure ToolButton15Click(Sender: TObject);
     procedure Forums21Click(Sender: TObject);
+    procedure BurstWiki1Click(Sender: TObject);
+    procedure News1Click(Sender: TObject);
+    procedure N3Click(Sender: TObject);
+    procedure N4Click(Sender: TObject);
+    procedure BlockExplorer31Click(Sender: TObject);
 
 
   private
@@ -352,6 +361,16 @@ end;
 procedure TForm1.BlockExplorer1Click(Sender: TObject);
 begin
 ShellExecute(0, 'open', 'http://www.burstcoin.biz', nil, nil, SW_SHOWNORMAL);
+end;
+
+procedure TForm1.BlockExplorer31Click(Sender: TObject);
+begin
+ShellExecute(0, 'open', 'http://burstcoin.zone/wordpress/blockexplorer/', nil, nil, SW_SHOWNORMAL);
+end;
+
+procedure TForm1.BurstWiki1Click(Sender: TObject);
+begin
+ShellExecute(0, 'open', 'https://burst.wiki', nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TForm1.About1Click(Sender: TObject);
@@ -665,6 +684,16 @@ begin
  ShellExecute(0, 'open', 'http://burstcoin.biz/faucet', nil, nil, SW_SHOWNORMAL);
 end;
 
+procedure TForm1.N3Click(Sender: TObject);
+begin
+   ShellExecute(0, 'open', 'https://explore.burst.cryptoguru.org/tool/observe', nil, nil, SW_SHOWNORMAL);
+end;
+
+procedure TForm1.N4Click(Sender: TObject);
+begin
+ ShellExecute(0, 'open', 'http://burstxd.com/blocks/', nil, nil, SW_SHOWNORMAL);
+end;
+
 procedure TForm1.N5Burstburstcoinpt1Click(Sender: TObject);
 begin
  ShellExecute(0, 'open', 'http://faucet.burstnation.com', nil, nil, SW_SHOWNORMAL);
@@ -709,6 +738,11 @@ end;
 procedure TForm1.Network2Click(Sender: TObject);
 begin
 ShellExecute(0, 'open', 'http://www.burstcoin.cc', nil, nil, SW_SHOWNORMAL);
+end;
+
+procedure TForm1.News1Click(Sender: TObject);
+begin
+ ShellExecute(0, 'open', 'https://faucet.burstcoin.info', nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TForm1.OnlineLocal1Click(Sender: TObject);

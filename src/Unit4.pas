@@ -314,7 +314,7 @@ if  Label6.Caption = 'pool.burstcoin.sk' then
      clipboard2.AsText:='BURST-NACG-ZZDB-BHX7-9ELAF';
 if  Label6.Caption = 'bcaworldteampool.com' then
      clipboard2.AsText:='BURST-XF5T-EGZV-VE3C-6TFKS';
-if  Label6.Caption = 'poolofd32th.club' then
+if  Label6.Caption = 'pool.poolofd32th.club' then
      clipboard2.AsText:='BURST-E925-FACX-C2X8-49772';
 if  Label6.Caption = 'pool.burstcoin.space' then
      clipboard2.AsText:='BURST-SPAC-EWWF-CRX2-78Z6Z';
@@ -392,6 +392,16 @@ if  Label6.Caption = 'pool.rapidcoin.club' then
 if  Label6.Caption = 'pool.ccminer.net' then
      begin
      clipboard2.AsText:='BURST-LZPT-6AY5-BM5L-B73UB';
+     port := '8080';
+     end;
+if  Label6.Caption = 'falconburstpool.xyz' then
+     begin
+     clipboard2.AsText:='BURST-UTS4-HPFZ-XJHL-B9BB2';
+     port := '8080';
+     end;
+if  Label6.Caption = 'pool.burstcoin.ro' then
+     begin
+     clipboard2.AsText:='BURST-GG4B-34Y9-ZXGV-FNTNJ';
      port := '8080';
      end;
 if Label6.Caption = '127.0.0.1' then
@@ -581,6 +591,14 @@ if  Label6.Caption = '128.0.0.1' then
       Edit1.Text := '8125';
      end;
 if  Label6.Caption = 'pool.ccminer.net' then
+     begin
+      Edit1.Text := '8080';
+     end;
+     if  Label6.Caption = 'falconburstpool.xyz' then
+     begin
+      Edit1.Text := '8080';
+     end;
+if  Label6.Caption = 'pool.burstcoin.ro' then
      begin
       Edit1.Text := '8080';
      end;
