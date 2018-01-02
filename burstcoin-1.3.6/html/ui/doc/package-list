@@ -1,0 +1,17 @@
+fr.cryptohash
+fr.cryptohash.test
+nxt
+nxt.at
+nxt.crypto
+nxt.db
+nxt.db.firebird
+nxt.db.h2
+nxt.db.mariadb
+nxt.db.quicksync
+nxt.db.quicksync.pojo
+nxt.db.sql
+nxt.db.store
+nxt.http
+nxt.peer
+nxt.user
+nxt.util
