@@ -2,8 +2,8 @@ object Form12: TForm12
   Left = 0
   Top = 0
   Caption = 'Update'
-  ClientHeight = 89
-  ClientWidth = 348
+  ClientHeight = 118
+  ClientWidth = 391
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,37 +18,28 @@ object Form12: TForm12
   object Label1: TLabel
     Left = 14
     Top = 11
-    Width = 323
-    Height = 39
+    Width = 363
+    Height = 26
     Caption = 
-      'There is a newer version of the Burst Client for Windows availab' +
-      'le! It is highly recommended to download the update from the ori' +
-      'ginal source:   '
+      'We recommend to upgrade to the new All-In-One Solution named QBu' +
+      'ndle. It offers new features, higher security and continuous dev' +
+      'elopement. '
     WordWrap = True
   end
   object Label2: TLabel
-    Left = 164
-    Top = 58
-    Width = 10
+    Left = 40
+    Top = 66
+    Width = 215
     Height = 13
-    Caption = 'or'
-  end
-  object Button1: TButton
-    Left = 79
-    Top = 51
-    Width = 75
-    Height = 25
-    Caption = 'Sourceforge'
-    TabOrder = 0
-    OnClick = Button1Click
+    Caption = 'https://github.com/PoC-Consortium/Qbundle'
   end
   object Button2: TButton
-    Left = 183
-    Top = 51
+    Left = 279
+    Top = 59
     Width = 75
     Height = 25
-    Caption = 'Github'
-    TabOrder = 1
+    Caption = 'Open Github'
+    TabOrder = 0
     OnClick = Button2Click
   end
 end

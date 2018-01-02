@@ -22,6 +22,12 @@ _____
 
 Changelog:
 
+0.3.13
+
++ updated core wallet to 1.3.6(cg)
++ Dark theme available
++ updated links, new logos and other minor improvements
+
 0.3.12
 
 + updated websites, links and explorers

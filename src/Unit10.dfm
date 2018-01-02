@@ -20,12 +20,12 @@ object Form10: TForm10
   object Label1: TLabel
     Left = 24
     Top = 321
-    Width = 298
+    Width = 309
     Height = 39
     Caption = 
-      'Using Official Online Wallet: https://wallet.burst-team.us by ha' +
-      'itch. Thanks to dcct, Janror, Blago and Luxe for the plotter and' +
-      ' miner software! '
+      'Using online wallets from PoC-Consortium and Burstforum.net . Th' +
+      'anks to dcct, Janror, Blago and Luxe for the plotter and miner s' +
+      'oftware! '
     WordWrap = True
   end
   object Label2: TLabel
@@ -34,7 +34,7 @@ object Form10: TForm10
     Width = 307
     Height = 13
     Caption = 
-      'Burst Client version 0.3.10 (for Burst Wallet 1.2.9) by daWallet' +
+      'Burst Client version 0.3.13 (for Burst Wallet 1.3.6) by daWallet' +
       '.'
   end
   object Label3: TLabel
@@ -53,7 +53,7 @@ object Form10: TForm10
   end
   object Label5: TLabel
     Left = 24
-    Top = 206
+    Top = 207
     Width = 324
     Height = 52
     AutoSize = False
@@ -67,9 +67,9 @@ object Form10: TForm10
   object Label6: TLabel
     Left = 53
     Top = 272
-    Width = 241
+    Width = 252
     Height = 13
-    Caption = 'Original Wallet:  github.com/burst-team/burstcoin/'
+    Caption = 'Core Wallet:  github.com/PoC-Consortium/burstcoin/'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -81,9 +81,9 @@ object Form10: TForm10
   object Label9: TLabel
     Left = 53
     Top = 291
-    Width = 264
+    Width = 232
     Height = 13
-    Caption = 'Burst Software: forums.burst-team.us/burst-software/'
+    Caption = 'Burst Software: burstforum.net/burst-software/'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -638,7 +638,7 @@ object Form10: TForm10
     Top = 428
     Width = 96
     Height = 13
-    Caption = 'www.burst-team.us'
+    Caption = 'www.burst-coin.org'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11

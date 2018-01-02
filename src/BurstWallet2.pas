@@ -28,7 +28,6 @@ type
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
-    ToolButton3: TToolButton;
     ToolButton4: TToolButton;
     ToolButton5: TToolButton;
     ToolButton6: TToolButton;
@@ -66,6 +65,8 @@ type
     N3: TMenuItem;
     N4: TMenuItem;
     BlockExplorer31: TMenuItem;
+    fastpoolcom1: TMenuItem;
+    SwitchTheme1: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure About1Click(Sender: TObject);
     procedure AddWallet1Click(Sender: TObject);
@@ -75,7 +76,6 @@ type
     procedure Open1Click(Sender: TObject);
     procedure Close1Click(Sender: TObject);
     procedure FormHide(Sender: TObject);
-    procedure FormActivate(Sender: TObject);
     procedure WmSysCommand(var Msg: TWMSysCommand); message WM_SYSCOMMAND;
     procedure HeaderControl1MouseActivate(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y, HitTest: Integer;
@@ -88,8 +88,6 @@ type
     procedure ToolButton11Click(Sender: TObject);
     procedure ToolButton10Click(Sender: TObject);
     procedure Market1Click(Sender: TObject);
-    procedure Lotteries1Click(Sender: TObject);
-    procedure Crowdfunding2Click(Sender: TObject);
     procedure ToolButton5Click(Sender: TObject);
     procedure N10Burstbyburstcoininfo1Click(Sender: TObject);
     procedure N5Burstburstteamus1Click(Sender: TObject);
@@ -117,7 +115,8 @@ type
     procedure N3Click(Sender: TObject);
     procedure N4Click(Sender: TObject);
     procedure BlockExplorer31Click(Sender: TObject);
-
+    procedure fastpoolcom1Click(Sender: TObject);
+    procedure SwitchTheme1Click(Sender: TObject);
 
   private
     { Private-Deklarationen }
@@ -136,17 +135,20 @@ type
   statestring: String;
   firstStart: String;
   MemoryJava: TMemoryStatusex;
+
   public
     { Public-Deklarationen }
     mining: String;
     ws: Textfile;
     fs: Textfile;
+    th: Textfile;
     allcore: Boolean;
     percentage: real;
     owallet1: String;
     owallet2: String;
     owallet3: String;
     owallet4: String;
+    theme: String;
   end;
 
 var
@@ -154,7 +156,7 @@ var
 
 implementation
 uses Unit5, Unit6, Unit2, Unit4, Unit3, Unit10, Unit11, Unit7, Unit12,
-  Unit13;
+  Unit13, Vcl.Themes;
 {$R *.dfm}
 
 procedure Delay( const msecs:integer);
@@ -428,13 +430,6 @@ var
   Form7.Show;
  end;
 
-procedure TForm1.Crowdfunding2Click(Sender: TObject);
-begin
-    WebBrowser1.Navigate('http://127.0.0.1:8125/atcrowdfund.html');
-    N7.Enabled := true;
-    N6.Enabled := True;
-end;
-
 procedure TForm1.DeleteWallet1Click(Sender: TObject);
 begin
      hide;
@@ -475,18 +470,21 @@ Form1.Hide;
 Form7.Show;
 end;
 
-procedure TForm1.FormActivate(Sender: TObject);
+procedure TForm1.fastpoolcom1Click(Sender: TObject);
 begin
-// ShowWindow(Application.Handle, SW_HIDE);
+ShellExecute(0, 'open', 'https://blocks.fastpool.info/faucet', nil, nil, SW_SHOWNORMAL);
 end;
-
-procedure LoadOWallet;
-  begin
-
- end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
+ theme := TFile.ReadAllText('var/theme');
+ theme := StringReplace(theme, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
+ begin
+   if theme = 'dark' then
+    begin
+     TStyleManager.TrySetStyle('Carbon');
+    end;
+ end;
   begin
   owallet1 := TFile.ReadAllText('var/owallet1');
   owallet1 := StringReplace(owallet1, #13#10, '', [rfReplaceAll, rfIgnoreCase]);
@@ -562,19 +560,18 @@ begin
         price_usd_clean := price_usd.ToString.Remove(price_usd.ToString.Length-2);
         Delete(price_usd_clean, 1,1);
          // Showmessage(price_usd_clean);
-         result:= ((StrToFloat(price_usd_clean, formatSettings)) * 1000);
+         result:= ((StrToFloat(price_usd_clean, formatSettings)) * 100);
          // Showmessage(FloatToStr(result));
          price_usd_clean:= FloatToStrF((result), ffFixed, 15, 2);
          price_usd_clean  := StringReplace(price_usd_clean, ',', '.',
                           [rfReplaceAll, rfIgnoreCase]);
          //ToolButton4.Caption := '$ '+(FloatToStrF((result), ffFixed, 15, 2)) ;
-         ToolButton4.Caption := '$ '+ price_usd_clean;
+         ToolButton4.Caption := '100 Burst = $ '+ price_usd_clean;
       end;
     except
       begin
       ToolButton1.Visible:=false;
       ToolButton2.Visible:=false;
-      ToolButton3.Visible:=false;
       ToolButton4.Visible:=false;
       ToolButton5.Caption:='Market Information';
       ToolButton6.Visible:=false;
@@ -607,7 +604,7 @@ begin
         WinExec('run_java_autodetect.bat', SW_HIDE)
         else
          begin
-         Showmessage('Not enough free RAM to run the the Local Wallet. Use the Online Wallet instead.'+#13#10+'The Burst Client is fully functional without a running Local Wallet.');
+         Showmessage('Not enough free RAM to run the the local Wallet. Use the online Wallet instead.'+#13#10+'The Burst Client is fully functional without a running Local Wallet.');
          N7.Visible := false;
          end;
  finally
@@ -642,7 +639,7 @@ end;
 
 procedure TForm1.Forums2Click(Sender: TObject);
 begin
-ShellExecute(0, 'open', 'https://forums.burst-team.us/category/5/help-support', nil, nil, SW_SHOWNORMAL);
+ShellExecute(0, 'open', 'https://burstforum.net/category/5/help-support', nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TForm1.Github1Click(Sender: TObject);
@@ -654,19 +651,12 @@ procedure TForm1.HeaderControl1MouseActivate(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y, HitTest: Integer;
   var MouseActivate: TMouseActivate);
 begin
-   WebBrowser1.Navigate('https://wallet.burst-team.us');
+   WebBrowser1.Navigate('https://wallet.burst.cryptoguru.org:8125');
 end;
 
 procedure TForm1.LoadWallet1Click(Sender: TObject);
 begin
      Form6.Show;
-end;
-
-procedure TForm1.Lotteries1Click(Sender: TObject);
-begin
-          WebBrowser1.Navigate('http://127.0.0.1:8125/atlotteries.html');
-          N7.Enabled := True;
-          N6.Enabled := True;
 end;
 
 procedure TForm1.Market1Click(Sender: TObject);
@@ -676,7 +666,7 @@ end;
 
 procedure TForm1.N10Burstbyburstcoininfo1Click(Sender: TObject);
 begin
-  ShellExecute(0, 'open', 'https://faucet.burstcoin.info', nil, nil, SW_SHOWNORMAL);
+  ShellExecute(0, 'open', 'https://faucet.burstpay.net/', nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TForm1.N2Burstburstcoinbiz1Click(Sender: TObject);
@@ -701,13 +691,35 @@ end;
 
 procedure TForm1.N5Burstburstteamus1Click(Sender: TObject);
 begin
-  ShellExecute(0, 'open', 'https://faucet.burst-team.us', nil, nil, SW_SHOWNORMAL);
+  ShellExecute(0, 'open', 'http://burstfaucet.freeiz.com/', nil, nil, SW_SHOWNORMAL);
 end;
 procedure TForm1.pingofburstbin1Click(Sender: TObject);
 begin
 ShellExecute(0, 'open', 'http://faucet.pingofburst.win', nil, nil, SW_SHOWNORMAL);
 end;
 
+procedure TForm1.SwitchTheme1Click(Sender: TObject);
+begin
+   if (TStyleManager.ActiveStyle.Name<>'Carbon') then begin
+   TStyleManager.TrySetStyle('Carbon');
+      begin
+       AssignFile(th,'var/theme');
+       Rewrite(TH);
+       Writeln(TH,'dark');
+       CloseFile(TH);
+      end;
+   end else begin
+    TStyleManager.TrySetStyle('Light');
+      begin
+       AssignFile(th,'var/theme');
+       Rewrite(TH);
+       Writeln(TH,'light');
+       CloseFile(TH);
+      end;
+  end;
+  N7.Enabled := True;
+  N6.Enabled := True;
+end;
 procedure TForm1.N6Click(Sender: TObject);
 begin
  N7.Enabled := True;
@@ -742,7 +754,7 @@ end;
 
 procedure TForm1.News1Click(Sender: TObject);
 begin
- ShellExecute(0, 'open', 'https://faucet.burstcoin.info', nil, nil, SW_SHOWNORMAL);
+ ShellExecute(0, 'open', 'https://www.burstcoin.ist', nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TForm1.OnlineLocal1Click(Sender: TObject);
@@ -779,14 +791,13 @@ begin
   begin
       ToolButton1.Visible:=true;
       ToolButton2.Visible:=true;
-      ToolButton3.Visible:=true;
       ToolButton4.Visible:=true;
       ToolButton5.Caption:='Market Cap:';
       ToolButton6.Visible:=true;
   end;
      try
      IdHTTP2 := TIdHTTP.Create;
-      checkver:= idHTTP2.Get('https://mwallet.burst-team.us:8125/client/0.3.10.txt');
+      checkver:= idHTTP2.Get('https://www.burstcoin.ist/wp-content/uploads/2017/12/0.3.13.txt');
       UpdateAvailable1.Visible := true;
       N2.Visible := true;
         IdHTTP2.Free;
@@ -843,33 +854,36 @@ begin
                   Insert('''', marketcap, 6) ;
                   Insert('''', marketcap, 10) ;
                  end;
+            11: begin
+                  Insert('''', marketcap, 3) ;
+                  Insert('''', marketcap, 7) ;
+                  Insert('''', marketcap, 11) ; // preparing for the future
+                 end;
            end
         end;
           except
         //  Showmessage('Market Cap error')
          end;
 
-
-       ToolButton6.Caption := ('$ '+marketcap);
+        ToolButton6.Caption := ('$ '+marketcap);
         ToolButton2.Caption := '฿ '+ coinprice;
         formatSettings.DecimalSeparator := '.';
         price_usd_clean := price_usd.ToString.Remove(price_usd.ToString.Length-2);
         Delete(price_usd_clean, 1,1);
          // Showmessage(price_usd_clean);
-         result:= ((StrToFloat(price_usd_clean, formatSettings)) * 1000);
+         result:= ((StrToFloat(price_usd_clean, formatSettings)) * 100);
          // Showmessage(FloatToStr(result));
          price_usd_clean:= FloatToStrF((result), ffFixed, 15, 2);
          price_usd_clean  := StringReplace(price_usd_clean, ',', '.',
                           [rfReplaceAll, rfIgnoreCase]);
          //ToolButton4.Caption := '$ '+(FloatToStrF((result), ffFixed, 15, 2)) ;
-         ToolButton4.Caption := '$ '+ price_usd_clean;
+         ToolButton4.Caption := '100 Burst = $ '+ price_usd_clean
          // Mining Wallet info
          end
     except
       begin
       ToolButton1.Visible:=false;
       ToolButton2.Visible:=false;
-      ToolButton3.Visible:=false;
       ToolButton4.Visible:=false;
       ToolButton5.Caption:='Market Information';
       ToolButton6.Visible:=false;
@@ -986,7 +1000,7 @@ end;
 
 procedure TForm1.ToolButton4Click(Sender: TObject);
 begin
-ShellExecute(0, 'open', 'http://burst.today', nil, nil, SW_SHOWNORMAL);
+ShellExecute(0, 'open', 'http://burst.today/', nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TForm1.ToolButton5Click(Sender: TObject);

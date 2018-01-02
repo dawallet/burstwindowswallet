@@ -179,7 +179,7 @@ IdHTTP := TIdHTTP.Create;
     end;
      except
        try
-        addressstring:= (idHTTP.Get(Form1.owallet2+'/burst?requestType=rsConvert&account='+Textfield.Text));
+        addressstring:= (idHTTP.Get(Form1.owallet1+'/burst?requestType=rsConvert&account='+Textfield.Text));
         addressstring:= TrimString(addressstring);
          except
            try
@@ -266,7 +266,6 @@ if Trackbar1.Position = 1 then
      begin
       pocParameters:= StringReplace((pocParameters),':"',' ',[rfReplaceAll]);
       Showmessage('You use a 32 bit system! For you theres only the original java plotter available which is slower.');
-
       BatContent:=TStringList.Create;
       BatContent.Add('java -Xmx'+IntToStr(Memory.ullAvailPhys div 900 div 4096)+'m -cp pocminer.jar;lib/*;lib/akka/*;lib/jetty/* pocminer.POCMiner generate %*');
       BatContent.SaveToFile(path+'/run_generate.bat');

@@ -9,7 +9,6 @@ uses
 type
   TForm12 = class(TForm)
     Label1: TLabel;
-    Button1: TButton;
     Button2: TButton;
     Label2: TLabel;
     procedure Button1Click(Sender: TObject);
@@ -36,7 +35,7 @@ end;
 
 procedure TForm12.Button2Click(Sender: TObject);
 begin
-ShellExecute(0, 'open', 'https://github.com/dawallet/burstwindowswallet/releases/', nil, nil, SW_SHOWNORMAL);
+ShellExecute(0, 'open', 'https://github.com/PoC-Consortium/Qbundle/releases', nil, nil, SW_SHOWNORMAL);
 Close;
 end;
 

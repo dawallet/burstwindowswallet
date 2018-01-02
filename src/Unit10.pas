@@ -43,16 +43,16 @@ end;
 
 procedure TForm10.Label4Click(Sender: TObject);
 begin
-ShellExecute(0, 'open', 'https://www.burst-team.us', nil, nil, SW_SHOWNORMAL);
+ShellExecute(0, 'open', 'https://www.burst-coin.org', nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TForm10.Label6Click(Sender: TObject);
 begin
-ShellExecute(0, 'open', 'https://github.com/burst-team/burstcoin/releases/', nil, nil, SW_SHOWNORMAL);
+ShellExecute(0, 'open', 'https://github.com/PoC-Consortium/burstcoin/releases', nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TForm10.Label9Click(Sender: TObject);
 begin
-ShellExecute(0, 'open', 'https://forums.burst-team.us/category/9/burst-software', nil, nil, SW_SHOWNORMAL);
+ShellExecute(0, 'open', 'https://burstforum.net/category/9/burst-software', nil, nil, SW_SHOWNORMAL);
 end;
 end.

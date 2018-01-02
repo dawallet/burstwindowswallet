@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Burst Client for Win v0.3.11'
+  Caption = 'Burst Client for Win v0.3.13'
   ClientHeight = 467
   ClientWidth = 816
   Color = clBtnFace
@@ -13,7 +13,6 @@ object Form1: TForm1
   Menu = MainMenu1
   OldCreateOrder = False
   Position = poDesktopCenter
-  OnActivate = FormActivate
   OnCreate = FormCreate
   OnHide = FormHide
   OnShow = FormShow
@@ -72,20 +71,12 @@ object Form1: TForm1
       ImageIndex = 6
       Style = tbsSeparator
     end
-    object ToolButton3: TToolButton
+    object ToolButton4: TToolButton
+      AlignWithMargins = True
       Left = 66
       Top = 0
       Hint = 'Open Calculator'
-      AutoSize = True
-      Caption = '1'#39'000 Burst ='
-      ImageIndex = 2
-      ParentShowHint = False
-      ShowHint = True
-      OnClick = ToolButton3Click
-    end
-    object ToolButton4: TToolButton
-      Left = 138
-      Top = 0
+      Margins.Left = 0
       AutoSize = True
       Caption = '-'
       DragCursor = crArrow
@@ -95,7 +86,7 @@ object Form1: TForm1
       OnClick = ToolButton4Click
     end
     object ToolButton8: TToolButton
-      Left = 157
+      Left = 85
       Top = 0
       Width = 8
       Caption = 'ToolButton8'
@@ -103,7 +94,7 @@ object Form1: TForm1
       Style = tbsSeparator
     end
     object ToolButton5: TToolButton
-      Left = 165
+      Left = 93
       Top = 0
       Hint = 'Click here to open Coinmarketcap.com!'
       AutoSize = True
@@ -114,14 +105,14 @@ object Form1: TForm1
       OnClick = ToolButton5Click
     end
     object ToolButton6: TToolButton
-      Left = 233
+      Left = 161
       Top = 0
       AutoSize = True
       Caption = '-'
       ImageIndex = 5
     end
     object ToolButton13: TToolButton
-      Left = 252
+      Left = 180
       Top = 0
       Width = 8
       Caption = 'ToolButton13 '
@@ -129,7 +120,7 @@ object Form1: TForm1
       Style = tbsSeparator
     end
     object ToolButton12: TToolButton
-      Left = 260
+      Left = 188
       Top = 0
       Width = 8
       Caption = 'ToolButton12'
@@ -139,7 +130,7 @@ object Form1: TForm1
     end
     object ToolButton11: TToolButton
       AlignWithMargins = True
-      Left = 268
+      Left = 196
       Top = 0
       Hint = 'Plot files are needed for mining!'
       AutoSize = True
@@ -150,7 +141,7 @@ object Form1: TForm1
       OnClick = ToolButton11Click
     end
     object ToolButton16: TToolButton
-      Left = 328
+      Left = 256
       Top = 0
       Width = 8
       Caption = 'ToolButton16'
@@ -159,7 +150,7 @@ object Form1: TForm1
     end
     object ToolButton10: TToolButton
       AlignWithMargins = True
-      Left = 336
+      Left = 264
       Top = 0
       Hint = 'Here you can mine your previously written plots.'
       Margins.Bottom = 0
@@ -171,7 +162,7 @@ object Form1: TForm1
       OnClick = ToolButton10Click
     end
     object ToolButton17: TToolButton
-      Left = 402
+      Left = 330
       Top = 0
       Width = 8
       Caption = 'ToolButton17'
@@ -180,7 +171,7 @@ object Form1: TForm1
       Visible = False
     end
     object ToolButton14: TToolButton
-      Left = 410
+      Left = 338
       Top = 0
       Hint = 'The local wallet makes you completely independent.'
       Caption = 'Syncing Local Wallet: '
@@ -190,7 +181,7 @@ object Form1: TForm1
       Visible = False
     end
     object ToolButton15: TToolButton
-      Left = 512
+      Left = 440
       Top = 0
       Hint = 'Click here to sync with 100% CPU!'
       AutoSize = True
@@ -203,9 +194,9 @@ object Form1: TForm1
     end
     object ToolButton9: TToolButton
       AlignWithMargins = True
-      Left = 546
+      Left = 474
       Top = 0
-      Width = 24
+      Width = 8
       Caption = 'ToolButton9'
       ImageIndex = 6
       Style = tbsSeparator
@@ -219,8 +210,7 @@ object Form1: TForm1
     Align = alClient
     DragCursor = crDefault
     TabOrder = 1
-    ExplicitLeft = -56
-    ExplicitTop = 56
+    ExplicitTop = -6
     ControlData = {
       4C00000056540000822E00000000000000000000000000000000000000000000
       000000004C000000000000000000000001000000E0D057007335CF11AE690800
@@ -241,6 +231,10 @@ object Form1: TForm1
         Caption = 'Load Wallet'
         OnClick = LoadWallet1Click
       end
+      object SwitchTheme1: TMenuItem
+        Caption = 'Switch Theme'
+        OnClick = SwitchTheme1Click
+      end
       object DeleteWallet1: TMenuItem
         Caption = 'Minimize'
         OnClick = DeleteWallet1Click
@@ -256,29 +250,48 @@ object Form1: TForm1
         Caption = 'Network'
         OnClick = Network2Click
       end
+      object N3: TMenuItem
+        Caption = 'Network #2'
+        OnClick = N3Click
+      end
       object BlockExplorer1: TMenuItem
         Caption = 'Block Explorer'
         OnClick = BlockExplorer1Click
       end
+      object N4: TMenuItem
+        Caption = 'Block Explorer #2'
+        OnClick = N4Click
+      end
+      object BlockExplorer31: TMenuItem
+        Caption = 'Block Explorer #3'
+        OnClick = BlockExplorer31Click
+      end
+    end
+    object News1: TMenuItem
+      Caption = 'News'
+      OnClick = News1Click
     end
     object Faucets1: TMenuItem
       Caption = 'Faucets'
-      Visible = False
       object N10Burstbyburstcoininfo1: TMenuItem
-        Caption = '[burstcoin.info]'
+        Caption = '[burstpay.net]'
         OnClick = N10Burstbyburstcoininfo1Click
       end
-      object N5Burstburstteamus1: TMenuItem
-        Caption = '[burst-team.us]'
-        OnClick = N5Burstburstteamus1Click
+      object fastpoolcom1: TMenuItem
+        Caption = '[fastpool.com]'
+        OnClick = fastpoolcom1Click
       end
-      object N2Burstburstcoinbiz1: TMenuItem
-        Caption = '[burstcoin.biz]'
-        OnClick = N2Burstburstcoinbiz1Click
+      object N5Burstburstteamus1: TMenuItem
+        Caption = '[burstfaucet.freeiz.com]'
+        OnClick = N5Burstburstteamus1Click
       end
     end
     object Forums1: TMenuItem
       Caption = 'Help'
+      object BurstWiki1: TMenuItem
+        Caption = 'Burst Wiki'
+        OnClick = BurstWiki1Click
+      end
       object Forums2: TMenuItem
         Caption = 'Forums'
         OnClick = Forums2Click

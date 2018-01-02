@@ -647,6 +647,6 @@ end;
 
 procedure TForm4.Label11Click(Sender: TObject);
 begin
-ShellExecute(0, 'open', 'https://forums.burst-team.us/category/51/i-need-a-burst-a-burst-is-all-i-need', nil, nil, SW_SHOWNORMAL);
+ShellExecute(0, 'open', 'https://burstforum.net/category/51/i-need-a-burst-a-burst-is-all-i-need', nil, nil, SW_SHOWNORMAL);
 end;
 end.
